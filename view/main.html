@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>หน้าแรก</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.6/css/responsive.bootstrap4.min.css">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.0/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.6/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://code.iconify.design/1/1.0.6/iconify.min.js"></script>
+    <link rel="stylesheet" href="../public/style/main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Pridi&display=swap" rel="stylesheet">
+
+
+    <script>
+        $(document).ready(function () {
+            const dataSet = [
+                {
+                    "order": "1",
+                    "date": "17/05/2564",
+                    "name": "นายบันเทิง สุดสุด",
+                    "no": "64050001",
+                    "status": "รออนุมัติ",
+                    "detail": ""
+                },
+                {
+                    "order": "2",
+                    "date": "19/05/2564",
+                    "name": "นางสาวสมหญิง มากมาก",
+                    "no": "64050010",
+                    "status": "รออนุมัติ",
+                    "detail": ""
+                }
+            ];
+ 
+            $('#formtable').DataTable({
+                responsive: true,       //for responsive column display
+                deferRender: true,      //if large data, use this option
+                data: dataSet,
+                columns: [
+                    { data: "order", title: "ลำดับ" },
+                    { data: "date", title: "วันที่" },
+                    { data: "name", title: "ชื่อ-นามสกุล" },
+                    { data: "no", title: "เลขที่ใบเบิก" },
+                    { data: "status", title: "สถานะ" },
+                    { title: "รายละเอียด",orderable: false, defaultContent: "<a href='#'>รายละเอียดเพิ่มเติม</a>"}
+                ]
+            });
+        });
+    </script>
+
+</head>
+
+<body>
+<!--head-->
+    <header>
+        <div><img src="../public/img/logo.png" width="35px" height="35px">ระบบจัดการวัสดุสำนักงาน
+            สำนักวิชาเทคโนโลยีสารสนเทศ</div>
+    </header>
+<!--menu-->
+    <div class="left">
+        <nav class="navtop">
+            <ul>
+                <li><a class="active" href="../view/main.html">คำขอเบิกวัสดุ</a></li>
+                <li><a href="">รายการวัสดุ</a></li>
+                <li><a href="">สถิติการเบิก</a></li>
+                <li><a href="">ประวัติการเบิก</a></li>
+
+            </ul>
+        </nav>
+        <ul>
+            <li style="padding-top: 630px;"><a href="../view/Login.html">ออกจากระบบ<span class="iconify" data-icon="uil:exit"
+                        data-inline="false"></span></a></li>
+        </ul>
+    </div>
+<!--table-->
+    <div class="col">
+        <text>คำขอเบิกวัสดุ</text>
+        <hr class="style19" align="left">
+    </div>
+
+    <div class="positiontable">
+        <table id="formtable" class="table table-striped" style="width:100%">
+        </table>
+    </div>
+
+</body>
+
+</html>
