@@ -1,0 +1,8 @@
+html, body {
+    box-sizing: border-box;
+}
+
+.bgnavbar {
+    background: #2E5E96;
+    border-radius:0px 0px 27px 27px;
+}
