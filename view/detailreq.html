@@ -71,7 +71,12 @@
         $('#sidebarCollapse').on('click', function () {
             $('#sidebar, #content').toggleClass('active');
         });
-    })
+
+        $( "#approve" ).click(function() {
+        //alert( "test" );
+        location.replace("detailsuccess.html");
+        });
+    });
 
 </script>
 
@@ -135,9 +140,9 @@
             <br>
             <!--Botton-->
             <div class="float-right">
-                <button class="btn btn-success">อนุมัติ</button>
-                <button class="btn btn-secondary">แก้ไขจำนวนจ่าย</button>
-                <button class="btn btn-warning">ไม่อนุมัติ</button>
+                <button class="btn btn-success" id="approve">อนุมัติ</button>
+                <button class="btn btn-secondary" id="modify">แก้ไขจำนวนจ่าย</button>
+                <button class="btn btn-warning" id="disapprovae">ไม่อนุมัติ</button>
             </div>
         </div>
     </div>
