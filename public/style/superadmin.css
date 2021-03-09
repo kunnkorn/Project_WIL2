@@ -183,7 +183,7 @@ html, body {
   }
   .back {
     visibility: hidden;
-    -ms-transition: all 0.2s cubic-bezier(.92, .01, .83, .67);
+    /* -ms-transition: all 0.2s cubic-bezier(.92, .01, .83, .67); */
   }
   .front {
     z-index: 4;
