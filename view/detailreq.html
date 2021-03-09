@@ -100,6 +100,13 @@
                 location.reload("detailreq.html");
             });
         });
+        //ปุ่มไม่อนุมัติ
+        $("#disapprove").click(function () {
+            //alert( "test" );
+            $("#disapproveysave").click(function () {
+                location.replace("adminmain.html");
+            });
+        });
 
     });
 
@@ -166,9 +173,8 @@
             <!--Botton-->
             <div class="float-right">
                 <button class="btn btn-success" id="approve">อนุมัติ</button>
-                <button class="btn btn-secondary" id="modify" data-toggle="modal"
-                    data-target="#modifymodal">แก้ไขจำนวนจ่าย</button>
-                <button class="btn btn-warning" id="disapprovae">ไม่อนุมัติ</button>
+                <button class="btn btn-secondary" id="modify" data-toggle="modal" data-target="#modifymodal">แก้ไขจำนวนจ่าย</button>
+                <button class="btn btn-warning" id="disapprove" data-toggle="modal" data-target="#disapprovemodal">ไม่อนุมัติ</button>
             </div>
         </div>
     </div>
@@ -193,6 +199,28 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-success"id="modifysave">ยืนยัน</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">ยกเลิก</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal disapprove -->
+    <div class="modal fade" id="disapprovemodal" tabindex="-1" role="dialog" aria-labelledby="disapproveModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">สาเหตุ :</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <textarea name="reason" id="" cols="50" rows="20" placeholder="เหตุผลที่ไม่อนุมัติ"></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success"id="disapproveysave">ยืนยัน</button>
                     <button type="button" class="btn btn-danger" data-dismiss="modal">ยกเลิก</button>
                 </div>
             </div>
