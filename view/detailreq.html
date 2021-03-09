@@ -25,7 +25,7 @@
         var material = [{
             "number": "1",
             "id": "101000246",
-            "list": "ปากกาไวท์บอร์ด สีแดง",
+            "list": "ซองจดหมายขาว ขนาด DL",
             "numreq": "10",
             "unit": "ด้าม",
             "balance": "5",
@@ -41,7 +41,23 @@
         }, {
             "number": "3",
             "id": "101000255",
-            "list": "ปากกาไวท์บอร์ด สีแดง",
+            "list": "ลวดเสียบกระดาษ (Paper Clip)",
+            "numreq": "10",
+            "unit": "ด้าม",
+            "balance": "5",
+            "amount": "0"
+        }, {
+            "number": "4",
+            "id": "101000359",
+            "list": "ไม้บรรทัดเหล็ก 1 ฟุต",
+            "numreq": "10",
+            "unit": "ด้าม",
+            "balance": "5",
+            "amount": "0"
+        }, {
+            "number": "5",
+            "id": "101000675",
+            "list": "ตรายาง - วันที่ตัวเลข",
             "numreq": "10",
             "unit": "ด้าม",
             "balance": "5",
@@ -72,10 +88,19 @@
             $('#sidebar, #content').toggleClass('active');
         });
 
-        $( "#approve" ).click(function() {
-        //alert( "test" );
-        location.replace("detailsuccess.html");
+        //ปุ่มอนุมัติ
+        $("#approve").click(function () {
+            //alert( "test" );
+            location.replace("detailsuccess.html");
         });
+        //ปุ่มแก้ไข
+        $("#modify").click(function () {
+            //alert( "test" );
+            $("#modifysave").click(function () {
+                location.reload("detailreq.html");
+            });
+        });
+
     });
 
 </script>
@@ -128,11 +153,11 @@
             <!--Detail text-->
             <div id="detail">
                 <p>
-                เลขที่ใบเบิก : <text>6405001</text><br>
-                หมายเหตุ : <text>ต้องการวัสดุทุกอย่างที่เบิกด่วนที่สุด</text><br>
-                ชื่อผู้เบิก : <text>นายบันเทิง สุดสุด</text><br>
-                วันที่ : <text>17/05/2564</text> เวลา : <text>15:30 น</text>
-            </p>
+                    เลขที่ใบเบิก : <text>6405001</text><br>
+                    หมายเหตุ : <text>ต้องการวัสดุทุกอย่างที่เบิกด่วนที่สุด</text><br>
+                    ชื่อผู้เบิก : <text>นายบันเทิง สุดสุด</text><br>
+                    วันที่ : <text>17/05/2564</text> เวลา : <text>15:30 น</text>
+                </p>
             </div>
             <br>
             <table id="materialTable" class="table table-striped table-bordered" style="width:100%">
@@ -141,8 +166,35 @@
             <!--Botton-->
             <div class="float-right">
                 <button class="btn btn-success" id="approve">อนุมัติ</button>
-                <button class="btn btn-secondary" id="modify">แก้ไขจำนวนจ่าย</button>
+                <button class="btn btn-secondary" id="modify" data-toggle="modal"
+                    data-target="#modifymodal">แก้ไขจำนวนจ่าย</button>
                 <button class="btn btn-warning" id="disapprovae">ไม่อนุมัติ</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal modify -->
+    <div class="modal fade" id="modifymodal" tabindex="-1" role="dialog" aria-labelledby="modifyModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">แก้ไขจำนวนจ่าย</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>ซองจดหมายขาว ขนาด DL <input type="number"></input></p>
+                    <p>ปากกาไวท์บอร์ด สีแดง <input type="number"></input></p>
+                    <p>ลวดเสียบกระดาษ (Paper Clip) <input type="number"></input></p>
+                    <p>ไม้บรรทัดเหล็ก 1 ฟุต <input type="number"></input></p>
+                    <p>ตรายาง - วันที่ตัวเลข <input type="number"></input></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success"id="modifysave">ยืนยัน</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">ยกเลิก</button>
+                </div>
             </div>
         </div>
     </div>
