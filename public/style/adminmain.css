@@ -1,3 +1,7 @@
+body{
+  font-family: 'Pridi', serif;
+  margin: 0;
+}
 .vertical-nav{
   min-width: 17rem;
   width: 17rem;
@@ -95,4 +99,12 @@ margin: 0;
 .col-10 {width: 83.33%;}
 .col-11 {width: 91.66%;}
 .col-12 {width: 100%;}
+}
+#detail{
+  border-radius: 25px;
+    background: #F3FFFE;
+    padding: 20px; 
+    width: 1520px;
+    height: 170px; 
+    font-size: 20px;
 }
