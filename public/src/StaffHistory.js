@@ -75,8 +75,23 @@ $(document).ready(function () {
             {data: "time" , title: "เวลา"},
             {data: "requisition" , title: "เลขที่ใบเบิก"},
             {data: "status" , title: "สถานะ"},
-            {title: "รายละเอียด" , orderable: false, defaultContent: "<a href= '#'>รายละเอียดเพิ่มเติม<a/>"}
+            {title: "รายละเอียด" , orderable: false, defaultContent: "<a href= '#' class = 'btn-detail'>รายละเอียดเพิ่มเติม<a/>"}
             
-        ]
+        ],
+        
     });
+
+    $("#HistoryTable tbody").on("click" , ".btn-detail" , function(){
+        
+        const currentRow = $(this).parents("tr");
+        const data = table.row(currentRow).data();
+
+        if(data.status == "ไม่อนุมัติ"){
+            alert("No")
+        }
+        else{
+            alert("Yes")
+        }
+    })
+
 });

@@ -94,9 +94,24 @@ $(document).ready(function () {
             {data: "name" , title: "รายการ"},
             {data: "balance" , title: "คงเหลือ"},
             {data: "unit" , title: "หน่วยนับ"},
-            {title: "ขอเบิก" , orderable: false , defaultContent: '<a href = "#" ><span class="iconify" data-icon="fluent:task-list-add-20-regular" style="font-size: 40px; color: F49300;"></span></a>'}
+            {title: "ขอเบิก" , orderable: false , defaultContent: '<a href = "#" ><span class="iconify btn-add" data-icon="fluent:task-list-add-20-regular" style="font-size: 40px; color: F49300;"></span></a>'}
         ]
 
     });
 
+    let counter = 0;
+    $("#materialMenu tbody").on("click" , ".btn-add" , function(){
+        
+        // Count Basket
+        counter++;
+        $("#countAdd").text(counter);
+        
+        // Get Meterials Data
+        const currentRow = $(this).parents("tr");
+        const data = table.row(currentRow).data();
+        rowID = table.row(currentRow).index();
+
+        
+
+    })
 });
