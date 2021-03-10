@@ -105,7 +105,7 @@ margin: 0;
     background: #F3FFFE;
     padding: 20px; 
     width: 1520px;
-    height: 170px; 
+    height: 200px; 
     font-size: 20px;
 }
 .position{
@@ -113,4 +113,8 @@ margin: 0;
 }
 .status{
   padding-left: 600px;
+}
+.all{
+  padding-left: 1200px;
+  padding-top: 20px;
 }
