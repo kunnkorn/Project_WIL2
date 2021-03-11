@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>สถิติการเบิกรายคน</title>
+    <link rel="stylesheet" href="../public/js/bootstrap.min.css">
+    <link rel="stylesheet" href="../public/js/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="../public/js/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="../public/js/sweetalert2.min.css">
+    <link rel="stylesheet" href="../public/js/css.css">
+    <link rel="stylesheet" href="../public/js/font-awesome.min.css">
+    <script src="../public/js/jquery.min.js"></script>
+    <script src="../public/js/popper.min.js"></script>
+    <script src="../public/js/bootstrap.min.js"></script>
+    <script src="../public/js/bootbox.min.js"></script>
+    <script src="../public/js/jquery.dataTables.min.js"></script>
+    <script src="../public/js/dataTables.bootstrap4.min.js"></script>
+    <script src="../public/js/dataTables.responsive.min.js"></script>
+    <script src="../public/js/responsive.bootstrap4.min.js"></script>
+    <script src="../public/js/sweetalert2.all.min.js"></script>
+    <script src="../public/js/iconify.min.js"></script>   
+    <link rel="stylesheet" href="../public/style/สถิติการเบิกรายคน.css">
+</head>
+<script>
+    $(document).ready(function () {
+        var rowID;
+        var material = [{
+            "number": "1",
+            "name": "นาย บันเทิง จัดจัด",
+            "numberoftime": "50",
+        }, {
+            "number": "2",
+            "name": "นางสาว สมหญิง อิอิ",
+            "numberoftime": "48",
+        }, {
+            "number": "3",
+            "name": "นาย บันเทิง จริงนะ",
+            "numberoftime": "45",
+        }, {
+            "number": "4",
+            "name": "นางสาว สมหญิง อะไรนะ",
+            "numberoftime": "30",
+        }, {
+            "number": "5",
+            "name": "นาย พรเพ็ง อารมณ์ดี",
+            "numberoftime": "29",
+        }, {
+            "number": "6",
+            "name": "นาย ลีลิน ดีจริงจริง",
+            "numberoftime": "18",
+        }, {
+            "number": "7",
+            "name": "นางสาว สวย สายสมร",
+            "numberoftime": "15",
+        }, {
+            "number": "8",
+            "name": "นางสาว สมใจ อยาก",
+            "numberoftime": "12",
+        }, {
+            "number": "9",
+            "name": "นาย สมาย ใจร่ม",
+            "numberoftime": "10",
+        }, {
+            "number": "10",
+            "name": "นางสาว อารมณ์ ดีมาก",
+            "numberoftime": "5",
+        }];
+        var table = $("#materialTable").DataTable({
+            responsive: true,       //for responsive column display
+            deferRender: true,      //if large data, use this option
+
+            data: material,
+            columns: [
+                { data: "number", title: "ลำดับ" },
+                { data: "name", title: "รายชื่อ" },
+                { data: "numberoftime", title: "จำนวนครั้งที่เบิก/เดือน" },
+                { title: "รายละเอียด", orderable: false, defaultContent: "<a href='detailreq.html'>รายละเอียดเพิ่มเติม</a>" }
+            ],
+            columnDefs: [
+                // make the last column align right, also target: "_all"
+                { "className": "dt-center", "targets": 3 }
+            ]
+        });
+
+        // Sidebar toggle behavior
+        $('#sidebarCollapse').on('click', function () {
+            $('#sidebar, #content').toggleClass('active');
+        });
+    })
+
+</script>
+
+<body>
+    <!--Topbar-->
+    <nav class="navbar navbar-expand-sm navbar-dark fixed-top" style="background-color: #2E5E96;">
+        <a class="navbar-brand col-12 col-s-6" href="#"><img src="../public/img/logo.png" alt=""
+                style="width: 40px; height: 40px;">&nbsp;&nbsp;<span style=" font-family: 'Pridi', serif;">ระบบจัดการวัสดุสำนักงาน
+                สำนักวิชาเทคโนโลยีสารสนเทศ</span> 
+                <text class="float-right"><span class="iconify" data-icon="bx:bxs-user-circle" data-inline="false" style="color: #ffff;" data-width="30px" data-height="30px"></span>
+                    นาย สมยศ ศักดิ์ใหญ่</text></a>
+        <button id="sidebarCollapse" type="button" class="navbar-toggler btn btn-link border-0"
+            aria-label="Toggle navigation">
+            <!-- <i class="fas fa-bars mr-2"></i> -->
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </nav>
+    <!--SIDE bAR-->
+    <div class="vertical-nav bg-white" id="sidebar">
+        <div class="vertical-menu">
+            <ul class="nav flex-column bg-white mt-4">
+                <li><a href="../view/สถิติการเบิก.html" >สถิติการเบิก</a></li>
+                <li><a href="../view/สถิติการเบิกรายคน.html" class="active">สถิติการเบิกรายคน</a></li>
+                <li><a href="../view/รายการวัสดุ.html">รายการวัสดุ</a></li>
+                <li><a href="../view/ประวัติการเบิก.html">ประวัติการเบิก</a></li>
+                <li><a href="../view/ประวัติการแก้ไขข้อมูล.html">ประวัติการแก้ไขข้อมูล</a></li>
+            </ul>
+
+        </div>
+        <br><br><br><br><br><br><br><br>
+        <a href="../view/Login.html" class="nav-link text-dark  mt-5">ออกจากระบบ <span class="iconify" data-icon="ls:logout"
+                data-inline="false"></span> </a>
+    </div>
+
+    <!--Main-->
+    <div class="page-content p-5 mt-5" id="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-11">
+                    <h2>สถิติการเบิกรายคน</h2> 
+                    <hr  >                                   
+                </div>
+                <SELECT NAME="เดือน" id="mounth" >
+                    <option value="มกราคม">ทั้งหมด</option>
+                    <option value="กุมภาพันธ์ ">กุมภาพันธ์ </option>
+                    <option value="มีนาคม ">มีนาคม </option>
+                    <option value="เมษายน ">เมษายน </option>
+                    <option value="พฤษภาคม">พฤษภาคม</option>
+                    <option value="มิถุนายน ">มิถุนายน </option>
+                    <option value="กรกฎาคม">กรกฎาคม</option>
+                    <option value="สิงหาคม">สิงหาคม</option>
+                    <option value="กันยายน">กันยายน</option>
+                    <option value="ตุลาคม">ตุลาคม</option>
+                    <option value="พฤศจิกายน ">พฤศจิกายน </option>
+                    <option value="ธันวาคม">ธันวาคม</option>
+                       </SELECT>
+            </div>
+            <!--Datatable-->
+            <table id="materialTable" class="table table-striped table-bordered" style="width:100%"></table>
+        </div>
+    </div>
+</body>
+
+</html>
