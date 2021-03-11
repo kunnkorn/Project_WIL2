@@ -27,7 +27,7 @@
 <script>
     $(document).ready(function () {
         var rowID;
-        var material = [{
+        var historymaterial = [{
             "date": "17/05/2564",
             "time": "10:25 น.",
             "name": "นางสาว แอดมิน สมหญิง",
@@ -72,11 +72,11 @@
             "number": "10",
             "unit": "ตัว",
         },];
-        var table = $("#materialTable").DataTable({
+        var table = $("#historymaterialTable").DataTable({
             responsive: true,       //for responsive column display
             deferRender: true,      //if large data, use this option
 
-            data: material,
+            data: historymaterial,
             columns: [
                 { data: "date", title: "วันที่" },
                 { data: "time", title: "เวลา" },
@@ -146,7 +146,7 @@
 
             </div>
             <!--Datatable-->
-            <table id="materialTable" class="table table-striped table-bordered" style="width:100%"></table>
+            <table id="historymaterialTable" class="table table-striped table-bordered" style="width:100%"></table>
         </div>
     </div>
 </body>
