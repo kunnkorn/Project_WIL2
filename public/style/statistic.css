@@ -1,0 +1,46 @@
+#year{
+ 
+    font-family: 'Pridi', serif;
+  }
+  #month{
+      border: none;
+      font-family: 'Pridi', serif;
+      width: 8rem;
+  }
+  
+  .carousel{
+      background-color: rgb(255, 255, 255) !important;
+      height: 30rem;
+      border-radius: 25px;
+      padding: 20px;
+    
+  }
+  #carousel-item-card{
+    margin-top: 2.8rem;
+    font-family: 'Pridi', serif;
+  
+  }
+  
+  .card-text{
+      font-size: 45px;
+  }
+  .card{
+      width: 18rem;
+      height: 9rem;
+      border: none;
+  
+  
+  }
+  #iconsta {
+      font-size: 60px;
+     float: right;
+  }
+  #modelExport{
+      font-family: 'Pridi', serif;
+      text-align: center;
+    
+  }
+  #chBar{
+      width: 100rem;
+    margin: 15px auto;
+  }
