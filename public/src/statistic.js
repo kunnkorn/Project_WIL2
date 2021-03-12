@@ -1,38 +1,54 @@
 $(document).ready(function () {
+
+    //statistic
     var colors = ['#5832CE', '#F90904', '#E4D131'];
-    //bar chart
+
     var chBar = document.getElementById("chBar");
+    var chartData = {
+        labels: ['วัสดุสำนักงาน', ' วัสดุไฟฟ้าวิทยุ', 'วัสดุคอมพิวเตอร์', 'วัสดุงานบ้านงานครัว', 'วัสดุเครื่องแต่งกาย', 'วัสดุของที่ระลึก'],
+        datasets: [{
+            lable: ['อนุมัติ'],
+            data: [589, 445, 483, 503, 689, 692, 634],
+            backgroundColor: colors[0]
+        },
+        {
+            lable: 'ไม่อนุมัติ',
+            data: [209, 245, 383, 403, 589, 692, 580],
+            backgroundColor: colors[1]
+        },
+        {
+            lable: 'อนุมัติแต่ไม่ครบ',
+            data: [489, 135, 483, 290, 189, 603, 600],
+            backgroundColor: colors[2]
+        },
+        ]
+    };
+
     if (chBar) {
         new Chart(chBar, {
             type: 'bar',
-            data: {
-                lables: ["วัสดุสำนักงาน", "วัสดุไฟฟ้าวิทยุ", "วัสดุคอมพิวเตอร์", "วัสดุงานบ้านงานครัว", "วัสดุเครื่องแต่งกาย", "วัสดุของที่ระลึก"],
-                datasets: [{
-                    data: [230, 123, 25, 96, 45, 124],
-                    backgroundColor: colors[0]
-                },
-                {
-                    data: [45, 32, 77, 10, 7, 5],
-                    backgroundColor: colors[1]
-                }, {
-                    data: [41, 75, 84, 98, 36, 74],
-                    backgroundColor: colors[2]
-                }]
-            },
-            option: {
-                legend: {
-                    display: false
-                },
+            data: chartData,
+            responsive: true,
+            options: {
                 scales: {
                     xAxes: [{
-                        barPercentage: 0.4,
+                        barPercentage: 1,
                         categoryPercentage: 0.5
+                    }],
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: false
+                        }
                     }]
+                },
+                legend: {
+                    display: true,
+                    position: 'bottom'
+                   
                 }
             }
         });
     }
-
 
 
 

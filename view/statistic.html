@@ -79,16 +79,15 @@
             </div>
 
             <!--Carusel-->
-            <div id="carouselExampleIndicators" class="carousel slide mt-4" data-ride="carousel"
-                style="border: 2px solid black;">
+           <div class="container">
+            <div id="carouselId" class="carousel slide" data-ride="carousel" style="border: 2px solid black;">
                 <ol class="carousel-indicators">
-                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                    <li data-target="#carouselId" data-slide-to="0" class="active"></li>
+                    <li data-target="#carouselId" data-slide-to="1"></li>
+        
                 </ol>
-                <div class="carousel-inner ">
-                    <h3 style="font-family: 'Pridi', serif; margin-left: 20px; ">สถิติใบเบิกรายเดือน</h3>
-                    <div class="carousel-item active " id="carousel-item-card">
-
+                <div class="carousel-inner" role="listbox">
+                    <div class="carousel-item active">
                         <div class="row">
                             <div class="col-xl-3 col-sm-6 col-md-12 col-l-6 ">
                                 <div class="card " style="background-color: #92E5FF;">
@@ -98,7 +97,7 @@
                                             <span class="iconify " data-icon="ant-design:file-text-outlined"
                                                 id="iconsta"></span>
                                         </p>
-
+        
                                     </div>
                                 </div>
                             </div>
@@ -122,7 +121,7 @@
                                         <p class="card-text" id="noncheck">11
                                             <span class="iconify " data-icon="bi:file-earmark-x" id="iconsta"></span>
                                         </p>
-
+        
                                     </div>
                                 </div>
                             </div>
@@ -134,40 +133,35 @@
                                             <span class="iconify " data-icon="ant-design:file-exclamation-outlined"
                                                 id="iconsta"></span>
                                         </p>
-
+        
                                     </div>
                                 </div>
                             </div>
-                        </div>
-
-                        <div class="carousel-item">
-                            
-                                <div class="card">
-                                    <div class="card-body">
-                                        <canvas id="chBar"></canvas>
-                                    </div>
-                                </div>
-                            
-                            <div class="carousel-caption d-none d-md-block">
-                               
-                                <!-- <span>อนุมัติ</span>
-                                <span>ไม่อนุมัติ</span>
-                                <span>อนุมัติแต่ไม่ครบ</span> -->
-                            </div>
-
                         </div>
                     </div>
-                    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Next</span>
-                    </a>
+                    <div class="carousel-item">
+                        <div class="card col-md-12 justify-content-center" style="background-color: #ffffff; width: 950px; height: 438px;">
+                            <div class="card-body">
+                                <canvas id="chBar" height="75" width="200"></canvas>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+                <a class="carousel-control-prev" href="#carouselId" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselId" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
             </div>
-        </div>
+        
+        
+        
+        
+
+           </div>
 
         <!--dropdown for catagory-->
         <div class="row mt-5 ml-2 mb-3">
