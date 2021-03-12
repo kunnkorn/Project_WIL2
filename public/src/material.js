@@ -41,6 +41,33 @@ $(document).ready(function(){
             { "className": "dt-center", "targets": 5 }
         ]
     });
+     //Edit Table
+     $("#materialTable tbody").on("click", ".btn-warning", function () {
+        const currentRow = $(this).parents("tr")
+        const data = table.row(currentRow).data();
+        rowID = table.row(currentRow).index();
+        $("#EditID").prop("disabled", true);
+        $("#EditID").val(data.id);
+        $("#EditName").prop("disabled", true);
+        $("#EditName").val(data.name);
+        $("#EditNum").val(data.balance);
+        $("#EditUnit").prop("disabled", true);
+        $("#EditUnit").val(data.unit);
+
+        //show model
+        $("#modelEdit").modal("show");
+    });
+    //save Edit
+    $("#btnSaveEdit").click(function () {
+        const number = $("#EditNum").val();
+        material[rowID].balance = number;
+
+        let temp = table.row(rowID).data();
+        temp.balance = number;
+        table.row(rowID).data(temp).invalidate();
+
+        $("#modelEdit").modal("hide");
+    });
 
     
 
