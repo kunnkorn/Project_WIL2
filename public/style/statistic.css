@@ -25,7 +25,7 @@
     
   }
   #carousel-item-card{
-    margin-top: 2.5rem;
+    margin-top: auto;
     font-family: 'Pridi', serif;
     
   
@@ -40,9 +40,8 @@
       height: 9rem;
       border: none;
       font-family: 'Pridi', serif;
-     
-  
   }
+ 
   #iconsta {
       font-size: 60px;
      float: right;
@@ -53,10 +52,21 @@
     
   }
   #chBar{
-      width: 100rem;
-    margin: 15px auto;
-   margin-top: 40px;
-   margin-left: 3rem;
+    margin: auto;
+   margin-top: auto;
+  }
+  #bar{
+      position: static;
+      margin: auto;
+      background-color: #ffffff; 
+      width: 950px; 
+      height: 358px; 
+      margin-top: 2rem;
+  }
+  #Export{
+    margin-top: auto;
+    text-align: center;
+  margin-left: auto;
   }
   .carousel .carousel-indicators li {
     width: 10px;
@@ -64,3 +74,113 @@
    border-radius: 100%;
    background-color: rgb(167, 167, 167);
  }
+ @media only screen and (max-width:1500px){
+    .card{
+        width: 16rem;
+        height: 9rem;
+        
+    }
+   
+ }
+ @media only screen and (max-width:980px){
+    .card{
+        width: 14rem;
+        height: 8rem;
+        border: none;
+        font-family: 'Pridi', serif;
+        margin-bottom: auto;
+        margin-right: auto;
+    }
+    .card-text{
+        font-size: 35px;
+    }
+    h5{
+        font-size: 18px;
+    }
+    #iconsta{
+        font-size: 40px;
+        float: right;
+    }
+ }
+
+ @media only screen and (max-width:590px){
+    .card{
+        width: 13rem;
+        height: 8rem;
+        border: none;
+        margin-bottom: auto;
+        margin-right: auto;
+    }
+    .card-text{
+        font-size:35px;
+    }
+    h5{
+        font-size: 14px;
+    }
+    #iconsta{
+        font-size: 40px;
+        float: right;
+    }
+ }
+ @media only screen and (max-width:590px){
+    .card{
+        width: 19rem;
+        height: 6.5rem;
+        border: none;
+        font-family: 'Pridi', serif;
+        margin-right: auto;
+      
+
+    }
+    .card-text{
+        font-size:25px;
+    }
+    h5{
+        font-size: 19px;
+    }
+    #iconsta{
+        font-size: 40px;
+        float: right;
+    }
+    #dashboard{
+        margin-bottom: auto;
+        
+        width: 90%;
+        height: 70%;
+        
+    }
+ }
+ [class*="col-"] {
+    width: 100%;
+  }
+  
+  @media only screen and (min-width: 600px) {
+    /* For tablets: */
+    .col-s-1 {width: 8.33%;}
+    .col-s-2 {width: 16.66%;}
+    .col-s-3 {width: 25%;}
+    .col-s-4 {width: 33.33%;}
+    .col-s-5 {width: 41.66%;}
+    .col-s-6 {width: 50%;}
+    .col-s-7 {width: 58.33%;}
+    .col-s-8 {width: 66.66%;}
+    .col-s-9 {width: 75%;}
+    .col-s-10 {width: 83.33%;}
+    .col-s-11 {width: 91.66%;}
+    .col-s-12 {width: 100%;}
+  }
+  @media only screen and (min-width: 768px) {
+    /* For desktop: */
+    .col-1 {width: 8.33%;}
+    .col-2 {width: 16.66%;}
+    .col-3 {width: 25%;}
+    .col-4 {width: 33.33%;}
+    .col-5 {width: 41.66%;}
+    .col-6 {width: 50%;}
+    .col-7 {width: 58.33%;}
+    .col-8 {width: 66.66%;}
+    .col-9 {width: 75%;}
+    .col-10 {width: 83.33%;}
+    .col-11 {width: 91.66%;}
+    .col-12 {width: 100%;}
+  }

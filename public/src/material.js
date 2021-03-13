@@ -47,7 +47,7 @@ $(document).ready(function(){
     $("#btnimport").click(function(){
         $("#modeladd").modal("show");
         $("#btnSaveadd").on("click",function(){
-            var checkindex =0;
+            var checkindex = 0;
             count++;
             const id = $("#addID").val();
             const name = $("#addName").val();

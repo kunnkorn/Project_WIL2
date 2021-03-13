@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.6/css/responsive.bootstrap4.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Pridi&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.css">
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.0/umd/popper.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://code.iconify.design/1/1.0.6/iconify.min.js"></script>
@@ -18,6 +19,9 @@
     <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.2.6/js/dataTables.responsive.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
+    
+
+
     <link rel="stylesheet" href="../public/style/material.css">
     <link rel="stylesheet" href="../public/style/statistic.css">
     <script src="../public/src/statistic.js"></script>
@@ -35,9 +39,6 @@
             <!-- <i class="fas fa-bars mr-2"></i> -->
             <span class="navbar-toggler-icon"></span>
         </button>
-
-
-
     </nav>
 
     <!--SIDE bAR-->
@@ -68,7 +69,7 @@
                          <span class="iconify" data-icon="whh:statistics" data-inline="false"></span> สถิติการเบิก</h3>
                          <hr width="980px" size="2" class="ml-0 col-md-8 col-xl-9 col-l-9 col-sm-9">
                 </div>
-                <div class="col-3 mt-4 col-md-5 col-xl-3" style="justify-content: end;">
+                <div >
                     <select name="" id="month">
                         <option value="">มกราคม</option>
                         <option value="">กุมภาพันธ์</option>
@@ -85,13 +86,13 @@
 
                     </select>
 
-                    <label for="" id="year" style="border: 2px solid red;" >ปีการศึกษา <span>2564 </span> </label>
+                    <label for="" id="year"  >ปีการศึกษา <span>2564 </span> </label>
 
                 </div>
             </div>
 
             <!--Carusel-->
-           <div class="container col-xl-12 col-sm-6 col-md-12 col-l-12 ">
+           <div class="container-fluid  ">
             <div id="carouselId" class="carousel slide" data-ride="carousel" >
                 <ol class="carousel-indicators" >
                     <li data-target="#carouselId" data-slide-to="0" class="active"></li>
@@ -99,21 +100,21 @@
         
                 </ol>
                 <div class="carousel-inner " role="listbox">
-                    <div class="carousel-item active">
-                        <div class="row">
-                            <div class="col-xl-3 col-sm-6 col-md-12 col-l-6 ">
+                    <div class="carousel-item active" id="dashboard">
+                        <div class="row mt-4 " style="justify-content: center;">
+                            <div class="col-xl-3 col-sm-6 col-md-6 col-l-6 col-s-12" >
                                 <div class="card " style="background-color: #92E5FF;">
                                     <div class="card-body">
                                         <h5 class="card-title ">ใบเบิกทั้งหมด</h5>
                                         <p class="card-text" id="all">100
-                                            <span class="iconify " data-icon="ant-design:file-text-outlined"
+                                            <span class="iconify" data-icon="ant-design:file-text-outlined"
                                                 id="iconsta"></span>
                                         </p>
         
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-xl-3 col-sm-6 col-md-12 col-l-6 ">
+                            <div class="col-xl-3 col-sm-6 col-md-6 col-l-6 col-s-12">
                                 <div class="card " style="background-color: #A5FEB9">
                                     <div class="card-body">
                                         <h5 class="card-title">ใบเบิกที่อนุมัติ</h5>
@@ -125,8 +126,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row mt-3">
-                            <div class="col-xl-3 col-sm-6 col-md-12 col-l-6">
+                        <div class="row mt-3 " style="justify-content: center;">
+                            <div class="col-xl-3 col-sm-6 col-md-6 col-l-6 col-s-12">
                                 <div class="card " style="background-color: #FF9292">
                                     <div class="card-body ">
                                         <h5 class="card-title">ใบเบิกที่ไม่อนุมัติ</h5>
@@ -137,7 +138,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-xl-3 col-sm-6 col-md-12 col-l-6 ">
+                            <div class="col-xl-3 col-sm-6 col-md-6 col-l-6 col-s-12">
                                 <div class="card" style="background-color: #FFF171">
                                     <div class="card-body">
                                         <h5 class="card-title">ใบเบิกที่อนุมัติแต่ได้ของไม่ครบ</h5>
@@ -152,9 +153,12 @@
                         </div>
                     </div>
                     <div class="carousel-item">
-                        <div class="card col-md-12 justify-content-center" style="background-color: #ffffff; width: 950px; height: 438px;">
-                            <div class="card-body">
-                                <canvas id="chBar" height="83px" width="230px"></canvas>
+                        <div class="card col-md-12 "  id="bar">
+                            <div class="card-body" >
+                                <div class="container" > 
+                                    <canvas id="chBar" height="83px" width="230px" ></canvas>
+                                </div>
+                                
                             </div>
                         </div>
                     </div>
@@ -172,7 +176,7 @@
 
         <!--dropdown for catagory-->
         <div class="row mt-5 ml-2 mb-3">
-            <div class="col-xl-10 col-sm-12 col-md-9 ">
+            <div class="col-xl-9 col-sm-12 col-md-9 ">
                 <select name="category" id="category">
                     <option value="">วัสดุสำนักงาน</option>
                     <option value="">วัสดุไฟฟ้าวิทยุ</option>
@@ -182,7 +186,7 @@
                     <option value="">วัสดุของที่ระลึก</option>
                 </select> <br><br>
             </div>
-            <div class="col-xl-2 col-sm-12 col-md-3 ">
+            <div class="col-xl-2 col-sm-12 col-md-3 "  id="Export">
                 <button type="button" class="btn btn-warning rounded-pill" id="export">
                     <span class="iconify" data-icon="uil:export" data-inline="false"></span>นำออกไฟล์</button>
             </div>
@@ -209,9 +213,9 @@
                         <p style="font-size: 18px;">Excel</p>
                     </div>
                     <div class="modal-footer justify-content-center">
-                        <button type="button" class="btn btn-success rounded-pill" id="btnSaveEdit">ยืนยัน</button>
+                        <button type="button" class="btn btn-success rounded-pill" id="exportConfirm">ยืนยัน</button>
                         <button type="button" class="btn btn-light  rounded-pill" data-dismiss="modal"
-                            id="btnCancelEdit">ยกเลิก</button>
+                            id="btnCancel">ยกเลิก</button>
                     </div>
                 </div>
             </div>
