@@ -86,8 +86,6 @@ $(document).ready(function () {
         responsive: true,       //for responsive column display
         deferRender: true,      //if large data, use this option
        
-       
-
         data: materialStatistic,
         columns: [
             { data: "number", title: "ลำดับ" },
