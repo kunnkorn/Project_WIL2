@@ -29,29 +29,66 @@ $(document).ready(function(){
 
         data: material,
         columns: [
-            { data: "number", title: "ลำดับ" },
+            { data: "number", title: "ลำดับ"   },
             { data: "id", title: "รหัสวัสดุ" },
             { data: "name", title: "รายการ" },
             { data: "balance", title: "คงเหลือ" },
             { data: "unit", title: "หน่ายนับ" },
-            { title: "เพิ่มจำนวน", orderable: false, defaultContent: " <button class='btn btn-warning my-1'>Edit</button>" }
+            { title: "เพิ่มจำนวน", orderable: false, defaultContent: " <button class='btn btn-warning my-1'>  Edit</button>" }
         ],
         columnDefs: [
-            // make the last column align right, also target: "_all"
+            // make the last column align right, also target: "_all" 
             { "className": "dt-center", "targets": 5 }
         ]
+    });
+
+    //Add data
+    var count = 3;
+    $("#btnimport").click(function(){
+        $("#modeladd").modal("show");
+        $("#btnSaveadd").on("click",function(){
+            var checkindex =0;
+            count++;
+            const id = $("#addID").val();
+            const name = $("#addName").val();
+            const balance = $("#addNum").val();
+            const unit = $("#addUnit").val(); 
+            for(let i =0;i< material.length ; i++){
+                if(id != material[i].id){
+                    checkindex++;  
+                }else{
+                    alert("Have too much ID");
+                    break;
+                }
+            }   
+            if(checkindex == material.length){
+                material.push({ "id" : count, "name" : name ,"balance" : balance ,"unit":unit});
+                console.log(material);
+                table.row.add({
+                    //"number":ลำดับ,
+                    "number" : count,
+                    "id" :id , 
+                    "name" : name ,
+                    "balance" : balance ,
+                    "unit" : unit,
+                }).draw();
+
+                $("#addID").val("");
+                $("#addName").val("");
+                $("#addNum").val("");
+                $("#addUnit").val("");
+                $("#modeladd").modal("hide");
+            }
+        });
     });
      //Edit Table
      $("#materialTable tbody").on("click", ".btn-warning", function () {
         const currentRow = $(this).parents("tr")
         const data = table.row(currentRow).data();
         rowID = table.row(currentRow).index();
-        $("#EditID").prop("disabled", true);
         $("#EditID").val(data.id);
-        $("#EditName").prop("disabled", true);
         $("#EditName").val(data.name);
         $("#EditNum").val(data.balance);
-        $("#EditUnit").prop("disabled", true);
         $("#EditUnit").val(data.unit);
 
         //show model

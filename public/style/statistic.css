@@ -1,11 +1,17 @@
 #year{
  
     font-family: 'Pridi', serif;
+    margin-left: 5px;
+
   }
   #month{
       border: none;
       font-family: 'Pridi', serif;
       width: 8rem;
+      height: 1.9rem;
+      background-color: #b1f1e6;
+      border-radius: 6px;
+      
   }
   
   .carousel{
@@ -13,22 +19,28 @@
       height: 30rem;
       border-radius: 25px;
       padding: 20px;
+      border: 0.5px solid rgb(238, 238, 238);
+      box-shadow: 1.5px 1.5px rgb(238, 238, 238);
+      
     
   }
   #carousel-item-card{
-    margin-top: 2.8rem;
+    margin-top: 2.5rem;
     font-family: 'Pridi', serif;
+    
   
   }
   
   .card-text{
       font-size: 45px;
+      font-family: 'Pridi', serif;
   }
   .card{
       width: 18rem;
       height: 9rem;
       border: none;
-  
+      font-family: 'Pridi', serif;
+     
   
   }
   #iconsta {
@@ -43,4 +55,12 @@
   #chBar{
       width: 100rem;
     margin: 15px auto;
+   margin-top: 40px;
+   margin-left: 3rem;
   }
+  .carousel .carousel-indicators li {
+    width: 10px;
+   height: 10px;
+   border-radius: 100%;
+   background-color: rgb(167, 167, 167);
+ }

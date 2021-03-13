@@ -70,7 +70,6 @@
   .bgnavbar {
     background: #2E5E96;
     /* border-radius:0px 0px 27px 27px; */
-   
 }
 
 th{
@@ -111,4 +110,7 @@ tr,td {
 #modelEdit{
   font-family: 'Pridi', serif;
  
+}
+#modeladd{
+  font-family: 'Pridi', serif;
 }

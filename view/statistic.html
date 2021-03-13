@@ -64,29 +64,41 @@
         <div class="container-fluid">
             <div class="row mt-5">
                 <div class="col-9 ">
-                    <h3 style=" font-family: 'Pridi', serif;">สถิติการเบิก</h3>
-                    <hr width="980px" size="2" class="ml-0 col-md-8 col-xl-9 col-l-9 col-sm-5 col-s-2">
+                    <h3 style=" font-family: 'Pridi', serif;">
+                         <span class="iconify" data-icon="whh:statistics" data-inline="false"></span> สถิติการเบิก</h3>
+                         <hr width="980px" size="2" class="ml-0 col-md-8 col-xl-9 col-l-9 col-sm-9">
                 </div>
                 <div class="col-3 mt-4 col-md-5 col-xl-3" style="justify-content: end;">
                     <select name="" id="month">
                         <option value="">มกราคม</option>
                         <option value="">กุมภาพันธ์</option>
+                        <option value="">มีนาคม</option>
+                        <option value="">เมษายน</option>
+                        <option value="">พฤษภาคม</option>
+                        <option value="">มิถุนายน</option>
+                        <option value="">กรกฎาคม</option>
+                        <option value="">สิงหาคม</option>
+                        <option value="">กันยายน</option>
+                        <option value="">ตุลาคม</option>
+                        <option value="">พฤศจิกายน</option>
+                        <option value="">ธันวาคม</option>
+
                     </select>
 
-                    <label for="" id="year">ปีการศึกษา 2564</label>
+                    <label for="" id="year" style="border: 2px solid red;" >ปีการศึกษา <span>2564 </span> </label>
 
                 </div>
             </div>
 
             <!--Carusel-->
-           <div class="container">
-            <div id="carouselId" class="carousel slide" data-ride="carousel" style="border: 2px solid black;">
-                <ol class="carousel-indicators">
+           <div class="container col-xl-12 col-sm-6 col-md-12 col-l-12 ">
+            <div id="carouselId" class="carousel slide" data-ride="carousel" >
+                <ol class="carousel-indicators" >
                     <li data-target="#carouselId" data-slide-to="0" class="active"></li>
                     <li data-target="#carouselId" data-slide-to="1"></li>
         
                 </ol>
-                <div class="carousel-inner" role="listbox">
+                <div class="carousel-inner " role="listbox">
                     <div class="carousel-item active">
                         <div class="row">
                             <div class="col-xl-3 col-sm-6 col-md-12 col-l-6 ">
@@ -142,25 +154,20 @@
                     <div class="carousel-item">
                         <div class="card col-md-12 justify-content-center" style="background-color: #ffffff; width: 950px; height: 438px;">
                             <div class="card-body">
-                                <canvas id="chBar" height="75" width="200"></canvas>
+                                <canvas id="chBar" height="83px" width="230px"></canvas>
                             </div>
                         </div>
                     </div>
                 </div>
-                <a class="carousel-control-prev" href="#carouselId" role="button" data-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
+                <a class="carousel-control-prev" href="#carouselId" role="button" data-slide="prev" >
+                    <span class="carousel-control-prev-icon" aria-hidden="true" ></span>
+                    <span class="sr-only" >Previous</span>
                 </a>
                 <a class="carousel-control-next" href="#carouselId" role="button" data-slide="next">
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="sr-only">Next</span>
                 </a>
             </div>
-        
-        
-        
-        
-
            </div>
 
         <!--dropdown for catagory-->
@@ -168,7 +175,11 @@
             <div class="col-xl-10 col-sm-12 col-md-9 ">
                 <select name="category" id="category">
                     <option value="">วัสดุสำนักงาน</option>
-                    <option value="">วัสดุการสอน</option>
+                    <option value="">วัสดุไฟฟ้าวิทยุ</option>
+                    <option value="">วัสดุคอมพิวเตอร์</option>
+                    <option value="">วัสดุงานบ้านงานครัว</option>
+                    <option value="">วัสดุเครื่องแต่งกาย</option>
+                    <option value="">วัสดุของที่ระลึก</option>
                 </select> <br><br>
             </div>
             <div class="col-xl-2 col-sm-12 col-md-3 ">
