@@ -1,0 +1,142 @@
+.navlogo{
+    background-color: #164d85;
+    color: white;
+}
+
+/*.vertical-nav{
+    min-width: 17rem;
+    width: 17rem;
+    height: 100vh;
+    position: fixed;
+    top: 60px;
+    left: 0;
+    box-shadow: 3px 3px 10px rgba(0,0,0,0.1) ;
+    transition: all 0.4s;
+    margin-top: 11px;
+
+}
+#sidebar.active {
+    margin-left: -17rem;
+  }
+  @media (max-width: 768px) {
+    #sidebar {
+      margin-left: -17rem;
+    }
+    #sidebar.active {
+      margin-left: 0;
+    }
+    #content {
+      width: 100%;
+      margin: 0;
+    }
+    #content.active {
+      margin-left: 17rem;
+      width: calc(100% - 17rem);
+    }
+  }
+ิbody{
+  background-color: #F8F8F8, 100%;
+
+}
+.vertical-menu a {
+    display: block;
+    padding: 15px;
+    text-decoration: none;
+  }
+  
+  .vertical-menu a:hover {
+    background-color: #DDEEFF;
+  } */
+
+
+  body{
+    font-family: 'Pridi', serif;
+    margin: 0;
+  }
+  .vertical-nav{
+    min-width: 17rem;
+    width: 17rem;
+    height: 100vh;
+    position: fixed;
+    top: 60px;
+    left: 0;
+    box-shadow: 3px 3px 10px rgba(0,0,0,0.1) ;
+    transition: all 0.4s;
+    font-family: 'Pridi', serif;
+    margin-top: 11px;
+  
+  }
+  
+  .vertical-menu a {
+  display: block;
+  padding: 15px;
+  text-decoration: none;
+  }
+  
+  .vertical-menu a:hover {
+  background-color: #DDEEFF;
+  }
+  
+  .page-content {
+    width: calc(100% - 17rem);
+    margin-left: 17rem;
+    transition: all 0.4s;
+  }
+  #sidebar.active {
+    margin-left: -17rem;
+  }
+  @media (max-width: 768px) {
+    #sidebar {
+      margin-left: -17rem;
+    }
+    #sidebar.active {
+      margin-left: 0;
+    }
+    #content {
+      width: 100%;
+      margin: 0;
+    }
+    #content.active {
+      margin-left: 17rem;
+      width: calc(100% - 17rem);
+    }
+  }
+  .hr{
+    border-top: 1px solid #8c8b8b;
+  }
+  .bgnavbar {
+    background: #2E5E96;
+    /* border-radius:0px 0px 27px 27px; */
+  
+  }
+  li a{
+    color: black;
+  }
+  a.active {
+    background-color: #DDEEFF;
+    color: #134472;
+  }
+
+  #cart{
+      margin-top: 8rem;
+  }
+
+  .cart{
+    margin-left: 6rem;
+    box-shadow: 3px 3px 10px rgba(0,0,0,0.1) ;
+  }
+
+  #objective{
+      margin-top: 2rem;
+      margin-left: 7rem;
+  }
+
+  #btn-requis{
+      background-color: rgb(151, 213, 238);
+      font-size: 18px;
+      
+  }
+
+  #Objective{
+    background-color: rgb(151, 213, 238);
+  }

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Pridi&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.0/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://code.iconify.design/1/1.0.6/iconify.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="../public/style/Cart.css">
+    <script src="../public/src/Cart.js"></script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-sm navlogo navbar-light fixed-top">
+        <a class="navbar-brand col-12 col-s-6" href="#"><img src="../public/img/logo.png" alt=""
+            style="width: 40px; height: 40px;"><span style=" font-family: 'Pridi', serif; color: white;">ระบบจัดการวัสดุสำนักงาน
+            สำนักวิชาเทคโนโลยีสารสนเทศ</span> </a>
+    </nav>
+
+    <!--SIDE bAR-->
+    <div class="vertical-nav bg-white" id="sidebar">
+        <div class="vertical-menu">
+            <ul class="nav flex-column bg-white mt-4">
+                <li><a href="#" class="active">รายการวัสดุ</a></li>
+                <li><a href="Notification.html">การแจ้งเตือน</a></li>
+                <li><a href="StaffHistory.html">ประวัติการเบิก</a></li>
+            </ul>
+
+        </div>
+        <a href="../view/Login.html" class="nav-link text-dark  mt-5">ออกจากระบบ <span class="iconify" data-icon="ls:logout"
+                data-inline="false"></span> </a>
+    </div>
+
+
+    <!-- CART -->
+    <div class="container-fluid ml-5 mb-5" id="cart">
+        <div class="d-flex justify-content-center row">
+            <div class="col-md-8">
+                <div class="p-2">
+                    <h4>รายการวัสดุ</h4>
+                    <hr width="1200px" size="2" class="ml-0">
+                    <div><input type="checkbox" name="" >  เลือกทั้งหมด</div>
+                </div>
+                <div class="d-flex flex-row justify-content-between align-items-center p-2 bg-white mt-4 px-3 rounded cart">
+                    <div class="mr-1"><input type="checkbox" id=""></div>
+                    <div>รหัสวัสดุ : 101000001</div>
+                    <div>ชื่อรายการ : กรรไกรตัดกระดาษ 6"</div>
+                    <div><input type="number" name="" id=""></div>
+                    <div class="d-flex align-items-center"><i class="fa fa-trash mb-1 text-danger" style="font-size: 25px;"></i></div>
+                    
+                </div>
+                <hr class="mt-5" width="1200px" size="2" class="ml-0">
+
+                <div class="d-flex flex-row justify-content-between align-items-center p-2 bg-white mt-5 px-3 rounded cart">
+                    <div class="mr-1"><input type="checkbox" id=""></div>
+                    <div>รหัสวัสดุ : 101000002</div>
+                    <div>ชื่อรายการ : กรรไกรตัดกระดาษ 9"</div>
+                    <div><input type="number" name="" id=""></div>
+                    <div class="d-flex align-items-center"><i class="fa fa-trash mb-1 text-danger" style="font-size: 25px;"></i></div>
+                    
+                </div>
+                <div id="objective">
+                    <p>หมายเหตุ :</p> 
+                    <div><textarea cols="40" rows="5"></textarea></div>
+                    <div class="col-12 text-right " >
+                        <button class="btn" id="btn-requis">ขอเบิก</button>
+                    </div>                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+  
+    <!-- Modal -->
+    <div class="modal fade " id="modelResult" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"><span class="iconify" data-icon = "fa-solid:clipboard-list"></span> สรุปยอดทั้งหมด</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                </div>
+                <div class="modal-body">
+                    <p class="text-right">จำนวน</p>
+                    <p>รายการวัสดุ : 1010001</p>
+                    <p>ชื่อรายการ : กรรไกรตัดกระดาษ 6" </p>
+
+                    <hr width="1200px" size="2" class="ml-0">
+
+                    <p>รายการวัสดุ : 1010002</p>
+                    <p>ชื่อรายการ : กรรไกรตัดกระดาษ 9" </p>
+
+                    <hr width="1200px" size="2" class="ml-0">
+
+                    <p>หมายเหตุ: ต้องการด่วยมากๆ</p>
+                    
+                    <select id="Objective">
+                        <option>เลือกวัตถุประสงค์</option>
+                        <option>การเรียนการสอน</option>
+                        <option>สำนักงาน</option>
+                    </select>
+
+                    <p></p>
+                    <p>อื่นๆ :</p>
+                    <textarea cols="50" rows="5"></textarea>
+
+                    <div class="text-center mt-3">
+                        <button class="btn btn-success" id="btn-confirm">ยืนยัน</button>
+                        <button class="btn btn-warning" data-dismiss="modal">ยกเลิก</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>
