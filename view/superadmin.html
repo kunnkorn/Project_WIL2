@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mange User</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../public/style/superadmin.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.0/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://code.iconify.design/1/1.0.6/iconify.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
+    <script src="../public/src/superadmin.js"></script>
+    <script src="https://code.iconify.design/1/1.0.6/iconify.min.js"></script>
+
+</head>
+
+<body>
+
+    <!-- Modal -->
+    <div class="modal fade" id="modelAdduser" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header" style="border: none;">
+                    <h5 class="modal-title">เพิ่มสมาชิก</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group text-center">
+                        <div class="d-flex my-3">
+                            <label for="" class="col-3">ตำแหน่ง : </label>
+                            <input type="text" class="form-control col-7" name="" id="" placeholder="">
+                        </div>
+                        <div class="d-flex my-3">
+                            <label for="" class="col-3">ชื่อ : </label>
+                            <input type="text" class="form-control col-7" name="" id="" placeholder="">
+                        </div>
+                        <div class="d-flex my-3">
+                            <label for="" class="col-3">นามสกุล : </label>
+                            <input type="text" class="form-control col-7" name="" id="" placeholder="">
+                        </div>
+                        <div class="d-flex my-3">
+                            <label for="" class="col-3">อีเมล : </label>
+                            <input type="text" class="form-control col-7" name="" id="" placeholder="">
+                        </div>
+                        <div class="d-flex my-3">
+                            <label for="" class="col-3">สถานะ : </label>
+                            <select name="" id="" class="form-control col-7">
+                                <option value="1">Staff</option>
+                                <option value="2">Admin</option>
+                                <option value="3">Super Visor</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-center" style="border: none;">
+                    <button type="button" class="btn btn-primary bg-white text-dark"
+                        data-dismiss="modal">ยกเลิก</button>
+                    <button type="button" class="btn btn-secondary text-dark"
+                        style="background-color: #FFA654;">เพิ่มสมาชิก</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <nav class="navbar navbar-expand-sm navbar-dark bgnavbar">
+        <a class="navbar-brand" href="#" id="text-brand"><span class="iconify" data-inline="false"
+                data-icon="twemoji:backpack"></span>
+        </a>
+        <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
+            aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavId">
+            <h5 class="text-light" href="#">ระบบจัดการวัสดุสำนักงาน สำนักวิชาเทคโนโลยีสารสนเทศ</h5>
+            <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">ออกจากระบบ <span class="iconify" data-icon="ls:logout"
+                            data-inline="false"></a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <head>
+
+        <div class="container-fluid">
+            <div class="col-12 d-flex mt-3">
+                <div class="col-3">
+                    <h5 class="display-5 pb-1">จัดการสมาชิก</h5>
+                </div>
+                <div class="d-flex ml-auto">
+                    <input class="form-control col-7" type="text" id="myInput" onkeyup="myFunction()"
+                        placeholder="ค้นหา">
+                    <div class="text-center col-5 rounded-circle" data-toggle="modal" data-target="#modelAdduser"
+                        style="cursor: pointer;">
+                        <span class="iconify" data-inline="false" data-icon="eva:person-add-fill"
+                            style="font-size: 24px; color: #FF7A00;"></span>
+                        <p>เพิ่มสมาชิก</p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </head>
+
+    <div class="container-fluid">
+
+
+        <div class="row col-12 d-flex justify-content-center" id="card-area">
+
+
+            <!-- อย่าลืมเด็ดขาด เก็บไว้เพื่อซ่อมหรือแก้ไขตัวการ์ด!!!!!! -->
+
+
+            <!-- <div class="col-xl-3 col-lg-5 col-md-6 col-sm-7" style="height: 400px;">
+                <div class="card-container manual-flip" >
+                    <div class="card" style="border: none;">
+                        <div class="front text-center">
+                            <img class="card-img-top" src="https://api.iconify.design/ion:person-circle.svg" alt=""
+                                style="width: 50%;">
+                            <div class="card-body">
+                                <h5 class="">นางสาว สมหญิง มากมาก</h5>
+                                <h5 class="">ตำแหน่ง : อาจารย์ชำนาญการพิเศษ</h5>
+                                <h5 class="mb-3">เมลล์ : somying.mak@mfu.ac.th</h5>
+                                <button class='btn btn-primary col-5 mb-3' onclick='rotateCard(this)'>จัดการ</button>
+                            </div>
+                        </div>
+
+                        <div class='back text-center'>
+                            <div class='content'>
+                                <div class='main'>
+                                    <h5 class='text-center mx-3 mt-5 pt-2'>นางสาว สมหญิง มากมาก</h5>
+                                    <div class='col-12 text-center my-5'>
+                                        <button class='btn btn-success'>เปิดสิทธิ์</button>
+                                    </div>
+                                    <div class='col-12 text-center my-5'>
+                                        <button class='btn btn-warning'>ระงับสิทธิ์</button>
+                                    </div>
+                                    <div class='col-12 text-center mb-5'>
+                                        <button class='btn btn-danger'>ลบ</button>
+                                    </div>
+                                    <button class='btn btn-simple' rel='tooltip' title='Flip Card'
+                                        onclick='rotateCard(this)' id='hidebtn'><span class="iconify"
+                                            data-inline='false' data-icon='ri:arrow-go-back-line'></span></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+        </div>
+    </div>
+</body>
+
+</html>
