@@ -37,9 +37,13 @@
   #sidebar.active {
     margin-left: -17rem;
   }
+
   @media (max-width: 768px) {
     #sidebar {
       margin-left: -17rem;
+    }
+    .brand-text{
+      display: none;
     }
     #sidebar.active {
       margin-left: 0;
@@ -148,3 +152,21 @@ tr,td {
   .col-11 {width: 91.66%;}
   .col-12 {width: 100%;}
 }
+
+
+@media (min-width: 576px){
+
+  #text-brand{
+    display: none;
+  }
+}
+
+li a{
+  color: black;
+}
+
+a.active{
+  background-color: #DDEEFF;
+  color: #134472;
+}
+

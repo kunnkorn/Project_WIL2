@@ -18,41 +18,44 @@
     <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.2.6/js/dataTables.responsive.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
-    <link rel="stylesheet" href="../public/style/material.css">
     <link rel="stylesheet" href="../public/style/statistic.css">
     <script src="../public/src/statistic.js"></script>
 </head>
 <body>
-    <nav class="navbar navbar-expand-sm navbar-dark fixed-top" style="background-color: #2E5E96;">
-        <a class="navbar-brand col-12 col-s-6 " href="#"><img src="../public/img/logo.png" alt=""
-                style="width: 40px; height: 40px;"><span style=" font-family: 'Pridi', serif;"
-                id="navHead">ระบบจัดการวัสดุสำนักงาน
-                สำนักวิชาเทคโนโลยีสารสนเทศ </span>
-            <span style="float: right; width: 30px ; height: 30px;" class="iconify" data-icon="bx:bxs-user-circle"
-                data-inline="false"></span></a>
-        <button id="sidebarCollapse" type="button" class="navbar-toggler btn btn-link border-0"
-            aria-label="Toggle navigation">
-            <!-- <i class="fas fa-bars mr-2"></i> -->
+    <nav class="navbar navbar-expand-sm navbar-dark bgnavbar">
+        <a class="navbar-brand" href="#"><img src="../public/img/logo.png" width="40px" height="40px">
+        </a>
+        <h5 class="text-light my-auto brand-text" href="#">ระบบจัดการวัสดุสำนักงาน สำนักวิชาเทคโนโลยีสารสนเทศ</h5>
+        <text class="my-auto ml-auto text-light brand-text"><span class="iconify text-light" data-icon="bx:bxs-user-circle" data-inline="false" style="color:black"
+                data-width="30px" data-height="30px"></span>
+            นางสาวแอดมิน สมหญิง</text>
+        <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
+            aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation" id="sidebarCollapse">
             <span class="navbar-toggler-icon"></span>
         </button>
+
     </nav>
-
-    <!--SIDE bAR-->
-
-    <div class="vertical-nav bg-white " id="sidebar">
+<div class="vertical-nav bg-white mt-2" id="sidebar">
         <div class="vertical-menu">
             <ul class="nav flex-column bg-white mt-4">
-                <li class="nav-item"><a href="#" class="nav-link text-dark  ">คำขอเบิกวัสดุ <span
-                            class="badge badge-danger">4</span></a></li>
-                <li class="nav-item"><a href="#" class="nav-link text-dark ">รายการวัสดุ</a></li>
-                <li class="nav-item"><a href="#" class="nav-link text-dark   ">สถิติการเบิก</a></li>
-                <li class="nav-item"><a href="#" class="nav-link text-dark  ">ประวัติการเบิก</a></li>
-
+                <div id="text-brand">
+                    <li class="text-center">
+                        <h5 class="text-dark" href="#">ระบบจัดการวัสดุสำนักงาน สำนักวิชาเทคโนโลยีสารสนเทศ</h5>
+                    </li>
+                    <li class="text-center">
+                        <text><span class="iconify" data-icon="bx:bxs-user-circle" data-inline="false"
+                                style="color:black" data-width="30px" data-height="30px"></span>
+                            นางสาวแอดมิน สมหญิง</text>
+                    </li>
+                </div>
+                <li><a href="#">คำขอเบิกวัสดุ</a></li>
+                <li><a href="material.html">รายการวัสดุ</a></li>
+                <li><a href="#" class="active">สถิติการเบิก</a></li>
+                <li><a href="#">ประวัติการเบิก</a></li>
+                <li><a href="../view/Login.html">ออกจากระบบ <span class="iconify" data-icon="ls:logout"
+                            data-inline="false"></span> </a></li>
             </ul>
-
         </div>
-        <a href="#" class="nav-link text-dark  mt-5">ออกจากระบบ <span class="iconify" data-icon="ls:logout"
-                data-inline="false"></span> </a>
 
     </div>
 
