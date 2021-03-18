@@ -87,10 +87,11 @@ $(document).ready(function () {
         const data = table.row(currentRow).data();
 
         if(data.status == "ไม่อนุมัติ"){
-            alert("No")
+            window.location.replace("History(Unsuccess).html");
+            
         }
         else{
-            alert("Yes")
+            window.location.replace("History(success).html");
         }
     })
 
