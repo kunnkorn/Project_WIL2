@@ -129,3 +129,8 @@
     padding: 15px;
     border-bottom: 2px solid #ddd;
     }
+
+    #selectCategory{
+      background-color: #8affea;
+      border: 6px solid transparent;
+    }
