@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title >รายการวัสดุ</title>
+    <link rel="stylesheet" href="../public/js/bootstrap.min.css">
+    <link rel="stylesheet" href="../public/js/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="../public/js/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="../public/js/sweetalert2.min.css">
+    <link rel="stylesheet" href="../public/js/css.css">
+    <link rel="stylesheet" href="../public/js/font-awesome.min.css">
+    <script src="../public/js/jquery.min.js"></script>
+    <script src="../public/js/popper.min.js"></script>
+    <script src="../public/js/bootstrap.min.js"></script>
+    <script src="../public/js/bootbox.min.js"></script>
+    <script src="../public/js/jquery.dataTables.min.js"></script>
+    <script src="../public/js/dataTables.bootstrap4.min.js"></script>
+    <script src="../public/js/dataTables.responsive.min.js"></script>
+    <script src="../public/js/responsive.bootstrap4.min.js"></script>
+    <script src="../public/js/sweetalert2.all.min.js"></script>
+    <script src="../public/js/iconify.min.js"></script>
+    <link rel="stylesheet" href="../public/style/รายการวัสดุ.css">
+</head>
+<script>
+    $(document).ready(function () {
+        var rowID;
+    var material = [{
+        "number": "1",
+        "id": "101000001",
+        "name": "กรรไกรตัดกระดาษ 6",
+        "balance": "50",
+        "unit": "อัน",
+    }, {
+        "number": "2",
+        "id": "101000002",
+        "name": "กรรไกรตัดกระดาษ 9",
+        "balance": "50",
+        "unit": "อัน",
+    }, {
+        "number": "3",
+        "id": "101000003",
+        "name": "กระดาษ POSTIT ขนาด 2*3",
+        "balance": "110",
+        "unit": "เล่ม",
+    }];
+    var table = $("#materialTable").DataTable({
+        responsive: true,       //for responsive column display
+        deferRender: true,      //if large data, use this option
+
+        data: material,
+        columns: [
+            { data: "number", title: "ลำดับ"   },
+            { data: "id", title: "รหัสวัสดุ" },
+            { data: "name", title: "รายการ" },
+            { data: "balance", title: "คงเหลือ" },
+            { data: "unit", title: "หน่ายนับ" }
+        ],
+        columnDefs: [
+            // make the last column align right, also target: "_all" 
+            { "className": "dt-center", "targets": 4 }
+        ]
+    });
+
+        // Sidebar toggle behavior
+        $('#sidebarCollapse').on('click', function () {
+            $('#sidebar, #content').toggleClass('active');
+        });
+    })
+
+</script>
+
+<body>
+    <!--Topbar-->
+    <nav class="navbar navbar-expand-sm navbar-dark fixed-top" style="background-color: #2E5E96;">
+        <a class="navbar-brand col-12 col-s-6" href="#"><img src="../public/img/logo.png" alt=""
+                style="width: 40px; height: 40px;">&nbsp;&nbsp;<span
+                style=" font-family: 'Pridi', serif;">ระบบจัดการวัสดุสำนักงาน
+                สำนักวิชาเทคโนโลยีสารสนเทศ</span>
+            <text class="float-right"><span class="iconify" data-icon="bx:bxs-user-circle" data-inline="false"
+                    style="color: #ffff;" data-width="30px" data-height="30px"></span>
+                นาย สมยศ ศักดิ์ใหญ่</text></a>
+        <button id="sidebarCollapse" type="button" class="navbar-toggler btn btn-link border-0"
+            aria-label="Toggle navigation">
+            <!-- <i class="fas fa-bars mr-2"></i> -->
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </nav>
+    <!--SIDE bAR-->
+    <div class="vertical-nav bg-white" id="sidebar">
+        <div class="vertical-menu">
+            <ul class="nav flex-column bg-white mt-4">
+                <li><a href="../view/สถิติการเบิก.html">สถิติการเบิก</a></li>
+                <li><a href="../view/สถิติการเบิกรายคน.html">สถิติการเบิกรายคน</a></li>
+                <li><a href="../view/รายการวัสดุ.html" class="active">รายการวัสดุ</a></li>
+                <li><a href="../view/ประวัติการเบิก.html">ประวัติการเบิก</a></li>
+                <li><a href="../view/ประวัติการแก้ไขข้อมูลวัสดุ.html" >ประวัติการแก้ไขข้อมูลวัสดุ</a></li>
+            </ul>
+
+        </div>
+        <br><br><br><br><br><br><br><br>
+        <a href="../view/Login.html" class="nav-link text-dark  mt-5">ออกจากระบบ <span class="iconify"
+                data-icon="ls:logout" data-inline="false"></span> </a>
+    </div>
+
+    <!--Main-->
+    <div class="page-content p-5 mt-5" id="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-11">
+                    <h2><span class="iconify" data-inline="false" data-icon="fa-solid:clipboard-list"
+                            style="color: #299f98; " data-width="30px"
+                            data-height="30px"></span>&nbsp;รายการวัสดุ
+                    </h2>
+                    <hr style="background-color: #EDA51B;">
+                </div>
+                <!--Dropdown-->
+             <SELECT NAME="เดือน" id="select" >
+                <option value="มกราคม">วัสดุสำนักงาน</option>                
+                <option value="กุมภาพันธ์ ">ไฟฟ้า </option>
+                    <option value="มีนาคม ">คอมพิวเตอร์ </option>
+                    <option value="เมษายน ">โฆษณา </option>
+                    <option value="พฤษภาคม">งานบ้าน</option>
+                    <option value="มิถุนายน ">เครื่องแต่งกาย </option>
+                    <option value="กรกฎาคม">ของที่ระลึก</option>                    
+                   </SELECT>
+            </div>
+            <!--Datatable-->
+            <table id="materialTable" class="table table-striped table-bordered" style="width:100%"></table>
+        </div>
+    </div>
+</body>
+
+</html>

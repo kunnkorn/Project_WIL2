@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>รายละเอียดสถิติการเบิกรายคน</title>
+    <link rel="stylesheet" href="../public/js/bootstrap.min.css">
+    <link rel="stylesheet" href="../public/js/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="../public/js/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="../public/js/sweetalert2.min.css">
+    <link rel="stylesheet" href="../public/js/css.css">
+    <link rel="stylesheet" href="../public/js/font-awesome.min.css">
+    <script src="../public/js/jquery.min.js"></script>
+    <script src="../public/js/popper.min.js"></script>
+    <script src="../public/js/bootstrap.min.js"></script>
+    <script src="../public/js/bootbox.min.js"></script>
+    <script src="../public/js/jquery.dataTables.min.js"></script>
+    <script src="../public/js/dataTables.bootstrap4.min.js"></script>
+    <script src="../public/js/dataTables.responsive.min.js"></script>
+    <script src="../public/js/responsive.bootstrap4.min.js"></script>
+    <script src="../public/js/sweetalert2.all.min.js"></script>
+    <script src="../public/js/iconify.min.js"></script>
+    <link rel="stylesheet" href="../public/style/รายละเอียดสถิติการเบิกรายคน.css">
+</head>
+<script>
+    $(document).ready(function () {
+        var rowID;
+        var requesthistorydetail = [{
+            "order": "1",
+            "time": "17/05/2564 เวลา 10.25 น.",
+            "code": "101000246",            
+            "list": "ซองจดหมายขาว ขนาด DL",
+            "number": "10",
+            "unit": "ซอง",
+            
+        },
+        {
+            "order": "2",
+            "time": "17/05/2564 เวลา 15.30 น.",
+            "code": "101000249",            
+            "list": "ปากกาไวท์บอร์ด สีแดง",
+            "number": "15",
+            "unit": "ด้าม",
+            
+        },
+        {
+            "order": "3",
+            "time": "20/05/2564 เวลา 09.33 น.",
+            "code": "101000255",            
+            "list": "ลวดเสียบกระดาษ (Paper Clip)",
+            "number": "20",
+            "unit": "กล่อง",
+            
+        },
+        {
+            "order": "4",
+            "time": "21/05/2564 เวลา 10.34 น.",
+            "code": "101000359",            
+            "list": "ไม้บรรทัดเหล็ก 1 ฟุต",
+            "number": "2",
+            "unit": "อัน",
+           
+        },
+        {
+            "order": "5",
+            "time": "30/05/2564 เวลา 11.11 น.",
+            "code": "101000675",            
+            "list": "ตรายาง - วันที่ตัวเลข",
+            "number": "1",
+            "unit": "อัน",
+            
+        }];
+        var table = $("#requesthistorydetailTable").DataTable({
+            responsive: true,       //for responsive column display
+            deferRender: true,      //if large data, use this option
+
+            data: requesthistorydetail,
+            columns: [
+                { data: "order", title: "ลำดับ" },
+                { data: "time", title: "วันที่/เวลา" },
+                { data: "code", title: "รหัสวัสดุ" },
+                { data: "list", title: "รายการ" },
+                { data: "number", title: "จำนวนเบิก" },
+                { data: "unit", title: "หน่วยนับ" }],
+                
+            columnDefs: [
+                // make the last column align right, also target: "_all"
+                { "className": "dt-center", "targets": 5 }
+            ]
+        });
+
+        // Sidebar toggle behavior
+        $('#sidebarCollapse').on('click', function () {
+            $('#sidebar, #content').toggleClass('active');
+        });
+    })
+
+</script>
+
+<body>
+    <!--Topbar-->
+    <nav class="navbar navbar-expand-sm navbar-dark fixed-top" style="background-color: #2E5E96;">
+        <a class="navbar-brand col-12 col-s-6" href="#"><img src="../public/img/logo.png" alt=""
+                style="width: 40px; height: 40px;">&nbsp;&nbsp;<span
+                style=" font-family: 'Pridi', serif;">ระบบจัดการวัสดุสำนักงาน
+                สำนักวิชาเทคโนโลยีสารสนเทศ</span>
+            <text class="float-right"><span class="iconify" data-icon="bx:bxs-user-circle" data-inline="false"
+                    style="color: #ffff;" data-width="30px" data-height="30px"></span>
+                นาย สมยศ ศักดิ์ใหญ่</text></a>
+        <button id="sidebarCollapse" type="button" class="navbar-toggler btn btn-link border-0"
+            aria-label="Toggle navigation">
+            <!-- <i class="fas fa-bars mr-2"></i> -->
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </nav>
+    <!--SIDE bAR-->
+    <div class="vertical-nav bg-white" id="sidebar">
+        <div class="vertical-menu">
+            <ul class="nav flex-column bg-white mt-4">
+                <li><a href="../view/สถิติการเบิก.html">สถิติการเบิก</a></li>
+                <li><a href="../view/สถิติการเบิกรายคน.html">สถิติการเบิกรายคน</a></li>
+                <li><a href="../view/รายการวัสดุ.html">รายการวัสดุ</a></li>
+                <li><a href="../view/ประวัติการเบิก.html" class="active">ประวัติการเบิก</a></li>
+                <li><a href="../view/ประวัติการแก้ไขข้อมูลวัสดุ.html">ประวัติการแก้ไขข้อมูลวัสดุ</a></li>
+            </ul>
+
+        </div>
+        <br><br><br><br><br><br><br><br>
+        <a href="../view/Login.html" class="nav-link text-dark  mt-5">ออกจากระบบ <span class="iconify"
+                data-icon="ls:logout" data-inline="false"></span> </a>
+    </div>
+
+    <!--Main-->
+    <div class="page-content p-5 mt-5" id="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-11">
+                    <a href="../view/สถิติการเบิกรายคน.html">
+                        <h3><span class="iconify" data-inline="false" data-icon="bi:arrow-left-short"
+                                style="color: black " data-width="35px" data-height="30px"></span></a>
+                    <span class="iconify" data-inline="false" data-icon="fa-solid:clipboard-list"
+                        style="color: #299f98; " data-width="30px"
+                        data-height="30px"></span>&nbsp;สถิติการเบิกรายคน ของ นายย บันเทิง จัดจัด
+                    <hr  >   </h3>
+                    
+                </div>
+            </div>
+
+             <!--Dropdown-->
+             <SELECT NAME="เดือน" id="select" >
+                <option value="มกราคม">ทั้งหมด</option>
+                   </SELECT>
+        </div>
+            <!--Datatable-->
+            <table id="requesthistorydetailTable" class="table table-striped table-bordered" style="width:100%"></table>
+        </div>
+    </div>
+</body>
+
+</html>
