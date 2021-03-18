@@ -37,6 +37,9 @@ body{
     #sidebar {
       margin-left: -17rem;
     }
+    .brand-text{
+      display: none;
+    }
     #sidebar.active {
       margin-left: 0;
     }
@@ -256,5 +259,11 @@ body{
       width: 90%;
       height: 70%;
       
+  }
+}
+@media (min-width: 576px){
+
+  #text-brand{
+    display: none;
   }
 }
