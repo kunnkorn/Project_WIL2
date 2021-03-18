@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unsuccess</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.6/css/responsive.bootstrap4.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Pridi&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.0/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://code.iconify.design/1/1.0.6/iconify.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.6/js/dataTables.responsive.min.js"></script>
+
+    
+    <link rel="stylesheet" href="../public/style/StaffHistory.css">
+    <script src="../public/src/Histoery(Unsuccess).js"></script>
+</head>
+<body>
+        <!--Topbar-->
+        <nav class="navbar navbar-expand-sm navbar-dark fixed-top" style="background-color: #2E5E96;">
+            <a class="navbar-brand col-12 col-s-6" href="#"><img src="../public/img/logo.png" alt=""
+                    style="width: 40px; height: 40px;"><span>ระบบจัดการวัสดุสำนักงาน
+                    สำนักวิชาเทคโนโลยีสารสนเทศ</span> </a>
+            <button id="sidebarCollapse" type="button" class="navbar-toggler btn btn-link border-0"
+                aria-label="Toggle navigation">
+                <!-- <i class="fas fa-bars mr-2"></i> -->
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </nav>
+        <!--SIDE bAR-->
+        <div class="vertical-nav bg-white" id="sidebar">
+            <div class="vertical-menu">
+                <ul class="nav flex-column bg-white mt-4">
+                    <li><a href="Index.html">รายการวัสดุ</a></li>
+                    <li><a href="Notification.html">การแจ้งเตือน</a></li>
+                    <li><a href="#" class="active">ประวัติการเบิก</a></li>
+                </ul>
+    
+            </div>
+            <a href="../view/Login.html" class="nav-link text-dark  mt-5">ออกจากระบบ <span class="iconify" data-icon="ls:logout"
+                    data-inline="false"></span> </a>
+        </div>
+    
+        <!--Main-->
+    
+        <div class="page-content p-5 mt-5" id="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="float-left">
+                        <a href="../view/StaffHistory.html">
+                            <span class="iconify" data-icon="eva:arrow-back-outline" data-inline="false" data-width="50px"
+                                data-height="50px"></span>
+                        </a>
+                        <form id='formid' action="upload" method="POST" enctype="multipart/form-data">
+                        </form>
+                    </div>
+                    <div class="col-11">
+                        <h2>รายละเอียดเพิ่มเติม</h2>
+                        <hr width="1200px" size="2" class="ml-0">
+                    </div>
+                </div>
+                <!--Detail text-->
+                <div class="col-12" id="detail">
+                    <div class="float-left">
+                        <p>เลขที่เบิกวัสดุ : 6405001</p>
+                        <p>ชื่อผู้เบิก : นายบันเทิง สุดสุด</p>
+                        <p>วันที่ : 17/05/2564 เวลา : 15:30 น</p>
+                        
+                    </div>
+                    <div class="status">
+                        <p>สถานะ : <text style="color: #e91717;">ไม่อนุมัติ</text></p>
+                        <p>หมายเหตุ : ต้องการของทุกอย่างที่เบิกด่วนที่สุด</p>
+                        <p>สาเหตุ : เนื่องจากมีการเบิกของมากเกินไป </p>
+                        
+                    </div>
+                </div>
+                <br>
+                <table id="materialTable" class="table table-striped table-bordered" style="width:100%">
+                </table>
+            </div>
+        </div>
+</body>
+</html>
