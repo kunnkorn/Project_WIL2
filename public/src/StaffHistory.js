@@ -73,7 +73,7 @@ $(document).ready(function () {
         columns: [
             {data: "date" , title: "วันที่"},
             {data: "time" , title: "เวลา"},
-            {data: "requisition" , title: "เลขที่ใบเบิก"},
+            {data: "requisition" , title: "เลขที่ใบเบิก", orderable: false , defaultContent:"<i class = 'txt'></i>"},
             {data: "status" , title: "สถานะ"},
             {title: "รายละเอียด" , orderable: false, defaultContent: "<a href= '#' class = 'btn-detail'>รายละเอียดเพิ่มเติม<a/>"}
             
@@ -88,6 +88,7 @@ $(document).ready(function () {
 
         if(data.status == "ไม่อนุมัติ"){
             window.location.replace("History(Unsuccess).html");
+            $(".txt").css({'color': 'red'});
             
         }
         else{

@@ -23,10 +23,20 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-sm navlogo navbar-light fixed-top">
-        <a class="navbar-brand col-12 col-s-6" href="#"><img src="../public/img/logo.png" alt=""
-            style="width: 40px; height: 40px;"><span style=" font-family: 'Pridi', serif; color: white;">ระบบจัดการวัสดุสำนักงาน
-            สำนักวิชาเทคโนโลยีสารสนเทศ</span> </a>
+    <nav class="navbar navbar-expand-sm navbar-dark bgnavbar fixed-top">
+        <a class="navbar-brand" href="#" id="text-brand" > <img src="../public/img/logo.png" width="40px" height="40px"></a>
+        <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
+            aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavId">
+            <h5 class="text-light my" href="#">ระบบจัดการวัสดุสำนักงาน สำนักวิชาเทคโนโลยีสารสนเทศ</h5>
+            <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="#" style="color: white;"><span class="iconify" data-icon="bx:bxs-user-circle"></span> นาย บันเทิง จัดจัด</a>
+                </li>
+            </ul>
+        </div>
     </nav>
 
     <!--SIDE bAR-->
@@ -37,10 +47,14 @@
                 <li><a href="Notification.html">การแจ้งเตือน</a></li>
                 <li><a href="StaffHistory.html">ประวัติการเบิก</a></li>
             </ul>
-
         </div>
-        <a href="../view/Login.html" class="nav-link text-dark  mt-5">ออกจากระบบ <span class="iconify" data-icon="ls:logout"
-                data-inline="false"></span> </a>
+
+        <div>
+            <a href="../view/Login.html" class="nav-link text-dark mt-5 ">ออกจากระบบ <span class="iconify" data-icon="ls:logout"
+            data-inline="false"></span></a>
+        </div>
+        
+        
     </div>
 
     <div class="page-content p-5 mt-5" id="content">
@@ -48,7 +62,15 @@
             <div class="row">
                 <div class="col-6">
                     <h2>รายการวัสดุ</h2>
-                    <hr width="1200px" size="2" class="ml-0">
+                    <hr width="1000px" size="2" class="ml-0">
+                    <select class="mb-2" id="selectCategory">
+                        <option value="">ทั้งหมด</option>
+                        <option value="">วัสดุไฟฟ้าวิทยุ</option>
+                        <option value="">วัสดุคอมพิวเตอร์</option>
+                        <option value="">วัสดุงานบ้านงานครัว</option>
+                        <option value="">วัสดุเครื่องแต่งกาย</option>
+                        <option value="">วัสดุของที่ระลึก</option>
+                    </select>
                 </div>
                 <div class="col-6 text-right">
                     <a href="Cart.html"><span class="iconify" data-icon="bi:basket2" style="font-size: 40px; color: black;"></span>
