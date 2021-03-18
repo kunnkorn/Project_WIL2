@@ -89,6 +89,9 @@
     #sidebar {
       margin-left: -17rem;
     }
+    .brand-text{
+      display: none;
+    }
     #sidebar.active {
       margin-left: 0;
     }
@@ -139,4 +142,11 @@
 
   #Objective{
     background-color: rgb(151, 213, 238);
+  }
+
+  @media (min-width: 576px){
+
+    #text-brand{
+      display: none;
+    }
   }
