@@ -110,8 +110,12 @@ $(document).ready(function () {
         const currentRow = $(this).parents("tr");
         const data = table.row(currentRow).data();
         rowID = table.row(currentRow).index();
-
-        
-
     })
+
+    $(function () {
+        // Sidebar toggle behavior
+        $('#sidebarCollapse').on('click', function () {
+            $('#sidebar, #content').toggleClass('active');
+        });
+    });
 });

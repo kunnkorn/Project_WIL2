@@ -85,9 +85,12 @@
   #sidebar.active {
     margin-left: -17rem;
   }
-  @media (max-width: 768px) {
+  @media (max-width: 575px) {
     #sidebar {
-      margin-left: -17rem;
+      margin-left: -17rem; 
+    }
+    .brand-text{
+      display: none;
     }
     #sidebar.active {
       margin-left: 0;
@@ -133,4 +136,11 @@
     #selectCategory{
       background-color: #8affea;
       border: 6px solid transparent;
+    }
+
+    @media (min-width: 576px){
+
+      #text-brand{
+        display: none;
+      }
     }

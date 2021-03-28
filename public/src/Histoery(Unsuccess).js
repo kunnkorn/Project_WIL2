@@ -81,4 +81,11 @@ $(document).ready(function () {
             {data: "amount", title: "จำนวนจ่าย"}
         ]
     });
+
+    $(function () {
+        // Sidebar toggle behavior
+        $('#sidebarCollapse').on('click', function () {
+            $('#sidebar, #content').toggleClass('active');
+        });
+    });
 });
