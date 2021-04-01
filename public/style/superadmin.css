@@ -21,9 +21,9 @@ html, body {
 }
 
 .modal-content {
-  background: linear-gradient(180deg, #CFEEFF 0%, #B4C9FF 100%);
+  background-color: #FFFFFF;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 45px;
+  border-radius: 2px;
 }
 
 .card-container {
@@ -101,11 +101,11 @@ html, body {
 }
 
 .card .front {
-  border-radius: 25px;
+  border-radius: 15px;
 }
 
 .card .back {
-  border-radius: 25px;
+  border-radius: 15px;
 }
 
 .card {
