@@ -1,17 +1,7 @@
-<<<<<<< HEAD
 $(document).ready(function () {
     // Sidebar toggle behavior
     $('#sidebarCollapse').on('click', function () {
         $('#sidebar, #content').toggleClass('active');
-=======
-$(document).ready(function(){
-     // Sidebar toggle behavior
-     $(function () {
-        // Sidebar toggle behavior
-        $('#sidebarCollapse').on('click', function () {
-            $('#sidebar, #content').toggleClass('active');
-        });
->>>>>>> d36b1295f614b2912b95e42b60ad20c9f306597b
     });
     var rowID;
     var material = [{
