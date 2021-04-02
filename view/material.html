@@ -18,6 +18,7 @@
     <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.2.6/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
     <script src="../public/src/material.js"></script>
 
 </head>
@@ -44,8 +45,9 @@
                 <li class="nav-item"><a href="#" class="nav-link text-dark  ">คำขอเบิกวัสดุ <span
                             class="badge badge-danger">4</span></a></li>
                 <li class="nav-item"><a href="#" class="nav-link text-dark ">รายการวัสดุ</a></li>
-                <li class="nav-item"><a href="#" class="nav-link text-dark   ">สถิติการเบิก</a></li>
+
                 <li class="nav-item"><a href="#" class="nav-link text-dark  ">ประวัติการเบิก</a></li>
+                <li class="nav-item"><a href="#" class="nav-link text-dark   ">สถิติการเบิก</a></li>
 
             </ul>
 
@@ -60,7 +62,7 @@
                 <div class="col-md-7  mt-5">
                     <h3 style=" font-family: 'Pridi', serif;"><span class="iconify" data-icon="fa-solid:clipboard-list"
                             data-inline="false"></span> รายการวัสดุ</h3>
-                    <hr width="980px" size="2" class="ml-0 col-md-8 col-xl-9 col-l-9 col-sm-9">
+                    <hr width="980px" size="2" class="ml-0 col-md-12 col-xl-10 col-l-10 col-sm-12">
                 </div>
                 <div class="col-s-12 col-xl-3 col-md-12 " id="btnaddData" >
                     <button type="button" class="btn btn-ouline-light" style="size: 45px;" id="btnAdd">
@@ -116,7 +118,7 @@
                             <div class="col-12">
                                 <input type="text" class="form-control" id="EditName">
                             </div>
-                            <label for="textinput" class="col-12 control-label">จำนวน</label>
+                            <label for="textinput" class="col-12 control-label">เพิ่มจำนวน</label>
                             <div class="col-12">
                                 <input type="number" class="form-control" id="EditNum">
                             </div>
@@ -129,7 +131,7 @@
                 </div><br>
                 <div class="modal-footer justify-content-center">
                     <button type="button" class="btn btn-success rounded-pill" id="btnSaveEdit">บันทึก</button>
-                    <button type="button" class="btn btn-light  rounded-pill" data-dismiss="modal"
+                    <button type="button" class="btn btn-danger  rounded-pill" data-dismiss="modal"
                         id="btnCancelEdit">ยกเลิก</button>
                 </div>
             </div>
@@ -147,7 +149,7 @@
             <div class="modal-content ">
                 <div class="modal-header" style="background-color: #CFEEFF;">
                     <h5 class="modal-title w-100 text-center">
-                        เพิ่มจำนวน
+                        เพิ่มรายการวัสดุใหม่
                     </h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
@@ -188,7 +190,7 @@
                 </div><br>
                 <div class="modal-footer justify-content-center">
                     <button type="button" class="btn btn-success rounded-pill" id="btnSaveadd">บันทึก</button>
-                    <button type="button" class="btn btn-light  rounded-pill" data-dismiss="modal"
+                    <button type="button" class="btn btn-danger  rounded-pill" data-dismiss="modal"
                         id="btnCanceladd">ยกเลิก</button>
                 </div>
             </div>

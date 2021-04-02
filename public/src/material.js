@@ -1,6 +1,6 @@
-$(document).ready(function(){
-     // Sidebar toggle behavior
-     $('#sidebarCollapse').on('click', function () {
+$(document).ready(function () {
+    // Sidebar toggle behavior
+    $('#sidebarCollapse').on('click', function () {
         $('#sidebar, #content').toggleClass('active');
     });
     var rowID;
@@ -29,12 +29,12 @@ $(document).ready(function(){
 
         data: material,
         columns: [
-            { data: "number", title: "ลำดับ"   },
+            { data: "number", title: "ลำดับ" },
             { data: "id", title: "รหัสวัสดุ" },
             { data: "name", title: "รายการ" },
             { data: "balance", title: "คงเหลือ" },
             { data: "unit", title: "หน่ายนับ" },
-            { title: "เพิ่มจำนวน", orderable: false, defaultContent: " <button class='btn btn-warning my-1'>  Edit</button>" }
+            { title: "เพิ่มจำนวน", orderable: false, defaultContent: " <button class='btn btn-warning my-1'>แก้ไข</button>" }
         ],
         columnDefs: [
             // make the last column align right, also target: "_all" 
@@ -44,45 +44,68 @@ $(document).ready(function(){
 
     //Add data
     var count = 3;
-    $("#btnimport").click(function(){
+    $("#btnAdd").click(function () {
         $("#modeladd").modal("show");
-        $("#btnSaveadd").on("click",function(){
+        $("#btnSaveadd").on("click", function () {
+            $("#modeladd").modal("hide");
+            Swal.fire({
+                title: 'คุณแน่ใจหรือไม่ที่ต้องการจะเพิ่มรายการวัสดุนี้?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'ตกลง',
+                cancelButtonText:'ยกเลิก',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    if (checkindex == material.length) {
+                        material.push({ "id": count, "name": name, "balance": balance, "unit": unit });
+                        console.log(material);
+        
+                        table.row.add({
+                            //"number":ลำดับ,
+                            "number": count,
+                            "id": id,
+                            "name": name,
+                            "balance": balance,
+                            "unit": unit,
+                        }).draw();
+        
+                        $("#addID").val("");
+                        $("#addName").val("");
+                        $("#addNum").val("");
+                        $("#addUnit").val("");
+        
+        
+                    }
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'เพิ่มรายการเสร็จสิ้นแล้ว',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                }
+            })
             var checkindex = 0;
             count++;
             const id = $("#addID").val();
             const name = $("#addName").val();
             const balance = $("#addNum").val();
-            const unit = $("#addUnit").val(); 
-            for(let i =0;i< material.length ; i++){
-                if(id != material[i].id){
-                    checkindex++;  
-                }else{
+            const unit = $("#addUnit").val();
+            for (let i = 0; i < material.length; i++) {
+                if (id != material[i].id) {
+                    checkindex++;
+                } else {
                     alert("Have too much ID");
                     break;
                 }
-            }   
-            if(checkindex == material.length){
-                material.push({ "id" : count, "name" : name ,"balance" : balance ,"unit":unit});
-                console.log(material);
-                table.row.add({
-                    //"number":ลำดับ,
-                    "number" : count,
-                    "id" :id , 
-                    "name" : name ,
-                    "balance" : balance ,
-                    "unit" : unit,
-                }).draw();
-
-                $("#addID").val("");
-                $("#addName").val("");
-                $("#addNum").val("");
-                $("#addUnit").val("");
-                $("#modeladd").modal("hide");
             }
+
+            
         });
     });
-     //Edit Table
-     $("#materialTable tbody").on("click", ".btn-warning", function () {
+    //Edit Table
+    $("#materialTable tbody").on("click", ".btn-warning", function () {
         const currentRow = $(this).parents("tr")
         const data = table.row(currentRow).data();
         rowID = table.row(currentRow).index();
@@ -90,22 +113,35 @@ $(document).ready(function(){
         $("#EditName").val(data.name);
         $("#EditNum").val(data.balance);
         $("#EditUnit").val(data.unit);
-
         //show model
         $("#modelEdit").modal("show");
     });
     //save Edit
-    $("#btnSaveEdit").click(function () {
+    $("#btnSaveEdit").on("click", function (e) {
+
         const number = $("#EditNum").val();
         material[rowID].balance = number;
-
         let temp = table.row(rowID).data();
         temp.balance = number;
         table.row(rowID).data(temp).invalidate();
-
         $("#modelEdit").modal("hide");
+        Swal.fire({
+            title: 'คุณแน่ใจหรือไม่ที่ต้องการจะแก้ไขรายการวัสดุนี้?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'ตกลง',
+            cancelButtonText:'ยกเลิก',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'แก้ไขรายการเสร็จสิ้นแล้ว',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+            }
+        })
     });
-
-    
-
 });

@@ -1,3 +1,6 @@
+body{
+    font-family: 'Pridi', serif;
+}
 #year{
  
     font-family: 'Pridi', serif;
@@ -27,8 +30,6 @@
   #carousel-item-card{
     margin-top: auto;
     font-family: 'Pridi', serif;
-    
-  
   }
   
   .card-text{
@@ -74,13 +75,14 @@
    border-radius: 100%;
    background-color: rgb(167, 167, 167);
  }
- @media only screen and (max-width:1500px){
+ .swal2-title{
+    font-family: 'Pridi', serif;
+  }
+ @media only screen and (max-width:1597px){
     .card{
         width: 16rem;
         height: 9rem;
-        
     }
-   
  }
  @media only screen and (max-width:980px){
     .card{
@@ -129,8 +131,6 @@
         border: none;
         font-family: 'Pridi', serif;
         margin-right: auto;
-      
-
     }
     .card-text{
         font-size:25px;
