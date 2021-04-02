@@ -50,8 +50,6 @@ $(document).ready(function () {
         });
     }
 
-
-
     //statistic
     var materialStatistic = [{
         "number": "1",
@@ -117,12 +115,7 @@ $(document).ready(function () {
             showConfirmButton: false,
             timer: 1500
         })
-
-
     });
-
-
-
     // Sidebar toggle behavior
     $(function () {
         // Sidebar toggle behavior

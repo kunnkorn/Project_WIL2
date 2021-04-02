@@ -111,7 +111,7 @@ $(document).ready(function () {
         rowID = table.row(currentRow).index();
         $("#EditID").val(data.id);
         $("#EditName").val(data.name);
-        $("#EditNum").val(data.balance);
+        $("#EditNum").val("0");
         $("#EditUnit").val(data.unit);
         //show model
         $("#modelEdit").modal("show");

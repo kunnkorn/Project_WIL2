@@ -1,8 +1,5 @@
-body{
-    font-family: 'Pridi', serif;
-}
+
 #year{
- 
     font-family: 'Pridi', serif;
     margin-left: 5px;
 
@@ -193,7 +190,8 @@ body{
     margin: 0;
     
   }
-.vertical-nav{
+
+  .vertical-nav{
     min-width: 17rem;
     width: 17rem;
     height: 100vh;
@@ -203,20 +201,21 @@ body{
     box-shadow: 3px 3px 10px rgba(0,0,0,0.1) ;
     transition: all 0.4s;
     font-family: 'Pridi', serif;
-   
-}
+    margin-top: 11px;
 
-.vertical-menu a {
+  }
+
+  .vertical-menu a {
   display: block;
   padding: 15px;
   text-decoration: none;
-}
+  }
 
-.vertical-menu a:hover {
+  .vertical-menu a:hover {
   background-color: #DDEEFF;
-}
+  }
 
-.page-content {
+  .page-content {
     width: calc(100% - 17rem);
     margin-left: 17rem;
     transition: all 0.4s;
@@ -224,10 +223,9 @@ body{
   #sidebar.active {
     margin-left: -17rem;
   }
-
-  @media (max-width: 768px) {
+  @media (max-width: 575px) {
     #sidebar {
-      margin-left: -17rem;
+      margin-left: -17rem; 
     }
     .brand-text{
       display: none;
