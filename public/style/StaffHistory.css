@@ -74,6 +74,11 @@
     color: #134472;
   }
 
+  a{
+    color: black;
+    
+  }
+
   th{
     background-color: #9CE7D9;
     text-align: center;
