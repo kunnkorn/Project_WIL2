@@ -345,6 +345,9 @@ tr,td {
     display: none;
   }
 }
+.brand-text{
+    display: none;
+  }
 
 li a{
     color: black;
