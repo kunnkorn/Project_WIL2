@@ -37,6 +37,9 @@ background-color: #DDEEFF;
   #sidebar {
     margin-left: -17rem;
   }
+  .brand-text{
+    display: none;
+  }
   #sidebar.active {
     margin-left: 0;
   }
@@ -116,4 +119,11 @@ margin: 0;
 .all{
   padding-left: 1200px;
   padding-top: 20px;
+}
+
+@media (min-width: 576px){
+
+  #text-brand{
+    display: none;
+  }
 }

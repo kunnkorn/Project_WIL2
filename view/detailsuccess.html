@@ -87,9 +87,12 @@
         });
 
         // Sidebar toggle behavior
+        $(function () {
+        // Sidebar toggle behavior
         $('#sidebarCollapse').on('click', function () {
             $('#sidebar, #content').toggleClass('active');
         });
+    });
 
         $("#success").click(function () {
             //alert("test");
@@ -131,21 +134,30 @@
             <!-- <i class="fas fa-bars mr-2"></i> -->
             <span class="navbar-toggler-icon"></span>
         </button>
+
     </nav>
-    <!--SIDE bAR-->
-    <div class="vertical-nav bg-white" id="sidebar">
+    <div class="vertical-nav bg-white mt-2" id="sidebar">
         <div class="vertical-menu">
             <ul class="nav flex-column bg-white mt-4">
-                <li><a href="../view/adminmain.html" class="active">คำขอเบิกวัสดุ</a></li>
+                <div id="text-brand">
+                    <li class="text-center">
+                        <h5 class="text-dark" href="#">ระบบจัดการวัสดุสำนักงาน สำนักวิชาเทคโนโลยีสารสนเทศ</h5>
+                    </li>
+                    <li class="text-center">
+                        <text><span class="iconify" data-icon="bx:bxs-user-circle" data-inline="false"
+                                style="color:black" data-width="30px" data-height="30px"></span>
+                            นางสาวแอดมิน สมหญิง</text>
+                    </li>
+                </div>
+                <li><a href="adminmain.html">คำขอเบิกวัสดุ</a></li>
                 <li><a href="#">รายการวัสดุ</a></li>
-                <li><a href="../view/history.html">ประวัติการเบิก</a></li>
                 <li><a href="#">สถิติการเบิก</a></li>
-
-
+                <li><a href="history.html" class="active">ประวัติการเบิก</a></li>
+                <li><a href="../view/Login.html">ออกจากระบบ <span class="iconify" data-icon="ls:logout"
+                            data-inline="false"></span> </a></li>
             </ul>
         </div>
-        <a href="../view/Login.html" class="nav-link text-dark  mt-5">ออกจากระบบ <span class="iconify"
-                data-icon="ls:logout" data-inline="false"></span> </a>
+
     </div>
 
     <!--Main-->
@@ -163,7 +175,7 @@
                 </div>
                 <div class="col-11">
                     <h2>รายละเอียดเพิ่มเติม</h2>
-                    <hr width="1200px" size="2" class="ml-0">
+                    <hr class="col-8" size="2" class="ml-0">
                 </div>
             </div>
             <!--Detail text-->
