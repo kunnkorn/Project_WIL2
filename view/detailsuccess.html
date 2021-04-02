@@ -94,19 +94,23 @@
         $("#success").click(function () {
             //alert("test");
             Swal.fire({
-                    title: 'แน่ใจใช่หรือไม่?',
-                    text: "ท่านแน่ใจใช่หรือไม่ว่ามีคนมารับของเรียบร้อยแล้ว",
-                    icon: 'warning',
-                    confirmButtonText: 'ยืนยัน',
-                    cancelButtonText: 'ยกเลิก',
-                    showCancelButton: true,
-                    confirmButtonColor: '#6FD83D',
-                    cancelButtonColor: '#FF4B4B',
+                title: 'แน่ใจใช่หรือไม่?',
+                text: "ท่านแน่ใจใช่หรือไม่ว่ามีคนมารับของเรียบร้อยแล้ว",
+                icon: 'warning',
+                confirmButtonText: 'ยืนยัน',
+                cancelButtonText: 'ยกเลิก',
+                showCancelButton: true,
+                confirmButtonColor: '#6FD83D',
+                cancelButtonColor: '#FF4B4B',
 
-                }).then((result) => {
+            }).then((result) => {
                 if (result.isConfirmed) {
-                    location.replace("adminmain.html");                   
-                }
+                    Swal.fire('การยืนยันเสร็จสิ้น!', '', 'success').then((result) => {
+                        if (result.isConfirmed) {
+                            location.replace("adminmain.html");
+                        }
+                    });
+                };
             })
         });
     });
@@ -119,8 +123,9 @@
         <a class="navbar-brand col-12 col-s-6" href="#"><img src="../public/img/logo.png" alt=""
                 style="width: 40px; height: 40px;"><span>ระบบจัดการวัสดุสำนักงาน
                 สำนักวิชาเทคโนโลยีสารสนเทศ</span>
-                <text class="float-right"><span class="iconify" data-icon="bx:bxs-user-circle" data-inline="false" style="color: #ffff;" data-width="30px" data-height="30px"></span>
-                    นางสาวแอดมิน สมหญิง</text> </a>
+            <text class="float-right"><span class="iconify" data-icon="bx:bxs-user-circle" data-inline="false"
+                    style="color: #ffff;" data-width="30px" data-height="30px"></span>
+                นางสาวแอดมิน สมหญิง</text> </a>
         <button id="sidebarCollapse" type="button" class="navbar-toggler btn btn-link border-0"
             aria-label="Toggle navigation">
             <!-- <i class="fas fa-bars mr-2"></i> -->
@@ -133,14 +138,14 @@
             <ul class="nav flex-column bg-white mt-4">
                 <li><a href="../view/adminmain.html" class="active">คำขอเบิกวัสดุ</a></li>
                 <li><a href="#">รายการวัสดุ</a></li>
-                 <li><a href="../view/history.html">ประวัติการเบิก</a></li>
+                <li><a href="../view/history.html">ประวัติการเบิก</a></li>
                 <li><a href="#">สถิติการเบิก</a></li>
-               
+
 
             </ul>
         </div>
-        <a href="../view/Login.html" class="nav-link text-dark  mt-5">ออกจากระบบ <span class="iconify" data-icon="ls:logout"
-                data-inline="false"></span> </a>
+        <a href="../view/Login.html" class="nav-link text-dark  mt-5">ออกจากระบบ <span class="iconify"
+                data-icon="ls:logout" data-inline="false"></span> </a>
     </div>
 
     <!--Main-->
@@ -168,10 +173,12 @@
                     <p>หมายเหตุ : ต้องการวัสดุทุกอย่างที่เบิกด่วนที่สุด</p>
                     <p>ชื่อผู้เบิก : นายบันเทิง สุดสุด</p>
                     <p>วันที่ : 17/05/2564 เวลา : 15:30 น</p>
-                </div> 
+                </div>
                 <div class="all">
-                    <span class="iconify" data-icon="carbon:collapse-all" data-inline="false" style="color: #7BB18B;" data-width="100px" data-height="100px"></span>
-                    <p>ทั้งหมด<span class="iconify" data-icon="mdi:numeric-5-circle" data-inline="false" style="color: #C4C4C4;" data-width="30px" data-height="30px"></span></p>
+                    <span class="iconify" data-icon="carbon:collapse-all" data-inline="false" style="color: #7BB18B;"
+                        data-width="100px" data-height="100px"></span>
+                    <p>ทั้งหมด<span class="iconify" data-icon="mdi:numeric-5-circle" data-inline="false"
+                            style="color: #C4C4C4;" data-width="30px" data-height="30px"></span></p>
                 </div>
             </div>
             <br>
