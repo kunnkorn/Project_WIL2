@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.6/css/responsive.bootstrap4.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Pridi&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.css">
+    <link rel="stylesheet" href="../public/style/statistic.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.0/umd/popper.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://code.iconify.design/1/1.0.6/iconify.min.js"></script>
@@ -19,40 +20,39 @@
     <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.2.6/js/dataTables.responsive.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
-<<<<<<< HEAD
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-    <link rel="stylesheet" href="../public/style/material.css">
-=======
->>>>>>> d36b1295f614b2912b95e42b60ad20c9f306597b
-    <link rel="stylesheet" href="../public/style/statistic.css">
     <script src="../public/src/statistic.js"></script>
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-sm navbar-dark bgnavbar">
+
+    <!-- <nav class="navbar navbar-expand-sm navbar-light bg-light">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        
+    </nav> -->
+
+    <nav class="navbar navbar-expand-sm navbar-dark bgnavbar fixed-top">
         <a class="navbar-brand" href="#"><img src="../public/img/logo.png" width="40px" height="40px">
         </a>
-        <h5 class="text-light my-auto brand-text" href="#">ระบบจัดการวัสดุสำนักงาน สำนักวิชาเทคโนโลยีสารสนเทศ</h5>
-        <text class="my-auto ml-auto text-light brand-text"><span class="iconify text-light" data-icon="bx:bxs-user-circle" data-inline="false" style="color:black"
-                data-width="30px" data-height="30px"></span>
+        <h5 class="text-light my-auto brand-text " href="#">ระบบจัดการวัสดุสำนักงาน สำนักวิชาเทคโนโลยีสารสนเทศ</h5>
+        <text class="my-auto ml-auto text-light brand-text"><span class="iconify text-light"
+                data-icon="bx:bxs-user-circle" data-inline="false" style="color:black" data-width="30px"
+                data-height="30px"></span>
             นางสาวแอดมิน สมหญิง</text>
         <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
-            aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation" id="sidebarCollapse">
+            aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
     </nav>
-<div class="vertical-nav bg-white mt-2" id="sidebar">
+
+    <div class="vertical-nav bg-white mt-2" id="sidebar">
         <div class="vertical-menu">
             <ul class="nav flex-column bg-white mt-4">
-<<<<<<< HEAD
-                <li class="nav-item"><a href="#" class="nav-link text-dark  ">คำขอเบิกวัสดุ <span
-                            class="badge badge-danger">4</span></a></li>
-                <li class="nav-item"><a href="#" class="nav-link text-dark ">รายการวัสดุ</a></li>
-                <li class="nav-item"><a href="#" class="nav-link text-dark  ">ประวัติการเบิก</a></li>
-                <li class="nav-item"><a href="#" class="nav-link text-dark   ">สถิติการเบิก</a></li>
-
-=======
                 <div id="text-brand">
                     <li class="text-center">
                         <h5 class="text-dark" href="#">ระบบจัดการวัสดุสำนักงาน สำนักวิชาเทคโนโลยีสารสนเทศ</h5>
@@ -63,16 +63,14 @@
                             นางสาวแอดมิน สมหญิง</text>
                     </li>
                 </div>
-                <li><a href="#">คำขอเบิกวัสดุ</a></li>
+                <li><a href="#">คำขอเบิกวัสดุ<span class="badge badge-danger">4</span></a></li>
                 <li><a href="material.html">รายการวัสดุ</a></li>
-                <li><a href="#" class="active">สถิติการเบิก</a></li>
                 <li><a href="#">ประวัติการเบิก</a></li>
+                <li><a href="#" class="active">สถิติการเบิก</a></li>
                 <li><a href="../view/Login.html">ออกจากระบบ <span class="iconify" data-icon="ls:logout"
                             data-inline="false"></span> </a></li>
->>>>>>> d36b1295f614b2912b95e42b60ad20c9f306597b
             </ul>
         </div>
-
     </div>
 
     <!--Main-->
@@ -83,7 +81,7 @@
                     <h3 style=" font-family: 'Pridi', serif;">
                         <span class="iconify" data-icon="whh:statistics" data-inline="false"></span> สถิติการเบิก
                     </h3>
-                    <hr width="980px" size="2" class="ml-0 col-md-8 col-xl-9 col-l-9 col-sm-9">
+                    <hr size="2" class="ml-0 col-md-8 col-xl-9 col-l-9 col-sm-9">
                 </div>
                 <div>
                     <select name="" id="month">
@@ -201,6 +199,7 @@
                         <option value="">วัสดุงานบ้านงานครัว</option>
                         <option value="">วัสดุเครื่องแต่งกาย</option>
                         <option value="">วัสดุของที่ระลึก</option>
+                        <option value="">ทั้งหมด</option>
                     </select> <br><br>
                 </div>
                 <div class="col-xl-2 col-sm-12 col-md-3 " id="Export">

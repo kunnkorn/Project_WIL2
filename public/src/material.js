@@ -1,17 +1,7 @@
-<<<<<<< HEAD
 $(document).ready(function () {
     // Sidebar toggle behavior
     $('#sidebarCollapse').on('click', function () {
         $('#sidebar, #content').toggleClass('active');
-=======
-$(document).ready(function(){
-     // Sidebar toggle behavior
-     $(function () {
-        // Sidebar toggle behavior
-        $('#sidebarCollapse').on('click', function () {
-            $('#sidebar, #content').toggleClass('active');
-        });
->>>>>>> d36b1295f614b2912b95e42b60ad20c9f306597b
     });
     var rowID;
     var material = [{
@@ -121,7 +111,7 @@ $(document).ready(function(){
         rowID = table.row(currentRow).index();
         $("#EditID").val(data.id);
         $("#EditName").val(data.name);
-        $("#EditNum").val(data.balance);
+        $("#EditNum").val("0");
         $("#EditUnit").val(data.unit);
         //show model
         $("#modelEdit").modal("show");
