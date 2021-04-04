@@ -85,7 +85,7 @@ $(document).ready(function () {
     var table = $("#materialTable").DataTable({
         responsive: true,       //for responsive column display
         deferRender: true,      //if large data, use this option
-       
+
         data: materialStatistic,
         columns: [
             { data: "number", title: "ลำดับ" },
@@ -101,21 +101,26 @@ $(document).ready(function () {
         columnDefs: [
             // make the last column align right, also target: "_all"
             { "className": "dt-center", "targets": 5 }
-        ] 
-    
+        ]
+
     });
 
     //model export file
     $("#export").on("click", function () {
         $("#modelExport").modal("show");
-
-        
     });
-    $("#exportConfirm").on("click",function(e){
-        
-          
-        });
-   
+    $("#exportConfirm").on("click", function (e) {
+        $("#modelExport").modal("hide");
+        Swal.fire({
+            icon: 'success',
+            title: 'นำออกข้อมูลเสร็จสิ้น',
+            showConfirmButton: false,
+            timer: 1500
+        })
+
+
+    });
+
 
 
     // Sidebar toggle behavior
