@@ -40,6 +40,9 @@ body{
     #sidebar.active {
       margin-left: 0;
     }
+    .brand-text{
+      display: none;
+    }
     #content {
       width: 100%;
       margin: 0;
@@ -114,4 +117,9 @@ body{
     padding-left: 1200px;
     padding-top: 20px;
   }
- 
+  @media (min-width: 576px){
+
+    #text-brand{
+      display: none;
+    }
+  }
