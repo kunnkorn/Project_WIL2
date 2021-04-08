@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,13 +18,15 @@
     <link rel="stylesheet" href="../public/style/Cart.css">
     <script src="../public/src/Cart.js"></script>
 </head>
+
 <body>
     <nav class="navbar navbar-expand-sm navbar-dark bgnavbar fixed-top">
         <a class="navbar-brand" href="#"><img src="../public/img/logo.png" width="40px" height="40px"></span>
         </a>
         <h5 class="text-light my-auto brand-text" href="#">ระบบจัดการวัสดุสำนักงาน สำนักวิชาเทคโนโลยีสารสนเทศ</h5>
-        <text class="my-auto ml-auto text-light brand-text"><span class="iconify text-light" data-icon="bx:bxs-user-circle" data-inline="false" style="color:black"
-                data-width="30px" data-height="30px"></span>
+        <text class="my-auto ml-auto text-light brand-text"><span class="iconify text-light"
+                data-icon="bx:bxs-user-circle" data-inline="false" style="color:black" data-width="30px"
+                data-height="30px"></span>
             นางสาวแอดมิน สมหญิง</text>
         <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
             aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation" id="sidebarCollapse">
@@ -45,8 +48,9 @@
                             นางสาวแอดมิน สมหญิง</text>
                     </li>
                 </div>
-                <li><a href="#" class="active">รายการวัสดุ</a></li>
-                <li><a href="Notification.html">การเบิกของฉัน <span class="badge badge-success" style="font-size: 18px;" ><span>3</span></span></a></li>
+                <li><a href="Index.html" class="active">รายการวัสดุ</a></li>
+                <li><a href="Notification.html">การเบิกของฉัน <span class="badge badge-success"
+                            style="font-size: 18px;"><span>3</span></span></a></li>
                 <li><a href="../view/Login.html">ออกจากระบบ <span class="iconify" data-icon="ls:logout"
                             data-inline="false"></span> </a></li>
             </ul>
@@ -54,55 +58,60 @@
 
     </div>
 
+    <div class="page-content p-5 mt-5" id="content">
+        <div class="container-fluid">
+            <div class="justify-content-center">
+                <div class="col-12">
+                    <div class="p-2">
+                        <h4><span class="iconify" data-icon="fa-solid:clipboard-list"></span> รายการวัสดุ</h4>
+                        <hr size="2" class="ml-0 col-6">
+                        <div class="d-flex align-items-center"><input type="checkbox" class="mx-1" name=""
+                                style="height: 20px; width: 20px;"> เลือกทั้งหมด</div>
+                    </div>
+                    <div class='overflow-auto col-12' style='height: 500px;' id='listItem-area'>
+                        <!-- <div
+                            class='d-lg-flex justify-content-between align-items-center bg-white rounded cart shadow col-12 col-lg-10 mx-auto p-1'>
+                            <div class='mr-1 float-left float-lg-none mt-5 mt-sm-4 pt-lg-0 pt-5'><input type='checkbox'
+                                    id='' style='height: 25px; width: 25px;'></div>
+                            <div class='mx-2 my-5 my-sm-4 my-md-3 text-center text-lg-none'>รหัสวัสดุ : 101000001</div>
+                            <div class='mx-2 my-5 my-sm-4 my-md-3 text-center text-lg-none'>ชื่อรายการ : กรรไกรตัดกระดาษ
+                                6</div>
+                            <div class='mx-auto my-3 col-5 m-lg-none'><input type='number' class='form-control'
+                                    id='' placeholder='จำนวนเบิก'></div>
+                            <div class='align-items-center text-center'><i class='fa fa-trash mb-1 text-danger'
+                                    style='font-size: 25px;'></i></div>
 
-    <!-- CART -->
-    <div class="container-fluid ml-5 mb-5" id="cart">
-        <div class="d-flex justify-content-center row">
-            <div class="col-md-8">
-                <div class="p-2">
-                    <h4><span class="iconify" data-icon="fa-solid:clipboard-list"></span> รายการวัสดุ</h4>
-                    <hr size="2" class="ml-0 col-6">
-                    <div><input type="checkbox" name="" >  เลือกทั้งหมด</div>
-                </div>
-                <div class="d-flex flex-row justify-content-between align-items-center p-2 bg-white mt-4 px-3 rounded cart">
-                    <div class="mr-1"><input type="checkbox" id=""></div>
-                    <div>รหัสวัสดุ : 101000001</div>
-                    <div>ชื่อรายการ : กรรไกรตัดกระดาษ 6"</div>
-                    <div><input type="number" name="" id="" placeholder="จำนวนเบิก"></div>
-                    <div class="d-flex align-items-center"><i class="fa fa-trash mb-1 text-danger" style="font-size: 25px;"></i></div>
-                    
-                </div>
-                <hr class="mt-5 ml-0  col-6" width="1000px" size="2" class="">
+                        </div> -->
+                    </div>
 
-                <div class="d-flex flex-row justify-content-between align-items-center p-2 bg-white mt-5 px-3 rounded cart">
-                    <div class="mr-1"><input type="checkbox" id=""></div>
-                    <div>รหัสวัสดุ : 101000002</div>
-                    <div>ชื่อรายการ : กรรไกรตัดกระดาษ 9"</div>
-                    <div><input type="number" name="" id="" placeholder="จำนวนเบิก"></div>
-                    <div class="d-flex align-items-center"><i class="fa fa-trash mb-1 text-danger" style="font-size: 25px;"></i></div>
-                    
-                </div>
-                <div id="objective">
-                    <p>หมายเหตุ :</p> 
-                    <div><textarea cols="40" rows="5"></textarea></div>
-                    <div class="col-12 text-right " >
-                        <button class="btn" id="btn-requis">ขอเบิก</button>
-                    </div>                    
+                    <hr class="mt-5 ml-0 col-12" size="2">
+                    <div id="objective">
+                        <p>หมายเหตุ :</p>
+                        <div><textarea class="col-12 form-control my-2 col-12 col-lg-5" rows="5"></textarea></div>
+                        <div class="col-12 text-lg-right text-center">
+                            <button class="btn" id="btn-requis">ขอเบิก</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-  
+    <!-- CART -->
+
+
+
     <!-- Modal -->
-    <div class="modal fade " id="modelResult" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal fade " id="modelResult" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
+        aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title"><span class="iconify" data-icon = "fa-solid:clipboard-list"></span> สรุปยอดทั้งหมด</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+                    <h5 class="modal-title"><span class="iconify" data-icon="fa-solid:clipboard-list"></span>
+                        สรุปยอดทั้งหมด</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
                 <div class="modal-body">
                     <p class="text-right">จำนวน</p>
@@ -117,7 +126,7 @@
                     <hr width="450px" size="2" class="ml-0">
 
                     <p>หมายเหตุ: ต้องการด่วยมากๆ</p>
-                    
+
                     <select id="Objective">
                         <option>เลือกวัตถุประสงค์</option>
                         <option>การเรียนการสอน</option>
@@ -138,4 +147,5 @@
         </div>
     </div>
 </body>
+
 </html>
