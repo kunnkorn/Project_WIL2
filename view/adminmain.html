@@ -18,78 +18,26 @@
     <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.2.6/js/dataTables.responsive.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
-    
+    <script src="../public/src/adminmain.js"></script>
     <link rel="stylesheet" href="../public/style/adminmain.css">
 </head>
-<script>
-    $(document).ready(function () {
-
-
-
-        var rowID;
-        var material = [{
-            "number": "1",
-            "date": "17/05/2564",
-            "name": "นาย บันเทิง สุดสุด",
-            "order": "64050001",
-            "status": "รออนุมัติ"
-        }, {
-            "number": "2",
-            "date": "19/05/2564",
-            "name": "นางสาว สมหญิง มากมาก",
-            "order": "64050010",
-            "status": "รออนุมัติ"
-        }, {
-            "number": "3",
-            "date": "21/05/2564",
-            "name": "นาย อนุรักษ์ ผืนป่า",
-            "order": "64050013",
-            "status": "รออนุมัติ"
-        }];
-        var table = $("#materialTable").DataTable({
-            responsive: true,       //for responsive column display
-            deferRender: true,      //if large data, use this option
-
-            data: material,
-            columns: [
-                { data: "number", title: "ลำดับ" },
-                { data: "date", title: "วันที่" },
-                { data: "name", title: "ชื่อ-นามสกุล" },
-                { data: "order", title: "เลขที่ใบเบิก" },
-                { data: "status", title: "สถานะ" },
-                { title: "รายละเอียด", orderable: false, defaultContent: "<a href='detailreq.html'>รายละเอียดเพิ่มเติม</a>" }
-            ],
-            columnDefs: [
-                // make the last column align right, also target: "_all"
-                { "className": "dt-center", "targets": 5 }
-            ]
-        });
-
-        // Sidebar toggle behavior
-        $(function () {
-        // Sidebar toggle behavior
-        $('#sidebarCollapse').on('click', function () {
-            $('#sidebar, #content').toggleClass('active');
-        });
-    });
-    })
-
-</script>
 
 <body>
     <nav class="navbar navbar-expand-sm navbar-dark bgnavbar fixed-top">
         <a class="navbar-brand" href="#"><img src="../public/img/logo.png" width="40px" height="40px">
         </a>
         <h5 class="text-light my-auto brand-text" href="#">ระบบจัดการวัสดุสำนักงาน สำนักวิชาเทคโนโลยีสารสนเทศ</h5>
-        <text class="my-auto ml-auto text-light brand-text"><span class="iconify text-light" data-icon="bx:bxs-user-circle" data-inline="false" style="color:black"
-                data-width="30px" data-height="30px"></span>
+        <text class="my-auto ml-auto text-light brand-text"><span class="iconify text-light"
+                data-icon="bx:bxs-user-circle" data-inline="false" style="color:black" data-width="30px"
+                data-height="30px"></span>
             นางสาวแอดมิน สมหญิง</text>
-        <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
+        <button class="navbar-toggler d-xl-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
             aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation" id="sidebarCollapse">
             <span class="navbar-toggler-icon"></span>
         </button>
 
     </nav>
+
     <div class="vertical-nav bg-white mt-2" id="sidebar">
         <div class="vertical-menu">
             <ul class="nav flex-column bg-white mt-4">
@@ -103,15 +51,16 @@
                             นางสาวแอดมิน สมหญิง</text>
                     </li>
                 </div>
-                <li><a href="#" class="active">คำขอเบิกวัสดุ</a></li>
-                <li><a href="#">รายการวัสดุ</a></li>
+                <li><a href="#" class="active">คำขอเบิกวัสดุ<span class="ml-3 badge badge-danger"
+                            style="font-size: 18px;"><span>3</span></span></a></li>
+                <li><a href="../view/material.html">รายการวัสดุ</a></li>
                 <li><a href="../view/history.html">ประวัติการเบิก</a></li>
-                <li><a href="#">สถิติการเบิก</a></li>
+                <li><a href="../view/statistic.html">สถิติการเบิก</a></li>
                 <li><a href="../view/Login.html">ออกจากระบบ <span class="iconify" data-icon="ls:logout"
-                data-inline="false"></span> </a></li>
+                            data-inline="false"></span> </a></li>
             </ul>
         </div>
-        
+
     </div>
 
     <!--Main-->
@@ -119,7 +68,8 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="float-left">
-                    <span class="iconify" data-icon="fluent:task-list-rtl-20-filled" data-inline="false" data-width="35px" data-height="35px"></span>
+                    <span class="iconify" data-icon="fluent:task-list-rtl-20-filled" data-inline="false"
+                        data-width="35px" data-height="35px"></span>
                 </div>
                 <div class="col-11">
                     <h2>คำขอเบิกวัสดุ</h2>
