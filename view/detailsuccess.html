@@ -19,123 +19,27 @@
     <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script src="https://cdn.datatables.net/responsive/2.2.6/js/dataTables.responsive.min.js"></script>
-
-    <link rel="stylesheet" href="../public/style/adminmain.css">
+    <script src="../public/src/detailsuccess.js"></script>
+    <link rel="stylesheet" href="../public/style/detailsuccess.css">
 </head>
-<script>
-    $(document).ready(function () {
-        var rowID;
-        var material = [{
-            "number": "1",
-            "id": "101000246",
-            "list": "ซองจดหมายขาว ขนาด DL",
-            "numreq": "10",
-            "unit": "ด้าม",
-            "balance": "5",
-            "amount": "7"
-        }, {
-            "number": "2",
-            "id": "101000249",
-            "list": "ปากกาไวท์บอร์ด สีแดง",
-            "numreq": "10",
-            "unit": "ด้าม",
-            "balance": "5",
-            "amount": "2"
-        }, {
-            "number": "3",
-            "id": "101000255",
-            "list": "ลวดเสียบกระดาษ (Paper Clip)",
-            "numreq": "10",
-            "unit": "ด้าม",
-            "balance": "5",
-            "amount": "6"
-        }, {
-            "number": "4",
-            "id": "101000359",
-            "list": "ไม้บรรทัดเหล็ก 1 ฟุต",
-            "numreq": "10",
-            "unit": "ด้าม",
-            "balance": "5",
-            "amount": "4"
-        }, {
-            "number": "5",
-            "id": "101000675",
-            "list": "ตรายาง - วันที่ตัวเลข",
-            "numreq": "10",
-            "unit": "ด้าม",
-            "balance": "5",
-            "amount": "3"
-        }];
-        var table = $("#materialTable").DataTable({
-            responsive: true,       //for responsive column display
-            deferRender: true,      //if large data, use this option
-
-            data: material,
-            columns: [
-                { data: "number", title: "ลำดับ" },
-                { data: "id", title: "รหัสวัสดุ" },
-                { data: "list", title: "รายการ" },
-                { data: "numreq", title: "จำนวนเบิก" },
-                { data: "unit", title: "หน่วยนับ" },
-                { data: "balance", title: "จำนวนคงเหลือ" },
-                { data: "amount", title: "จำนวนจ่าย" }
-            ],
-            columnDefs: [
-                // make the last column align right, also target: "_all"
-                { "className": "dt-center", "targets": 5 }
-            ]
-        });
-
-        // Sidebar toggle behavior
-        $(function () {
-        // Sidebar toggle behavior
-        $('#sidebarCollapse').on('click', function () {
-            $('#sidebar, #content').toggleClass('active');
-        });
-    });
-
-        $("#success").click(function () {
-            //alert("test");
-            Swal.fire({
-                title: 'แน่ใจใช่หรือไม่?',
-                text: "ท่านแน่ใจใช่หรือไม่ว่ามีคนมารับของเรียบร้อยแล้ว",
-                icon: 'warning',
-                confirmButtonText: 'ยืนยัน',
-                cancelButtonText: 'ยกเลิก',
-                showCancelButton: true,
-                confirmButtonColor: '#6FD83D',
-                cancelButtonColor: '#FF4B4B',
-
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    Swal.fire('การยืนยันเสร็จสิ้น!', '', 'success').then((result) => {
-                        if (result.isConfirmed) {
-                            location.replace("adminmain.html");
-                        }
-                    });
-                };
-            })
-        });
-    });
-
-</script>
 
 <body>
     <!--Topbar-->
-    <nav class="navbar navbar-expand-sm navbar-dark fixed-top" style="background-color: #2E5E96;">
-        <a class="navbar-brand col-12 col-s-6" href="#"><img src="../public/img/logo.png" alt=""
-                style="width: 40px; height: 40px;"><span>ระบบจัดการวัสดุสำนักงาน
-                สำนักวิชาเทคโนโลยีสารสนเทศ</span>
-            <text class="float-right"><span class="iconify" data-icon="bx:bxs-user-circle" data-inline="false"
-                    style="color: #ffff;" data-width="30px" data-height="30px"></span>
-                นางสาวแอดมิน สมหญิง</text> </a>
-        <button id="sidebarCollapse" type="button" class="navbar-toggler btn btn-link border-0"
-            aria-label="Toggle navigation">
-            <!-- <i class="fas fa-bars mr-2"></i> -->
+    <nav class="navbar navbar-expand-md navbar-dark bgnavbar fixed-top">
+        <a class="navbar-brand" href="#"><img src="../public/img/logo.png" width="40px" height="40px">
+        </a>
+        <h5 class="text-light my-auto brand-text" href="#">ระบบจัดการวัสดุสำนักงาน สำนักวิชาเทคโนโลยีสารสนเทศ</h5>
+        <text class="my-auto ml-auto text-light brand-text"><span class="iconify text-light"
+                data-icon="bx:bxs-user-circle" data-inline="false" style="color:black" data-width="30px"
+                data-height="30px"></span>
+            นางสาวแอดมิน สมหญิง</text>
+        <button class="navbar-toggler d-xl-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
+            aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation" id="sidebarCollapse">
             <span class="navbar-toggler-icon"></span>
         </button>
 
     </nav>
+
     <div class="vertical-nav bg-white mt-2" id="sidebar">
         <div class="vertical-menu">
             <ul class="nav flex-column bg-white mt-4">
@@ -149,10 +53,11 @@
                             นางสาวแอดมิน สมหญิง</text>
                     </li>
                 </div>
-                <li><a href="adminmain.html">คำขอเบิกวัสดุ</a></li>
-                <li><a href="#">รายการวัสดุ</a></li>
-                <li><a href="#">สถิติการเบิก</a></li>
-                <li><a href="history.html" class="active">ประวัติการเบิก</a></li>
+                <li><a href="../view/adminmain.html" class="active">คำขอเบิกวัสดุ<span class="ml-3 badge badge-danger"
+                            style="font-size: 18px;"><span>3</span></span></a></li>
+                <li><a href="../view/material.html">รายการวัสดุ</a></li>
+                <li><a href="../view/history.html">ประวัติการเบิก</a></li>
+                <li><a href="../view/statistic.html">สถิติการเบิก</a></li>
                 <li><a href="../view/Login.html">ออกจากระบบ <span class="iconify" data-icon="ls:logout"
                             data-inline="false"></span> </a></li>
             </ul>
@@ -179,16 +84,15 @@
                 </div>
             </div>
             <!--Detail text-->
-            <div id="detail">
-                <div class="float-left">
+            <div id="detail" class="row">
+                <div class="mr-auto col-7">
                     <p>เลขที่ใบเบิก : 6405001</p>
                     <p>หมายเหตุ : ต้องการวัสดุทุกอย่างที่เบิกด่วนที่สุด</p>
                     <p>ชื่อผู้เบิก : นายบันเทิง สุดสุด</p>
                     <p>วันที่ : 17/05/2564 เวลา : 15:30 น</p>
                 </div>
-                <div class="all">
-                    <span class="iconify" data-icon="carbon:collapse-all" data-inline="false" style="color: #7BB18B;"
-                        data-width="100px" data-height="100px"></span>
+                <div class="all ml-5 col-2 text-right ml-auto mr-3" >
+                    <span class="iconify" data-icon="carbon:collapse-all" data-inline="false" style="color: #7BB18B;"data-width="70px" data-height="70px"></span>
                     <p>ทั้งหมด<span class="iconify" data-icon="mdi:numeric-5-circle" data-inline="false"
                             style="color: #C4C4C4;" data-width="30px" data-height="30px"></span></p>
                 </div>
