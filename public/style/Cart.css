@@ -87,7 +87,7 @@ body {
   margin-left: 0rem;
 }
 
-@media (max-width: 576px) {
+@media (max-width: 768px) {
   #sidebar {
     margin-left: -17rem;
     z-index: 1;
@@ -154,7 +154,7 @@ a.active {
   background-color: rgb(151, 213, 238);
 }
 
-@media (min-width: 576px) {
+@media (min-width: 768px) {
   #text-brand {
     display: none;
   }

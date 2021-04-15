@@ -86,7 +86,7 @@
    margin-left: 0rem;
  }
 
- @media (max-width: 575px) {
+ @media (max-width: 768px) {
    #sidebar {
      margin-left: -17rem;
      z-index: 1;
@@ -143,7 +143,7 @@
    border: 6px solid transparent;
  }
 
- @media (min-width: 576px) {
+ @media (min-width: 768px) {
    #text-brand {
      display: none;
    }
