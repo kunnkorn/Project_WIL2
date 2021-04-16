@@ -1,269 +1,185 @@
-body{
-    font-family: 'Pridi', serif;
-    margin: 0;
-  }
-  .vertical-nav{
-    min-width: 17rem;
-    width: 17rem;
-    height: 100vh;
-    position: fixed;
-    top: 60px;
-    left: 0;
-    box-shadow: 3px 3px 10px rgba(0,0,0,0.1) ;
-    transition: all 0.4s;
-    font-family: 'Pridi', serif;
-   
-  }
-  
-  .vertical-menu a {
+html {
+  font-family: 'Pridi', serif
+}
+
+#month {
+  border: none;
+  font-family: 'Pridi', serif;
+  width: 8rem;
+  height: 1.9rem;
+  background-color: #b1f1e6;
+  border-radius: 6px;
+}
+
+.carousel {
+  background-color: rgb(255, 255, 255) !important;
+  border-radius: 25px;
+  padding: 20px;
+  border: 0.5px solid rgb(238, 238, 238);
+  box-shadow: 1.5px 1.5px rgb(238, 238, 238);
+}
+
+.card {
+  height: 10rem;
+}
+
+.card-text {
+  font-size: 30px;
+}
+
+#iconsta {
+  font-size: 60px;
+  float: right;
+}
+
+.carousel-control-next-icon:after {
+  content: '>';
+  font-size: 30px;
+  color: #636363;
+}
+
+.carousel-control-prev-icon:after {
+  content: '<';
+  font-size: 30px;
+  color: #636363;
+}
+
+#bar {
+  position: static;
+  margin: auto;
+  background-color: #ffffff;
+  width: 950px;
+  height: 358px;
+  margin-top: 2rem;
+}
+
+#Export {
+  margin-top: auto;
+  text-align: center;
+  margin-left: auto;
+}
+
+.vertical-nav {
+  min-width: 17rem;
+  width: 17rem;
+  height: 100vh;
+  position: fixed;
+  top: 60px;
+  left: 0;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s;
+  font-family: 'Pridi', serif;
+}
+
+.vertical-menu a {
   display: block;
   padding: 15px;
   text-decoration: none;
-  }
-  
-  .vertical-menu a:hover {
+}
+
+.vertical-menu a:hover {
   background-color: #DDEEFF;
+}
+
+#btnback {
+  cursor: pointer;
+}
+
+.page-content {
+  width: calc(100% - 17rem);
+  margin-left: 17rem;
+  transition: all 0.4s;
+}
+
+#sidebar.active {
+  margin-left: 0rem;
+}
+
+@media (max-width: 768px) {
+  #sidebar {
+    margin-left: -17rem;
+    z-index: 1;
   }
-  
-  .page-content {
-    width: calc(100% - 17rem);
-    margin-left: 17rem;
-    transition: all 0.4s;
+  .brand-text {
+    display: none;
   }
   #sidebar.active {
-    margin-left: -17rem;
+    margin-left: 0;
   }
-  @media (max-width: 768px) {
-    #sidebar {
-      margin-left: -17rem;
-    }
-    .brand-text{
-      display: none;
-    }
-    #sidebar.active {
-      margin-left: 0;
-    }
-    #content {
-      width: 100%;
-      margin: 0;
-    }
-    #content.active {
-      margin-left: 17rem;
-      width: calc(100% - 17rem);
-    }
+  #content {
+    width: 100%;
+    margin: 0;
   }
-  .hr{
-    border-top: 1px solid #8c8b8b;
+}
+
+@media (min-width: 768px) {
+  #text-brand {
+    display: none;
   }
-  
-  li a{
-    color: black;
-  }
-  a.active {
-    background-color: #DDEEFF;
-    color: #134472;
-  }
-  
-  th{
+}
+
+li a {
+  color: black;
+}
+
+a.active {
+  background-color: #DDEEFF;
+  color: #134472;
+}
+
+.hr {
+  border-top: 1px solid #8c8b8b;
+}
+
+.bgnavbar {
+  background: #2E5E96;
+  /* border-radius:0px 0px 27px 27px; */
+}
+
+th {
   background-color: #9CE7D9;
   text-align: center;
-  }
-  table{
+}
+
+table {
   font-family: 'Pridi', serif;
-  }
-  tr,td {
+}
+
+tr, td {
   text-align: center;
   padding: 15px;
   border-bottom: 2px solid #ddd;
-  }
- body{
-  background-color: #F8F8F8, 100%;
-  min-height: 100vh;
-  overflow-x: hidden;
-  font-family: 'Pridi', serif;
-  margin: 0;
-  }
-  
-  @media only screen and (min-width: 768px) {
-  /* For desktop: */
-  .col-1 {width: 8.33%;}
-  .col-2 {width: 16.66%;}
-  .col-3 {width: 25%;}
-  .col-4 {width: 33.33%;}
-  .col-5 {width: 41.66%;}
-  .col-6 {width: 50%;}
-  .col-7 {width: 58.33%;}
-  .col-8 {width: 66.66%;}
-  .col-9 {width: 75%;}
-  .col-10 {width: 83.33%;}
-  .col-11 {width: 91.66%;}
-  .col-12 {width: 100%;}
-  }
-  #detail{
-    border-radius: 25px;
-      background: #F3FFFE;
-      padding: 20px; 
-      width: 1520px;
-      height: 200px; 
-      font-size: 20px;
-  }
-  .position{
-    padding-bottom: 20px;
-  }
-  .status{
-    padding-left: 600px;
-  }
-  .all{
-    padding-left: 1200px;
-    padding-top: 20px;
-  }
-  #select {
-    width: 16%;
-    color: #03520B;
-    text-align: center;
-    
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid rgb(95, 92, 92);
-    box-shadow: inset 0 1px 3px #ddd;
-    border-radius: 4px;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-top: 5px;
-    padding-bottom: 5px;
 }
 
-
-.carousel{
-    background-color: rgb(255, 255, 255) !important;
-    height: 30rem;
-    border-radius: 25px;
-    padding: 20px;
-    border: 0.5px solid rgb(238, 238, 238);
-    box-shadow: 1.5px 1.5px rgb(238, 238, 238);     
-  
+#iconadd {
+  font-size: 33px;
+  color: #00C32B;
 }
-#carousel-item-card{
+
+#iconimport {
+  font-size: 33px;
+  color: #5A00B5;
+}
+
+#btnaddData {
   margin-top: auto;
+  text-align: center;
+  margin-left: auto;
+}
+
+#category {
+  border: none;
   font-family: 'Pridi', serif;
-  
-
 }
 
-.card-text{
-    font-size: 45px;
-    font-family: 'Pridi', serif;
-}
-.card{
-    width: 18rem;
-    height: 9rem;
-    border: none;
-    font-family: 'Pridi', serif;
-}
-#iconsta {
-    font-size: 60px;
-   float: right;
-}
-#chBar{
-  margin: auto;
- margin-top: auto;
-}
-#bar{
-    position: static;
-    margin: auto;
-    background-color: #ffffff; 
-    width: 950px; 
-    height: 358px; 
-    margin-top: 2rem;
-}
-.carousel .carousel-indicators li {
-  width: 10px;
- height: 10px;
- border-radius: 100%;
- background-color: rgb(167, 167, 167);
-}
-@media only screen and (max-width:1500px){
-  .card{
-      width: 16rem;
-      height: 9rem;
-      
-  }
- 
-}
-@media only screen and (max-width:980px){
-  .card{
-      width: 14rem;
-      height: 8rem;
-      border: none;
-      font-family: 'Pridi', serif;
-      margin-bottom: auto;
-      margin-right: auto;
-  }
-  .card-text{
-      font-size: 35px;
-  }
-  h5{
-      font-size: 18px;
-  }
-  #iconsta{
-      font-size: 40px;
-      float: right;
-  }
+#btnAdd {
+  padding: 2px;
 }
 
-@media only screen and (max-width:590px){
-  .card{
-      width: 13rem;
-      height: 8rem;
-      border: none;
-      margin-bottom: auto;
-      margin-right: auto;
-  }
-  .card-text{
-      font-size:35px;
-  }
-  h5{
-      font-size: 14px;
-  }
-  #iconsta{
-      font-size: 40px;
-      float: right;
-  }
+#modelEdit {
+  font-family: 'Pridi', serif;
 }
-@media only screen and (max-width:590px){
-  .card{
-      width: 19rem;
-      height: 6.5rem;
-      border: none;
-      font-family: 'Pridi', serif;
-      margin-right: auto;
-    
 
-  }
-  .card-text{
-      font-size:25px;
-  }
-  h5{
-      font-size: 19px;
-  }
-  #iconsta{
-      font-size: 40px;
-      float: right;
-  }
-  #dashboard{
-      margin-bottom: auto;
-      
-      width: 90%;
-      height: 70%;
-      
-  }
-}
-@media (min-width: 576px){
-
-  #text-brand{
-    display: none;
-  }
+#modeladd {
+  font-family: 'Pridi', serif;
 }

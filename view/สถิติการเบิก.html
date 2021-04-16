@@ -24,138 +24,20 @@
     <script src="../public/js/sweetalert2.all.min.js"></script>
     <script src="../public/js/iconify.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
-
+    <script src="../public/src/สถิติการเบิก.js"></script>
     <link rel="stylesheet" href="../public/style/สถิติการเบิก.css">
 </head>
-<!--Carusel-->
-<script>
-    $(document).ready(function () {
-        var colors = ['#5832CE', '#F90904', '#E4D131'];
-
-        var chBar = document.getElementById("chBar");
-        var chartData = {
-            labels: ['วัสดุสำนักงาน', ' วัสดุไฟฟ้าวิทยุ', 'วัสดุคอมพิวเตอร์', 'วัสดุงานบ้านงานครัว', 'วัสดุเครื่องแต่งกาย', 'วัสดุของที่ระลึก'],
-            datasets: [{
-                lable: ['อนุมัติ'],
-                data: [589, 445, 483, 503, 689, 692, 634],
-                backgroundColor: colors[0]
-            },
-            {
-                lable: 'ไม่อนุมัติ',
-                data: [209, 245, 383, 403, 589, 692, 580],
-                backgroundColor: colors[1]
-            },
-            {
-                lable: 'อนุมัติแต่ไม่ครบ',
-                data: [489, 135, 483, 290, 189, 603, 600],
-                backgroundColor: colors[2]
-            },
-            ]
-        };
-
-        if (chBar) {
-            new Chart(chBar, {
-                type: 'bar',
-                data: chartData,
-                responsive: true,
-                options: {
-                    scales: {
-                        xAxes: [{
-                            barPercentage: 1,
-                            categoryPercentage: 0.5
-                        }],
-                        yAxes: [{
-                            ticks: {
-                                beginAtZero: false
-                            }
-                        }]
-                    },
-                    legend: {
-                        display: true,
-                        position: 'bottom'
-
-                    }
-                }
-            });
-        }
-
-
-    });
-</script>
-
-<!--Datatable-->
-<script>
-    $(document).ready(function () {
-        var rowID;
-        var material = [{
-            "number": "1",
-            "id": "101000001",
-            "name": "กรรไกรตัดกระดาษ 6",
-            "amount": "20",
-            "approve": "20",
-            "disapprove": "0",
-            "notcomplete": "0",
-            "unit": "อัน",
-        }, {
-            "number": "2",
-            "id": "101000002",
-            "name": "กรรไกรตัดกระดาษ 9",
-            "amount": "40",
-            "approve": "28",
-            "disapprove": "4",
-            "notcomplete": "8",
-            "unit": "อัน",
-        }, {
-            "number": "3",
-            "id": "101000003",
-            "name": "กระดาษ POSTIT ขนาด 2*3",
-            "amount": "110",
-            "approve": "100",
-            "disapprove": "5",
-            "notcomplete": "5",
-            "unit": "เล่ม",
-        }];
-        var table = $("#materialTable").DataTable({
-            responsive: true,       //for responsive column display
-            deferRender: true,      //if large data, use this option
-
-            data: material,
-            columns: [
-                { data: "number", title: "ลำดับ" },
-                { data: "id", title: "รหัสวัสดุ" },
-                { data: "name", title: "รายการ" },
-                { data: "amount", title: "จำนวนที่เบิกรายเดือน" },
-                { data: "approve", title: "อนุมัติ" },
-                { data: "disapprove", title: "ไม่อนุมัติ" },
-                { data: "notcomplete", title: "อนุมัติแต่ไม่ครบ" },
-                { data: "unit", title: "หน่ายนับ" }
-            ],
-            columnDefs: [
-                // make the last column align right, also target: "_all" 
-                { "className": "dt-center", "targets": 7 }
-            ]
-        });
-
-        // Sidebar toggle behavior
-        $(function () {
-        // Sidebar toggle behavior
-        $('#sidebarCollapse').on('click', function () {
-            $('#sidebar, #content').toggleClass('active');
-        });
-    });
-    })
-
-</script>
 
 <body>
-    <nav class="navbar navbar-expand-sm navbar-dark bgnavbar fixed-top" style="background-color: #2E5E96;">
+    <nav class="navbar navbar-expand-md navbar-dark bgnavbar fixed-top">
         <a class="navbar-brand" href="#"><img src="../public/img/logo.png" width="40px" height="40px">
         </a>
         <h5 class="text-light my-auto brand-text" href="#">ระบบจัดการวัสดุสำนักงาน สำนักวิชาเทคโนโลยีสารสนเทศ</h5>
-        <text class="my-auto ml-auto text-light brand-text"><span class="iconify text-light" data-icon="bx:bxs-user-circle" data-inline="false" style="color:black"
-                data-width="30px" data-height="30px"></span>
-            นางสาวแอดมิน สมหญิง</text>
-        <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
+        <text class="my-auto ml-auto text-light brand-text"><span class="iconify text-light"
+                data-icon="bx:bxs-user-circle" data-inline="false" style="color:black" data-width="30px"
+                data-height="30px"></span>
+            นางสาวหัวหน้าแอดมิด สมหญิง</text>
+        <button class="navbar-toggler d-xl-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
             aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation" id="sidebarCollapse">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -171,14 +53,14 @@
                     <li class="text-center">
                         <text><span class="iconify" data-icon="bx:bxs-user-circle" data-inline="false"
                                 style="color:black" data-width="30px" data-height="30px"></span>
-                            นางสาวแอดมิน สมหญิง</text>
+                            นางสาวหัวหน้าแอดมิด สมหญิง</text>
                     </li>
                 </div>
-                <li><a href="#"class="active">สถิติการเบิก</a></li>
-                <li><a href="สถิติการเบิกรายคน.html">สถิติการเบิกรายคน</a></li>
-                <li><a href="รายการวัสดุ.html">รายการวัสดุ</a></li>
-                <li><a href="ประวัติการเบิก.html">ประวัติการเบิก</a></li>
-                <li><a href="ประวัติการแก้ไขข้อมูลวัสดุ.html">ประวัติการแก้ไขข้อมูลวัสดุ</a></li>
+                <li><a href="#" class="active">สถิติการเบิก</a></li>
+                <li><a href="../view/สถิติการเบิกรายคน.html">สถิติการเบิกรายคน</a></li>
+                <li><a href="../view/รายการวัสดุ.html">รายการวัสดุ</a></li>
+                <li><a href="../view/ประวัติการเบิก.html">ประวัติการเบิก</a></li>
+                <li><a href="../view/ประวัติการแก้ไขข้อมูลวัสดุ.html">ประวัติการแก้ไขข้อมูลวัสดุ</a></li>
                 <li><a href="../view/Login.html">ออกจากระบบ <span class="iconify" data-icon="ls:logout"
                             data-inline="false"></span> </a></li>
             </ul>
@@ -193,18 +75,18 @@
                 <div class="col-11">
                     <h2><span class="iconify" data-inline="false" data-icon="fa-solid:clipboard-list"
                             style="font-size: 28px;"></span>&nbsp;&nbsp;สถิติการเบิก</h2>
-                    <hr style="background-color: #EDA51B;">
+                    <hr>
                 </div>
 
                 <!--Carusel-->
                 <div class="container-fluid  ">
-                    <div id="carouselId" class="carousel slide" data-ride="carousel" >
+                    <div id="carouselId" class="carousel slide" data-ride="carousel">
                         <ol class="carousel-indicators">
                             <li data-target="#carouselId" data-slide-to="0" class="active"></li>
                             <li data-target="#carouselId" data-slide-to="1"></li>
 
                         </ol>
-                       
+
                         <div class="carousel-inner " role="listbox">
                             <div class="carousel-item active" id="dashboard">
                                 <div class="row mt-4 " style="justify-content: center;">
@@ -216,7 +98,7 @@
                                                     <span class="iconify" data-icon="ant-design:file-text-outlined"
                                                         id="iconsta"></span>
                                                 </p>
-                                                
+
                                             </div>
                                         </div>
                                     </div>
@@ -283,7 +165,7 @@
                 </div>
 
                 <!--Dropdown-->
-                <SELECT NAME="เดือน" id="select">
+                <SELECT NAME="เดือน" id="select" class="form-control my-3 col-5 col-md-6 col-lg-2">
                     <option value="มกราคม">วัสดุสำนักงาน</option>
                     <option value="กุมภาพันธ์ ">ไฟฟ้า </option>
                     <option value="มีนาคม ">คอมพิวเตอร์ </option>
