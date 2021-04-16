@@ -18,21 +18,23 @@
     <script src="https://cdn.datatables.net/responsive/2.2.6/js/dataTables.responsive.min.js"></script>
 
     
-    <link rel="stylesheet" href="../public/style/StaffHistory.css">
+    <link rel="stylesheet" href="../public/style/History(success).css">
     <script src="../public/src/History(Success).js"></script>
 </head>
 <body>
-    <nav class="navbar navbar-expand-sm navbar-dark bgnavbar fixed-top">
-        <a class="navbar-brand" href="#"><img src="../public/img/logo.png" width="40px" height="40px"></span>
+    <nav class="navbar navbar-expand-md navbar-dark bgnavbar fixed-top">
+        <a class="navbar-brand" href="#"><img src="../public/img/logo.png" width="40px" height="40px">
         </a>
         <h5 class="text-light my-auto brand-text" href="#">ระบบจัดการวัสดุสำนักงาน สำนักวิชาเทคโนโลยีสารสนเทศ</h5>
-        <text class="my-auto ml-auto text-light brand-text"><span class="iconify text-light" data-icon="bx:bxs-user-circle" data-inline="false" style="color:black"
-                data-width="30px" data-height="30px"></span>
+        <text class="my-auto ml-auto text-light brand-text"><span class="iconify text-light"
+                data-icon="bx:bxs-user-circle" data-inline="false" style="color:black" data-width="30px"
+                data-height="30px"></span>
             นางสาวแอดมิน สมหญิง</text>
-        <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
+        <button class="navbar-toggler d-xl-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
             aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation" id="sidebarCollapse">
             <span class="navbar-toggler-icon"></span>
         </button>
+
     </nav>
 
     <!--SIDE bAR-->
@@ -49,8 +51,8 @@
                             นางสาวแอดมิน สมหญิง</text>
                     </li>
                 </div>
-                <li><a href="#" >รายการวัสดุ</a></li>
-                <li><a href="Notification.html">การเบิกของฉัน <span class="badge badge-success" style="font-size: 18px;" ><span>3</span></span></a></li>
+                <li><a href="../view/Index.html" >รายการวัสดุ</a></li>
+                <li><a href="../view/Notification.html" class="active">การเบิกของฉัน <span class="badge badge-success" style="font-size: 18px;" ><span>3</span></span></a></li>
                 <li><a href="../view/Login.html">ออกจากระบบ <span class="iconify" data-icon="ls:logout"
                             data-inline="false"></span> </a></li>
             </ul>
@@ -64,7 +66,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="float-left">
-                        <a href="../view/StaffHistory.html">
+                        <a id="btnback">
                             <span class="iconify" data-icon="eva:arrow-back-outline" data-inline="false" data-width="50px"
                                 data-height="50px"></span>
                         </a>
@@ -73,7 +75,7 @@
                     </div>
                     <div class="col-11">
                         <h2>รายละเอียดเพิ่มเติม</h2>
-                        <hr width="1000px" size="2" class="ml-0">
+                        <hr size="2" class="ml-0 col-8">
                     </div>
                 </div>
                 <!--Detail text-->

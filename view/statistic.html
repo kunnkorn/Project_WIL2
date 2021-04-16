@@ -26,25 +26,16 @@
 
 <body>
 
-    <!-- <nav class="navbar navbar-expand-sm navbar-light bg-light">
-        <a class="navbar-brand" href="#">Navbar</a>
-        <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
-            aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        
-    </nav> -->
-
-    <nav class="navbar navbar-expand-sm navbar-dark bgnavbar fixed-top">
+    <nav class="navbar navbar-expand-md navbar-dark bgnavbar fixed-top">
         <a class="navbar-brand" href="#"><img src="../public/img/logo.png" width="40px" height="40px">
         </a>
-        <h5 class="text-light my-auto brand-text " href="#">ระบบจัดการวัสดุสำนักงาน สำนักวิชาเทคโนโลยีสารสนเทศ</h5>
+        <h5 class="text-light my-auto brand-text" href="#">ระบบจัดการวัสดุสำนักงาน สำนักวิชาเทคโนโลยีสารสนเทศ</h5>
         <text class="my-auto ml-auto text-light brand-text"><span class="iconify text-light"
                 data-icon="bx:bxs-user-circle" data-inline="false" style="color:black" data-width="30px"
                 data-height="30px"></span>
             นางสาวแอดมิน สมหญิง</text>
-        <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
-            aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler d-xl-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
+            aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation" id="sidebarCollapse">
             <span class="navbar-toggler-icon"></span>
         </button>
 
@@ -63,9 +54,10 @@
                             นางสาวแอดมิน สมหญิง</text>
                     </li>
                 </div>
-                <li><a href="#">คำขอเบิกวัสดุ<span class="badge badge-danger">4</span></a></li>
-                <li><a href="material.html">รายการวัสดุ</a></li>
-                <li><a href="#">ประวัติการเบิก</a></li>
+                <li><a href="../view/adminmain.html">คำขอเบิกวัสดุ<span class="ml-3 badge badge-danger">4</span></a>
+                </li>
+                <li><a href="../view/material.html">รายการวัสดุ</a></li>
+                <li><a href="../view/history.html">ประวัติการเบิก</a></li>
                 <li><a href="#" class="active">สถิติการเบิก</a></li>
                 <li><a href="../view/Login.html">ออกจากระบบ <span class="iconify" data-icon="ls:logout"
                             data-inline="false"></span> </a></li>
@@ -77,46 +69,46 @@
     <div class="page-content p-5 " id="content">
         <div class="container-fluid">
             <div class="row mt-5">
-                <div class="col-9 ">
+                <div class="col-12 d-flex">
                     <h3 style=" font-family: 'Pridi', serif;">
                         <span class="iconify" data-icon="whh:statistics" data-inline="false"></span> สถิติการเบิก
                     </h3>
-                    <hr size="2" class="ml-0 col-md-8 col-xl-9 col-l-9 col-sm-9">
+                    <div class="ml-auto d-flex">
+                        <select name="" class="form-control" id="month">
+                            <option value="">มกราคม</option>
+                            <option value="">กุมภาพันธ์</option>
+                            <option value="">มีนาคม</option>
+                            <option value="">เมษายน</option>
+                            <option value="">พฤษภาคม</option>
+                            <option value="">มิถุนายน</option>
+                            <option value="">กรกฎาคม</option>
+                            <option value="">สิงหาคม</option>
+                            <option value="">กันยายน</option>
+                            <option value="">ตุลาคม</option>
+                            <option value="">พฤศจิกายน</option>
+                            <option value="">ธันวาคม</option>
+
+                        </select>
+
+                        <label class="ml-3" id="year">ปีการศึกษา <span>2564 </span> </label>
+
+                    </div>
                 </div>
-                <div>
-                    <select name="" id="month">
-                        <option value="">มกราคม</option>
-                        <option value="">กุมภาพันธ์</option>
-                        <option value="">มีนาคม</option>
-                        <option value="">เมษายน</option>
-                        <option value="">พฤษภาคม</option>
-                        <option value="">มิถุนายน</option>
-                        <option value="">กรกฎาคม</option>
-                        <option value="">สิงหาคม</option>
-                        <option value="">กันยายน</option>
-                        <option value="">ตุลาคม</option>
-                        <option value="">พฤศจิกายน</option>
-                        <option value="">ธันวาคม</option>
-
-                    </select>
-
-                    <label for="" id="year">ปีการศึกษา <span>2564 </span> </label>
-
-                </div>
+                <hr size="2" class="ml-0 col-8">
             </div>
 
             <!--Carusel-->
-            <div class="container-fluid  ">
+            <div class="container-fluid">
                 <div id="carouselId" class="carousel slide" data-ride="carousel">
-                    <ol class="carousel-indicators">
+                    <ol class="carousel-indicators align-self-end">
                         <li data-target="#carouselId" data-slide-to="0" class="active"></li>
                         <li data-target="#carouselId" data-slide-to="1"></li>
 
                     </ol>
-                    <div class="carousel-inner " role="listbox">
-                        <div class="carousel-item active" id="dashboard">
-                            <div class="row mt-4 " style="justify-content: center;">
-                                <div class="col-xl-3 col-sm-6 col-md-6 col-l-6 col-s-12">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div class="row mt-4" style="justify-content: center;">
+                                <div class="col-xl-3 col-6 ">
                                     <div class="card " style="background-color: #92E5FF;">
                                         <div class="card-body">
                                             <h5 class="card-title ">ใบเบิกทั้งหมด</h5>
@@ -128,7 +120,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-xl-3 col-sm-6 col-md-6 col-l-6 col-s-12">
+                                <div class="col-xl-3 col-6">
                                     <div class="card " style="background-color: #A5FEB9">
                                         <div class="card-body">
                                             <h5 class="card-title">ใบเบิกที่อนุมัติ</h5>
@@ -141,7 +133,7 @@
                                 </div>
                             </div>
                             <div class="row mt-3 " style="justify-content: center;">
-                                <div class="col-xl-3 col-sm-6 col-md-6 col-l-6 col-s-12">
+                                <div class="col-xl-3 col-6">
                                     <div class="card " style="background-color: #FF9292">
                                         <div class="card-body ">
                                             <h5 class="card-title">ใบเบิกที่ไม่อนุมัติ</h5>
@@ -153,7 +145,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-xl-3 col-sm-6 col-md-6 col-l-6 col-s-12">
+                                <div class="col-xl-3 col-6">
                                     <div class="card" style="background-color: #FFF171">
                                         <div class="card-body">
                                             <h5 class="card-title">ใบเบิกที่อนุมัติแต่ได้ของไม่ครบ</h5>
@@ -168,10 +160,10 @@
                             </div>
                         </div>
                         <div class="carousel-item">
-                            <div class="card col-md-12 " id="bar">
+                            <div class="card col-12 " id="bar">
                                 <div class="card-body">
                                     <div class="container">
-                                        <canvas id="chBar" height="83px" width="230px"></canvas>
+                                        <canvas id="chBar" height="100%" width="230px"></canvas>
                                     </div>
 
                                 </div>
@@ -191,7 +183,7 @@
 
             <!--dropdown for catagory-->
             <div class="row mt-5 ml-2 mb-3">
-                <div class="col-xl-9 col-sm-12 col-md-9 ">
+                <div class="col-12 d-flex">
                     <select name="category" id="category">
                         <option value="">วัสดุสำนักงาน</option>
                         <option value="">วัสดุไฟฟ้าวิทยุ</option>
@@ -201,9 +193,7 @@
                         <option value="">วัสดุของที่ระลึก</option>
                         <option value="">ทั้งหมด</option>
                     </select> <br><br>
-                </div>
-                <div class="col-xl-2 col-sm-12 col-md-3 " id="Export">
-                    <button type="button" class="btn btn-warning rounded-pill" id="export">
+                    <button type="button" class="btn btn-warning rounded-pill ml-auto" id="export">
                         <span class="iconify" data-icon="uil:export" data-inline="false"></span>นำออกไฟล์</button>
                 </div>
             </div>
@@ -222,7 +212,7 @@
                             style="margin-left: 28rem; font-size: 43px;">
                             <span aria-hidden="true">&times;</span>
                         </button>
-                        <div class="modal-body">
+                        <div class="modal-body text-center">
                             <span class="iconify" data-icon="vscode-icons:file-type-excel2" data-inline="false"
                                 style="font-size: 95px;"></span>
                             <h4>นำออกข้อมูลทั้งหมด</h4>

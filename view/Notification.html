@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,17 +18,19 @@
     <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.2.6/js/dataTables.responsive.min.js"></script>
 
-    
-    <link rel="stylesheet" href="../public/style/StaffHistory.css">
+
+    <link rel="stylesheet" href="../public/style/Notification.css">
     <script src="../public/src/Notification.js"></script>
 </head>
+
 <body>
-    <nav class="navbar navbar-expand-sm navbar-dark bgnavbar fixed-top">
+    <nav class="navbar navbar-expand-md navbar-dark bgnavbar fixed-top">
         <a class="navbar-brand" href="#"><img src="../public/img/logo.png" width="40px" height="40px"></span>
         </a>
         <h5 class="text-light my-auto brand-text" href="#">ระบบจัดการวัสดุสำนักงาน สำนักวิชาเทคโนโลยีสารสนเทศ</h5>
-        <text class="my-auto ml-auto text-light brand-text"><span class="iconify text-light" data-icon="bx:bxs-user-circle" data-inline="false" style="color:black"
-                data-width="30px" data-height="30px"></span>
+        <text class="my-auto ml-auto text-light brand-text"><span class="iconify text-light"
+                data-icon="bx:bxs-user-circle" data-inline="false" style="color:black" data-width="30px"
+                data-height="30px"></span>
             นางสาวแอดมิน สมหญิง</text>
         <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
             aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation" id="sidebarCollapse">
@@ -49,8 +52,9 @@
                             นางสาวแอดมิน สมหญิง</text>
                     </li>
                 </div>
-                <li><a href="Index.html">รายการวัสดุ</a></li>
-                <li><a href="#" class="active">การเบิกของฉัน <span class="badge badge-success" style="font-size: 18px;" ><span>6</span></span></a></li>
+                <li><a href="../view/Index.html">รายการวัสดุ</a></li>
+                <li><a href="#" class="active">การเบิกของฉัน <span class="badge badge-success"
+                            style="font-size: 15px;"><span>6</span></span></a></li>
                 <li><a href="../view/Login.html">ออกจากระบบ <span class="iconify" data-icon="ls:logout"
                             data-inline="false"></span> </a></li>
             </ul>
@@ -63,32 +67,75 @@
             <div class="row">
                 <div class="col-6">
                     <h2>การเบิกของฉัน</h2>
-                    <hr size="2" class="ml-0 col-12" style="background-color: black;">
+                    <hr size="2" class="ml-0 col-12" style="background-color: rgb(150, 150, 150);">
                 </div>
             </div>
-            <div class="row">
-                <div class="col-1">
-                    
+            <div class="row mb-3 shadow justify-content-center d-flex rounded-sm" style="background-color:#f5f5f5e7;">
+
+                <div class="text-center btn-effect col-2 d-flex align-items-center" id="btnall">
+                    <a class="text-center btn-text text-dark col-12 my-1">ทั้งหมด <span
+                            class="badge badge-success border" style="font-size: 15px;"><span>6</span></span></a>
                 </div>
-                <div class="col-2 text-center btn-all">
-                    <a href="#">ทั้งหมด <span class="badge badge-success" style="font-size: 18px;" ><span>6</span></span></a>
+                <div class="text-center btn-effect col-2 d-flex align-items-center" id="btnwait">
+                    <a class="text-center btn-text text-dark col-12 my-1">รออนุมัติ <span class="badge badge-warning"
+                            style="font-size: 15px;"><span>3</span></span></a>
                 </div>
-                <div class="col-2 text-center btn-all">
-                    <a href="#">รออนุมัติ <span class="badge badge-warning" style="font-size: 18px;" ><span>3</span></span></a>
+                <div class="text-center btn-effect col-2 d-flex align-items-center" id="btncomfirm">
+                    <a class="text-center btn-text text-dark col-12 my-1">อนุมัติ <span class="badge badge-info"
+                            style="font-size: 15px;"><span>1</span></span></a>
                 </div>
-                <div class="col-2 text-center btn-all">
-                    <a href="#">อนุมัติ <span class="badge badge-info" style="font-size: 18px;" ><span>1</span></span></a>
+                <div class="text-center btn-effect col-2 d-flex align-items-center" id="btnUnapp">
+                    <a class="text-center btn-text text-dark col-12 my-1">ไม่อนุมัติ <span class="badge badge-danger"
+                            style="font-size: 15px;"><span>1</span></span></a>
                 </div>
-                <div class="col-2 text-center btn-all">
-                    <a href="#">ไม่อนุมัติ <span class="badge badge-danger" style="font-size: 18px;" ><span>1</span></span></a>
+                <div class="text-center btn-effect col-2 d-flex align-items-center" id="btncomplete">
+                    <a class="text-center btn-text text-dark col-12 my-1">เสร็จสมบูรณ์ <span class="badge badge-success"
+                            style="font-size: 15px;"><span>1</span></span></a>
                 </div>
-                <div class="col-2 text-center btn-all">
-                    <a href="#">เสร็จสมบูรณ์ <span class="badge badge-success" style="font-size: 18px;" ><span>1</span></span></a>
-                </div>
-                <div class="col-1">
-                </div>
+
             </div>
+
+            <div class="row mt-4 shadow" style="background-color: rgba(245, 245, 245, 0.904);" id="requsition-area">
+               
+                <!-- ห้ามลบออกเด็ดขาด เก็บเอาไว้เป็นโครงต้นแบบ -->
+                <!-- <div class='col-11 my-3 rounded-sm mx-auto bg-white shadow-sm'>
+                    <div class='col-12 head'>
+                        <p class='mt-4'>เลขที่ใบเบิก : 64050010</p>
+                    </div>
+                    <hr size='2' class='ml-0' style='background-color: rgb(187, 187, 187);'>
+                    <div class='col-12 body d-flex justify-content-between'>
+                        <div class='text-area col-8'>
+                            <div class='col-12 d-flex justify-content-between'>
+                                <p>วันที่ 4/15/2021</p>
+                                <p>เวลา 11.55 น.</p>
+                                <p>นาย ปัณณ์ คงสมบูรณ์</p>
+                            </div>
+                            <div class='col-12'>
+                                <p>x 20 ชิ้น</p>
+                            </div>
+                        </div>
+                        <div class='comment-area text-right'>
+                            <textarea rows='5' class='col-12' disabled></textarea>
+                        </div>
+
+                    </div>
+                    <hr size='2' class='ml-0' style='background-color: rgb(184, 184, 184)'>
+                    <div class='col-12 footer'>
+                        <div class='col-12 d-flex justify-content-end'>
+                            <h3>สถานะ : </h3>
+                            <h3 class='text-warning ml-2'>รออนุมัติ</h1>
+                        </div> 
+                        <div class='col-12 d-flex justify-content-end'>
+                            <button class='btn btn-outline-info mb-3'>ดูรายละเอียด</button>
+                        </div>
+                    </div>
+
+                </div> -->
+
+            </div>
+
         </div>
     </div>
 </body>
+
 </html>

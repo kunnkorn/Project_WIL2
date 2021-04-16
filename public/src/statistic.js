@@ -1,54 +1,45 @@
 $(document).ready(function () {
 
     //statistic
-    var colors = ['#5832CE', '#F90904', '#E4D131'];
+    var colors = ['#5832CE', '#F90904'];
+
+    
 
     var chBar = document.getElementById("chBar");
-    var chartData = {
-        labels: ['วัสดุสำนักงาน', ' วัสดุไฟฟ้าวิทยุ', 'วัสดุคอมพิวเตอร์', 'วัสดุงานบ้านงานครัว', 'วัสดุเครื่องแต่งกาย', 'วัสดุของที่ระลึก'],
-        datasets: [{
-            lable: ['อนุมัติ'],
-            data: [589, 445, 483, 503, 689, 692, 634],
-            backgroundColor: colors[0]
+    var chartData = new Chart(chBar, {
+        type: 'bar',
+        data: {
+            labels: ['วัสดุสำนักงาน', ' วัสดุไฟฟ้าวิทยุ', 'วัสดุคอมพิวเตอร์', 'วัสดุงานบ้านงานครัว', 'วัสดุเครื่องแต่งกาย', 'วัสดุของที่ระลึก'],
+            datasets: [{
+                label: 'อนุมัติ',
+                data: [589, 445, 483, 503, 689, 692, 634],
+                backgroundColor: colors[0]
+            },
+            {
+                label: 'ไม่อนุมัติ',
+                data: [209, 245, 383, 403, 589, 692, 580],
+                backgroundColor: colors[1]
+            }]
         },
-        {
-            lable: 'ไม่อนุมัติ',
-            data: [209, 245, 383, 403, 589, 692, 580],
-            backgroundColor: colors[1]
-        },
-        {
-            lable: 'อนุมัติแต่ไม่ครบ',
-            data: [489, 135, 483, 290, 189, 603, 600],
-            backgroundColor: colors[2]
-        },
-        ]
-    };
-
-    if (chBar) {
-        new Chart(chBar, {
-            type: 'bar',
-            data: chartData,
+        options: {
             responsive: true,
-            options: {
-                scales: {
-                    xAxes: [{
-                        barPercentage: 1,
-                        categoryPercentage: 0.5
-                    }],
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero: false
-                        }
-                    }]
-                },
-                legend: {
-                    display: true,
-                    position: 'bottom'
-
-                }
+            scales: {
+                xAxes: [{
+                    barPercentage: 1,
+                    categoryPercentage: 0.5
+                }],
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: false
+                    }
+                }]
+            },
+            legend: {
+                display: true,
+                position: 'bottom',
             }
-        });
-    }
+        }
+    });
 
     //statistic
     var materialStatistic = [{

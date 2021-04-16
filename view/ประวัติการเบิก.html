@@ -21,77 +21,22 @@
     <script src="../public/js/dataTables.responsive.min.js"></script>
     <script src="../public/js/responsive.bootstrap4.min.js"></script>
     <script src="../public/js/sweetalert2.all.min.js"></script>
-    <script src="../public/js/iconify.min.js"></script>   
+    <script src="../public/js/iconify.min.js"></script>
+    <script src="../public/src/ประวัติการเบิก.js"></script>
     <link rel="stylesheet" href="../public/style/ประวัติการเบิก.css">
 </head>
-<script>
-    $(document).ready(function () {
-        var rowID;
-        var requesthistory = [{
-            "date": "02/01/2563",
-            "time": "10:35 น.",
-            "number": "63010001",
-            "status": "ไม่อนุมัติ",           
-        }, {
-            "date": "15/06/2563",
-            "time": "12:25 น.",
-            "number": "63010002",
-            "status": "อนุมัติ",           
-        }, {
-            "date": "19/08/2563",
-            "time": "09:50 น.",
-            "number": "63010003",
-            "status": "อนุมัติ",           
-        }, {
-            "date": "22/09/2563",
-            "time": "08:23 น.",
-            "number": "63010004",
-            "status": "เสร็จสมบูรณ์",           
-        }, {
-            "date": "02/10/2563",
-            "time": "12:25 น.",
-            "number": "63010005",
-            "status": "ไม่อนุมัติ",           
-        }];
-        var table = $("#requesthistoryTable").DataTable({
-            responsive: true,       //for responsive column display
-            deferRender: true,      //if large data, use this option
-
-            data: requesthistory,
-            columns: [
-                { data: "date", title: "วันที่" },
-                { data: "time", title: "เวลา" },
-                { data: "number", title: "เลขที่ใบเบิก" },
-                { data: "status", title: "สถานะ" },
-                { title: "รายละเอียด", orderable: false, defaultContent: "<a href='รายละเอียดประวัติการเบิก.html'>รายละเอียดเพิ่มเติม</a>" }
-            ],
-            columnDefs: [
-                // make the last column align right, also target: "_all"
-                { "className": "dt-center", "targets": 3 }
-            ]
-        });
-
-        // Sidebar toggle behavior
-        $(function () {
-        // Sidebar toggle behavior
-        $('#sidebarCollapse').on('click', function () {
-            $('#sidebar, #content').toggleClass('active');
-        });
-    });
-    })
-
-</script>
 
 <body>
     <!--Topbar-->
-    <nav class="navbar navbar-expand-sm navbar-dark bgnavbar fixed-top" style="background-color: #2E5E96;">
+    <nav class="navbar navbar-expand-md navbar-dark bgnavbar fixed-top">
         <a class="navbar-brand" href="#"><img src="../public/img/logo.png" width="40px" height="40px">
         </a>
         <h5 class="text-light my-auto brand-text" href="#">ระบบจัดการวัสดุสำนักงาน สำนักวิชาเทคโนโลยีสารสนเทศ</h5>
-        <text class="my-auto ml-auto text-light brand-text"><span class="iconify text-light" data-icon="bx:bxs-user-circle" data-inline="false" style="color:black"
-                data-width="30px" data-height="30px"></span>
-            นางสาวแอดมิน สมหญิง</text>
-        <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
+        <text class="my-auto ml-auto text-light brand-text"><span class="iconify text-light"
+                data-icon="bx:bxs-user-circle" data-inline="false" style="color:black" data-width="30px"
+                data-height="30px"></span>
+            นางสาวหัวหน้าแอดมิด สมหญิง</text>
+        <button class="navbar-toggler d-xl-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
             aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation" id="sidebarCollapse">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -107,14 +52,14 @@
                     <li class="text-center">
                         <text><span class="iconify" data-icon="bx:bxs-user-circle" data-inline="false"
                                 style="color:black" data-width="30px" data-height="30px"></span>
-                            นางสาวแอดมิน สมหญิง</text>
+                            นางสาวหัวหน้าแอดมิด สมหญิง</text>
                     </li>
                 </div>
-                <li><a href="สถิติการเบิก.html">สถิติการเบิก</a></li>
-                <li><a href="สถิติการเบิกรายคน.html">สถิติการเบิกรายคน</a></li>
-                <li><a href="รายการวัสดุ.html">รายการวัสดุ</a></li>
+                <li><a href="../view/สถิติการเบิก.html">สถิติการเบิก</a></li>
+                <li><a href="../view/สถิติการเบิกรายคน.html">สถิติการเบิกรายคน</a></li>
+                <li><a href="../view/รายการวัสดุ.html" >รายการวัสดุ</a></li>
                 <li><a href="#" class="active">ประวัติการเบิก</a></li>
-                <li><a href="ประวัติการแก้ไขข้อมูลวัสดุ.html">ประวัติการแก้ไขข้อมูลวัสดุ</a></li>
+                <li><a href="../view/ประวัติการแก้ไขข้อมูลวัสดุ.html">ประวัติการแก้ไขข้อมูลวัสดุ</a></li>
                 <li><a href="../view/Login.html">ออกจากระบบ <span class="iconify" data-icon="ls:logout"
                             data-inline="false"></span> </a></li>
             </ul>
@@ -126,13 +71,13 @@
     <div class="page-content p-5 mt-5" id="content">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-11">                   
+                <div class="col-11">
                     <h2><span class="iconify" data-inline="false" data-icon="fa-solid:clipboard-list"
-                        style="color: #299f98; " data-width="30px"
-                        data-height="30px"></span>&nbsp;ประวัติการเบิกวัสดุ</h2> 
-                    <hr  >                                   
+                            style="color: #299f98; " data-width="30px"
+                            data-height="30px"></span>&nbsp;ประวัติการเบิกวัสดุ</h2>
+                    <hr>
                 </div>
-                
+
             </div>
             <!--Datatable-->
             <table id="requesthistoryTable" class="table table-striped table-bordered" style="width:100%"></table>

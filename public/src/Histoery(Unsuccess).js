@@ -88,4 +88,9 @@ $(document).ready(function () {
             $('#sidebar, #content').toggleClass('active');
         });
     });
+
+
+    $("#btnback").click(function () {
+        window.history.back();
+    });
 });

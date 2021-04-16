@@ -1,0 +1,130 @@
+body {
+    font-family: 'Pridi', serif;
+    margin: 0;
+}
+
+.vertical-nav {
+    min-width: 17rem;
+    width: 17rem;
+    height: 100vh;
+    position: fixed;
+    top: 60px;
+    left: 0;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.4s;
+    font-family: 'Pridi', serif;
+}
+
+.vertical-menu a {
+    display: block;
+    padding: 15px;
+    text-decoration: none;
+}
+
+.vertical-menu a:hover {
+    background-color: #DDEEFF;
+}
+
+#btnback {
+    cursor: pointer;
+}
+
+.page-content {
+    width: calc(100% - 17rem);
+    margin-left: 17rem;
+    transition: all 0.4s;
+}
+
+#sidebar.active {
+    margin-left: 0rem;
+}
+
+@media (max-width: 768px) {
+    #sidebar {
+        margin-left: -17rem;
+        z-index: 1;
+    }
+    .brand-text {
+        display: none;
+    }
+    #sidebar.active {
+        margin-left: 0;
+    }
+    #content {
+        width: 100%;
+        margin: 0;
+    }
+}
+
+@media (min-width: 768px) {
+    #text-brand {
+        display: none;
+    }
+}
+
+.hr {
+    border-top: 1px solid #8c8b8b;
+}
+
+.bgnavbar {
+    background: #2E5E96;
+    /* border-radius:0px 0px 27px 27px; */
+}
+
+li a {
+    color: black;
+}
+
+a.active {
+    background-color: #DDEEFF;
+    color: #134472;
+}
+
+.btn-effect {
+    border-bottom: 2px solid transparent;
+    background-color:  #f5f5f5e7;
+    color: black;
+    transition: 0.3s;
+}
+
+.btn-text:hover {
+    text-decoration: none;
+}
+
+.btn-effect:hover {
+    border-bottom: 2px solid #2c5c8a;
+    padding-bottom: .5rem;
+    cursor: pointer;
+
+}
+
+
+#btnall.active {
+    background-color:  #90c5f7;
+    border-bottom: 2px solid #2c5c8a;
+    padding-bottom: .5rem;
+}
+
+#btnwait.active {
+    background-color:  #fff785;
+    border-bottom: 2px solid #2c5c8a;
+    padding-bottom: .5rem;
+}
+
+#btncomfirm.active {
+    background-color:  #68d3fd;
+    border-bottom: 2px solid #2c5c8a;
+    padding-bottom: .5rem;
+}
+
+#btnUnapp.active {
+    background-color:  #ff8585;
+    border-bottom: 2px solid #2c5c8a;
+    padding-bottom: .5rem;
+}
+
+#btncomplete.active {
+    background-color:  #8cfd88;
+    border-bottom: 2px solid #2c5c8a;
+    padding-bottom: .5rem;
+}

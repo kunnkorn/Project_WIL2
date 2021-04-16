@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title >ประวัติการแก้ไขข้อมูล</title>
+    <title>ประวัติการแก้ไขข้อมูล</title>
     <link rel="stylesheet" href="../public/js/bootstrap.min.css">
     <link rel="stylesheet" href="../public/js/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="../public/js/responsive.bootstrap4.min.css">
@@ -22,96 +22,21 @@
     <script src="../public/js/responsive.bootstrap4.min.js"></script>
     <script src="../public/js/sweetalert2.all.min.js"></script>
     <script src="../public/js/iconify.min.js"></script>
+    <script src="../public/src/ประวัติการแก้ไขข้อมูลวัสดุ.js"></script>
     <link rel="stylesheet" href="../public/style/ประวัติการแก้ไขข้อมูลวัสดุ.css">
 </head>
-<script>
-    $(document).ready(function () {
-        var rowID;
-        var historymaterial = [{
-            "date": "17/05/2564",
-            "time": "10:25 น.",
-            "name": "นางสาว แอดมิน สมหญิง",
-            "management": "เพิ่มจำนวน",
-            "list": "ลวดเย็บกระดาษเบอร์ 1213",
-            "number": "10",
-            "unit": "กล่อง",
-        },
-        {
-            "date": "17/05/2564",
-            "time": "10:30 น.",
-            "name": "นางสาว แอดมิน สมหญิง",
-            "management": "ลดจำนวน",
-            "list": "ลวดเย็บกระดาษเบอร์ 1213",
-            "number": "2",
-            "unit": "กล่อง",
-        },
-        {
-            "date": "20/02/2564",
-            "time": "09:33 น.",
-            "name": "นางสาว แอดมิน สมหญิง",
-            "management": "เพิ่มจำนวน",
-            "list": "ลวดเย็บกระดาษเบอร์ 1213",
-            "number": "5",
-            "unit": "กล่อง",
-        },
-        {
-            "date": "21/05/2564",
-            "time": "10:34 น.",
-            "name": "นางสาว แอดมิน สมหญิง",
-            "management": "เพิ่มจำนวน",
-            "list": "ลวดเย็บกระดาษเบอร์ 1213",
-            "number": "3",
-            "unit": "กล่อง",
-        },
-        {
-            "date": "21/05/2564",
-            "time": "11:10 น.",
-            "name": "นางสาว แอดมิน สมหญิง",
-            "management": "ลดจำนวน",
-            "list": "คลิปหนีบกระดาษ เบอร์ 109/413",
-            "number": "10",
-            "unit": "ตัว",
-        },];
-        var table = $("#historymaterialTable").DataTable({
-            responsive: true,       //for responsive column display
-            deferRender: true,      //if large data, use this option
-
-            data: historymaterial,
-            columns: [
-                { data: "date", title: "วันที่" },
-                { data: "time", title: "เวลา" },
-                { data: "name", title: "ผู้แก้ไข" },
-                { data: "management", title: "การจัดการ" },
-                { data: "list", title: "รายการ" },
-                { data: "number", title: "จำนวน" },
-                { data: "unit", title: "หน่วยนับ" }],
-            columnDefs: [
-                // make the last column align right, also target: "_all"
-                { "className": "dt-center", "targets": 6 }
-            ]
-        });
-
-        // Sidebar toggle behavior
-        $(function () {
-        // Sidebar toggle behavior
-        $('#sidebarCollapse').on('click', function () {
-            $('#sidebar, #content').toggleClass('active');
-        });
-    });
-    })
-
-</script>
 
 <body>
     <!--Topbar-->
-    <nav class="navbar navbar-expand-sm navbar-dark bgnavbar fixed-top" style="background-color: #2E5E96;">
+    <nav class="navbar navbar-expand-md navbar-dark bgnavbar fixed-top">
         <a class="navbar-brand" href="#"><img src="../public/img/logo.png" width="40px" height="40px">
         </a>
         <h5 class="text-light my-auto brand-text" href="#">ระบบจัดการวัสดุสำนักงาน สำนักวิชาเทคโนโลยีสารสนเทศ</h5>
-        <text class="my-auto ml-auto text-light brand-text"><span class="iconify text-light" data-icon="bx:bxs-user-circle" data-inline="false" style="color:black"
-                data-width="30px" data-height="30px"></span>
-            นางสาวแอดมิน สมหญิง</text>
-        <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
+        <text class="my-auto ml-auto text-light brand-text"><span class="iconify text-light"
+                data-icon="bx:bxs-user-circle" data-inline="false" style="color:black" data-width="30px"
+                data-height="30px"></span>
+            นางสาวหัวหน้าแอดมิด สมหญิง</text>
+        <button class="navbar-toggler d-xl-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
             aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation" id="sidebarCollapse">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -127,13 +52,13 @@
                     <li class="text-center">
                         <text><span class="iconify" data-icon="bx:bxs-user-circle" data-inline="false"
                                 style="color:black" data-width="30px" data-height="30px"></span>
-                            นางสาวแอดมิน สมหญิง</text>
+                            นางสาวหัวหน้าแอดมิด สมหญิง</text>
                     </li>
                 </div>
-                <li><a href="สถิติการเบิก.html">สถิติการเบิก</a></li>
-                <li><a href="สถิติการเบิกรายคน.html">สถิติการเบิกรายคน</a></li>
-                <li><a href="รายการวัสดุ.html">รายการวัสดุ</a></li>
-                <li><a href="ประวัติการเบิก.html">ประวัติการเบิก</a></li>
+                <li><a href="../view/สถิติการเบิก.html">สถิติการเบิก</a></li>
+                <li><a href="../view/สถิติการเบิกรายคน.html">สถิติการเบิกรายคน</a></li>
+                <li><a href="../view/รายการวัสดุ.html" >รายการวัสดุ</a></li>
+                <li><a href="../view/ประวัติการเบิก.html">ประวัติการเบิก</a></li>
                 <li><a href="#" class="active">ประวัติการแก้ไขข้อมูลวัสดุ</a></li>
                 <li><a href="../view/Login.html">ออกจากระบบ <span class="iconify" data-icon="ls:logout"
                             data-inline="false"></span> </a></li>

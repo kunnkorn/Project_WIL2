@@ -31,13 +31,14 @@ background-color: #DDEEFF;
   transition: all 0.4s;
 }
 #sidebar.active {
-  margin-left: -17rem;
+  margin-left: 0rem;
 }
-@media (max-width: 768px) {
+@media (max-width: 576px) {
   #sidebar {
     margin-left: -17rem;
+    z-index: 1;
   }
-  .brand-text{
+  .brand-text {
     display: none;
   }
   #sidebar.active {
@@ -47,9 +48,13 @@ background-color: #DDEEFF;
     width: 100%;
     margin: 0;
   }
-  #content.active {
-    margin-left: 17rem;
-    width: calc(100% - 17rem);
+}
+
+
+
+@media (min-width: 576px) {
+  #text-brand {
+    display: none;
   }
 }
 .hr{
@@ -107,7 +112,6 @@ margin: 0;
   border-radius: 25px;
     background: #F3FFFE;
     padding: 20px;
-    height: 200px; 
     font-size: 20px;
 }
 .position{
