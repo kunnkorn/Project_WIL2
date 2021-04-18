@@ -15,7 +15,7 @@ app.use(express.urlencoded({extended: true}));
 
 // Root Service
 app.get("/" , (req , res) => {
-    res.sendFile(path.join(__dirname  , "./view/Login.html"))
+    res.sendFile(path.join(__dirname  , "./view/Login.html" ))
 })
 
 
@@ -40,17 +40,17 @@ app.get('/cartpage' , (req , res) => {
 })
 
 // Notification Page
-app.get('notificationuser' , (req , res) => {
+app.get('/notificationuser' , (req , res) => {
     res.sendFile(path.join(__dirname , "./view/Notification.html"));
 })
 
 // History
 // Success
-app.get('histosy(success)' , (req , res) => {
+app.get('/histosy(success)' , (req , res) => {
     res.sendFile(path.join(__dirname , "./view/History(success).html"))
 })
 // Unsuccess
-app.get('history(unsuccess)' , (req , res) => {
+app.get('/history(unsuccess)' , (req , res) => {
     res.sendFile(path.join(__dirname , "./view/History(Unsuccess).html"))
 })
 
@@ -149,11 +149,11 @@ app.post('/login' , (req , res) => {
         }).then((ticket) => {
             const payload = ticket.getPayload();
             const email = payload.email;
-
+            const pic = payload.picture
             // Verify User with Database
 
             // User_role: 1 = Superadmin 2 = Supervisor 3 = Admin 4 = Staff
-            const sql = 'SELECT user_id , user_role , status_user FROM users WHERE email = ?'
+            const sql = 'SELECT user_id , name ,image , user_role , status_user FROM users WHERE email = ?'
             con.query(sql , [email] , (err , result) => {
                 if(err){
                     console.log(err);
@@ -167,6 +167,17 @@ app.post('/login' , (req , res) => {
 
                 // Check Active User
                 if(result[0].status_user == 1){
+
+                    if(result[0].image == null){
+                        const sql = 'UPDATE users SET image = ? WHERE email = ?'
+                        con.query(sql , [pic , email] , (err , result) => {
+                            if(err){
+                                console.log(err)
+                                return res.status(500).send("Database Error")
+                            }
+                        })
+                    }
+
                     if(result[0].user_role == 1){
                         res.send('/superadmin')
                     }
@@ -179,12 +190,9 @@ app.post('/login' , (req , res) => {
                     else if(result[0].user_role == 4){
                         res.send('/materialuser');
                     }
-                    else{
-                        res.status(400).send("Please contact superadmin")
-                    }
                 }
                 else{
-                    res.status(400).send('Inactive Member')
+                    res.status(400).send('Please contact superadmin')
                 }
             });
         }).catch((err) => {
