@@ -41,9 +41,15 @@ $(document).ready(function () {
                 }
 
                 if (array_user[i].user_role != 1) {
-                    spawncard += "<div class='col-xl-3 col-lg-5 col-md-6 col-sm-7' style='height: 450px;'><div class='card-container manual-flip'><div class='card' style='border: none;'><div class='front text-center'><img class='card-img-top rounded-circle shadow mt-3' src='" + array_user[i].image + "'style='width: 40%;'><div class='card-body'><h5>" + array_user[i].name + "</h5><h5>ตำแหน่ง : " + array_user[i].rank + "</h5><h5 class='mb-3'>เมลล์ : " + array_user[i].email + "</h5><button class='btn btn-primary col-5 mb-3 shadow' onclick='rotateCard(this)'>จัดการ</button></div></div><div class='back text-center'><div class='content'><div class='main'><h5 class='text-center mx-3 mt-5 pt-2'>" + array_user[i].name + "</h5><div class='col-12 text-center my-5'><button class='btn btn-success px-sm-4 activeuser' id='" + (array_user[i].user_id + "," + array_user[i].name) + "'>เปิดสิทธิ์</button></div><div class='col-12 text-center my-5'><button class='btn btn-warning px-sm-4 inactiveuser' id='" + (array_user[i].user_id + "," + array_user[i].name) + "'>ระงับสิทธิ์</button></div><div class='col-12 text-center mb-5'><button class='btn btn-danger px-sm-5 deuser' id='" + (array_user[i].user_id + "," + array_user[i].name) + "'>ลบ</button></div><button class='btn btn-simple' rel='tooltip' title='Flip Card'onclick='rotateCard(this)' id='hidebtn'><span class='iconify'data-inline='false' data-icon='ri:arrow-go-back-line'></span></button></div></div></div></div></div></div>";
+
+                    if (array_user[i].status_user == 1) {
+                        spawncard += "<div class='col-xl-3 col-lg-5 col-md-6 col-sm-7 filter-card' style='height: 450px;' data-string='"+ (array_user[i].name + array_user[i].rank + array_user[i].email) +"'><div class='card-container manual-flip'><div class='card' style='border: none;'><div class='front text-center'><img class='card-img-top rounded-circle shadow mt-3' src='" + array_user[i].image + "'style='width: 40%;'><div class='card-body'><h5>" + array_user[i].name + "</h5><h5>ตำแหน่ง : " + array_user[i].rank + "</h5><h5 class='mb-3'>เมลล์ : " + array_user[i].email + "</h5><button class='btn btn-primary col-5 mb-3 shadow' onclick='rotateCard(this)'>จัดการ</button></div></div><div class='back text-center'><div class='content'><div class='main'><h5 class='text-center mx-3 mt-5 pt-2'>" + array_user[i].name + "</h5><div class='col-12 text-center my-5'><button class='btn btn-secondary px-sm-4 active' id='" + (array_user[i].user_id + "," + array_user[i].name) + "'>เปิดสิทธิ์</button></div><div class='col-12 text-center my-5'><button class='btn btn-warning px-sm-4 inactiveuser' id='" + (array_user[i].user_id + "," + array_user[i].name) + "'>ระงับสิทธิ์</button></div><div class='col-12 text-center mb-5'><button class='btn btn-danger px-sm-5 deuser' id='" + (array_user[i].user_id + "," + array_user[i].name) + "'>ลบ</button></div><button class='btn btn-simple' rel='tooltip' title='Flip Card'onclick='rotateCard(this)' id='hidebtn'><span class='iconify'data-inline='false' data-icon='ri:arrow-go-back-line'></span></button></div></div></div></div></div></div>";
+                    } else {
+                        spawncard += "<div class='col-xl-3 col-lg-5 col-md-6 col-sm-7 filter-card' style='height: 450px;' data-string='"+ (array_user[i].name + array_user[i].rank + array_user[i].email) +"'><div class='card-container manual-flip'><div class='card' style='border: none;'><div class='front text-center'><img class='card-img-top rounded-circle shadow mt-3' src='" + array_user[i].image + "'style='width: 40%;'><div class='card-body'><h5>" + array_user[i].name + "</h5><h5>ตำแหน่ง : " + array_user[i].rank + "</h5><h5 class='mb-3'>เมลล์ : " + array_user[i].email + "</h5><button class='btn btn-primary col-5 mb-3 shadow' onclick='rotateCard(this)'>จัดการ</button></div></div><div class='back text-center'><div class='content'><div class='main'><h5 class='text-center mx-3 mt-5 pt-2'>" + array_user[i].name + "</h5><div class='col-12 text-center my-5'><button class='btn btn-success px-sm-4 activeuser' id='" + (array_user[i].user_id + "," + array_user[i].name) + "'>เปิดสิทธิ์</button></div><div class='col-12 text-center my-5'><button class='btn btn-secondary px-sm-4 active' id='" + (array_user[i].user_id + "," + array_user[i].name) + "'>ระงับสิทธิ์</button></div><div class='col-12 text-center mb-5'><button class='btn btn-danger px-sm-5 deuser' id='" + (array_user[i].user_id + "," + array_user[i].name) + "'>ลบ</button></div><button class='btn btn-simple' rel='tooltip' title='Flip Card'onclick='rotateCard(this)' id='hidebtn'><span class='iconify'data-inline='false' data-icon='ri:arrow-go-back-line'></span></button></div></div></div></div></div></div>";
+                    }
+
                 } else {
-                    spawncard += "<div class='col-xl-3 col-lg-5 col-md-6 col-sm-7' style='height: 450px;'><div class='card-container manual-flip'><div class='card' style='border: none;'><div class='front text-center'><img class='card-img-top rounded-circle shadow mt-3' src='" + array_user[i].image + "'style='width: 40%;'><div class='card-body'><h5>" + array_user[i].name + "</h5><h5>ตำแหน่ง : " + array_user[i].rank + "</h5><h5 class='mb-3'>เมลล์ : " + array_user[i].email + "</h5><button class='btn btn-secondary col-5 mb-3 shadow active'>จัดการ</button></div></div><div class='back text-center'><div class='content'><div class='main'><h5 class='text-center mx-3 mt-5 pt-2'>" + array_user[i].name + "</h5><div class='col-12 text-center my-5'><button class='btn btn-success px-sm-4'>เปิดสิทธิ์</button></div><div class='col-12 text-center my-5'><button class='btn btn-warning px-sm-4'>ระงับสิทธิ์</button></div><div class='col-12 text-center mb-5'><button class='btn btn-danger px-sm-5'>ลบ</button></div><button class='btn btn-simple' rel='tooltip' title='Flip Card'onclick='rotateCard(this)' id='hidebtn'><span class='iconify'data-inline='false' data-icon='ri:arrow-go-back-line'></span></button></div></div></div></div></div></div>";
+                    spawncard += "<div class='col-xl-3 col-lg-5 col-md-6 col-sm-7 filter-card' style='height: 450px;' data-string='"+ (array_user[i].name + array_user[i].rank + array_user[i].email) +"'><div class='card-container manual-flip'><div class='card' style='border: none;'><div class='front text-center'><img class='card-img-top rounded-circle shadow mt-3' src='" + array_user[i].image + "'style='width: 40%;'><div class='card-body'><h5>" + array_user[i].name + "</h5><h5>ตำแหน่ง : " + array_user[i].rank + "</h5><h5 class='mb-3'>เมลล์ : " + array_user[i].email + "</h5><button class='btn btn-secondary col-5 mb-3 shadow active'>จัดการ</button></div></div><div class='back text-center'><div class='content'><div class='main'><h5 class='text-center mx-3 mt-5 pt-2'>" + array_user[i].name + "</h5><div class='col-12 text-center my-5'><button class='btn btn-success px-sm-4'>เปิดสิทธิ์</button></div><div class='col-12 text-center my-5'><button class='btn btn-warning px-sm-4'>ระงับสิทธิ์</button></div><div class='col-12 text-center mb-5'><button class='btn btn-danger px-sm-5'>ลบ</button></div><button class='btn btn-simple' rel='tooltip' title='Flip Card'onclick='rotateCard(this)' id='hidebtn'><span class='iconify'data-inline='false' data-icon='ri:arrow-go-back-line'></span></button></div></div></div></div></div></div>";
                 }
             }
 
@@ -51,6 +57,7 @@ $(document).ready(function () {
             $('.activeuser').click(function () {
                 const iduser = $(this).attr('id');
                 // console.log("active");
+
                 let resultuser = iduser.split(",");
                 let user_id = resultuser[0];
                 Swal.fire({
@@ -198,6 +205,18 @@ $(document).ready(function () {
         $("#modelAdduser").modal("hide");
     })
 
+    $("#myInput").on("keyup", function () {
+        var input = $(this).val().toUpperCase();
+
+        $(".filter-card").each(function () {
+            if ($(this).data("string").toUpperCase().indexOf(input) < 0) {
+                $(this).hide();
+            } else {
+                $(this).show();
+            }
+        })
+    });
+
     $("#formAdduser").submit(function (e) {
         e.preventDefault();
         // const dataForm = new FormData(this);
@@ -227,13 +246,13 @@ $(document).ready(function () {
                             'เพิ่มสำเร็จ!',
                             'คุณได้ทำการเพิ่มสมาชิกคนใหม่เรียบร้อนแล้ว',
                             'success'
-                            
+
                         ).then((result) => {
                             if (result.isConfirmed) {
                                 location.reload();
                             }
                         })
-                        
+
                     }, error: (xhr) => {
                         Swal.fire({
                             icon: 'error',
