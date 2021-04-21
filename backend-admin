@@ -108,6 +108,24 @@ app.post('/unapprove', (req, res) => {
     });
 })
 
+app.post('/complete', (req, res) => {
+    const { requisition_id } = req.body;
+    const user_id = req.session.user.user_id;
+    const sql = 'UPDATE requisition SET requisition.status_requisition = 4 ,requisition.admin_id_success = ?, requisition.date_pickup = CURDATE() , requisition.time_pickup = CURTIME() WHERE requisition.requisition_id = ?';
+    con.query(sql, [user_id, requisition_id], (err, result) => {
+        if (err) {
+            console.log(err);
+            res.status(500).send("DATABASE ERROR");
+        } else {
+            if (result.affectedRows != 1) {
+                console.log(err);
+                res.status(500).send("UPDATE ERROR");
+            } else {
+                res.send("/requisition");
+            }
+        }
+    });
+})
 
 
 
