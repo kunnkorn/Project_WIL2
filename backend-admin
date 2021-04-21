@@ -154,7 +154,7 @@ app.post('/selectmonth', (req, res) => {
 
 app.post('/dataHisreq', (req, res) => {
     const { idreq } = req.body;
-    const sql = 'SELECT requisition.requisition_id , requisition.objective , requisition.date_requisition , requisition.time_requisition , users.name , requisition.date_pickup , requisition.time_pickup FROM requisition JOIN users ON requisition.user_id = users.user_id WHERE requisition.requisition_id = ?';
+    const sql = 'SELECT requisition.status_requisition , requisition.requisition_id , requisition.objective , requisition.date_requisition , requisition.time_requisition , users.name , requisition.date_pickup , requisition.time_pickup FROM requisition JOIN users ON requisition.user_id = users.user_id WHERE requisition.requisition_id = ?';
     con.query(sql, [idreq], (err, result) => {
         if (err) {
             console.log(err);
@@ -177,5 +177,3 @@ app.post('/dataHismaterial', (req, res) => {
         }
     });
 });
-
-

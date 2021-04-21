@@ -91,7 +91,6 @@ $(document).ready(function () {
     });
 
     $("#btnback").click(function () {
-        sessionStorage.clear();
         window.location.href = '/historyadmin';
     });
 
