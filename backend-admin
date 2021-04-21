@@ -1,4 +1,5 @@
-//เพิ่มเติม
+WluYTu1ewHKMhcQl
+//เพิ่มเติม 
 app.get('/getrequisition', (req, res) => {
     const sql = 'SELECT date_requisition , requisition_id ,status_requisition , users.name FROM requisition JOIN users ON requisition.user_id = users.user_id WHERE requisition.status_requisition = 1 OR requisition.status_requisition = 2';
     con.query(sql, (err, result) => {
@@ -10,4 +11,7 @@ app.get('/getrequisition', (req, res) => {
         }
     });
 })
+
+
+
 
