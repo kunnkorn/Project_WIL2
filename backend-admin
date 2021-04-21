@@ -152,4 +152,30 @@ app.post('/selectmonth', (req, res) => {
     })
 })
 
+app.post('/dataHisreq', (req, res) => {
+    const { idreq } = req.body;
+    const sql = 'SELECT requisition.requisition_id , requisition.objective , requisition.date_requisition , requisition.time_requisition , users.name , requisition.date_pickup , requisition.time_pickup FROM requisition JOIN users ON requisition.user_id = users.user_id WHERE requisition.requisition_id = ?';
+    con.query(sql, [idreq], (err, result) => {
+        if (err) {
+            console.log(err);
+            res.status(500).send("DATABASE ERROR");
+        } else {
+            res.send(result);
+        }
+    });
+})
+
+app.post('/dataHismaterial', (req, res) => {
+    const { idreq } = req.body;
+    const sql = 'SELECT material_requisiotion.material_id , material.material_name , material.unit , material_requisiotion.amount_of_requisition, material_requisiotion.amount_of_divide FROM material_requisiotion JOIN material ON material_requisiotion.material_id = material.material_id WHERE material_requisiotion.requisition_id = ?';
+    con.query(sql, [idreq], (err, result) => {
+        if (err) {
+            console.log(err);
+            res.status(500).send("DATABASE ERROR");
+        } else {
+            res.send(result);
+        }
+    });
+});
+
 
