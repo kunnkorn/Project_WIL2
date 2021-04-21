@@ -127,5 +127,29 @@ app.post('/complete', (req, res) => {
     });
 })
 
+app.get('/allDatahisadmin', (req, res) => {
+    const sql = 'SELECT requisition.requisition_id , requisition.date_requisition , status_requisition , users.name FROM requisition JOIN users ON requisition.user_id = users.user_id  AND YEAR(requisition.date_requisition) = YEAR(CURDATE()) AND MONTH(requisition.date_requisition) = MONTH(CURDATE()) WHERE requisition.status_requisition = 3 OR requisition.status_requisition = 4';
+    con.query(sql, (err, result) => {
+        if (err) {
+            console.log(err);
+            res.status(500).send("DATABASE ERROR");
+        } else {
+            res.send(result);
+        }
+    });
+});
+
+app.post('/selectmonth', (req, res) => {
+    const { month } = req.body;
+    const sql = 'SELECT requisition.requisition_id , requisition.date_requisition , status_requisition , users.name FROM requisition JOIN users ON requisition.user_id = users.user_id AND MONTH(requisition.date_requisition) = ? AND YEAR(requisition.date_requisition) = YEAR(CURDATE()) WHERE requisition.status_requisition = 3 OR requisition.status_requisition = 4';
+    con.query(sql, [month], (err, result) => {
+        if (err) {
+            console.log(err);
+            res.status(500).send("DATABASE ERROR");
+        } else {
+            res.send(result);
+        }
+    })
+})
 
 
