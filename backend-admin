@@ -1,13 +1,109 @@
 WluYTu1ewHKMhcQl
+
 //เพิ่มเติม 
 app.get('/getrequisition', (req, res) => {
     const sql = 'SELECT date_requisition , requisition_id ,status_requisition , users.name FROM requisition JOIN users ON requisition.user_id = users.user_id WHERE requisition.status_requisition = 1 OR requisition.status_requisition = 2';
     con.query(sql, (err, result) => {
-        if(err){
+        if (err) {
             console.log(err);
             res.status(500).send("DATABASE ERROR");
-        }else {
+        } else {
             res.send(result);
+        }
+    });
+})
+
+app.post('/datareq', (req, res) => {
+    const { idreq } = req.body;
+    const sql = 'SELECT * FROM requisition JOIN users ON requisition.user_id = users.user_id WHERE requisition.requisition_id = ?';
+    con.query(sql, [idreq], (err, result) => {
+        if (err) {
+            console.log(err);
+            res.status(500).send("DATABASE ERROR");
+        } else {
+            res.send(result);
+        }
+    });
+});
+
+app.post('/datamaterial', (req, res) => {
+    const { idreq } = req.body;
+    const sql = 'SELECT * FROM material_requisiotion JOIN material ON material_requisiotion.material_id = material.material_id WHERE material_requisiotion.requisition_id = ?';
+    con.query(sql, [idreq], (err, result) => {
+        if (err) {
+            console.log(err);
+            res.status(500).send("DATABASE ERROR");
+        } else {
+            res.send(result);
+        }
+    })
+});
+
+app.post('/approve', (req, res) => {
+    const { idreq } = req.body;
+    const user_id = req.session.user.user_id;
+    const sql = 'UPDATE requisition SET requisition.status_requisition = 2, requisition.admin_id_approval = ? WHERE requisition.requisition_id = ?';
+    con.query(sql, [user_id, idreq], (err, result) => {
+        if (err) {
+            console.log(err);
+            res.status(500).send("DATABASE ERROR");
+        } else {
+            if (result.affectedRows != 1) {
+                console.log(err);
+                res.status(500).send("UPDATE ERROR");
+            } else {
+                res.send("/requisition");
+            }
+        }
+    });
+})
+
+app.post('/updateAmountM', (req, res) => {
+    const { requisition_id, material_id, number_of_requisition } = req.body;
+    const sql = 'UPDATE material_requisiotion SET material_requisiotion.amount_of_divide = ? WHERE material_requisiotion.requisition_id = ? AND material_requisiotion.material_id = ?';
+    con.query(sql, [number_of_requisition, requisition_id, material_id], (err, result) => {
+        if (err) {
+            console.log(err);
+            res.status(500).send("DATABASE ERROR");
+        } else {
+            if (result.affectedRows != 1) {
+                console.log(err);
+                res.status(500).send("UPDATE ERROR");
+            } else {
+                const sql = 'UPDATE material JOIN material_requisiotion ON material.material_id = ? JOIN requisition ON requisition.requisition_id = material_requisiotion.requisition_id AND requisition.requisition_id = ? SET material.material_number = material.material_number - material_requisiotion.amount_of_divide';
+                con.query(sql, [material_id, requisition_id], (err, result) => {
+                    if (err) {
+                        console.log(err);
+                        res.status(500).send("DATABASE ERROR");
+                    } else {
+                        if (result.affectedRows != 1) {
+                            console.log(err);
+                            res.status(500).send("UPDATE ERROR");
+                        } else {
+                            res.send("success");
+                        }
+                    }
+                });
+            }
+        }
+    });
+
+})
+
+app.post('/unapprove', (req, res) => {
+    const { requisition_id, txtcomment } = req.body;
+    const sql = 'UPDATE requisition SET requisition.status_requisition = 3 , requisition.annotation_of_disproval = ? WHERE requisition.requisition_id = ?';
+    con.query(sql, [txtcomment, requisition_id], (err, result) => {
+        if (err) {
+            console.log(err);
+            res.status(500).send("DATABASE ERROR");
+        } else {
+            if (result.affectedRows != 1) {
+                console.log(err);
+                res.status(500).send("UPDATE ERROR");
+            } else {
+                res.send("/requisition");
+            }
         }
     });
 })
