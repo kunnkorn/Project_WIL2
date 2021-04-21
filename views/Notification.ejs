@@ -17,7 +17,7 @@
     <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.2.6/js/dataTables.responsive.min.js"></script>
-
+    <script src="https://apis.google.com/js/platform.js?onload=init" async defer ></script>
 
     <link rel="stylesheet" href="style/Notification.css">
     <script src="src/Notification.js"></script>
@@ -30,8 +30,7 @@
         <h5 class="text-light my-auto brand-text" href="#">ระบบจัดการวัสดุสำนักงาน สำนักวิชาเทคโนโลยีสารสนเทศ</h5>
         <text class="my-auto ml-auto text-light brand-text"><span class="iconify text-light"
                 data-icon="bx:bxs-user-circle" data-inline="false" style="color:black" data-width="30px"
-                data-height="30px"></span>
-            นางสาวแอดมิน สมหญิง</text>
+                data-height="30px"></span> <%= user.user_name %> </text>
         <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
             aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation" id="sidebarCollapse">
             <span class="navbar-toggler-icon"></span>
@@ -52,10 +51,10 @@
                             นางสาวแอดมิน สมหญิง</text>
                     </li>
                 </div>
-                <li><a href="../view/Index.html">รายการวัสดุ</a></li>
+                <li><a href="#" id="mymat">รายการวัสดุ</a></li>
                 <li><a href="#" class="active">การเบิกของฉัน <span class="badge badge-success"
-                            style="font-size: 15px;"><span>6</span></span></a></li>
-                <li><a href="../view/Login.html">ออกจากระบบ <span class="iconify" data-icon="ls:logout"
+                            style="font-size: 15px;"><span id="countnoti"></span></span></a></li>
+                <li><a href="#" id="logout">ออกจากระบบ <span class="iconify" data-icon="ls:logout"
                             data-inline="false"></span> </a></li>
             </ul>
         </div>
@@ -74,23 +73,23 @@
 
                 <div class="text-center btn-effect col-2 d-flex align-items-center" id="btnall">
                     <a class="text-center btn-text text-dark col-12 my-1">ทั้งหมด <span
-                            class="badge badge-success border" style="font-size: 15px;"><span>6</span></span></a>
+                            class="badge badge-success border" style="font-size: 15px;"><span id="allnoti"></span></span></a>
                 </div>
                 <div class="text-center btn-effect col-2 d-flex align-items-center" id="btnwait">
                     <a class="text-center btn-text text-dark col-12 my-1">รออนุมัติ <span class="badge badge-warning"
-                            style="font-size: 15px;"><span>3</span></span></a>
+                            style="font-size: 15px;"><span id="waitnoti"></span></span></a>
                 </div>
                 <div class="text-center btn-effect col-2 d-flex align-items-center" id="btncomfirm">
                     <a class="text-center btn-text text-dark col-12 my-1">อนุมัติ <span class="badge badge-info"
-                            style="font-size: 15px;"><span>1</span></span></a>
+                            style="font-size: 15px;"><span id="appnoti"></span></span></a>
                 </div>
                 <div class="text-center btn-effect col-2 d-flex align-items-center" id="btnUnapp">
                     <a class="text-center btn-text text-dark col-12 my-1">ไม่อนุมัติ <span class="badge badge-danger"
-                            style="font-size: 15px;"><span>1</span></span></a>
+                            style="font-size: 15px;"><span id="disnoti"></span></span></a>
                 </div>
                 <div class="text-center btn-effect col-2 d-flex align-items-center" id="btncomplete">
                     <a class="text-center btn-text text-dark col-12 my-1">เสร็จสมบูรณ์ <span class="badge badge-success"
-                            style="font-size: 15px;"><span>1</span></span></a>
+                            style="font-size: 15px;"><span id="comnoti"></span></span></a>
                 </div>
 
             </div>
