@@ -1,62 +1,185 @@
+function init() {
+    gapi.load('auth2', () => {
+        gapi.auth2.init({
+            client_id: '565819629218-hrjqptqk34lk5sq2599tasa7gc2tho24.apps.googleusercontent.com'
+        })
+    })
+}
+
 $(document).ready(function () {
+
+    $("#static").on("click", function () {
+        window.location.replace('/staticvisor')
+    })
+
+    $("#perman").on("click", function () {
+        window.location.replace('/individualstatistics')
+    })
+
+    $("#material").on("click", function () {
+        window.location.replace('/meterialvisor')
+    })
+
+    $("#hisvisor").on("click", function () {
+        window.location.replace('/hiswithdrawmat')
+    })
+
+    $("#hisedit").on("click", function () {
+        window.location.replace('/hiseditmaterial')
+    })
+
+    // Logout
+    $("#logout").on("click", function () {
+        const auth2 = gapi.auth2.getAuthInstance();
+        auth2.signOut().then(() => {
+            window.location.replace('/logout');
+        })
+    })
+
+    // Logout
+    $("#logout").on("click", function () {
+        const auth2 = gapi.auth2.getAuthInstance();
+        auth2.signOut().then(() => {
+            window.location.replace('/logout');
+        })
+    })
+
     var rowID;
-    var statistics = [{
-        "number": "1",
-        "name": "นาย บันเทิง จัดจัด",
-        "numberoftime": "50",
-    }, {
-        "number": "2",
-        "name": "นางสาว สมหญิง อิอิ",
-        "numberoftime": "48",
-    }, {
-        "number": "3",
-        "name": "นาย บันเทิง จริงนะ",
-        "numberoftime": "45",
-    }, {
-        "number": "4",
-        "name": "นางสาว สมหญิง อะไรนะ",
-        "numberoftime": "30",
-    }, {
-        "number": "5",
-        "name": "นาย พรเพ็ง อารมณ์ดี",
-        "numberoftime": "29",
-    }, {
-        "number": "6",
-        "name": "นาย ลีลิน ดีจริงจริง",
-        "numberoftime": "18",
-    }, {
-        "number": "7",
-        "name": "นางสาว สวย สายสมร",
-        "numberoftime": "15",
-    }, {
-        "number": "8",
-        "name": "นางสาว สมใจ อยาก",
-        "numberoftime": "12",
-    }, {
-        "number": "9",
-        "name": "นาย สมาย ใจร่ม",
-        "numberoftime": "10",
-    }, {
-        "number": "10",
-        "name": "นางสาว อารมณ์ ดีมาก",
-        "numberoftime": "5",
-    }];
-    var table = $("#disbursementstatisticsTable").DataTable({
+    var table
+    // Static All Month
+    var number = 1;
+    table = $("#disbursementstatisticsTable").DataTable({
         responsive: true,       //for responsive column display
         deferRender: true,      //if large data, use this option
 
-        data: statistics,
+        ajax: ({
+            type: "GET",
+            url: "/staticallmonth",
+            dataSrc: function (data) {
+                return data
+            }
+        }),
         columns: [
-            { data: "number", title: "ลำดับ" },
+            { title: "ลำดับ", defaultContent: "" },
+            { data: "user_id", title: "รหัสพนักงาน" },
             { data: "name", title: "รายชื่อ" },
-            { data: "numberoftime", title: "จำนวนครั้งที่เบิก/เดือน" },
-            { title: "รายละเอียด", orderable: false, defaultContent: "<a href='รายละเอียดสถิติการเบิกรายคน.html'>รายละเอียดเพิ่มเติม</a>" }
+            { data: "REQUIPERMONTH", title: "จำนวนครั้งที่เบิก/เดือน" },
+            { title: "รายละเอียด", orderable: false, defaultContent: "<a href='#' class = 'btn-detail' >รายละเอียดเพิ่มเติม</a>" }
         ],
         columnDefs: [
-            // make the last column align right, also target: "_all"
-            { "className": "dt-center", "targets": 3 }
+            {
+                "targets": 0,
+                "createdCell": function (td, cellData, rowData, row, col) {
+                    $(td).text(number);
+                    number++;
+                }
+            }
         ]
     });
+
+    $("#disbursementstatisticsTable tbody ").on("click", ".btn-detail", function () {
+        const currentRow = $(this).parents("tr");
+        const data = table.row(currentRow).data();
+        const user_id = data.user_id;
+
+        localStorage.user = user_id;
+        window.location.replace('/detaildisbur')
+    })
+
+
+    // Static Per Month
+    $("#month").change(function () {
+        const month_id = $("#month").val();
+        localStorage.month = month_id;
+
+        table.clear();
+        table = $("#disbursementstatisticsTable").dataTable().fnDestroy();
+        $("#disbursementstatisticsTable").empty();
+        var numberr = 1;
+        table = $("#disbursementstatisticsTable").DataTable({
+            responsive: true,
+            deferRender: true,
+            ajax: {
+                method: 'POST',
+                url: '/staticreqpermonth',
+                data: { month: month_id },
+                dataSrc: function (data) {
+                    return data
+                }
+            },
+
+            columns: [
+                { title: 'ลำดับ', defaultContent: "" },
+                { data: 'user_id', title: 'รหัสพนักงาน' },
+                { data: 'name', title: 'รายชื่อ' },
+                { data: 'REQUIPERMONTH', title: 'จำนวนครั้งที่เบิก/เดือน' },
+                { title: "รายละเอียด", orderable: false, defaultContent: "<a href='#' class = 'btn-detail'>รายละเอียดเพิ่มเติม</a>" }
+            ],
+            columnDefs: [
+                {
+                    "targets": 0,
+                    "createdCell": function (td, cellData, rowData, row, col) {
+                        $(td).text(numberr);
+                        numberr++;
+                    }
+                }
+            ]
+
+        })
+        $("#disbursementstatisticsTable tbody ").on("click", ".btn-detail", function () {
+            const currentRow = $(this).parents("tr");
+            const data = table.row(currentRow).data();
+            const user_id = data.user_id;
+            localStorage.user = user_id;
+
+            window.location.replace('/detaildisbur')
+        })
+
+        if (month_id == 0) {
+            table.clear();
+            table.clear();
+            table = $("#disbursementstatisticsTable").dataTable().fnDestroy();
+            $("#disbursementstatisticsTable").empty();
+            var numberrr = 1;
+            table = $("#disbursementstatisticsTable").DataTable({
+                responsive: true,       //for responsive column display
+                deferRender: true,      //if large data, use this option
+
+                ajax: ({
+                    type: "GET",
+                    url: "/staticallmonth",
+                    dataSrc: function (data) {
+                        return data
+                    }
+                }),
+                columns: [
+                    { title: "ลำดับ", defaultContent: "" },
+                    { data: 'user_id', title: 'รหัสพนักงาน' },
+                    { data: "name", title: "รายชื่อ" },
+                    { data: "REQUIPERMONTH", title: "จำนวนครั้งที่เบิก/เดือน" },
+                    { title: "รายละเอียด", orderable: false, defaultContent: "<a href='#' class = 'btn-detail'>รายละเอียดเพิ่มเติม</a>" }
+                ],
+                columnDefs: [
+                    {
+                        'targets': 0,
+                        "createdCell": function (td, cellData, rowData, row, col) {
+                            $(td).text(numberrr);
+                            numberrr++;
+                        }
+                    }
+                ]
+            });
+            $("#disbursementstatisticsTable tbody ").on("click", ".btn-detail", function () {
+                const currentRow = $(this).parents("tr");
+                const data = table.row(currentRow).data();
+                const user_id = data.user_id;
+                localStorage.user = user_id;
+
+                window.location.replace('/detaildisbur')
+
+            })
+        }
+    })
 
     // Sidebar toggle behavior
     $(function () {

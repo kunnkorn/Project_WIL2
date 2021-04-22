@@ -23,6 +23,8 @@
     <script src="js/sweetalert2.all.min.js"></script>
     <script src="js/iconify.min.js"></script>
     <script src="src/รายละเอียดประวัติการเบิก.js"></script>
+    <script src="https://apis.google.com/js/platform.js?onload=init" async defer ></script>
+
     <link rel="stylesheet" href="style/รายละเอียดประวัติการเบิก.css">
 </head>
 
@@ -34,7 +36,7 @@
         <text class="my-auto ml-auto text-light brand-text"><span class="iconify text-light"
                 data-icon="bx:bxs-user-circle" data-inline="false" style="color:black" data-width="30px"
                 data-height="30px"></span>
-            นางสาวหัวหน้าแอดมิด สมหญิง</text>
+            <%= user.user_name %> </text>
         <button class="navbar-toggler d-xl-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
             aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation" id="sidebarCollapse">
             <span class="navbar-toggler-icon"></span>
@@ -51,15 +53,15 @@
                     <li class="text-center">
                         <text><span class="iconify" data-icon="bx:bxs-user-circle" data-inline="false"
                                 style="color:black" data-width="30px" data-height="30px"></span>
-                            นางสาวหัวหน้าแอดมิด สมหญิง</text>
+                                <%= user.user_name %></text>
                     </li>
                 </div>
-                <li><a href="../view/สถิติการเบิก.html">สถิติการเบิก</a></li>
-                <li><a href="../view/สถิติการเบิกรายคน.html">สถิติการเบิกรายคน</a></li>
-                <li><a href="../view/รายการวัสดุ.html">รายการวัสดุ</a></li>
-                <li><a href="#" class="active">ประวัติการเบิก</a></li>
-                <li><a href="../view/ประวัติการแก้ไขข้อมูลวัสดุ.html">ประวัติการแก้ไขข้อมูลวัสดุ</a></li>
-                <li><a href="../view/Login.html">ออกจากระบบ <span class="iconify" data-icon="ls:logout"
+                <li><a href="#" id="static">สถิติการเบิก</a></li>
+                <li><a href="#" id="perman">สถิติการเบิกรายคน</a></li>
+                <li><a href="#" id="material">รายการวัสดุ</a></li>
+                <li><a href="#" id="hisvisor" class="active">ประวัติการเบิก</a></li>
+                <li><a href="#" id="hisedit">ประวัติการแก้ไขข้อมูลวัสดุ</a></li>
+                <li><a href="#" id="logout">ออกจากระบบ <span class="iconify" data-icon="ls:logout"
                             data-inline="false"></span> </a></li>
             </ul>
         </div>
@@ -80,19 +82,19 @@
             </div>
 
             <!--Header Detail-->
-            <div class="row mb-3" id="detail" style="background-color: rgb(255, 224, 224);">
-                <div class="col-6 text-center">
-                    <p>เลขที่ใบเบิก 63010001</p>
-                    <p>นายบันเทิง สุดสุด</p>
-                    <p>วันที่ 02/01/2563 เวลา 10:35 น.</p>
+            <div class="row " id="detail" style="background-color: #D1F1FF;">
+                <div class="col-6 text-center mt-4">
+                    <p>เลขที่ใบเบิก : <text id="requi_id"> 63010001</text> </p>
+                    <p id="requi_name">นายบันเทิง สุดสุด</p>
+                    <p>วันที่ : <text id="requi_date"> 02/01/2563</text> เวลา <text id="requi_time"> 10:35 น.</text> </p>
                 </div>
                 <div class="col-6">
-                    <p>สถานะ : <span style="color: red;">ไม่อนุมัติ</span></p>
-                    <p>หมายเหตุ : <span>ต้องการทุกอย่างอย่างด่วนที่สุด</span> </p>
-                    <p>สาเหตุ : <span>เนื่องจากมีการขอเบิกมากเกินไป</span></p>
+                    <p>สถานะ : <span style="color: rgb(6, 118, 170);" id="requi_status">อนุมัติ</span></p>
+                    <p>วัตถุประสงค์ : <span id="requi-ob">การเรียนการสอน</span></p>
+                    <p>หมายเหตุ : <span id="requi_annotation">ต้องการทุกอย่างอย่างด่วนที่สุด</span> </p>
+                    <p id="unsuc">วันที่รับของ : <text id="pick_date"> 02/01/2563</text> เวลา <text id="pick_time"> 10:35 น.</text> </p>
                 </div>
             </div>
-            
             <!--Datatable-->
             <table id="requesthistorydetailTable" class="table table-striped table-bordered" style="width:100%"></table>
         </div>

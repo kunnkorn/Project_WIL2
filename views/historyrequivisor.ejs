@@ -23,6 +23,7 @@
     <script src="js/sweetalert2.all.min.js"></script>
     <script src="js/iconify.min.js"></script>
     <script src="src/ประวัติการเบิก.js"></script>
+    <script src="https://apis.google.com/js/platform.js?onload=init" async defer ></script>
     <link rel="stylesheet" href="style/ประวัติการเบิก.css">
 </head>
 
@@ -35,7 +36,7 @@
         <text class="my-auto ml-auto text-light brand-text"><span class="iconify text-light"
                 data-icon="bx:bxs-user-circle" data-inline="false" style="color:black" data-width="30px"
                 data-height="30px"></span>
-            นางสาวหัวหน้าแอดมิด สมหญิง</text>
+                <%= user.user_name %></text>
         <button class="navbar-toggler d-xl-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
             aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation" id="sidebarCollapse">
             <span class="navbar-toggler-icon"></span>
@@ -52,15 +53,15 @@
                     <li class="text-center">
                         <text><span class="iconify" data-icon="bx:bxs-user-circle" data-inline="false"
                                 style="color:black" data-width="30px" data-height="30px"></span>
-                            นางสาวหัวหน้าแอดมิด สมหญิง</text>
+                                <%= user.user_name %></text>
                     </li>
                 </div>
-                <li><a href="../view/สถิติการเบิก.html">สถิติการเบิก</a></li>
-                <li><a href="../view/สถิติการเบิกรายคน.html">สถิติการเบิกรายคน</a></li>
-                <li><a href="../view/รายการวัสดุ.html" >รายการวัสดุ</a></li>
-                <li><a href="#" class="active">ประวัติการเบิก</a></li>
-                <li><a href="../view/ประวัติการแก้ไขข้อมูลวัสดุ.html">ประวัติการแก้ไขข้อมูลวัสดุ</a></li>
-                <li><a href="../view/Login.html">ออกจากระบบ <span class="iconify" data-icon="ls:logout"
+                <li><a href="#" id="static">สถิติการเบิก</a></li>
+                <li><a href="#" id="perman">สถิติการเบิกรายคน</a></li>
+                <li><a href="#" id="material">รายการวัสดุ</a></li>
+                <li><a href="#" id="hisvisor" class="active">ประวัติการเบิก</a></li>
+                <li><a href="#" id="hisedit">ประวัติการแก้ไขข้อมูลวัสดุ</a></li>
+                <li><a href="#" id="logout">ออกจากระบบ <span class="iconify" data-icon="ls:logout"
                             data-inline="false"></span> </a></li>
             </ul>
         </div>

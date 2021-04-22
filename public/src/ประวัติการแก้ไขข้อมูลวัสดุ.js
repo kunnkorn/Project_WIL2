@@ -1,67 +1,81 @@
+function init() {
+    gapi.load('auth2', () => {
+        gapi.auth2.init({
+            client_id: '565819629218-hrjqptqk34lk5sq2599tasa7gc2tho24.apps.googleusercontent.com'
+        })
+    })
+}
+
 $(document).ready(function () {
+
+    $("#static").on("click", function () {
+        window.location.replace('/staticvisor')
+    })
+
+    $("#perman").on("click", function () {
+        window.location.replace('/individualstatistics')
+    })
+
+    $("#material").on("click", function () {
+        window.location.replace('/meterialvisor')
+    })
+
+    $("#hisvisor").on("click", function () {
+        window.location.replace('/hiswithdrawmat')
+    })
+
+    $("#hisedit").on("click", function () {
+        window.location.replace('/hiseditmaterial')
+    })
+
+    // Logout
+    $("#logout").on("click", function () {
+        const auth2 = gapi.auth2.getAuthInstance();
+        auth2.signOut().then(() => {
+            window.location.replace('/logout');
+        })
+    })
+
     var rowID;
-    var historymaterial = [{
-        "date": "17/05/2564",
-        "time": "10:25 น.",
-        "name": "นางสาว แอดมิน สมหญิง",
-        "management": "เพิ่มจำนวน",
-        "list": "ลวดเย็บกระดาษเบอร์ 1213",
-        "number": "10",
-        "unit": "กล่อง",
-    },
-    {
-        "date": "17/05/2564",
-        "time": "10:30 น.",
-        "name": "นางสาว แอดมิน สมหญิง",
-        "management": "ลดจำนวน",
-        "list": "ลวดเย็บกระดาษเบอร์ 1213",
-        "number": "2",
-        "unit": "กล่อง",
-    },
-    {
-        "date": "20/02/2564",
-        "time": "09:33 น.",
-        "name": "นางสาว แอดมิน สมหญิง",
-        "management": "เพิ่มจำนวน",
-        "list": "ลวดเย็บกระดาษเบอร์ 1213",
-        "number": "5",
-        "unit": "กล่อง",
-    },
-    {
-        "date": "21/05/2564",
-        "time": "10:34 น.",
-        "name": "นางสาว แอดมิน สมหญิง",
-        "management": "เพิ่มจำนวน",
-        "list": "ลวดเย็บกระดาษเบอร์ 1213",
-        "number": "3",
-        "unit": "กล่อง",
-    },
-    {
-        "date": "21/05/2564",
-        "time": "11:10 น.",
-        "name": "นางสาว แอดมิน สมหญิง",
-        "management": "ลดจำนวน",
-        "list": "คลิปหนีบกระดาษ เบอร์ 109/413",
-        "number": "10",
-        "unit": "ตัว",
-    },];
-    var table = $("#historymaterialTable").DataTable({
+    var table
+    var countitem = 0
+    table = $("#historymaterialTable").DataTable({
         responsive: true,       //for responsive column display
         deferRender: true,      //if large data, use this option
 
-        data: historymaterial,
+        ajax: ({
+            type: 'GET',
+            url: '/detaileditmat',
+            dataSrc: (data) => {
+                countitem = data.length
+                for (let i = 0; i < data.length; i++) {
+                    if (data[i].status_manage_stock == 1) {
+                        data[i].status_manage_stock = "แก้ไขวัสดุ"
+                    }
+                    else if (data[i].status_manage_stock == 2) {
+                        data[i].status_manage_stock = "เพิ่มวัสดุใหม่"
+                    }
+
+                    let d = new Date(data[i].date_manage);
+                    let year = d.getFullYear();
+                    let month = d.getMonth() + 1;
+                    let date = d.getDate();
+                    data[i].date_manage = date + '-' + month + '-' + year
+                }
+                return data
+            }
+        }),
         columns: [
-            { data: "date", title: "วันที่" },
-            { data: "time", title: "เวลา" },
+            { data: "date_manage", title: "วันที่" },
+            { data: "time_manage", title: "เวลา" },
             { data: "name", title: "ผู้แก้ไข" },
-            { data: "management", title: "การจัดการ" },
-            { data: "list", title: "รายการ" },
-            { data: "number", title: "จำนวน" },
+            { data: "status_manage_stock", title: "การจัดการ" },
+            { data: "material_name", title: "รายการ" },
+            { data: "number_material", title: "จำนวน" },
             { data: "unit", title: "หน่วยนับ" }],
-        columnDefs: [
-            // make the last column align right, also target: "_all"
-            { "className": "dt-center", "targets": 6 }
-        ]
+        columnDefs: [{
+
+        }]
     });
 
     // Sidebar toggle behavior
