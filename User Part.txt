@@ -1,0 +1,284 @@
+s// ==================== User Part ==========================
+
+// ============ Material Page ==============
+app.get('/datamaterials', (req, res) => {
+    const sql = "SELECT * FROM material"
+    con.query(sql, (err, result) => {
+        if (err) {
+            console.log(err)
+            res.status(500).send("Database Server Error")
+        }
+        else {
+            res.send(result)
+        }
+    })
+})
+
+
+//Get data From Category
+app.post('/dataCategory', (req, res) => {
+
+    const cate_id = req.body.cate_id
+
+    const sql = "SELECT * FROM material WHERE category_id = ?"
+    con.query(sql, [cate_id], (err, result) => {
+        if (err) {
+            console.log(err)
+            res.status(500).send("Databse Server Error")
+        }
+        else {
+            res.send(result)
+        }
+    })
+})
+
+// ===================== Category =========================
+app.get('/category', (req, res) => {
+    const sql = "SELECT * FROM category"
+    con.query(sql, (err, result) => {
+        if (err) {
+            console.log(err)
+            res.status(500).send("Database Server Error")
+        }
+        else {
+            res.send(result);
+        }
+    })
+})
+
+
+// Notification Page
+
+// ===================== Count All Notification =================
+app.post('/countnoti', (req, res) => {
+    if (req.session.user) {
+        const user_id = req.session.user.user_id;
+
+        const sql = "SELECT COUNT(requisition.requisition_id) 'COUNTNOTI' FROM requisition JOIN users ON requisition.user_id = users.user_id WHERE requisition.read_requisition = 0 AND users.user_id = ? "
+        con.query(sql, [user_id], (err, result) => {
+            if (err) {
+                console.log(err)
+                res.status(500).send('Database Server Error');
+            }
+            else {
+                res.send(result);
+            }
+        })
+    }
+
+})
+
+// ======================= Count Wait Confirm =========================
+app.post('/countwaitconfirm' , (req , res) => {
+    if (req.session.user) {
+        const user_id = req.session.user.user_id;
+
+        const sql = "SELECT COUNT(requisition.requisition_id) 'COUNTNOTI' FROM requisition JOIN users ON requisition.user_id = users.user_id WHERE users.user_id = ? AND requisition.status_requisition = 1 "
+        con.query(sql, [user_id], (err, result) => {
+            if (err) {
+                console.log(err)
+                res.status(500).send('Database Server Error');
+            }
+            else {
+                res.send(result);
+            }
+        })
+    }
+}) 
+
+
+// ======================= Count Confirm Noti =============================
+app.post('/countconfirm' , (req , res) => {
+    if (req.session.user) {
+        const user_id = req.session.user.user_id;
+
+        const sql = "SELECT COUNT(requisition.requisition_id) 'COUNTNOTI' FROM requisition JOIN users ON requisition.user_id = users.user_id WHERE users.user_id = ? AND requisition.status_requisition = 2 "
+        con.query(sql, [user_id], (err, result) => {
+            if (err) {
+                console.log(err)
+                res.status(500).send('Database Server Error');
+            }
+            else {
+                res.send(result);
+            }
+        })
+    }
+}) 
+
+
+
+// ===================== Count Disapproval =========================
+app.post('/countdisapproval' , (req , res) => {
+    if (req.session.user) {
+        const user_id = req.session.user.user_id;
+
+        const sql = "SELECT COUNT(requisition.requisition_id) 'COUNTNOTI' FROM requisition JOIN users ON requisition.user_id = users.user_id WHERE users.user_id = ? AND requisition.status_requisition = 3 AND requisition.read_requisition = 0"
+        con.query(sql, [user_id], (err, result) => {
+            if (err) {
+                console.log(err)
+                res.status(500).send('Database Server Error');
+            }
+            else {
+                res.send(result);
+            }
+        })
+    }
+}) 
+
+
+
+// ====================== Count Complete ==========================
+app.post('/countcomplete' , (req , res) => {
+    if (req.session.user) {
+        const user_id = req.session.user.user_id;
+
+        const sql = "SELECT COUNT(requisition.requisition_id) 'COUNTNOTI' FROM requisition JOIN users ON requisition.user_id = users.user_id WHERE users.user_id = ? AND requisition.status_requisition = 4 AND requisition.read_requisition = 0"
+        con.query(sql, [user_id], (err, result) => {
+            if (err) {
+                console.log(err)
+                res.status(500).send('Database Server Error');
+            }
+            else {
+                res.send(result);
+            }
+        })
+    }
+}) 
+
+// ====================== All Requisition User ==========================
+app.post('/allrequisitionuser', (req, res) => {
+
+    if (req.session.user) {
+        const user_id = req.session.user.user_id;
+        const sql = "SELECT * FROM requisition JOIN users ON users.user_id = ? WHERE requisition.user_id = users.user_id AND requisition.read_requisition = 0";
+        con.query(sql, [user_id], (err, result) => {
+            if (err) {
+                console.log(err)
+                res.status(500).send('Database Server Error')
+            }
+            else {
+                res.json(result)
+            }
+        })
+    }
+})
+
+
+// ================ Wait approve Requisition ========================
+app.post('/waitapproverequisition' , (req, res) => {
+    if(req.session.user){
+        const user_id = req.session.user.user_id;
+        const sql = "SELECT * FROM requisition JOIN users ON requisition.status_requisition = 1 AND users.user_id = ? WHERE requisition.user_id = users.user_id"
+        con.query(sql , [user_id] , (err ,result) => {
+            if(err){
+                console.log(err);
+                res.status(500).send('Database Server Erorr');
+            }
+            else{
+                res.json(result);
+            }
+        })
+    }
+})
+
+
+// =================== Confirm Requisition ====================
+app.post('/aprroverequisition' , (req , res) => {
+    if(req.session.user){
+        const user_id = req.session.user.user_id;
+        const sql = "SELECT * FROM requisition JOIN users ON requisition.status_requisition = 2 AND users.user_id = ? WHERE requisition.user_id = users.user_id"
+        con.query(sql , [user_id] , (err ,result) => {
+            if(err){
+                console.log(err);
+                res.status(500).send('Database Server Erorr');
+            }
+            else{
+                res.json(result);
+            }
+        })
+    }
+})
+
+
+// =================== Disapproval Requisition =========================
+app.post('/disapprovalrequisition' , (req , res) => {
+    if(req.session.user){
+        const user_id = req.session.user.user_id;
+        const sql = "SELECT * FROM requisition JOIN users ON requisition.status_requisition = 3 AND users.user_id = ? WHERE requisition.user_id = users.user_id AND requisition.read_requisition = 0"
+        con.query(sql , [user_id] , (err , result) => {
+            if(err){
+                console.log(err)
+                res.status(500).send('Database Server Error');
+            }
+            else{
+                const sql = "UPDATE requisition JOIN users SET read_requisition = 1 WHERE requisition.status_requisition = 3 AND users.user_id = ?"
+                con.query(sql , [user_id] , (err , result) => {
+                    if(err){
+                        console.log(err)
+                        res.status(500).send('Database Errro')
+                    }
+                })
+                res.json(result);
+            }
+        })
+    }
+})
+
+
+// ==================== Complete Requisition =============================
+app.post('/completerequisition' , (req , res) => {
+    if(req.session.user){
+        const user_id = req.session.user.user_id;
+        const sql = "SELECT * FROM requisition JOIN users ON requisition.status_requisition = 4 AND users.user_id = ? WHERE requisition.user_id = users.user_id AND requisition.read_requisition = 0"
+        con.query(sql , [user_id] , (err , result) => {
+            if(err){
+                console.log(err);
+                res.status(500).send('Database Server Error')
+            }
+            else{
+                const sql = "UPDATE requisition JOIN users SET read_requisition = 1 WHERE requisition.status_requisition = 4 AND users.user_id = ?"
+                con.query(sql , [user_id] , (err , result) => {
+                    if(err){
+                        console.log(err)
+                        res.status(500).send('Database Error')
+                    }
+                })
+                res.json(result);
+            }
+        })
+    }
+})
+
+
+// ==================== Data Requisition ==========================
+app.post('/datareq' , (req, res) => {
+    const requi_id = req.body.requi_id;
+
+    const sql = "SELECT * FROM requisition JOIN users ON requisition.user_id = users.user_id WHERE requisition.requisition_id = ?"
+    con.query(sql , [requi_id] ,  (err , result) => {
+        if(err){
+            console.log(err);
+            res.status(500).send('Database Server Error')
+        }
+        else{
+            res.json(result);
+        }
+    })
+})
+
+
+// ================== Material in Requisition =======================
+app.post('/datamaterial' , (req , res) => {
+    const requi_id = req.body.requi_id;
+
+    const sql = "SELECT * FROM material_requisiotion JOIN material ON material_requisiotion.material_id = material.material_id WHERE material_requisiotion.requisition_id = ?"
+    con.query(sql , [requi_id] , (err ,result) => {
+        if(err){
+            console.log(err);
+            res.status(500).send('Database Server Error')
+        }
+        else{
+            res.json(result);
+        }
+    }) 
+})
