@@ -26,9 +26,11 @@ $(document).ready(function () {
             method: 'GET',
             url: '/allDatahisadmin',
             dataSrc: function (data) {
-                let m = new Date(data[0].date_requisition);
-                let currentM = m.getMonth();
-                $("#selectM").val(currentM);
+                if (data.length != 0) {
+                    let m = new Date(data[0].date_requisition);
+                    let currentM = m.getMonth();
+                    $("#selectM").val(currentM);
+                }
                 for (let i = 0; i < data.length; i++) {
                     let d = new Date(data[i].date_requisition);
                     let year = d.getFullYear();

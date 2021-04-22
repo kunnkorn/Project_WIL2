@@ -1,4 +1,4 @@
-WluYTu1ewHKMhcQl
+4zNsmwFXAYV6boeJ
 
 //เพิ่มเติม 
 app.get('/getrequisition', (req, res) => {
@@ -174,6 +174,117 @@ app.post('/dataHismaterial', (req, res) => {
             res.status(500).send("DATABASE ERROR");
         } else {
             res.send(result);
+        }
+    });
+});
+
+app.get('/getAllDatamaterial', (req, res) => {
+    const sql = 'SELECT * FROM material';
+    con.query(sql, (err, result) => {
+        if (err) {
+            console.log(err);
+            res.status(500).send("DATABASE ERROR");
+        } else {
+            res.send(result);
+        }
+    });
+});
+
+app.post('/getsomecategory', (req, res) => {
+    const { category_id } = req.body;
+    if (category_id == 8) {
+        res.redirect('/getAllDatamaterial')
+    } else {
+        const sql = 'SELECT * FROM material  WHERE category_id = ?';
+        con.query(sql, [category_id], (err, result) => {
+            if (err) {
+                console.log(err);
+                res.status(500).send("DATABASE ERROR");
+            } else {
+                res.send(result);
+            }
+        });
+    }
+
+});
+
+
+app.get('/getcategory', (req, res) => {
+    const sql = 'SELECT * FROM category ';
+    con.query(sql, (err, result) => {
+        if (err) {
+            console.log(err);
+            res.status(500).send("DATABASE ERROR");
+        } else {
+            res.send(result);
+        }
+    })
+})
+
+app.post('/addmaterial', (req, res) => {
+    const { material_id, material_name, material_number, unit, category_id } = req.body;
+    const user_id = req.session.user.user_id;
+    const sql = 'INSERT INTO material (material_id,material_name,material_number,unit,category_id) VALUES (?,?,?,?,?)';
+    con.query(sql, [material_id, material_name, material_number, unit, category_id], (err, result) => {
+        if (err) {
+            console.log(err);
+            res.status(500).send("DATABASE ERROR 1");
+        } else {
+            if (result.affectedRows != 1) {
+                console.log(err);
+                res.status(500).send("UPDATE ERROR 1");
+            } else {
+
+                const sql = 'INSERT INTO manage_stock (date_manage , time_manage , number_material ,status_manage_stock , material_id , user_id) VALUES (CURDATE(), CURTIME(), ? , ? ,  ? , ?)';
+                con.query(sql, [material_number, 2, material_id, user_id], (err, result) => {
+                    if (err) {
+                        console.log(err);
+                        res.status(500).send("DATABASE ERROR");
+                    } else {
+                        if (result.affectedRows != 1) {
+                            console.log(err);
+                            res.status(500).send("UPDATE ERROR 1");
+                        } else {
+                            res.send();
+                        }
+
+                    }
+                })
+            }
+        }
+    });
+})
+
+app.post('/editmaterial', (req, res) => {
+    const { material_name, plusnumber, unit, material_id } = req.body;
+    const sql = 'UPDATE material SET material.material_name = ?, material.material_number = material.material_number + ? , unit = ? WHERE material.material_id = ?';
+    con.query(sql, [material_name, plusnumber, unit, material_id], (err, result) => {
+        if (err) {
+            console.log(err);
+            res.status(500).send("DATABASE ERROR");
+        } else {
+            if (result.affectedRows != 1) {
+                console.log(err);
+                res.status(500).send("UPDATE ERROR 1");
+            } else {
+                const sql = 'INSERT INTO manage_stock (date_manage , time_manage , number_material ,status_manage_stock , material_id , user_id) VALUES (CURDATE(), CURTIME(), ? , ? ,  ? , ?)';
+                const user_id = req.session.user.user_id;
+                con.query(sql, [plusnumber, 1, material_id, user_id], (err, result) => {
+                    if (err) {
+                        console.log(err);
+                        res.status(500).send("DATABASE ERROR");
+                    } else {
+                        if (result.affectedRows != 1) {
+                            console.log(err);
+                            res.status(500).send("UPDATE ERROR 1");
+                        } else {
+                            res.send();
+                        }
+
+                    }
+                });
+            }
+
         }
     });
 });
