@@ -1,0 +1,164 @@
+// ======================== Super Visor Part ==================================
+
+// =================== สถิติการเบิกรายคนของทุกเดือน ==============================
+app.get('/staticallmonth' , (req, res ) => {
+    const sql = "SELECT users.user_id, users.name , COUNT(requisition.requisition_id) AS 'REQUIPERMONTH' FROM requisition JOIN users ON requisition.user_id = users.user_id GROUP BY users.user_id"
+    con.query(sql , (err , result) => {
+        if(err){
+            console.log(err)
+            res.status(500).send('Database Server Erorr');
+        }
+        else{
+            res.json(result)
+        }
+    })
+})
+
+
+// ========================= สถิติการเบิกรายคนของแต่ละเดือน =========================
+app.post('/staticreqpermonth' , (req , res) => {
+
+    const month = req.body.month
+
+    const sql = "SELECT users.user_id , users.name , COUNT(requisition.requisition_id) AS 'REQUIPERMONTH' FROM requisition JOIN users ON requisition.user_id = users.user_id WHERE MONTH(requisition.date_requisition) = ? GROUP BY users.user_id"
+    con.query(sql , [month] , (err , result) => {
+        if(err){
+            console.log(err);
+            res.status(500).send("Database Server Error");
+        }
+        else{
+            res.json(result);
+        }
+    })
+})
+
+// ======================== รายละเอียดสถิติการเบิกรายคน/เดือน =================================
+app.post('/detailstaticpermanmonth' , (req , res) => {
+
+    const month = req.body.month;
+    const user_id = req.body.user_id
+
+    const sql = "SELECT requisition.date_requisition , requisition.time_requisition , material_requisiotion.material_id , material.material_name , material_requisiotion.amount_of_requisition , material.unit FROM material_requisiotion JOIN requisition ON material_requisiotion.requisition_id = requisition.requisition_id JOIN material ON material_requisiotion.material_id = material.material_id JOIN users ON users.user_id = requisition.user_id WHERE users.user_id = ? AND MONTH(requisition.date_requisition) = ?"
+
+    con.query(sql , [user_id , month] , (err ,result ) => {
+        if(err){
+            console.log(err)
+            res.status(500).send("Database Server Error")
+        }
+        else{
+            res.json(result);
+        }
+    })
+})
+
+// ============================= รายละเอียดสถิติการเบิกรายคน ==========================
+app.post('/detailstaticperman' , (req , res) => {
+    const user_id = req.body.user_id;
+    
+    const sql = "SELECT requisition.date_requisition , requisition.time_requisition , material_requisiotion.material_id , material.material_name , material_requisiotion.amount_of_requisition , material.unit FROM material_requisiotion JOIN requisition ON material_requisiotion.requisition_id = requisition.requisition_id JOIN material ON material_requisiotion.material_id = material.material_id JOIN users ON users.user_id = requisition.user_id WHERE users.user_id = ? "
+
+    con.query(sql , [user_id] , (err ,result) => {
+        if(err){
+            console.log(err);
+            res.status(500).send("Database Error")
+        }
+        else{
+            res.json(result);
+        }
+    })
+})
+
+// ========================= รายการวัสดุทั้งหมด =============================
+app.post('/materialsuperall' , (req , res) => {
+    const sql = "SELECT * FROM material"
+    con.query(sql , (err , result) => {
+        if(err){
+            console.log(err)
+            res.status(500).send('Database Server Error');
+        }
+        else{
+            res.json(result);
+        }
+    })
+})
+
+// ========================= รายการวัสดุ ============================
+app.post('/materialsuper' , (req ,res) => {
+    const category = req.body.category
+
+    const sql = "SELECT * FROM material WHERE category_id = ?"
+    con.query(sql , [category] , (err , result ) => {
+        if(err){
+            console.log(err)
+            res.status(500).send('Database Server Error')
+        }
+        else{
+            res.json(result)
+        }
+    })
+})
+
+
+// ======================== ประวัติการเบิกของ User =============================
+app.get('/hisvisor' , (req , res) => {
+    const sql = "SELECT * FROM requisition WHERE YEAR(requisition.date_requisition) = YEAR(CURDATE())";
+    con.query(sql , (err ,result) => {
+        if(err){
+            console.log(err);
+            res.status(500).send('Database Server Error');
+        }
+        else{
+            res.json(result);
+        }
+    })
+})
+
+// ======================== รายละเอียดใบเบิก ==============================
+app.post('/datareqvisor' , (req , res) => {
+    const requi_id = req.body.requi_id
+
+    const sql = "SELECT * FROM requisition JOIN users ON requisition.user_id = users.user_id WHERE requisition.requisition_id = ?"
+    con.query(sql , [requi_id] , (err ,result) => {
+        if(err){
+            console.log(err)
+            res.status(500).send("Database Server Error");
+        }
+        else{
+            res.json(result);
+        }
+    })
+})
+
+// ============================ วัสดุในใบเบิก =============================
+app.post('/datamaterialvisor' , (req , res) => {
+    const requi_id = req.body.requi_id
+
+    const sql = "SELECT * FROM material_requisiotion JOIN material ON material_requisiotion.material_id = material.material_id WHERE material_requisiotion.requisition_id = ?"
+    con.query(sql , [requi_id] , (err ,result) => {
+        if(err){
+            console.log(err)
+            res.status(500).send("Database Server Error");
+        }
+        else{
+            res.json(result);
+        }
+    })
+})
+
+
+// ========================== ประวัติการแก้ไขวัสดุ ==============================
+app.get('/detaileditmat' , (req , res) => {
+    
+    const sql = "SELECT manage_stock.date_manage , manage_stock.time_manage , users.name ,manage_stock.status_manage_stock , material.material_name , manage_stock.number_material , material.unit FROM manage_stock JOIN users ON manage_stock.user_id = users.user_id JOIN material ON manage_stock.material_id = material.material_id"
+    con.query(sql , (err , result) => {
+        if(err){
+            console.log(err);
+            res.status(500).send("Database Server Error")
+        }
+        else{
+            res.json(result)
+        }
+    })
+})
+
+// ================================= สถิติ ====================================
