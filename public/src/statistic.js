@@ -1,10 +1,24 @@
+function init() {
+    gapi.load('auth2', () => {
+        gapi.auth2.init({
+            client_id: '565819629218-hrjqptqk34lk5sq2599tasa7gc2tho24.apps.googleusercontent.com'
+        });
+    });
+}
+
+function signout() {
+    const auth2 = gapi.auth2.getAuthInstance();
+    auth2.signOut().then(() => {
+        sessionStorage.clear();
+        window.location.replace('/logout');
+    });
+}
+
+
 $(document).ready(function () {
 
     //statistic
     var colors = ['#5832CE', '#F90904'];
-
-    
-
     var chBar = document.getElementById("chBar");
     var chartData = new Chart(chBar, {
         type: 'bar',
@@ -98,6 +112,7 @@ $(document).ready(function () {
     $("#export").on("click", function () {
         $("#modelExport").modal("show");
     });
+    
     $("#exportConfirm").on("click", function (e) {
         $("#modelExport").modal("hide");
         Swal.fire({
