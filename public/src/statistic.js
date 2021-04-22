@@ -16,7 +16,7 @@ function signout() {
 
 
 $(document).ready(function () {
-
+    $("#badge_req").text(sessionStorage.noti);
     //statistic
     var colors = ['#5832CE', '#F90904'];
     var chBar = document.getElementById("chBar");
@@ -112,7 +112,7 @@ $(document).ready(function () {
     $("#export").on("click", function () {
         $("#modelExport").modal("show");
     });
-    
+
     $("#exportConfirm").on("click", function (e) {
         $("#modelExport").modal("hide");
         Swal.fire({
