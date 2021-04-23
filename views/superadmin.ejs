@@ -14,6 +14,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
     <script src="src/superadmin.js"></script>
     <script src="https://code.iconify.design/1/1.0.6/iconify.min.js"></script>
+    <script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
 </head>
 
@@ -32,38 +34,50 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-group text-center">
-                        <div class="d-flex my-3">
-                            <label for="" class="col-3">ตำแหน่ง : </label>
-                            <input type="text" class="form-control col-7 shadow-sm" name="" id="" placeholder="">
-                        </div>
-                        <div class="d-flex my-3">
-                            <label for="" class="col-3">ชื่อ : </label>
-                            <input type="text" class="form-control col-7 shadow-sm" name="" id="" placeholder="">
-                        </div>
-                        <div class="d-flex my-3">
-                            <label for="" class="col-3">นามสกุล : </label>
-                            <input type="text" class="form-control col-7 shadow-sm" name="" id="" placeholder="">
-                        </div>
-                        <div class="d-flex my-3">
-                            <label for="" class="col-3">อีเมล : </label>
-                            <input type="text" class="form-control col-7 shadow-sm" name="" id="" placeholder="">
-                        </div>
-                        <div class="d-flex my-3">
-                            <label for="" class="col-3">สถานะ : </label>
-                            <select name="" id="" class="form-control col-7 shadow-sm">
-                                <option value="1">บุคลากร</option>
-                                <option value="2">แอดมิน</option>
-                                <option value="3">หัวหน้างาน</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer justify-content-center" style="border: none;">
+                        <form id="formAdduser" method="POST" enctype="multipart/form-data">
+                            <div class="d-flex my-3">
+                                <label for="" class="col-4">รหัสพนักงาน : </label>
+                                <input type="number" class="form-control col-7 shadow-sm" id="iduser"
+                                    placeholder="15864739" pattern="/^-?\d+\.?\d*$/"
+                                    onKeyPress="if(this.value.length==8) return false;" required>
+                            </div>
+                            <div class="d-flex my-3">
+                                <label for="" class="col-4">ตำแหน่ง : </label>
+                                <input type="text" class="form-control col-7 shadow-sm" id="rank"
+                                    placeholder="ชำนาญหารพิเศษ" required>
+                            </div>
+                            <div class="d-flex my-3">
+                                <label for="" class="col-4">ชื่อ : </label>
+                                <input type="text" class="form-control col-7 shadow-sm" id="name" placeholder="น้องแดง"
+                                    required>
+                            </div>
+                            <div class="d-flex my-3">
+                                <label for="" class="col-4">นามสกุล : </label>
+                                <input type="text" class="form-control col-7 shadow-sm" id="lastname"
+                                    placeholder="เป็นนักสู้" required>
+                            </div>
+                            <div class="d-flex my-3">
+                                <label for="" class="col-4">อีเมล : </label>
+                                <input type="email" class="form-control col-7 shadow-sm" id="email"
+                                    placeholder="example@gmail.com" required>
+                            </div>
+                            <div class="d-flex my-3">
+                                <label for="" class="col-4">สถานะ : </label>
+                                <select id="role" class="form-control col-7 shadow-sm">
+                                    <option value="4">บุคลากร</option>
+                                    <option value="2">แอดมิน</option>
+                                    <option value="3">หัวหน้างาน</option>
+                                </select>
+                            </div>
+                            <div class="modal-footer justify-content-center" style="border: none;">
 
-                    <button type="button" class="btn btn-secondary text-white border-0 mr-5 shadow"
-                        style="background-color: #FFA654;">เพิ่มสมาชิก</button>
-                    <button type="button" class="btn btn-primary bg-white text-dark border-0 shadow"
-                        data-dismiss="modal">ยกเลิก</button>
+                                <button type="submit" class="btn btn-secondary text-white border-0 mr-5 shadow"
+                                    style="background-color: #FFA654;">เพิ่มสมาชิก</button>
+                                <button type="button" class="btn btn-primary bg-white text-dark border-0 shadow"
+                                    data-dismiss="modal" id="btncanUser">ยกเลิก</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
@@ -83,8 +97,8 @@
             <h5 class="text-light" href="#">ระบบจัดการวัสดุสำนักงาน สำนักวิชาเทคโนโลยีสารสนเทศ</h5>
             <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">ออกจากระบบ <span class="iconify" data-icon="ls:logout"
-                            data-inline="false"></a>
+                    <a class="nav-link" onclick="signout()" style="cursor: pointer;">ออกจากระบบ <span class="iconify"
+                            data-icon="ls:logout" data-inline="false"></a>
                 </li>
             </ul>
         </div>
@@ -98,7 +112,7 @@
                     <h5 class="display-5 pb-1">จัดการสมาชิก</h5>
                 </div>
                 <div class="d-flex ml-auto">
-                    <input class="form-control col-7" type="text" id="myInput" onkeyup="myFunction()"
+                    <input class="form-control col-7" type="text" id="myInput"
                         placeholder="ค้นหา">
                     <div class="text-center col-5 rounded-circle" data-toggle="modal" data-target="#modelAdduser"
                         style="cursor: pointer;">
@@ -119,7 +133,7 @@
         <div class="row col-12 d-flex justify-content-center" id="card-area">
 
 
-            <!-- อย่าลืมเด็ดขาด เก็บไว้เพื่อซ่อมหรือแก้ไขตัวการ์ด!!!!!! -->
+            <!-- อย่าลบเด็ดขาด เก็บไว้เพื่อซ่อมหรือแก้ไขตัวการ์ด!!!!!! -->
 
 
             <!-- <div class="col-xl-3 col-lg-5 col-md-6 col-sm-7" style="height: 400px;">

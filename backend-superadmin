@@ -1,0 +1,88 @@
+// เพิ่มเติม
+app.get('/getuser', (req, res) => {
+    const sql = 'SELECT * FROM users';
+    con.query(sql, (err, result) => {
+        if (err) {
+            console.log(err);
+            return res.status(500).send("Database Server Error")
+        } else {
+            res.send(result);
+        }
+    });
+})
+
+app.post('/adduser', (req, res) => {
+    const { iduser, rank, name, email, role } = req.body;
+    // console.log(iduser + " " + rank + " " + name + " " + lastname + " " + email + " " + role);
+    const sql = 'INSERT INTO users (user_id , email , name , rank , status_user , user_role) VALUES (?,?,?,?,?,?);';
+    con.query(sql, [iduser, email, name, rank, 1, role], (err, result) => {
+        if (err) {
+            console.log(err);
+            res.status(500).send("Database error");
+        } else {
+            if (result.affectedRows != 1) {
+                console.log("INSERT ERROR");
+            } else {
+                res.send("done");
+            }
+        }
+    });
+
+
+});
+
+
+app.post('/disuser', (req, res) => {
+    const { user_id } = req.body;
+    // console.log(user_id);
+    const sql = 'UPDATE users SET status_user=2  WHERE user_id=?';
+    con.query(sql, [user_id], (err, result) => {
+        if (err) {
+            console.log(err);
+            res.status(500).send("Database error");
+        } else {
+            if (result.affectedRows != 1) {
+                console.log("UPDATE ERROR");
+            } else {
+                res.send("done");
+            }
+        }
+    });
+
+});
+
+app.post('/enauser', (req, res) => {
+    const { user_id } = req.body;
+    // console.log(user_id);
+    const sql = 'UPDATE users SET status_user=1  WHERE user_id=?';
+    con.query(sql, [user_id], (err, result) => {
+        if (err) {
+            console.log(err);
+            res.status(500).send("Database error");
+        } else {
+            if (result.affectedRows != 1) {
+                console.log("UPDATE ERROR");
+            } else {
+                res.send("done");
+            }
+        }
+    });
+})
+
+app.post('/deleteuser', (req, res) => {
+    const { user_id } = req.body;
+    // console.log(user_id);
+    const sql = 'DELETE FROM users WHERE user_id=?';
+    con.query(sql, [user_id], (err, result) => {
+        if (err) {
+            console.log(err);
+            res.status(500).send("Database error");
+        } else {
+            if (result.affectedRows != 1) {
+                console.log("DELETE ERROR");
+            } else {
+                res.send("done");
+            }
+        }
+    });
+});
