@@ -1,4 +1,59 @@
-s// ==================== User Part ==========================
+
+// ========== User ============
+// Materials
+app.get('/materialuser', (req, res) => {
+    if (req.session.user) {
+        res.render('Index', { user: req.session.user });
+    }
+    else {
+        res.redirect('/')
+    }
+})
+
+// Cart Page
+app.get('/cartpage', (req, res) => {
+    if (req.session.user) {
+        res.render('Cart', { user: req.session.user })
+    }
+    else {
+        res.redirect('/')
+    }
+
+})
+
+// Notification Page
+app.get('/notificationuser', (req, res) => {
+    if (req.session.user) {
+        res.render('Notification', { user: req.session.user })
+    }
+    else {
+        res.redirect('/')
+    }
+})
+
+// History
+// Success
+app.get('/histosy(success)', (req, res) => {
+    if (req.session.user) {
+        res.render('History(success)', { user: req.session.user })
+    }
+    else {
+        res.redirect('/')
+    }
+})
+// Unsuccess
+app.get('/history(unsuccess)', (req, res) => {
+    if (req.session.user) {
+        res.render('History(Unsuccess)', { user: req.session.user })
+    }
+    else {
+        res.redirect('/')
+    }
+})
+
+
+
+// ==================== User Part ==========================
 
 // ============ Material Page ==============
 app.get('/datamaterials', (req, res) => {
@@ -17,19 +72,22 @@ app.get('/datamaterials', (req, res) => {
 
 //Get data From Category
 app.post('/dataCategory', (req, res) => {
+    const { cate_id } = req.body;
+    if (cate_id == 8) {
+        res.redirect("/datamaterials");
+    } else {
+        const sql = "SELECT * FROM material WHERE category_id = ?"
+        con.query(sql, [cate_id], (err, result) => {
+            if (err) {
+                console.log(err)
+                res.status(500).send("Databse Server Error")
+            }
+            else {
+                res.send(result)
+            }
+        })
+    }
 
-    const cate_id = req.body.cate_id
-
-    const sql = "SELECT * FROM material WHERE category_id = ?"
-    con.query(sql, [cate_id], (err, result) => {
-        if (err) {
-            console.log(err)
-            res.status(500).send("Databse Server Error")
-        }
-        else {
-            res.send(result)
-        }
-    })
 })
 
 // ===================== Category =========================
@@ -69,7 +127,7 @@ app.post('/countnoti', (req, res) => {
 })
 
 // ======================= Count Wait Confirm =========================
-app.post('/countwaitconfirm' , (req , res) => {
+app.post('/countwaitconfirm', (req, res) => {
     if (req.session.user) {
         const user_id = req.session.user.user_id;
 
@@ -84,11 +142,11 @@ app.post('/countwaitconfirm' , (req , res) => {
             }
         })
     }
-}) 
+})
 
 
 // ======================= Count Confirm Noti =============================
-app.post('/countconfirm' , (req , res) => {
+app.post('/countconfirm', (req, res) => {
     if (req.session.user) {
         const user_id = req.session.user.user_id;
 
@@ -103,12 +161,12 @@ app.post('/countconfirm' , (req , res) => {
             }
         })
     }
-}) 
+})
 
 
 
 // ===================== Count Disapproval =========================
-app.post('/countdisapproval' , (req , res) => {
+app.post('/countdisapproval', (req, res) => {
     if (req.session.user) {
         const user_id = req.session.user.user_id;
 
@@ -123,12 +181,12 @@ app.post('/countdisapproval' , (req , res) => {
             }
         })
     }
-}) 
+})
 
 
 
 // ====================== Count Complete ==========================
-app.post('/countcomplete' , (req , res) => {
+app.post('/countcomplete', (req, res) => {
     if (req.session.user) {
         const user_id = req.session.user.user_id;
 
@@ -143,14 +201,14 @@ app.post('/countcomplete' , (req , res) => {
             }
         })
     }
-}) 
+})
 
 // ====================== All Requisition User ==========================
 app.post('/allrequisitionuser', (req, res) => {
 
     if (req.session.user) {
         const user_id = req.session.user.user_id;
-        const sql = "SELECT * FROM requisition JOIN users ON users.user_id = ? WHERE requisition.user_id = users.user_id AND requisition.read_requisition = 0";
+        const sql = "SELECT * FROM requisition JOIN users ON users.user_id = ? WHERE requisition.user_id = users.user_id";
         con.query(sql, [user_id], (err, result) => {
             if (err) {
                 console.log(err)
@@ -165,16 +223,16 @@ app.post('/allrequisitionuser', (req, res) => {
 
 
 // ================ Wait approve Requisition ========================
-app.post('/waitapproverequisition' , (req, res) => {
-    if(req.session.user){
+app.post('/waitapproverequisition', (req, res) => {
+    if (req.session.user) {
         const user_id = req.session.user.user_id;
         const sql = "SELECT * FROM requisition JOIN users ON requisition.status_requisition = 1 AND users.user_id = ? WHERE requisition.user_id = users.user_id"
-        con.query(sql , [user_id] , (err ,result) => {
-            if(err){
+        con.query(sql, [user_id], (err, result) => {
+            if (err) {
                 console.log(err);
                 res.status(500).send('Database Server Erorr');
             }
-            else{
+            else {
                 res.json(result);
             }
         })
@@ -183,16 +241,16 @@ app.post('/waitapproverequisition' , (req, res) => {
 
 
 // =================== Confirm Requisition ====================
-app.post('/aprroverequisition' , (req , res) => {
-    if(req.session.user){
+app.post('/aprroverequisition', (req, res) => {
+    if (req.session.user) {
         const user_id = req.session.user.user_id;
         const sql = "SELECT * FROM requisition JOIN users ON requisition.status_requisition = 2 AND users.user_id = ? WHERE requisition.user_id = users.user_id"
-        con.query(sql , [user_id] , (err ,result) => {
-            if(err){
+        con.query(sql, [user_id], (err, result) => {
+            if (err) {
                 console.log(err);
                 res.status(500).send('Database Server Erorr');
             }
-            else{
+            else {
                 res.json(result);
             }
         })
@@ -201,19 +259,19 @@ app.post('/aprroverequisition' , (req , res) => {
 
 
 // =================== Disapproval Requisition =========================
-app.post('/disapprovalrequisition' , (req , res) => {
-    if(req.session.user){
+app.post('/disapprovalrequisition', (req, res) => {
+    if (req.session.user) {
         const user_id = req.session.user.user_id;
         const sql = "SELECT * FROM requisition JOIN users ON requisition.status_requisition = 3 AND users.user_id = ? WHERE requisition.user_id = users.user_id AND requisition.read_requisition = 0"
-        con.query(sql , [user_id] , (err , result) => {
-            if(err){
+        con.query(sql, [user_id], (err, result) => {
+            if (err) {
                 console.log(err)
                 res.status(500).send('Database Server Error');
             }
-            else{
+            else {
                 const sql = "UPDATE requisition JOIN users SET read_requisition = 1 WHERE requisition.status_requisition = 3 AND users.user_id = ?"
-                con.query(sql , [user_id] , (err , result) => {
-                    if(err){
+                con.query(sql, [user_id], (err, result) => {
+                    if (err) {
                         console.log(err)
                         res.status(500).send('Database Errro')
                     }
@@ -226,19 +284,19 @@ app.post('/disapprovalrequisition' , (req , res) => {
 
 
 // ==================== Complete Requisition =============================
-app.post('/completerequisition' , (req , res) => {
-    if(req.session.user){
+app.post('/completerequisition', (req, res) => {
+    if (req.session.user) {
         const user_id = req.session.user.user_id;
         const sql = "SELECT * FROM requisition JOIN users ON requisition.status_requisition = 4 AND users.user_id = ? WHERE requisition.user_id = users.user_id AND requisition.read_requisition = 0"
-        con.query(sql , [user_id] , (err , result) => {
-            if(err){
+        con.query(sql, [user_id], (err, result) => {
+            if (err) {
                 console.log(err);
                 res.status(500).send('Database Server Error')
             }
-            else{
+            else {
                 const sql = "UPDATE requisition JOIN users SET read_requisition = 1 WHERE requisition.status_requisition = 4 AND users.user_id = ?"
-                con.query(sql , [user_id] , (err , result) => {
-                    if(err){
+                con.query(sql, [user_id], (err, result) => {
+                    if (err) {
                         console.log(err)
                         res.status(500).send('Database Error')
                     }
@@ -251,16 +309,16 @@ app.post('/completerequisition' , (req , res) => {
 
 
 // ==================== Data Requisition ==========================
-app.post('/datareq' , (req, res) => {
+app.post('/datareq', (req, res) => {
     const requi_id = req.body.requi_id;
 
     const sql = "SELECT * FROM requisition JOIN users ON requisition.user_id = users.user_id WHERE requisition.requisition_id = ?"
-    con.query(sql , [requi_id] ,  (err , result) => {
-        if(err){
+    con.query(sql, [requi_id], (err, result) => {
+        if (err) {
             console.log(err);
             res.status(500).send('Database Server Error')
         }
-        else{
+        else {
             res.json(result);
         }
     })
@@ -268,17 +326,62 @@ app.post('/datareq' , (req, res) => {
 
 
 // ================== Material in Requisition =======================
-app.post('/datamaterial' , (req , res) => {
+app.post('/datamaterial', (req, res) => {
     const requi_id = req.body.requi_id;
 
     const sql = "SELECT * FROM material_requisiotion JOIN material ON material_requisiotion.material_id = material.material_id WHERE material_requisiotion.requisition_id = ?"
-    con.query(sql , [requi_id] , (err ,result) => {
-        if(err){
+    con.query(sql, [requi_id], (err, result) => {
+        if (err) {
             console.log(err);
             res.status(500).send('Database Server Error')
         }
-        else{
+        else {
             res.json(result);
         }
-    }) 
+    })
+})
+
+app.post('/createRequisition', (req, res) => {
+    const { objective, annotation } = req.body;
+    const user_id = req.session.user.user_id;
+    const sql = 'INSERT INTO requisition(objective , annotation , date_requisition , time_requisition , status_requisition , read_requisition , user_id) VALUES (? , ? , CURDATE() , CURTIME() , 1 , 0 , ?)';
+    con.query(sql, [objective, annotation, user_id], (err, result) => {
+        if (err) {
+            console.log(err);
+            res.status(500).send('Database Server Error')
+        }
+        else {
+            if (result.affectedRows != 1) {
+                console.log(err);
+                res.status(500).send('Insert Error')
+            } else {
+                res.send();
+            }
+        }
+    });
+});
+
+app.post('/addmatrequi', (req, res) => {
+    const { material_id, numbermaterial } = req.body;
+    const user_id = req.session.user.user_id;
+    const sql = 'SELECT MAX(requisition.requisition_id) AS requisition_id FROM requisition WHERE requisition.user_id = ?';
+    con.query(sql, [user_id], (err, result) => {
+        if (err) {
+            console.log(err);
+            res.status(500).send('Database Server Error')
+        }
+        else {
+            console.log(material_id);
+            const sql = 'INSERT INTO material_requisiotion(material_requisiotion.requisition_id , material_requisiotion.material_id , material_requisiotion.amount_of_requisition , material_requisiotion.amount_of_divide) VALUES (? , ? , ? , 0)';
+            con.query(sql, [result[0].requisition_id, material_id, numbermaterial], (err, result) => {
+                if (err) {
+                    console.log(err);
+                    res.status(500).send('Database Server Error')
+                }
+                else {
+                    res.send();
+                }
+            })
+        }
+    });
 })
