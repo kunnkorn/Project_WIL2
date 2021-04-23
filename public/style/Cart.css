@@ -122,24 +122,24 @@ a.active {
   color: #134472;
 }
 
-.cart {
+.cart-item {
   height: 200px;
 }
 
 @media (max-width: 742px) {
-  .cart {
+  .cart-item {
     height: 250px;
   }
 }
 
 @media (max-width: 658px) {
-  .cart {
+  .cart-item {
     height: 300px;
   }
 }
 
 @media (max-width: 320px) {
-  .cart {
+  .cart-item {
     height: 400px;
   }
 }

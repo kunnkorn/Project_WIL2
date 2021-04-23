@@ -1,121 +1,165 @@
+function init() {
+    gapi.load('auth2', () => {
+        gapi.auth2.init({
+            client_id: '565819629218-hrjqptqk34lk5sq2599tasa7gc2tho24.apps.googleusercontent.com'
+        })
+    })
+}
+
+
 
 $(document).ready(function () {
-    var rowID;
-    var meterial = [
-    {
-        "number" : "1",
-        "id" : "101000001",
-        "name" : "กรรไกรตัดกระดาษ 6",
-        "balance" : "20",
-        "unit" : "อัน"
-    },
-
-    {
-        "number" : "2",
-        "id" : "101000002",
-        "name" : "กรรไกรตัดกระดาษ 9",
-        "balance" : "100",
-        "unit" : "อัน"
-    },
-
-    {
-        "number" : "3",
-        "id" : "101000003",
-        "name" : "กระดาษ POSTIT ขนาด 2*3",
-        "balance" : "100",
-        "unit" : "เล่ม"
-    },
-
-    {
-        "number" : "4",
-        "id" : "101000004",
-        "name" : "กระดาษ POSTIT ขนาด 3*3",
-        "balance" : "100",
-        "unit" : "เล่ม"
-    },
-
-    {
-        "number" : "5",
-        "id" : "101000005",
-        "name" : "กระดาษคองเกอเร่อร์ A4/120G/100แผ่น/ห่อ",
-        "balance" : "50",
-        "unit" : "ห่อ"
-    },
-
-    {
-        "number" : "6",
-        "id" : "101000006",
-        "name" : "กระดาษคองเกอเร่อร์นอก A4/120G/10แผ่น/ห่อ",
-        "balance" : "80",
-        "unit" : "ห่อ"
-    },
-
-    {
-        "number" : "7",
-        "id" : "101000007",
-        "name" : "กระดาษคองเกอเร่อร์นอก A4/120G/10แผ่น/ห่อ",
-        "balance" : "57",
-        "unit" : "ห่อ"
-    },
-
-    {
-        "number" : "8",
-        "id" : "101000008",
-        "name" : "กระดาษคาร์บอน",
-        "balance" : "40",
-        "unit" : "กล่อง"
-    },
-
-    {
-        "number" : "9",
-        "id" : "101000009",
-        "name" : "กระดาษเครื่องโทรสาร Sharp/FO-57",
-        "balance" : "50",
-        "unit" : "ม้วน"
-    },
-
-    {
-        "number" : "10",
-        "id" : "1010000010",
-        "name" : "กระดาษตอ่เนื่อง ขนาด 15*11 1 ชั้น",
-        "balance" : "23",
-        "unit" : "กล่อง"
-    },
-
-]
-    var table = $("#materialMenu").DataTable({
-        responsive: true,
-        deferRender: true,
-
-        data: meterial,
-        columns: [
-            {data: "number" , title: "ลำดับ"},
-            {data: "id" , title: "รหัสวัสดุ"},
-            {data: "name" , title: "รายการ"},
-            {data: "balance" , title: "คงเหลือ"},
-            {data: "unit" , title: "หน่วยนับ"},
-            {title: "ขอเบิก" , orderable: false , defaultContent: '<a href = "#" ><span class="iconify btn-add" data-icon="fluent:task-list-add-20-regular" style="font-size: 40px; color: F49300;"></span></a>'}
-        ]
-
-    });
-
-    let counter = 0;
-    $("#materialMenu tbody").on("click" , ".btn-add" , function(){
-        
-        // Count Basket
-        counter++;
-        $("#countAdd").text(counter);
-        
-        // Get Meterials Data
-        const currentRow = $(this).parents("tr");
-        const data = table.row(currentRow).data();
-        rowID = table.row(currentRow).index();
+    sessionStorage.cart = "";
+    // Logout
+    $("#logout").on("click", function () {
+        const auth2 = gapi.auth2.getAuthInstance();
+        auth2.signOut().then(() => {
+            window.location.replace('/logout');
+        })
     })
 
+    // To cart Page
+    $("#cart").on("click", function () {
+        window.location.replace("/cartpage")
+    })
+
+    // ไปหน้าการเบิกของฉัน
+    $("#myRequi").on("click", function () {
+        window.location.replace("/notificationuser")
+    })
+
+    // Material Page
+    $("#mymat").on("click", function () {
+        window.location.replace("/materialuser")
+    })
+
+    // Material Data 
+    var rowID;
+    var table;
+    let number = 1;
+    var itemcart = 0;
+    table = $("#materialMenu").DataTable({
+        responsive: true,
+        deferRender: true,
+        ajax: {
+            url: '/datamaterials',
+            dataSrc: function (data) {
+                return data;
+            }
+        },
+        columns: [
+            { title: 'ลำดับ', defaultContent: "" },
+            { data: 'material_id', title: 'รหัสวัสดุ' },
+            { data: 'material_name', title: 'รายการ' },
+            { data: 'material_number', title: 'คงเหลือ' },
+            { data: 'unit', title: 'หน่วยนับ' },
+            { title: "ขอเบิก", orderable: false, defaultContent: '<a href = "#" ><span class="iconify btn-add" data-icon="fluent:task-list-add-20-regular" style="font-size: 40px; color: F49300;"></span></a>' }
+        ],
+        "columnDefs": [{
+            "targets": 0,
+            "createdCell": function (td, cellData, rowData, row, col) {
+                $(td).text(number);
+                number++;
+            }
+        }]
+    });
+
+    $("#materialMenu tbody").on("click", ".btn-add", function () {
+
+        // Count Basket
+        itemcart++;
+        $("#countAdd").text(itemcart);
+        // Get Meterials ID
+        const currentRow = $(this).parents("tr");
+        const data = table.row(currentRow).data();
+        const mat_id = data.material_id
+        sessionStorage.cart += mat_id + ",";
+    })
+
+
+    // Side bar
     $(function () {
         // Sidebar toggle behavior
         $('#sidebarCollapse').on('click', function () {
             $('#sidebar, #content').toggleClass('active');
         });
     });
+
+    // Count All Notification
+    $.ajax({
+        method: 'POST',
+        url: '/countnoti',
+        success: (data) => {
+            $("#countnoti").text(data[0].COUNTNOTI)
+        },
+    })
+
+    // Category  
+    $.ajax({
+        type: "GET",
+        url: "/category",
+        success: function (data) {
+
+            category = "";
+            for (let i = 0; i < data.length; i++) {
+                category += "<option value = '" + data[i].category_id + "'>" + data[i].category_name + "</option>";
+            }
+            let categoryall = "<option value = '" + 8 + "'>ทั้งหมด</option>";
+            category += categoryall;
+            $("#selectCategory").html(category);
+        }, error: (xhr) => {
+            alert(xhr.responseText);
+        }
+    });
+
+    // Select Category
+    $("#selectCategory").change(function () {
+        checkId = $("#selectCategory").val();
+        table.clear();
+        table = $("#materialMenu").dataTable().fnDestroy();
+        $("#materialMenu").empty();
+        let number = 1;
+        table = $("#materialMenu").DataTable({
+            responsive: true,
+            deferRender: true,
+            ajax: {
+                method: 'POST',
+                url: '/dataCategory',
+                data: { cate_id: checkId },
+                dataSrc: function (data) {
+                    return data
+                }
+            },
+
+            columns: [
+                { title: 'ลำดับ', defaultContent: "" },
+                { data: 'material_id', title: 'รหัสวัสดุ' },
+                { data: 'material_name', title: 'รายการ' },
+                { data: 'material_number', title: 'คงเหลือ' },
+                { data: 'unit', title: 'หน่วยนับ' },
+                { title: "ขอเบิก", orderable: false, defaultContent: '<a href = "#" ><span class="iconify btn-add" data-icon="fluent:task-list-add-20-regular" style="font-size: 40px; color: F49300;"></span></a>' }
+            ],
+            "columnDefs": [{
+                "targets": 0,
+                "createdCell": function (td, cellData, rowData, row, col) {
+                    $(td).text(number);
+                    number++;
+                }
+            }]
+
+        })
+
+        $("#materialMenu tbody").on("click", ".btn-add", function () {
+
+            // Count Basket
+            itemcart++;
+            $("#countAdd").text(itemcart);
+            // Get Meterials ID
+            const currentRow = $(this).parents("tr");
+            const data = table.row(currentRow).data();
+            const mat_id = data.material_id
+            sessionStorage.cart += mat_id + ",";
+
+        })
+    })
 });

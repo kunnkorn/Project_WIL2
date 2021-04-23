@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Success</title>
+    <title>Detail Requisition</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.6/css/responsive.bootstrap4.min.css">
@@ -16,7 +16,7 @@
     <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.2.6/js/dataTables.responsive.min.js"></script>
-
+    <script src="https://apis.google.com/js/platform.js?onload=init" async defer ></script>
     
     <link rel="stylesheet" href="style/History(success).css">
     <script src="src/History(Success).js"></script>
@@ -51,9 +51,9 @@
                             นางสาวแอดมิน สมหญิง</text>
                     </li>
                 </div>
-                <li><a href="../view/Index.html" >รายการวัสดุ</a></li>
-                <li><a href="../view/Notification.html" class="active">การเบิกของฉัน <span class="badge badge-success" style="font-size: 18px;" ><span>3</span></span></a></li>
-                <li><a href="../view/Login.html">ออกจากระบบ <span class="iconify" data-icon="ls:logout"
+                <li><a href="#" id="mymat">รายการวัสดุ</a></li>
+                <li><a href="#" id="myRequi" class="active">การเบิกของฉัน <span class="badge badge-success" style="font-size: 18px;" ><span id="countnoti">3</span></span></a></li>
+                <li><a href="#" id="logout">ออกจากระบบ <span class="iconify" data-icon="ls:logout"
                             data-inline="false"></span> </a></li>
             </ul>
         </div>
@@ -80,16 +80,17 @@
                 </div>
                 <!--Detail text-->
                 <div class="row " id="detail" style="background-color: #bffcd0;">
-                    <div class="col-6 text-center">
-                        <p>เลขที่เบิกวัสดุ : 6405001</p>
-                        <p>ชื่อผู้เบิก : นายบันเทิง สุดสุด</p>
-                        <p>วันที่ : 17/05/2564 เวลา : 15:30 น</p>
+                    <div class="col-6 text-center mt-4">
+                        <p>เลขที่เบิกวัสดุ : <text id="requisition_id">6405001</text></p>
+                        <p>ชื่อผู้เบิก : <text id="requisition_name">นายบันเทิง สุดสุด</text> </p>
+                        <p>วันที่ : <text id="date_requisition">2021-04-17</text> เวลา : <text id="time_requisition">16:00</text> น.</p>
                         
                     </div>
                     <div class="col-6">
-                        <p>สถานะ : <text style="color: #00C337;">เสร็จสมบูรณ์</text></p>
-                        <p>หมายเหตุ : ต้องการของทุกอย่างที่เบิกด่วนที่สุด</p>
-                        <p>รับของ : วันที่ 17/05/2564 เวลา 16:00 น.</p>
+                        <p>สถานะ : <text style="color: #00C337;" id="status_requisition">เสร็จสมบูรณ์</text></p>
+                        <p>วัตถุประสงค์ : <text id="objective"> การเรียน การสอน</text></p>
+                        <p>หมายเหตุ : <text id="annotation"> ต้องการของทุกอย่างที่เบิกด่วนที่สุด</text></p>
+                        <p id="other">รับของ : วันที่ <text id="date_pickup">2021-04-21</text> เวลา : <text id="time_pickup">14:00</text> น.</p>
                     </div>
                 </div>
                 <br>

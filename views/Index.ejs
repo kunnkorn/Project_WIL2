@@ -17,6 +17,7 @@
     <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.2.6/js/dataTables.responsive.min.js"></script>
+    <script src="https://apis.google.com/js/platform.js?onload=init" async defer ></script>
 
     <script src="src/Index.js"></script>
     <link rel="stylesheet" href="style/Index.css">
@@ -29,7 +30,7 @@
         <h5 class="text-light my-auto brand-text" href="#">ระบบจัดการวัสดุสำนักงาน สำนักวิชาเทคโนโลยีสารสนเทศ</h5>
         <text class="my-auto ml-auto text-light brand-text"><span class="iconify text-light" data-icon="bx:bxs-user-circle" data-inline="false" style="color:black"
                 data-width="30px" data-height="30px"></span>
-                 <%= user.user_name %> </text>
+                 <%= user.user_name %>  </text>
         <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
             aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation" id="sidebarCollapse">
             <span class="navbar-toggler-icon"></span>
@@ -47,11 +48,11 @@
                     <li class="text-center">
                         <text><span class="iconify" data-icon="bx:bxs-user-circle" data-inline="false"
                                 style="color:black" data-width="30px" data-height="30px"></span>
-                                 <%= user.user_name %> </text>
+                                 Staff </text>
                     </li>
                 </div>
-                <li><a href="#" class="active">รายการวัสดุ</a></li>
-                <li><a href="#">การเบิกของฉัน <span class="badge badge-success" style="font-size: 18px;" ><span>6</span></span></a></li>
+                <li><a href="#" id="mymat" class="active">รายการวัสดุ</a></li>
+                <li><a href="#" id="myRequi">การเบิกของฉัน <span class="badge badge-success" style="font-size: 15px;" id="countnoti" ><span></span></span></a></li>
                 <li><a href="#" id="logout">ออกจากระบบ <span class="iconify" data-icon="ls:logout"
                             data-inline="false"></span> </a></li>
             </ul>
@@ -66,16 +67,11 @@
                     <h2><span class="iconify" data-icon="fa-solid:clipboard-list"></span> รายการวัสดุ</h2>
                     <hr size="2" class="ml-0 col-12" style="background-color: black;">
                     <select class="mb-2" id="selectCategory">
-                        <option value="">ทั้งหมด</option>
-                        <option value="">วัสดุไฟฟ้าวิทยุ</option>
-                        <option value="">วัสดุคอมพิวเตอร์</option>
-                        <option value="">วัสดุงานบ้านงานครัว</option>
-                        <option value="">วัสดุเครื่องแต่งกาย</option>
-                        <option value="">วัสดุของที่ระลึก</option>
+
                     </select>
                 </div>
                 <div class="col-6 text-right">
-                    <a href="Cart.html"><span class="iconify" data-icon="bi:basket2" style="font-size: 40px; color: black;"></span>
+                    <a href="#" id="cart"><span class="iconify" data-icon="bi:basket2" style="font-size: 40px; color: black;"></span>
                         <span class="badge badge-danger" style="font-size: 18px;" ><span id="countAdd">0</span></span></a>
                 </div>
             </div>

@@ -14,6 +14,7 @@
     <script src="https://code.iconify.design/1/1.0.6/iconify.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/10.15.7/sweetalert2.all.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
+    <script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>
 
     <link rel="stylesheet" href="style/Cart.css">
     <script src="src/Cart.js"></script>
@@ -27,7 +28,8 @@
         <text class="my-auto ml-auto text-light brand-text"><span class="iconify text-light"
                 data-icon="bx:bxs-user-circle" data-inline="false" style="color:black" data-width="30px"
                 data-height="30px"></span>
-            นางสาวแอดมิน สมหญิง</text>
+            <%= user.user_name %>
+        </text>
         <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
             aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation" id="sidebarCollapse">
             <span class="navbar-toggler-icon"></span>
@@ -45,13 +47,14 @@
                     <li class="text-center">
                         <text><span class="iconify" data-icon="bx:bxs-user-circle" data-inline="false"
                                 style="color:black" data-width="30px" data-height="30px"></span>
-                            นางสาวแอดมิน สมหญิง</text>
+                            <%= user.user_name %>
+                        </text>
                     </li>
                 </div>
-                <li><a href="Index.html" class="active">รายการวัสดุ</a></li>
-                <li><a href="Notification.html">การเบิกของฉัน <span class="badge badge-success"
-                            style="font-size: 18px;"><span>3</span></span></a></li>
-                <li><a href="../view/Login.html">ออกจากระบบ <span class="iconify" data-icon="ls:logout"
+                <li><a href="#" id="mymat" class="active">รายการวัสดุ</a></li>
+                <li><a href="#" id="myrequi">การเบิกของฉัน <span class="badge badge-success"
+                            style="font-size: 15px;"><span id="countnoti"></span></span></a></li>
+                <li><a href="#" id="logout">ออกจากระบบ <span class="iconify" data-icon="ls:logout"
                             data-inline="false"></span> </a></li>
             </ul>
         </div>
@@ -87,9 +90,10 @@
                     <hr class="mt-5 ml-0 col-12" size="2">
                     <div id="objective">
                         <p>หมายเหตุ :</p>
-                        <div><textarea class="col-12 form-control my-2 col-12 col-lg-5" rows="5"></textarea></div>
+                        <div><textarea class="col-12 form-control my-2 col-12 col-lg-5" rows="5" id="txtanno"></textarea></div>
                         <div class="col-12 text-lg-right text-center">
-                            <button class="btn" id="btn-requis">ขอเบิก</button>
+                            <button class="btn" id="btn-requis" data-toggle="modal"
+                                data-target="#modelResult">ขอเบิก</button>
                         </div>
                     </div>
                 </div>
@@ -114,28 +118,31 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <p class="text-right">จำนวน</p>
-                    <p>รายการวัสดุ : 1010001</p>
-                    <p>ชื่อรายการ : กรรไกรตัดกระดาษ 6" </p>
+                    <p class='text-right mr-3'>จำนวน</p>
+                    <div class="mb-4" id="result-area" style="overflow: auto; height: 300px;">
+                        <!-- <div class='container-fluid'>
+                            <div class='row'>
+                                <p class='col-8'>รายการวัสดุ : 1010001 </p>
+                                <text class='ml-auto mr-3' >100</text>
+                                <p class='col-12'>ชื่อรายการ : กรรไกรตัดกระดาษ 6 </p>
 
-                    <hr width="450px" size="2" class="ml-0">
+                                <hr size='2' class='ml-0 col-6'>
+                            </div>
+                        </div> -->
 
-                    <p>รายการวัสดุ : 1010002</p>
-                    <p>ชื่อรายการ : กรรไกรตัดกระดาษ 9" </p>
+                    </div>
 
-                    <hr width="450px" size="2" class="ml-0">
+                    <p id="anno"></p>
 
-                    <p>หมายเหตุ: ต้องการด่วยมากๆ</p>
-
-                    <select id="Objective">
-                        <option>เลือกวัตถุประสงค์</option>
-                        <option>การเรียนการสอน</option>
-                        <option>สำนักงาน</option>
+                    <select id='Objective'>
+                        <option value="เลือกวัตถุประสงค์">เลือกวัตถุประสงค์</option>
+                        <option value="การเรียนการสอน">การเรียนการสอน</option>
+                        <option value="สำนักงาน">สำนักงาน</option>
                     </select>
 
                     <p></p>
                     <p>อื่นๆ :</p>
-                    <textarea cols="50" rows="5"></textarea>
+                    <textarea cols='50' rows='5' id="txtob"></textarea>
 
                     <div class="text-center mt-3">
                         <button class="btn btn-success" style="font-size: 18px;" id="btn-confirm">ยืนยัน</button>
