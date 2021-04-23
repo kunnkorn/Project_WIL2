@@ -21,6 +21,7 @@
     <script src="https://cdn.datatables.net/responsive/2.2.6/js/dataTables.responsive.min.js"></script>
     <script src="src/detailhis.js"></script>
     <link rel="stylesheet" href="style/detailhis.css">
+    <script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>
 </head>
 
 <body>
@@ -28,9 +29,11 @@
         <a class="navbar-brand" href="#"><img src="img/logo.png" width="40px" height="40px">
         </a>
         <h5 class="text-light my-auto brand-text" href="#">ระบบจัดการวัสดุสำนักงาน สำนักวิชาเทคโนโลยีสารสนเทศ</h5>
-        <text class="my-auto ml-auto text-light brand-text"><span class="iconify text-light" data-icon="bx:bxs-user-circle" data-inline="false" style="color:black"
-                data-width="30px" data-height="30px"></span>
-            นางสาวแอดมิน สมหญิง</text>
+        <text class="my-auto ml-auto text-light brand-text"><span class="iconify text-light"
+                data-icon="bx:bxs-user-circle" data-inline="false" style="color:black" data-width="30px"
+                data-height="30px"></span>
+            <%= user.user_name %>
+        </text>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
             aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation" id="sidebarCollapse">
             <span class="navbar-toggler-icon"></span>
@@ -47,19 +50,20 @@
                     <li class="text-center">
                         <text><span class="iconify" data-icon="bx:bxs-user-circle" data-inline="false"
                                 style="color:black" data-width="30px" data-height="30px"></span>
-                            นางสาวแอดมิน สมหญิง</text>
+                            <%= user.user_name %>
+                        </text>
                     </li>
                 </div>
-                <li><a href="../view/adminmain.html">คำขอเบิกวัสดุ<span class="ml-3 badge badge-danger"
-                    style="font-size: 18px;"><span>3</span></span></a></li>
-                <li><a href="../view/material.html">รายการวัสดุ</a></li>
-                <li><a href="../view/history.html" class="active">ประวัติการเบิก</a></li>
-                <li><a href="../view/statistic.html">สถิติการเบิก</a></li>
-                <li><a href="../view/Login.html">ออกจากระบบ <span class="iconify" data-icon="ls:logout"
-                data-inline="false"></span> </a></li>
+                <li><a href="/requisition">คำขอเบิกวัสดุ<span class="ml-3 badge badge-danger"
+                            style="font-size: 15px;"><span id="badge_req"></span></span></a></li>
+                <li><a href="/materialadmin">รายการวัสดุ</a></li>
+                <li><a href="#" class="active">ประวัติการเบิก</a></li>
+                <li><a href="/staticadmin">สถิติการเบิก</a></li>
+                <li><a onclick="signout()" style="cursor: pointer;">ออกจากระบบ <span class="iconify"
+                            data-icon="ls:logout" data-inline="false"></span> </a></li>
             </ul>
         </div>
-        
+
     </div>
 
     <!--Main-->
@@ -80,8 +84,8 @@
                     <hr class="col-8" size="2" class="ml-0">
                 </div>
             </div>
-            <div class="row" id="detail" style="background-color: #bffcd0;">
-                <div class="col-6">
+            <div class="row" id="detail" >
+                <!-- <div class="col-6">
                     <p>เลขที่เบิกวัสดุ : 6405001</p>
                     <p>ชื่อผู้เบิก : นายบันเทิง สุดสุด</p>
                     <p>วันที่ : 17/05/2564 เวลา : 15:30 น</p>
@@ -91,10 +95,10 @@
                     <p>สถานะ : <text style="color: #00C337;">เสร็จสมบูรณ์</text></p>
                     <p>หมายเหตุ : ต้องการของทุกอย่างที่เบิกด่วนที่สุด</p>
                     <p>รับของ : วันที่ 17/05/2564 เวลา 16:00 น.</p>
-                </div>
+                </div> -->
             </div>
             <br>
-            <table id="materialTable" class="table table-striped table-bordered" style="width:100%">
+            <table id="materialTable" class="table table-striped table-bordered text-center" style="width:100%">
             </table>
         </div>
     </div>

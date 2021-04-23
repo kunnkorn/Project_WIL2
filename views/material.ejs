@@ -21,6 +21,7 @@
     <script src="https://cdn.datatables.net/responsive/2.2.6/js/dataTables.responsive.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
     <script src="src/material.js"></script>
+    <script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>
 
 </head>
 
@@ -32,7 +33,8 @@
         <text class="my-auto ml-auto text-light brand-text"><span class="iconify text-light"
                 data-icon="bx:bxs-user-circle" data-inline="false" style="color:black" data-width="30px"
                 data-height="30px"></span>
-            นางสาวแอดมิน สมหญิง</text>
+            <%= user.user_name %>
+        </text>
         <button class="navbar-toggler d-xl-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
             aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation" id="sidebarCollapse">
             <span class="navbar-toggler-icon"></span>
@@ -49,15 +51,17 @@
                     <li class="text-center">
                         <text><span class="iconify" data-icon="bx:bxs-user-circle" data-inline="false"
                                 style="color:black" data-width="30px" data-height="30px"></span>
-                            นางสาวแอดมิน สมหญิง</text>
+                            <%= user.user_name %>
+                        </text>
                     </li>
                 </div>
-                <li><a href="../view/adminmain.html">คำขอเบิกวัสดุ <span class="badge badge-danger">4</span></a></li>
-                <li><a href="../view/material.html" class="active">รายการวัสดุ</a></li>
-                <li><a href="../view/history.html">ประวัติการเบิก</a></li>
-                <li><a href="../view/statistic.html">สถิติการเบิก</a></li>
-                <li><a href="../view/Login.html">ออกจากระบบ <span class="iconify" data-icon="ls:logout"
-                            data-inline="false"></span> </a></li>
+                <li><a href="/requisition">คำขอเบิกวัสดุ<span class="ml-3 badge badge-danger"
+                            style="font-size: 15px;"><span id="badge_req"></span></span></a></li>
+                <li><a href="#" class="active">รายการวัสดุ</a></li>
+                <li><a href="/historyadmin">ประวัติการเบิก</a></li>
+                <li><a href="/staticadmin">สถิติการเบิก</a></li>
+                <li><a onclick="signout()" style="cursor: pointer;">ออกจากระบบ <span class="iconify"
+                            data-icon="ls:logout" data-inline="false"></span> </a></li>
             </ul>
         </div>
     </div>
@@ -71,7 +75,8 @@
                                 data-icon="fa-solid:clipboard-list" data-inline="false"></span> รายการวัสดุ</h3>
                     </div>
                     <div class="text-right col-lg-6 col-md-8 ">
-                        <button type="button" class="btn btn-ouline-light" style="size: 45px;">
+                        <button type="button" class="btn btn-ouline-light" style="size: 45px;" data-toggle="modal"
+                            data-target="#modeladd">
                             <span class="iconify" data-icon="eva:file-add-outline" data-inline="false"
                                 id="iconadd"></span>
                             <p style=" font-family: 'Pridi', serif;">เพิ่มวัสดุ</p>
@@ -87,16 +92,17 @@
                 <hr size="2" class="ml-0 col-md-12 col-xl-10 col-l-10 col-sm-12">
             </div>
             <select name="category" id="category">
-                <option value="">วัสดุสำนักงาน</option>
-                <option value="">วัสดุไฟฟ้าวิทยุ</option>
-                <option value="">วัสดุคอมพิวเตอร์</option>
-                <option value="">วัสดุงานบ้านงานครัว</option>
-                <option value="">วัสดุเครื่องแต่งกาย</option>
-                <option value="">วัสดุของที่ระลึก</option>
-                <option value="">ทั้งหมด</option>
+                <!-- <option value="1">วัสดุสำนักงาน</option>
+                <option value="2">วัสดุไฟฟ้าวิทยุ</option>
+                <option value="3">วัสดุคอมพิวเตอร์</option>
+                <option value="4">วัสดุโฆษณา</option>
+                <option value="5">วัสดุงานบ้าน</option>
+                <option value="6">วัสดุเครื่องแต่งกาย</option>
+                <option value="7">วัสดุของที่ระทึก</option>
+                <option value="8">ทั้งหมด</option> -->
             </select> <br><br>
 
-            <table id="materialTable" class="table table-striped table-bordered" style="width:100%">
+            <table id="materialTable" class="table table-striped table-bordered text-center" style="width:100%">
 
             </table>
 
@@ -120,30 +126,33 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-12 ">
-                            <label for="textinput" class="col-12 control-label">รหัสวัสดุ</label>
-                            <div class="col-12">
-                                <input type="text" class="form-control" id="EditID">
-                            </div>
-                            <label for="textinput" class="col-12 control-label">รายการ</label>
-                            <div class="col-12">
-                                <input type="text" class="form-control" id="EditName">
-                            </div>
-                            <label for="textinput" class="col-12 control-label">เพิ่มจำนวน</label>
-                            <div class="col-12">
-                                <input type="number" class="form-control" id="EditNum">
-                            </div>
-                            <label for="textinput" class="col-12 control-label">หน่วยนับ</label>
-                            <div class="col-12">
-                                <input type="text" class="form-control" id="EditUnit">
-                            </div>
+                            <form id="formeditmat" enctype="multipart/form-data">
+                                <label for="textinput" class="col-12 control-label">รหัสวัสดุ</label>
+                                <div class="col-12">
+                                    <input type="text" class="form-control" id="EditID" disabled>
+                                </div>
+                                <label for="textinput" class="col-12 control-label">รายการ</label>
+                                <div class="col-12">
+                                    <input type="text" class="form-control" id="EditName" required>
+                                </div>
+                                <label for="textinput" class="col-12 control-label">เพิ่มจำนวน</label>
+                                <div class="col-12">
+                                    <input type="number" class="form-control" id="EditNum" required>
+                                </div>
+                                <label for="textinput" class="col-12 control-label">หน่วยนับ</label>
+                                <div class="col-12">
+                                    <input type="text" class="form-control" id="EditUnit" required>
+                                </div>
+                                <div class="modal-footer justify-content-center">
+                                    <button type="submit" class="btn btn-success rounded-pill" id="btnSaveEdit">บันทึก</button>
+                                    <button type="button" class="btn btn-danger  rounded-pill" data-dismiss="modal"
+                                        id="btnCancelEdit">ยกเลิก</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div><br>
-                <div class="modal-footer justify-content-center">
-                    <button type="button" class="btn btn-success rounded-pill" id="btnSaveEdit">บันทึก</button>
-                    <button type="button" class="btn btn-danger  rounded-pill" data-dismiss="modal"
-                        id="btnCancelEdit">ยกเลิก</button>
-                </div>
+
             </div>
         </div>
     </div>
@@ -168,41 +177,46 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-12 ">
-                            <label for="textinput" class="col-12 control-label">หมวดหมู่</label>
-                            <div class="col-12">
-                                <select name="category" class="form-control" id="addCategory">
-                                    <option value="">วัสดุสำนักงาน</option>
-                                    <option value="">วัสดุไฟฟ้าวิทยุ</option>
-                                    <option value="">วัสดุคอมพิวเตอร์</option>
-                                    <option value="">วัสดุงานบ้านงานครัว</option>
-                                    <option value="">วัสดุเครื่องแต่งกาย</option>
-                                    <option value="">วัสดุของที่ระลึก</option>
-                                </select> <br>
-                            </div>
-                            <label for="textinput" class="col-12 control-label">รหัสวัสดุ</label>
-                            <div class="col-12">
-                                <input type="text" class="form-control" id="addID">
-                            </div>
-                            <label for="textinput" class="col-12 control-label">รายการ</label>
-                            <div class="col-12">
-                                <input type="text" class="form-control" id="addName">
-                            </div>
-                            <label for="textinput" class="col-12 control-label">จำนวน</label>
-                            <div class="col-12">
-                                <input type="number" class="form-control" id="addNum">
-                            </div>
-                            <label for="textinput" class="col-12 control-label">หน่วยนับ</label>
-                            <div class="col-12">
-                                <input type="text" class="form-control" id="addUnit">
-                            </div>
+                            <form id="formaddmat" method="POST" enctype="multipart/form-data">
+                                <label for="textinput" class="col-12 control-label">หมวดหมู่</label>
+                                <div class="col-12">
+                                    <select name="category" class="form-control" id="addCategory">
+                                        <!-- <option value="1">วัสดุสำนักงาน</option>
+                                    <option value="2">วัสดุไฟฟ้าวิทยุ</option>
+                                    <option value="3">วัสดุคอมพิวเตอร์</option>
+                                    <option value="4">วัสดุโฆษณา</option>
+                                    <option value="5">วัสดุงานบ้าน</option>
+                                    <option value="6">วัสดุเครื่องแต่งกาย</option>
+                                    <option value="7">วัสดุของที่ระทึก</option> -->
+                                    </select> <br>
+                                </div>
+                                <label for="textinput" class="col-12 control-label">รหัสวัสดุ</label>
+                                <div class="col-12">
+                                    <input type="number" class="form-control" id="addID" placeholder="06582101501"
+                                        required>
+                                </div>
+                                <label for="textinput" class="col-12 control-label">รายการ</label>
+                                <div class="col-12">
+                                    <input type="text" class="form-control" id="addName" placeholder="กรรไกร" required>
+                                </div>
+                                <label for="textinput" class="col-12 control-label">จำนวน</label>
+                                <div class="col-12">
+                                    <input type="number" class="form-control" id="addNum" placeholder="0" required>
+                                </div>
+                                <label for="textinput" class="col-12 control-label">หน่วยนับ</label>
+                                <div class="col-12">
+                                    <input type="text" class="form-control" id="addUnit" placeholder="ตัว" required>
+                                </div>
+                                <div class="modal-footer justify-content-center">
+                                    <button type="submit" class="btn btn-success rounded-pill">บันทึก</button>
+                                    <button type="button" class="btn btn-danger  rounded-pill" data-dismiss="modal"
+                                        id="btnCanceladd">ยกเลิก</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div><br>
-                <div class="modal-footer justify-content-center">
-                    <button type="button" class="btn btn-success rounded-pill" id="btnSaveadd">บันทึก</button>
-                    <button type="button" class="btn btn-danger  rounded-pill" data-dismiss="modal"
-                        id="btnCanceladd">ยกเลิก</button>
-                </div>
+
             </div>
         </div>
     </div>
