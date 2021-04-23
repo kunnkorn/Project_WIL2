@@ -1,41 +1,150 @@
+function init() {
+    gapi.load('auth2', () => {
+        gapi.auth2.init({
+            client_id: '565819629218-hrjqptqk34lk5sq2599tasa7gc2tho24.apps.googleusercontent.com'
+        })
+    })
+}
+
 $(document).ready(function () {
+
+    $("#static").on("click", function () {
+        window.location.replace('/staticvisor')
+    })
+
+    $("#perman").on("click", function () {
+        window.location.replace('/individualstatistics')
+    })
+
+    $("#material").on("click", function () {
+        window.location.replace('/meterialvisor')
+    })
+
+    $("#hisvisor").on("click", function () {
+        window.location.replace('/hiswithdrawmat')
+    })
+
+    $("#hisedit").on("click", function () {
+        window.location.replace('/hiseditmaterial')
+    })
+
+    // Logout
+    $("#logout").on("click", function () {
+        const auth2 = gapi.auth2.getAuthInstance();
+        auth2.signOut().then(() => {
+            window.location.replace('/logout');
+        })
+    })
+
     var rowID;
-    var material = [{
-        "number": "1",
-        "id": "101000001",
-        "name": "กรรไกรตัดกระดาษ 6",
-        "balance": "50",
-        "unit": "อัน",
-    }, {
-        "number": "2",
-        "id": "101000002",
-        "name": "กรรไกรตัดกระดาษ 9",
-        "balance": "50",
-        "unit": "อัน",
-    }, {
-        "number": "3",
-        "id": "101000003",
-        "name": "กระดาษ POSTIT ขนาด 2*3",
-        "balance": "110",
-        "unit": "เล่ม",
-    }];
-    var table = $("#materialTable").DataTable({
+    var table;
+    var number = 1;
+    table = $("#materialTable").DataTable({
         responsive: true,       //for responsive column display
         deferRender: true,      //if large data, use this option
 
-        data: material,
+        ajax: ({
+            type: 'POST',
+            url: '/materialsuperall',
+            dataSrc: (data) => {
+                return data;
+            }
+
+        }),
+
         columns: [
-            { data: "number", title: "ลำดับ" },
-            { data: "id", title: "รหัสวัสดุ" },
-            { data: "name", title: "รายการ" },
-            { data: "balance", title: "คงเหลือ" },
-            { data: "unit", title: "หน่ายนับ" }
+            { data: "material_id", title: "รหัสวัสดุ" },
+            { data: "material_name", title: "รายการ" },
+            { data: "material_number", title: "คงเหลือ" },
+            { data: "unit", title: "หน่วยนับ" }
         ],
         columnDefs: [
-            // make the last column align right, also target: "_all" 
-            { "className": "dt-center", "targets": 4 }
+            {
+                "targets": 0,
+                "createdCell": function (td, cellData, rowData, row, col) {
+                    $(td).text(number);
+                    number++;
+                }
+            }
         ]
     });
+
+    $("#select").change(function () {
+        const category_id = $("#select").val()
+        console.log(category_id)
+
+        table.clear();
+        table = $("#materialTable").dataTable().fnDestroy();
+        $("#materialTable").empty();
+        var numberr = 1;
+        table = $("#materialTable").DataTable({
+            responsive: true,       //for responsive column display
+            deferRender: true,      //if large data, use this option
+
+            ajax: ({
+                type: 'POST',
+                url: '/materialsuper',
+                data: { category: category_id },
+                dataSrc: (data) => {
+                    return data
+                }
+            }),
+
+            columns: [
+                { title: "ลำดับ", defaultContent: "" },
+                { data: "material_id", title: "รหัสวัสดุ" },
+                { data: "material_name", title: "รายการ" },
+                { data: "material_number", title: "คงเหลือ" },
+                { data: "unit", title: "หน่วยนับ" }
+            ],
+            columnDefs: [{
+                "targets": 0,
+                "createdCell": function (td, cellData, rowData, row, col) {
+                    $(td).text(numberr);
+                    numberr++;
+                }
+            }]
+        });
+
+        if (category_id == 0) {
+
+            table.clear();
+            table = $("#materialTable").dataTable().fnDestroy();
+            $("#materialTable").empty();
+            var numberrr = 1;
+            table = $("#materialTable").DataTable({
+                responsive: true,       //for responsive column display
+                deferRender: true,      //if large data, use this option
+
+                ajax: ({
+                    type: 'POST',
+                    url: '/materialsuperall',
+                    dataSrc: (data) => {
+                        return data;
+                    }
+
+                }),
+
+                columns: [
+                    { title: "ลำดับ", defaultContent: "" },
+                    { data: "material_id", title: "รหัสวัสดุ" },
+                    { data: "material_name", title: "รายการ" },
+                    { data: "material_number", title: "คงเหลือ" },
+                    { data: "unit", title: "หน่วยนับ" }
+                ],
+                columnDefs: [
+                    {
+                        "targets": 0,
+                        "createdCell": function (td, cellData, rowData, row, col) {
+                            $(td).text(numberrr);
+                            numberrr++;
+                        }
+                    }
+                ]
+            });
+        }
+    })
+
 
     // Sidebar toggle behavior
     $(function () {

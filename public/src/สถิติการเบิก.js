@@ -1,5 +1,38 @@
+function init() {
+    gapi.load('auth2', () => {
+        gapi.auth2.init({
+            client_id: '565819629218-hrjqptqk34lk5sq2599tasa7gc2tho24.apps.googleusercontent.com'
+        })
+    })
+}
+
 $(document).ready(function () {
 
+    // ย้ายหน้าไปสถิติการเบิกรายคน
+    $("#perman").on("click" , function(){
+        window.location.replace('/individualstatistics')
+    })
+
+    $("#material").on("click" , function(){
+        window.location.replace('/meterialvisor')
+    })
+
+    $("#hisvisor").on("click" , function(){
+        window.location.replace('/hiswithdrawmat')
+    })
+
+    $("#hisedit").on("click" , function() {
+        window.location.replace('/hiseditmaterial')
+    })
+
+    // Logout
+    $("#logout").on("click", function () {
+        const auth2 = gapi.auth2.getAuthInstance();
+        auth2.signOut().then(() => {
+            window.location.replace('/logout');
+        })
+    })
+    
     $(document).ready(function () {
         var rowID;
         var material = [{
