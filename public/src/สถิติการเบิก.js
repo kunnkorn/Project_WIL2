@@ -9,19 +9,19 @@ function init() {
 $(document).ready(function () {
 
     // ย้ายหน้าไปสถิติการเบิกรายคน
-    $("#perman").on("click" , function(){
+    $("#perman").on("click", function () {
         window.location.replace('/individualstatistics')
     })
 
-    $("#material").on("click" , function(){
+    $("#material").on("click", function () {
         window.location.replace('/meterialvisor')
     })
 
-    $("#hisvisor").on("click" , function(){
+    $("#hisvisor").on("click", function () {
         window.location.replace('/hiswithdrawmat')
     })
 
-    $("#hisedit").on("click" , function() {
+    $("#hisedit").on("click", function () {
         window.location.replace('/hiseditmaterial')
     })
 
@@ -32,57 +32,154 @@ $(document).ready(function () {
             window.location.replace('/logout');
         })
     })
-    
+
     $(document).ready(function () {
+
+        // Show Dash Board All
+        $.ajax({
+            type: "GET",
+            url: "/getstaticdashall",
+            success: function (data) {
+                $("#check").text(data[0].allrequi);
+            },
+            error: (xhr) => {
+                alert(xhr.responseText);
+            }
+        });
+
+        // Show Dash Board Approve Requisition
+        $.ajax({
+            type: "GET",
+            url: "/getstaticdashboard",
+            success: function (data) {
+                $("#all").text(data[0].apprequi)
+            },
+            error: (xhr) => {
+                alert(xhr.responseText);
+            }
+        });
+
+        // Show Dash Board Disapproval Requisition
+        $.ajax({
+            type: "GET",
+            url: "/getstaticdashunapp",
+            success: function (data) {
+                $("#noncheck").text(data[0].disrequi)
+            },
+            error: (xhr) => {
+                alert(xhr.responseText);
+            }
+        });
+
         var rowID;
-        var material = [{
-            "number": "1",
-            "id": "101000001",
-            "name": "กรรไกรตัดกระดาษ 6",
-            "amount": "20",
-            "approve": "20",
-            "disapprove": "0",
-            "notcomplete": "0",
-            "unit": "อัน",
-        }, {
-            "number": "2",
-            "id": "101000002",
-            "name": "กรรไกรตัดกระดาษ 9",
-            "amount": "40",
-            "approve": "28",
-            "disapprove": "4",
-            "notcomplete": "8",
-            "unit": "อัน",
-        }, {
-            "number": "3",
-            "id": "101000003",
-            "name": "กระดาษ POSTIT ขนาด 2*3",
-            "amount": "110",
-            "approve": "100",
-            "disapprove": "5",
-            "notcomplete": "5",
-            "unit": "เล่ม",
-        }];
+        var number = 1;
         var table = $("#materialTable").DataTable({
             responsive: true,       //for responsive column display
             deferRender: true,      //if large data, use this option
 
-            data: material,
+            ajax: ({
+                type: "GET",
+                url: "/getstaticmaterial",
+                dataSrc: (data) => {
+                    return data;
+                }
+            }),
             columns: [
-                { data: "number", title: "ลำดับ" },
-                { data: "id", title: "รหัสวัสดุ" },
-                { data: "name", title: "รายการ" },
-                { data: "amount", title: "จำนวนที่เบิกรายเดือน" },
-                { data: "approve", title: "อนุมัติ" },
-                { data: "disapprove", title: "ไม่อนุมัติ" },
-                { data: "notcomplete", title: "อนุมัติแต่ไม่ครบ" },
-                { data: "unit", title: "หน่ายนับ" }
+                { title: 'ลำดับ', defaultContent: "" },
+                { data: 'id', title: "รหัสวัสดุ" },
+                { data: 'material', title: "รายการ" },
+                { data: 'requipermonth', title: "จำนวนที่เบิกรายเดือน" },
+                { data: 'approve', title: "อนุมัติ" },
+                { data: 'disapproval', title: "ไม่อนุมัติ" },
+                { data: 'unit', title: "หน่วยนับ" }
             ],
-            columnDefs: [
-                // make the last column align right, also target: "_all" 
-                { "className": "dt-center", "targets": 7 }
-            ]
-        });
+            columnDefs: [{
+                "targets": 0,
+                "createdCell": function (td, cellData, rowData, row, col) {
+                    $(td).text(number);
+                    number++;
+                }
+            }]
+        })
+
+
+        $("#select").change(function () {
+            const category_id = $("#select").val();
+
+            table.clear();
+            table = $("#materialTable").dataTable().fnDestroy();
+            $("#materialTable").empty();
+            var numberr = 1;
+            table = $("#materialTable").DataTable({
+                responsive: true,       //for responsive column display
+                deferRender: true,      //if large data, use this option
+
+                ajax: ({
+                    type: "POST",
+                    url: "/getstaticmaterialpermonth",
+                    data: { cate_id: category_id },
+                    dataSrc: (data) => {
+                        return data;
+                    }
+                }),
+                columns: [
+                    { title: 'ลำดับ', defaultContent: "" },
+                    { data: 'id', title: "รหัสวัสดุ" },
+                    { data: 'material', title: "รายการ" },
+                    { data: 'requipermonth', title: "จำนวนที่เบิกรายเดือน" },
+                    { data: 'approve', title: "อนุมัติ" },
+                    { data: 'disapproval', title: "ไม่อนุมัติ" },
+                    { data: 'unit', title: "หน่วยนับ" }
+                ],
+                columnDefs: [{
+                    "targets": 0,
+                    "createdCell": function (td, cellData, rowData, row, col) {
+                        $(td).text(numberr);
+                        numberr++;
+                    }
+                }]
+            });
+
+            if (category_id == 0) {
+                table.clear();
+                table = $("#materialTable").dataTable().fnDestroy();
+                $("#materialTable").empty();
+                var numberrr = 1;
+                table = $("#materialTable").DataTable({
+                    responsive: true,       //for responsive column display
+                    deferRender: true,      //if large data, use this option
+
+                    ajax: ({
+                        type: 'GET',
+                        url: '/getstaticmaterial',
+                        dataSrc: (data) => {
+                            return data;
+                        }
+
+                    }),
+
+                    columns: [
+                        { title: 'ลำดับ', defaultContent: "" },
+                        { data: 'id', title: "รหัสวัสดุ" },
+                        { data: 'material', title: "รายการ" },
+                        { data: 'requipermonth', title: "จำนวนที่เบิกรายเดือน" },
+                        { data: 'approve', title: "อนุมัติ" },
+                        { data: 'disapproval', title: "ไม่อนุมัติ" },
+                        { data: 'unit', title: "หน่วยนับ" }
+                    ],
+                    columnDefs: [
+                        {
+                            "targets": 0,
+                            "createdCell": function (td, cellData, rowData, row, col) {
+                                $(td).text(numberrr);
+                                numberrr++;
+                            }
+                        }
+                    ]
+                });
+            }
+        })
+
 
         // Sidebar toggle behavior
         $(function () {
@@ -97,46 +194,52 @@ $(document).ready(function () {
     var colors = ['#5832CE', '#F90904', '#E4D131'];
 
     var chBar = document.getElementById("chBar");
-    var chartData = {
-        labels: ['วัสดุสำนักงาน', ' วัสดุไฟฟ้าวิทยุ', 'วัสดุคอมพิวเตอร์', 'วัสดุงานบ้านงานครัว', 'วัสดุเครื่องแต่งกาย', 'วัสดุของที่ระลึก'],
-        datasets: [{
-            label: ['อนุมัติ'],
-            data: [589, 445, 483, 503, 689, 692, 634],
-            backgroundColor: colors[0]
-        },
-        {
-            label: 'ไม่อนุมัติ',
-            data: [209, 245, 383, 403, 589, 692, 580],
-            backgroundColor: colors[1]
-        },
-        ]
-    };
 
-    if (chBar) {
-        new Chart(chBar, {
-            type: 'bar',
-            data: chartData,
-            responsive: true,
-            options: {
-                scales: {
-                    xAxes: [{
-                        barPercentage: 1,
-                        categoryPercentage: 0.5
-                    }],
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero: false
-                        }
-                    }]
+    $.ajax({
+        type: "GET",
+        url: "/getstaticgraph",
+        success: function (response) {
+            console.log(response)
+            var chartData = {
+                labels: ['วัสดุสำนักงาน', ' วัสดุไฟฟ้าวิทยุ', 'วัสดุคอมพิวเตอร์', 'วัสดุโฆษณา', 'วัสดุงานบ้านงานครัว', 'วัสดุเครื่องแต่งกาย', 'วัสดุของที่ระลึก'],
+                datasets: [{
+                    label: ['อนุมัติ'],
+                    data: [response[0].approve, response[1].approve, response[2].approve, response[3].approve, response[4].approve, response[5].approve, response[6].approve],
+                    backgroundColor: colors[0]
                 },
-                legend: {
-                    display: true,
-                    position: 'bottom'
+                {
+                    label: 'ไม่อนุมัติ',
+                    data: [response[0].disapproval, response[1].disapproval, response[2].disapproval, response[3].disapproval, response[4].disapproval, response[5].disapproval, response[6].disapproval],
+                    backgroundColor: colors[1]
+                },
+                ]
+            };
+            if (chBar) {
+                new Chart(chBar, {
+                    type: 'bar',
+                    data: chartData,
+                    responsive: true,
+                    options: {
+                        scales: {
+                            xAxes: [{
+                                barPercentage: 1,
+                                categoryPercentage: 0.5
+                            }],
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero: false
+                                }
+                            }]
+                        },
+                        legend: {
+                            display: true,
+                            position: 'bottom'
 
-                }
+                        }
+                    }
+                });
             }
-        });
-    }
-
+        }
+    });
 
 });
