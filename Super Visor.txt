@@ -162,3 +162,95 @@ app.get('/detaileditmat' , (req , res) => {
 })
 
 // ================================= สถิติ ====================================
+
+// Show Dash Board
+
+// All Requisition
+app.get('/getstaticdashall' , (req , res) => {
+    const sql = "SELECT COUNT(requisition.status_requisition) AS 'allrequi' FROM requisition WHERE YEAR(requisition.date_requisition) = YEAR(CURDATE()) AND MONTH(requisition.date_requisition) = MONTH(CURDATE()) AND requisition.status_requisition = 4 AND 3"
+    con.query(sql , (err ,result) => {
+        if(err){
+            console.log(err);
+            res.status(500).send("Database Server Error")
+        }
+        else{
+            res.json(result);
+        }
+    })
+})
+
+// Approve Requisition
+app.get('/getstaticdashboard' , (req, res) => {
+    const sql = "SELECT  DISTINCT(SELECT COUNT(a.requisition_id) FROM requisition a WHERE a.status_requisition = 4) AS 'apprequi' FROM requisition JOIN material_requisiotion ON requisition.requisition_id = material_requisiotion.requisition_id WHERE material_requisiotion.amount_of_requisition = material_requisiotion.amount_of_divide AND YEAR(requisition.date_requisition) = YEAR(CURDATE()) AND MONTH(requisition.date_requisition) = MONTH(CURDATE())"
+    con.query(sql , (err , result) => {
+        if(err){
+            console.log(err);
+            res.status(500).send("Database Server Error")
+        }else{
+            res.json(result);
+        }
+    })
+
+})
+
+// Disapproval Requisition
+app.get('/getstaticdashunapp' , (req , res) => {
+    const sql = "SELECT COUNT(requisition.status_requisition) AS 'disrequi' FROM requisition WHERE requisition.status_requisition = 3 AND YEAR(requisition.date_requisition) = YEAR(CURDATE()) AND MONTH(requisition.date_requisition) = MONTH(CURDATE())"
+    con.query(sql , (err , result) => {
+        if(err){
+            console.log(err);
+            res.status(500).send("Database Server Error")
+        }
+        else{
+            res.json(result);
+        }
+    })
+})
+
+// Static Graph
+app.get('/getstaticgraph' , (req , res) => {
+    const sql = "SELECT category.category_id,category.category_name ,SUM(material_requisiotion.amount_of_divide) AS 'approve' , SUM(material_requisiotion.amount_of_requisition) - SUM(material_requisiotion.amount_of_divide) AS 'disapproval' FROM category JOIN material ON category.category_id = material.category_id JOIN material_requisiotion ON material.material_id = material_requisiotion.material_id LEFT JOIN requisition ON material_requisiotion.requisition_id = requisition.requisition_id WHERE requisition.status_requisition IN (3,4) AND YEAR(requisition.date_requisition) = YEAR(CURDATE()) AND MONTH(requisition.date_requisition) = MONTH(CURDATE()) GROUP BY category.category_id"
+
+    con.query(sql , (err , result) => {
+        if(err){
+            console.log(err);
+            res.status(500).send("Database Server Error")
+        }
+        else{
+            console.log(result)
+            res.json(result);
+        }
+    })
+})
+
+// Static Data Table
+app.get('/getstaticmaterial' , (req , res) => {
+
+    const sql = "SELECT material_requisiotion.material_id AS 'id' ,material.material_name AS 'material' , ROUND(SUM(material_requisiotion.amount_of_requisition)/3) AS 'requipermonth' , ROUND(SUM(material_requisiotion.amount_of_divide)/3) AS 'approve' , ROUND(SUM(material_requisiotion.amount_of_requisition)/3) - ROUND(SUM(material_requisiotion.amount_of_divide)/3) AS 'disapproval' , material.unit FROM material_requisiotion JOIN requisition ON requisition.status_requisition = 4 OR requisition.status_requisition = 3 AND requisition.requisition_id = material_requisiotion.requisition_id JOIN material ON material.material_id = material_requisiotion.material_id JOIN category ON material.category_id = category.category_id WHERE YEAR(requisition.date_requisition) = YEAR(CURDATE()) AND MONTH(requisition.date_requisition) = MONTH(CURDATE()) GROUP BY material_requisiotion.material_id"
+    
+    con.query(sql , (err , result) => {
+        if(err){
+            console.log(err);
+            res.status(500).send("Database Server Error")
+        }
+        else{
+            res.send(result);
+        }
+    })
+})
+
+app.post('/getstaticmaterialpermonth' , (req ,res) => {
+    const category = req.body.cate_id
+
+    const sql = "SELECT material_requisiotion.material_id AS 'id' ,material.material_name AS 'material' , ROUND(SUM(material_requisiotion.amount_of_requisition)/3) AS 'requipermonth' , ROUND(SUM(material_requisiotion.amount_of_divide)/3) AS 'approve' , ROUND(SUM(material_requisiotion.amount_of_requisition)/3) - ROUND(SUM(material_requisiotion.amount_of_divide)/3) AS 'disapproval' , material.unit FROM material_requisiotion JOIN requisition ON requisition.status_requisition = 4 OR requisition.status_requisition = 3 AND requisition.requisition_id = material_requisiotion.requisition_id JOIN material ON material.material_id = material_requisiotion.material_id JOIN category ON material.category_id = category.category_id AND material.category_id = ? WHERE YEAR(requisition.date_requisition) = YEAR(CURDATE()) AND MONTH(requisition.date_requisition) = MONTH(CURDATE()) GROUP BY material_requisiotion.material_id"
+
+    con.query(sql , category , (err ,result) => {
+        if(err){
+            console.log(err);
+            res.status(500).send("Database Server Error")
+        }
+        else{
+            res.send(result)
+        }
+    })
+})
