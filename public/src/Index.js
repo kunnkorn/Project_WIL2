@@ -127,10 +127,9 @@ $(document).ready(function () {
                 url: '/dataCategory',
                 data: { cate_id: checkId },
                 dataSrc: function (data) {
-                    return data
+                    return data;
                 }
             },
-
             columns: [
                 { title: 'ลำดับ', defaultContent: "" },
                 { data: 'material_id', title: 'รหัสวัสดุ' },

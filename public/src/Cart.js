@@ -152,7 +152,7 @@ $.ajax({
                                     success: (response) => {
 
                                     }, error: (xhr) => {
-                                        alert(xhr.responseText);
+                                        console.log(xhr.responseText);
                                     }
                                 });
                             }

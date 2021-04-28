@@ -24,7 +24,7 @@ $(document).ready(function () {
     $.ajax({
         type: 'POST',
         url: '/datamaterial',
-        data: { idreq: sessionStorage.number },
+        data: { requi_id: sessionStorage.number },
         success: (response) => {
             let number = 1;
             countitem = response.length;
@@ -59,7 +59,7 @@ $(document).ready(function () {
     $.ajax({
         type: 'POST',
         url: '/datareq',
-        data: { idreq: sessionStorage.number },
+        data: { requi_id: sessionStorage.number },
         success: (response) => {
             let d = new Date(response[0].date_requisition);
             let year = d.getFullYear();
