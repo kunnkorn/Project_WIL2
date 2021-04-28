@@ -16,98 +16,243 @@ function signout() {
 
 
 $(document).ready(function () {
-    $("#badge_req").text(sessionStorage.noti);
-    //statistic
-    var colors = ['#5832CE', '#F90904'];
-    var chBar = document.getElementById("chBar");
-    var chartData = new Chart(chBar, {
-        type: 'bar',
-        data: {
-            labels: ['วัสดุสำนักงาน', ' วัสดุไฟฟ้าวิทยุ', 'วัสดุคอมพิวเตอร์', 'วัสดุงานบ้านงานครัว', 'วัสดุเครื่องแต่งกาย', 'วัสดุของที่ระลึก'],
-            datasets: [{
-                label: 'อนุมัติ',
-                data: [589, 445, 483, 503, 689, 692, 634],
-                backgroundColor: colors[0]
-            },
-            {
-                label: 'ไม่อนุมัติ',
-                data: [209, 245, 383, 403, 589, 692, 580],
-                backgroundColor: colors[1]
-            }]
+
+    // Show Dash Board 
+    // Show Dash Board All
+    $.ajax({
+        type: "GET",
+        url: "/getstaticdashall",
+        success: function (response) {
+            $("#all").text(response[0].allrequi)
         },
-        options: {
-            responsive: true,
-            scales: {
-                xAxes: [{
-                    barPercentage: 1,
-                    categoryPercentage: 0.5
-                }],
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: false
+        error: (xhr) => {
+            alert(xhr.responseText);
+        }
+    });
+
+    // Show Dash Board Approve Requisition
+    $.ajax({
+        type: "GET",
+        url: "/getstaticdashboard",
+        success: function (response) {
+            $("#check").text(response[0].apprequi)
+        },
+        error: (xhr) => {
+            alert(xhr.responseText);
+        }
+    });
+
+    // Show Dash Board Disapproval Requisition
+    $.ajax({
+        type: "GET",
+        url: "/getstaticdashunapp",
+        success: function (response) {
+            $("#noncheck").text(response[0].disrequi)
+        },
+        error: (xhr) => {
+            alert(xhr.responseText);
+        }
+    });
+
+
+    $("#month").change(function () {
+        var month = $("#month").val();
+
+        $.ajax({
+            type: "POST",
+            url: "/getstaticdashallpermonth",
+            data: { month_se: month },
+            success: function (response) {
+                console.log($("#all").attr('id') + response[0].allrequi)
+                $("#all").text(response[0].allrequi)
+                
+                // let dashboardall = "";
+                
+                //     dashboardall += "<div class='col-xl-3 col-6'><div class='card ' style='background-color: #92E5FF;'><div class='card-body'><h5 class='card-title'>ใบเบิกทั้งหมด</h5><p class='card-text' id='all'>" + response[0].allrequi + "<span class='iconify' data-icon='ant-design:file-text-outlined'id='iconsta'></span></p></div></div>"
+                
+                // $("#firstcart").html(dashboardall)
+            }
+        });
+
+        $.ajax({
+            type: "POST",
+            url: "/getstaticdashboardpermonth",
+            data: { month_se: month },
+            success: function (response) {
+                $("#check").text(response[0].apprequi)
+            }
+        });
+
+        $.ajax({
+            type: "POST",
+            url: "/getstaticdashunapppermonth",
+            data: { month_se: month },
+            success: function (response) {
+                $("#noncheck").text(response[0].disrequi)
+            }
+        });
+    })
+
+
+    var colors = ['#5832CE', '#F90904'];
+    $.ajax({
+        type: "GET",
+        url: "/getstaticgraph",
+        success: function (response) {
+            var chartData = {
+                labels: ['วัสดุสำนักงาน', ' วัสดุไฟฟ้าวิทยุ', 'วัสดุคอมพิวเตอร์', 'วัสดุโฆษณา', 'วัสดุงานบ้านงานครัว', 'วัสดุเครื่องแต่งกาย', 'วัสดุของที่ระลึก'],
+                datasets: [{
+                    label: ['อนุมัติ'],
+                    data: [response[0].approve, response[1].approve, response[2].approve, response[3].approve, response[4].approve, response[5].approve, response[6].approve],
+                    backgroundColor: colors[0]
+                },
+                {
+                    label: 'ไม่อนุมัติ',
+                    data: [response[0].disapproval, response[1].disapproval, response[2].disapproval, response[3].disapproval, response[4].disapproval, response[5].disapproval, response[6].disapproval],
+                    backgroundColor: colors[1]
+                },
+                ]
+            };
+            if (chBar) {
+                new Chart(chBar, {
+                    type: 'bar',
+                    data: chartData,
+                    responsive: true,
+                    options: {
+                        scales: {
+                            xAxes: [{
+                                barPercentage: 1,
+                                categoryPercentage: 0.5
+                            }],
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero: false
+                                }
+                            }]
+                        },
+                        legend: {
+                            display: true,
+                            position: 'bottom'
+
+                        }
                     }
-                }]
-            },
-            legend: {
-                display: true,
-                position: 'bottom',
+                });
             }
         }
     });
 
+    $("#badge_req").text(sessionStorage.noti);
     //statistic
-    var materialStatistic = [{
-        "number": "1",
-        "id": "101000001",
-        "name": "กรรไกรตัดกระดาษ 6",
-        "amountMonth": "1658",
-        "complete": "748",
-        "notcomplete": "610",
-        "half": "300",
-        "unit": "อัน",
-    }, {
-        "number": "2",
-        "id": "101000002",
-        "name": "กรรไกรตัดกระดาษ 9",
-        "amountMonth": "1200",
-        "complete": "648",
-        "notcomplete": "502",
-        "half": "50",
-        "unit": "อัน",
-    }, {
-        "number": "3",
-        "id": "101000003",
-        "name": "กระดาษ POSTIT ขนาด 2*3",
-        "amountMonth": "900",
-        "complete": "750",
-        "notcomplete": "138",
-        "half": "12",
-        "unit": "เล่ม",
-    }];
 
+
+
+    var rowID;
+    var number = 1;
     var table = $("#materialTable").DataTable({
         responsive: true,       //for responsive column display
         deferRender: true,      //if large data, use this option
 
-        data: materialStatistic,
+        ajax: ({
+            type: "GET",
+            url: "/getstaticmaterial",
+            dataSrc: (data) => {
+                return data;
+            }
+        }),
         columns: [
-            { data: "number", title: "ลำดับ" },
-            { data: "id", title: "รหัสวัสดุ" },
-            { data: "name", title: "รายการ" },
-            { data: "amountMonth", title: "จำนวนที่เบิกรายเดือน" },
-            { data: "complete", title: "อนุมัติ" },
-            { data: "notcomplete", title: "ไม่อนุมัติ" },
-            { data: "half", title: "อนุมัติแต่ไม่ครบ" },
-            { data: "unit", title: "หน่ายนับ" },
-
+            { title: 'ลำดับ', defaultContent: "" },
+            { data: 'id', title: "รหัสวัสดุ" },
+            { data: 'material', title: "รายการ" },
+            { data: 'requipermonth', title: "จำนวนที่เบิกรายเดือน" },
+            { data: 'approve', title: "อนุมัติ" },
+            { data: 'disapproval', title: "ไม่อนุมัติ" },
+            { data: 'unit', title: "หน่วยนับ" }
         ],
-        columnDefs: [
-            // make the last column align right, also target: "_all"
-            { "className": "dt-center", "targets": 5 }
-        ]
+        columnDefs: [{
+            "targets": 0,
+            "createdCell": function (td, cellData, rowData, row, col) {
+                $(td).text(number);
+                number++;
+            }
+        }]
+    })
 
-    });
+    $("#select").change(function () {
+        const category_id = $("#select").val();
 
+        table.clear();
+        table = $("#materialTable").dataTable().fnDestroy();
+        $("#materialTable").empty();
+        var numberr = 1;
+        table = $("#materialTable").DataTable({
+            responsive: true,       //for responsive column display
+            deferRender: true,      //if large data, use this option
+
+            ajax: ({
+                type: "POST",
+                url: "/getstaticmaterialpermonth",
+                data: { cate_id: category_id },
+                dataSrc: (data) => {
+                    return data;
+                }
+            }),
+            columns: [
+                { title: 'ลำดับ', defaultContent: "" },
+                { data: 'id', title: "รหัสวัสดุ" },
+                { data: 'material', title: "รายการ" },
+                { data: 'requipermonth', title: "จำนวนที่เบิกรายเดือน" },
+                { data: 'approve', title: "อนุมัติ" },
+                { data: 'disapproval', title: "ไม่อนุมัติ" },
+                { data: 'unit', title: "หน่วยนับ" }
+            ],
+            columnDefs: [{
+                "targets": 0,
+                "createdCell": function (td, cellData, rowData, row, col) {
+                    $(td).text(numberr);
+                    numberr++;
+                }
+            }]
+        });
+
+        if (category_id == 0) {
+            table.clear();
+            table = $("#materialTable").dataTable().fnDestroy();
+            $("#materialTable").empty();
+            var numberrr = 1;
+            table = $("#materialTable").DataTable({
+                responsive: true,       //for responsive column display
+                deferRender: true,      //if large data, use this option
+
+                ajax: ({
+                    type: 'GET',
+                    url: '/getstaticmaterial',
+                    dataSrc: (data) => {
+                        return data;
+                    }
+
+                }),
+
+                columns: [
+                    { title: 'ลำดับ', defaultContent: "" },
+                    { data: 'id', title: "รหัสวัสดุ" },
+                    { data: 'material', title: "รายการ" },
+                    { data: 'requipermonth', title: "จำนวนที่เบิกรายเดือน" },
+                    { data: 'approve', title: "อนุมัติ" },
+                    { data: 'disapproval', title: "ไม่อนุมัติ" },
+                    { data: 'unit', title: "หน่วยนับ" }
+                ],
+                columnDefs: [
+                    {
+                        "targets": 0,
+                        "createdCell": function (td, cellData, rowData, row, col) {
+                            $(td).text(numberrr);
+                            numberrr++;
+                        }
+                    }
+                ]
+            });
+        }
+    })
     //model export file
     $("#export").on("click", function () {
         $("#modelExport").modal("show");
@@ -129,4 +274,6 @@ $(document).ready(function () {
             $('#sidebar, #content').toggleClass('active');
         });
     });
+
+
 })

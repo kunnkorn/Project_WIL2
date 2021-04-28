@@ -78,18 +78,19 @@
                     </h3>
                     <div class="ml-auto d-flex">
                         <select name="" class="form-control" id="month">
-                            <option value="">มกราคม</option>
-                            <option value="">กุมภาพันธ์</option>
-                            <option value="">มีนาคม</option>
-                            <option value="">เมษายน</option>
-                            <option value="">พฤษภาคม</option>
-                            <option value="">มิถุนายน</option>
-                            <option value="">กรกฎาคม</option>
-                            <option value="">สิงหาคม</option>
-                            <option value="">กันยายน</option>
-                            <option value="">ตุลาคม</option>
-                            <option value="">พฤศจิกายน</option>
-                            <option value="">ธันวาคม</option>
+                            <option value="0">ทั้งหมด</option>
+                            <option value="1">มกราคม</option>
+                            <option value="2">กุมภาพันธ์</option>
+                            <option value="3">มีนาคม</option>
+                            <option value="4">เมษายน</option>
+                            <option value="5">พฤษภาคม</option>
+                            <option value="6">มิถุนายน</option>
+                            <option value="7">กรกฎาคม</option>
+                            <option value="8">สิงหาคม</option>
+                            <option value="9">กันยายน</option>
+                            <option value="10">ตุลาคม</option>
+                            <option value="11">พฤศจิกายน</option>
+                            <option value="12">ธันวาคม</option>
 
                         </select>
 
@@ -109,52 +110,41 @@
 
                     </ol>
                     <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <div class="row mt-4" style="justify-content: center;">
-                                <div class="col-xl-3 col-6 ">
-                                    <div class="card " style="background-color: #92E5FF;">
-                                        <div class="card-body">
-                                            <h5 class="card-title ">ใบเบิกทั้งหมด</h5>
-                                            <p class="card-text" id="all">100
-                                                <span class="iconify" data-icon="ant-design:file-text-outlined"
-                                                    id="iconsta"></span>
+                        <div class="carousel-item active" >
+                            <div class='row mt-4' style='justify-content: center;' id="firstcard">
+                                <div class='col-xl-3 col-6'>
+                                    <div class='card ' style='background-color: #92E5FF;'>
+                                        <div class='card-body'>
+                                            <h5 class='card-title'>ใบเบิกทั้งหมด</h5>
+                                            <p class='card-text' id='all'>100
+                                                <span class='iconify' data-icon='ant-design:file-text-outlined'
+                                                    id='iconsta'></span>
                                             </p>
 
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-xl-3 col-6">
-                                    <div class="card " style="background-color: #A5FEB9">
-                                        <div class="card-body">
-                                            <h5 class="card-title">ใบเบิกที่อนุมัติ</h5>
-                                            <p class="card-text" id="check">73
-                                                <span class="iconify " data-icon="ant-design:file-done-outlined"
-                                                    id="iconsta"></span>
+                                <div class='col-xl-3 col-6'>
+                                    <div class='card' style='background-color: #A5FEB9'>
+                                        <div class='card-body'>
+                                            <h5 class='card-title'>ใบเบิกที่อนุมัติ</h5>
+                                            <p class='card-text' id='check'>73
+                                                <span class='iconify' data-icon='ant-design:file-done-outlined'
+                                                    id='iconsta'></span>
                                             </p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="row mt-3 " style="justify-content: center;">
-                                <div class="col-xl-3 col-6">
-                                    <div class="card " style="background-color: #FF9292">
-                                        <div class="card-body ">
-                                            <h5 class="card-title">ใบเบิกที่ไม่อนุมัติ</h5>
-                                            <p class="card-text" id="noncheck">11
-                                                <span class="iconify " data-icon="bi:file-earmark-x"
-                                                    id="iconsta"></span>
-                                            </p>
 
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-3 col-6">
-                                    <div class="card" style="background-color: #FFF171">
-                                        <div class="card-body">
-                                            <h5 class="card-title">ใบเบิกที่อนุมัติแต่ได้ของไม่ครบ</h5>
-                                            <p class="card-text" id="half">16
-                                                <span class="iconify " data-icon="ant-design:file-exclamation-outlined"
-                                                    id="iconsta"></span>
+                            <div class='row mt-3' style='justify-content: center;' id="secondcard">
+                                <div class='col-xl-3 col-6'>
+                                    <div class='card' style='background-color: #FF9292'>
+                                        <div class='card-body'>
+                                            <h5 class='card-title'>ใบเบิกที่ไม่อนุมัติ</h5>
+                                            <p class='card-text' id='noncheck'>11
+                                                <span class='iconify' data-icon='bi:file-earmark-x'
+                                                    id='iconsta'></span>
                                             </p>
 
                                         </div>
@@ -187,14 +177,16 @@
             <!--dropdown for catagory-->
             <div class="row mt-5 ml-2 mb-3">
                 <div class="col-12 d-flex">
-                    <select name="category" id="category">
-                        <option value="">วัสดุสำนักงาน</option>
-                        <option value="">วัสดุไฟฟ้าวิทยุ</option>
-                        <option value="">วัสดุคอมพิวเตอร์</option>
-                        <option value="">วัสดุงานบ้านงานครัว</option>
-                        <option value="">วัสดุเครื่องแต่งกาย</option>
-                        <option value="">วัสดุของที่ระลึก</option>
-                        <option value="">ทั้งหมด</option>
+                    <select name="category" id="select">
+                        <option value="0">ทั้งหมด</option>
+                        <option value="1">วัสดุสำนักงาน</option>
+                        <option value="2">วัสดุไฟฟ้าวิทยุ</option>
+                        <option value="3">วัสดุคอมพิวเตอร์</option>
+                        <option value="4">วัสดุโฆษณา</option>
+                        <option value="5">วัสดุงานบ้านงานครัว</option>
+                        <option value="6">วัสดุเครื่องแต่งกาย</option>
+                        <option value="7">วัสดุของที่ระลึก</option>
+                        
                     </select> <br><br>
                     <button type="button" class="btn btn-warning rounded-pill ml-auto" id="export">
                         <span class="iconify" data-icon="uil:export" data-inline="false"></span>นำออกไฟล์</button>
