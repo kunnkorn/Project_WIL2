@@ -22,6 +22,8 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
     <script src="src/material.js"></script>
     <script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.2/xlsx.full.min.js"></script>
+
 
 </head>
 
@@ -75,17 +77,28 @@
                                 data-icon="fa-solid:clipboard-list" data-inline="false"></span> รายการวัสดุ</h3>
                     </div>
                     <div class="text-right col-lg-6 col-md-8 ">
-                        <button type="button" class="btn btn-ouline-light" style="size: 45px;" data-toggle="modal"
+                        <button type="button" class="btn btn-ouline-light mb-3" style="size: 45px;" data-toggle="modal"
                             data-target="#modeladd">
                             <span class="iconify" data-icon="eva:file-add-outline" data-inline="false"
                                 id="iconadd"></span>
                             <p style=" font-family: 'Pridi', serif;">เพิ่มวัสดุ</p>
                         </button>
-                        <button type="button" class="btn btn-ouline-light ml-4" style="size: 45px;" id="btnimport">
+                        <label class="custom-file-upload text-center">
+                            <span class="iconify" data-icon="fluent:folder-add-24-regular" data-inline="false"
+                                id="btnimport"></span>
+                            <input type="file" id="input" />
+                            <p style=" font-family: 'Pridi', serif;">นำเข้าข้อมูล</p>
+                        </label>
+                        <!-- <label class="custom-file-upload iconify" data-icon="fluent:folder-add-24-regular" data-inline="false">
+                            <input type="file" id="btnimport" accept=".xls,.xlsx" />
+                            <p style=" font-family: 'Pridi', serif;">นำเข้าข้อมูล</p>
+                        </label> -->
+                        <!-- <button  type="button" class="btn btn-ouline-light ml-4" style="size: 45px;">
                             <span class="iconify" data-icon="fluent:folder-add-24-regular" data-inline="false"
                                 id="iconimport"></span>
+                            <input class="form-control" type="file" id="input" accept=".xls,.xlsx">
                             <p style=" font-family: 'Pridi', serif;">นำเข้าข้อมูล</p>
-                        </button>
+                        </button> -->
                     </div>
 
                 </div>
@@ -144,7 +157,8 @@
                                     <input type="text" class="form-control" id="EditUnit" required>
                                 </div>
                                 <div class="modal-footer justify-content-center">
-                                    <button type="submit" class="btn btn-success rounded-pill" id="btnSaveEdit">บันทึก</button>
+                                    <button type="submit" class="btn btn-success rounded-pill"
+                                        id="btnSaveEdit">บันทึก</button>
                                     <button type="button" class="btn btn-danger  rounded-pill" data-dismiss="modal"
                                         id="btnCancelEdit">ยกเลิก</button>
                                 </div>
@@ -221,8 +235,25 @@
         </div>
     </div>
 
+    <!-- Modal -->
+    <div class="modal fade" id="modalimport" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Process.......</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated" id="processbar"></div>
+                        <!-- <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
+                            aria-valuenow="" aria-valuemin="0" aria-valuemax="100" id="processbar"></div> -->
+                    </div>
+                </div>
 
-
+            </div>
+        </div>
+    </div>
 
 
 

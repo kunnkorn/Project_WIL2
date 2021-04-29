@@ -19,12 +19,12 @@ $(document).ready(function () {
 
     // Show Dash Board 
     // Show Dash Board All
+    var buttons;
     $.ajax({
         type: "GET",
         url: "/getstaticdashall",
         success: function (response) {
             $("#all").text(response[0].allrequi)
-            $("#month").val(response[0].curmonth)
         },
         error: (xhr) => {
             alert(xhr.responseText);
@@ -56,7 +56,6 @@ $(document).ready(function () {
     });
 
 
-    var chartData
     $("#month").change(function () {
         var month = $("#month").val();
 
@@ -65,7 +64,14 @@ $(document).ready(function () {
             url: "/getstaticdashallpermonth",
             data: { month_se: month },
             success: function (response) {
+                console.log($("#all").attr('id') + response[0].allrequi)
                 $("#all").text(response[0].allrequi)
+
+                // let dashboardall = "";
+
+                //     dashboardall += "<div class='col-xl-3 col-6'><div class='card ' style='background-color: #92E5FF;'><div class='card-body'><h5 class='card-title'>ใบเบิกทั้งหมด</h5><p class='card-text' id='all'>" + response[0].allrequi + "<span class='iconify' data-icon='ant-design:file-text-outlined'id='iconsta'></span></p></div></div>"
+
+                // $("#firstcart").html(dashboardall)
             }
         });
 
@@ -86,89 +92,6 @@ $(document).ready(function () {
                 $("#noncheck").text(response[0].disrequi)
             }
         });
-
-
-        $.ajax({
-            type: "POST",
-            url: "/getstaticgraphpermonth",
-            data: { month_se: month },
-            success: function (response) {
-                if(response == ""){
-                    chartData = {
-                        datasets: [{
-                            label: ['ไม่มีข้อมูล']
-                        }]
-                    };
-                    if (chBar) {
-                        new Chart(chBar, {
-                            type: 'bar',
-                            data: chartData,
-                            responsive: true,
-                            title:{text: 'ไม่มีข้อมูล'} , 
-                            options: {
-                                scales: {
-                                    xAxes: [{
-                                        barPercentage: 1,
-                                        categoryPercentage: 0.5
-                                    }],
-                                    yAxes: [{
-                                        ticks: {
-                                            beginAtZero: false
-                                        }
-                                    }]
-                                },
-                                legend: {
-                                    display: true,
-                                    position: 'bottom'
-    
-                                }
-                            }
-                        });
-                    }
-                }
-                else{
-                    chartData = {
-                        labels: ['วัสดุสำนักงาน', ' วัสดุไฟฟ้าวิทยุ', 'วัสดุคอมพิวเตอร์', 'วัสดุโฆษณา', 'วัสดุงานบ้านงานครัว', 'วัสดุเครื่องแต่งกาย', 'วัสดุของที่ระลึก'],
-                        datasets: [{
-                            label: ['อนุมัติ'],
-                            data: [response[0].approve, response[1].approve, response[2].approve, response[3].approve, response[4].approve, response[5].approve, response[6].approve],
-                            backgroundColor: colors[0]
-                        },
-                        {
-                            label: 'ไม่อนุมัติ',
-                            data: [response[0].disapproval, response[1].disapproval, response[2].disapproval, response[3].disapproval, response[4].disapproval, response[5].disapproval, response[6].disapproval],
-                            backgroundColor: colors[1]
-                        },
-                        ]
-                    };
-                    if (chBar) {
-                        new Chart(chBar, {
-                            type: 'bar',
-                            data: chartData,
-                            responsive: true,
-                            options: {
-                                scales: {
-                                    xAxes: [{
-                                        barPercentage: 1,
-                                        categoryPercentage: 0.5
-                                    }],
-                                    yAxes: [{
-                                        ticks: {
-                                            beginAtZero: false
-                                        }
-                                    }]
-                                },
-                                legend: {
-                                    display: true,
-                                    position: 'bottom'
-    
-                                }
-                            }
-                        });
-                    }
-                }
-            }
-        });
     })
 
 
@@ -177,7 +100,7 @@ $(document).ready(function () {
         type: "GET",
         url: "/getstaticgraph",
         success: function (response) {
-            chartData = {
+            var chartData = {
                 labels: ['วัสดุสำนักงาน', ' วัสดุไฟฟ้าวิทยุ', 'วัสดุคอมพิวเตอร์', 'วัสดุโฆษณา', 'วัสดุงานบ้านงานครัว', 'วัสดุเครื่องแต่งกาย', 'วัสดุของที่ระลึก'],
                 datasets: [{
                     label: ['อนุมัติ'],
@@ -229,7 +152,6 @@ $(document).ready(function () {
     var table = $("#materialTable").DataTable({
         responsive: true,       //for responsive column display
         deferRender: true,      //if large data, use this option
-
         ajax: ({
             type: "GET",
             url: "/getstaticmaterial",
@@ -254,44 +176,14 @@ $(document).ready(function () {
             }
         }]
     })
+    buttons = new $.fn.dataTable.Buttons(table, {
+        buttons: [
+            'excelHtml5',
+        ]
+    }).container().appendTo($('#exportConfirm'));
 
     $("#select").change(function () {
         const category_id = $("#select").val();
-
-        table.clear();
-        table = $("#materialTable").dataTable().fnDestroy();
-        $("#materialTable").empty();
-        var numberr = 1;
-        table = $("#materialTable").DataTable({
-            responsive: true,       //for responsive column display
-            deferRender: true,      //if large data, use this option
-
-            ajax: ({
-                type: "POST",
-                url: "/getstaticmaterialpermonth",
-                data: { cate_id: category_id },
-                dataSrc: (data) => {
-                    return data;
-                }
-            }),
-            columns: [
-                { title: 'ลำดับ', defaultContent: "" },
-                { data: 'id', title: "รหัสวัสดุ" },
-                { data: 'material', title: "รายการ" },
-                { data: 'requipermonth', title: "จำนวนที่เบิกรายเดือน" },
-                { data: 'approve', title: "อนุมัติ" },
-                { data: 'disapproval', title: "ไม่อนุมัติ" },
-                { data: 'unit', title: "หน่วยนับ" }
-            ],
-            columnDefs: [{
-                "targets": 0,
-                "createdCell": function (td, cellData, rowData, row, col) {
-                    $(td).text(numberr);
-                    numberr++;
-                }
-            }]
-        });
-
         if (category_id == 0) {
             table.clear();
             table = $("#materialTable").dataTable().fnDestroy();
@@ -329,21 +221,55 @@ $(document).ready(function () {
                     }
                 ]
             });
+            buttons = new $.fn.dataTable.Buttons(table, {
+                buttons: [
+                    'excelHtml5',
+                ]
+            }).container().appendTo($('#exportConfirm'));
+        } else {
+            table.clear();
+            table = $("#materialTable").dataTable().fnDestroy();
+            $("#materialTable").empty();
+            var numberr = 1;
+            table = $("#materialTable").DataTable({
+                responsive: true,       //for responsive column display
+                deferRender: true,      //if large data, use this option
+
+                ajax: ({
+                    type: "POST",
+                    url: "/getstaticmaterialpermonth",
+                    data: { cate_id: category_id },
+                    dataSrc: (data) => {
+                        return data;
+                    }
+                }),
+                columns: [
+                    { title: 'ลำดับ', defaultContent: "" },
+                    { data: 'id', title: "รหัสวัสดุ" },
+                    { data: 'material', title: "รายการ" },
+                    { data: 'requipermonth', title: "จำนวนที่เบิกรายเดือน" },
+                    { data: 'approve', title: "อนุมัติ" },
+                    { data: 'disapproval', title: "ไม่อนุมัติ" },
+                    { data: 'unit', title: "หน่วยนับ" }
+                ],
+                columnDefs: [{
+                    "targets": 0,
+                    "createdCell": function (td, cellData, rowData, row, col) {
+                        $(td).text(numberr);
+                        numberr++;
+                    }
+                }]
+            });
+            buttons = new $.fn.dataTable.Buttons(table, {
+                buttons: [
+                    'excelHtml5',
+                ]
+            }).container().appendTo($('#exportConfirm'));
         }
     })
     //model export file
     $("#export").on("click", function () {
         $("#modelExport").modal("show");
-    });
-
-    $("#exportConfirm").on("click", function (e) {
-        $("#modelExport").modal("hide");
-        Swal.fire({
-            icon: 'success',
-            title: 'นำออกข้อมูลเสร็จสิ้น',
-            showConfirmButton: false,
-            timer: 1500
-        })
     });
     // Sidebar toggle behavior
     $(function () {
@@ -353,5 +279,6 @@ $(document).ready(function () {
         });
     });
 
-
+    $(".dt-button").text("ยืนยัน");
+    $(".dt-button").attr("class", "dt-button btn btn-success");
 })
