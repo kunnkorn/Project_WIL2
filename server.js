@@ -902,6 +902,75 @@ app.post('/editmaterial', (req, res) => {
     });
 });
 
+// ทั้งหมด
+app.post('/getstaticdashallpermonth', (req, res) => {
+
+    const month = req.body.month_se
+
+    const sql = "SELECT COUNT(requisition.status_requisition) AS 'allrequi'  FROM requisition WHERE YEAR(requisition.date_requisition) = YEAR(CURDATE()) AND MONTH(requisition.date_requisition) = ? AND requisition.status_requisition = 4 AND 3"
+    con.query(sql, [month] , (err, result) => {
+        if (err) {
+            console.log(err);
+            res.status(500).send("Database Server Error")
+        }
+        else {
+            res.json(result);
+        }
+    })
+})
+
+
+// ไม่อนุมัติ
+app.post('/getstaticdashunapppermonth' , (req , res) => {
+    const month = req.body.month_se
+
+    const sql = "SELECT COUNT(requisition.status_requisition) AS 'disrequi' FROM requisition WHERE requisition.status_requisition = 3 AND YEAR(requisition.date_requisition) = YEAR(CURDATE()) AND MONTH(requisition.date_requisition) = ?"
+    con.query(sql, [month] , (err, result) => {
+        if (err) {
+            console.log(err);
+            res.status(500).send("Database Server Error")
+        }
+        else {
+            res.json(result);
+        }
+    })
+})
+
+
+// อนุมัติ
+app.post('/getstaticdashboardpermonth' , (req , res) => {
+    const month = req.body.month_se
+
+    const sql = "SELECT COUNT(requisition.status_requisition) AS 'apprequi' FROM requisition WHERE requisition.status_requisition = 4 AND YEAR(requisition.date_requisition) = YEAR(CURDATE()) AND MONTH(requisition.date_requisition) = ?"
+    con.query(sql, [month] , (err, result) => {
+        if (err) {
+            console.log(err);
+            res.status(500).send("Database Server Error")
+        } else {
+            res.json(result);
+        }
+    })
+})
+
+
+// กราฟ เดือน
+app.post('/getstaticgraphpermonth' , (req ,res) => {
+    const month = req.body.month_se;
+
+    const sql = "SELECT category.category_id,category.category_name ,SUM(material_requisiotion.amount_of_divide) AS 'approve' , SUM(material_requisiotion.amount_of_requisition) - SUM(material_requisiotion.amount_of_divide) AS 'disapproval' FROM category JOIN material ON category.category_id = material.category_id JOIN material_requisiotion ON material.material_id = material_requisiotion.material_id LEFT JOIN requisition ON material_requisiotion.requisition_id = requisition.requisition_id WHERE requisition.status_requisition IN (3,4) AND YEAR(requisition.date_requisition) = YEAR(CURDATE()) AND MONTH(requisition.date_requisition) = ? GROUP BY category.category_id"
+
+    con.query(sql, [month] , (err, result) => {
+        if (err) {
+            console.log(err);
+            res.status(500).send("Database Server Error")
+        }
+        else {
+            console.log(result)
+            res.json(result);
+        }
+    })
+})
+
 // ===================================================== Super Visor ==========================================================
 
 // สถิติการเบิกรายคน
@@ -1139,14 +1208,14 @@ app.get('/detaileditmat' , (req , res) => {
 // Show Dash Board
 
 // All Requisition
-app.get('/getstaticdashall' , (req , res) => {
-    const sql = "SELECT COUNT(requisition.status_requisition) AS 'allrequi' FROM requisition WHERE YEAR(requisition.date_requisition) = YEAR(CURDATE()) AND MONTH(requisition.date_requisition) = MONTH(CURDATE()) AND requisition.status_requisition = 4 AND 3"
-    con.query(sql , (err ,result) => {
-        if(err){
+app.get('/getstaticdashall', (req, res) => {
+    const sql = "SELECT COUNT(requisition.status_requisition) AS 'allrequi' , MONTH(CURDATE()) AS 'curmonth' FROM requisition WHERE YEAR(requisition.date_requisition) = YEAR(CURDATE()) AND MONTH(requisition.date_requisition) = MONTH(CURDATE()) AND requisition.status_requisition = 4 AND 3"
+    con.query(sql, (err, result) => {
+        if (err) {
             console.log(err);
             res.status(500).send("Database Server Error")
         }
-        else{
+        else {
             res.json(result);
         }
     })
