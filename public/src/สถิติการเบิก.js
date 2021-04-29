@@ -40,7 +40,7 @@ $(document).ready(function () {
             type: "GET",
             url: "/getstaticdashall",
             success: function (data) {
-                $("#check").text(data[0].allrequi);
+                $("#all").text(data[0].allrequi);
             },
             error: (xhr) => {
                 alert(xhr.responseText);
@@ -52,7 +52,7 @@ $(document).ready(function () {
             type: "GET",
             url: "/getstaticdashboard",
             success: function (data) {
-                $("#all").text(data[0].apprequi)
+                $("#check").text(data[0].apprequi)
             },
             error: (xhr) => {
                 alert(xhr.responseText);

@@ -907,7 +907,7 @@ app.post('/getstaticdashallpermonth', (req, res) => {
 
     const month = req.body.month_se
 
-    const sql = "SELECT COUNT(requisition.status_requisition) AS 'allrequi'  FROM requisition WHERE YEAR(requisition.date_requisition) = YEAR(CURDATE()) AND MONTH(requisition.date_requisition) = ? AND requisition.status_requisition = 4 AND 3"
+    const sql = "SELECT COUNT(requisition.status_requisition) AS 'allrequi' , MONTH(CURDATE()) AS 'curmonth' FROM requisition WHERE requisition.status_requisition = 4 OR requisition.status_requisition =  3 AND YEAR(requisition.date_requisition) = YEAR(CURDATE()) AND MONTH(requisition.date_requisition) = ?"
     con.query(sql, [month] , (err, result) => {
         if (err) {
             console.log(err);
@@ -965,7 +965,6 @@ app.post('/getstaticgraphpermonth' , (req ,res) => {
             res.status(500).send("Database Server Error")
         }
         else {
-            console.log(result)
             res.json(result);
         }
     })
@@ -1209,7 +1208,7 @@ app.get('/detaileditmat' , (req , res) => {
 
 // All Requisition
 app.get('/getstaticdashall', (req, res) => {
-    const sql = "SELECT COUNT(requisition.status_requisition) AS 'allrequi' , MONTH(CURDATE()) AS 'curmonth' FROM requisition WHERE YEAR(requisition.date_requisition) = YEAR(CURDATE()) AND MONTH(requisition.date_requisition) = MONTH(CURDATE()) AND requisition.status_requisition = 4 AND 3"
+    const sql = "SELECT COUNT(requisition.status_requisition) AS 'allrequi' , MONTH(CURDATE()) AS 'curmonth' FROM requisition WHERE requisition.status_requisition = 4 OR requisition.status_requisition =  3 AND YEAR(requisition.date_requisition) = YEAR(CURDATE()) AND MONTH(requisition.date_requisition) = MONTH(CURDATE())"
     con.query(sql, (err, result) => {
         if (err) {
             console.log(err);
