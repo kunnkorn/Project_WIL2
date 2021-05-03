@@ -342,8 +342,9 @@ $(document).ready(function () {
                 workbook.SheetNames.forEach(sheet => {
                     let rowObject = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[sheet]);
                     console.log(rowObject);
+                    // console.log(rowObject.length);
                     console.log(rowObject[0]["วัสดุคงคลัง มหาวิทยาลัยแม่ฟ้าหลวง"]);
-                    for (let i = 2; i <= rowObject.length; i++) {
+                    for (let i = 2; i < rowObject.length; i++) {
 
                         // console.log(rowObject[i].__EMPTY + " " + rowObject[i].__EMPTY_1 + " " + rowObject[i].__EMPTY_2);
                         // $("#processbar").attr('aria-valuenow', '100');
@@ -367,56 +368,61 @@ $(document).ready(function () {
                         //         }
                         //     });
                         // });
-
+                        // console.log(rowObject[0]["วัสดุคงคลัง มหาวิทยาลัยแม่ฟ้าหลวง"]);
+                        console.log(i);
                         if (rowObject[0]["วัสดุคงคลัง มหาวิทยาลัยแม่ฟ้าหลวง"] == "วัสดุสำนักงาน") {
-                            $.ajax({
-                                type: 'POST',
-                                url: '/importmaterial',
-                                data: { material_id: rowObject[i].__EMPTY, material_name:rowObject[i].__EMPTY_1, material_unit:rowObject[i].__EMPTY_2, category_id: 1 }
-                            })
-                        }else if(rowObject[0]["วัสดุคงคลัง มหาวิทยาลัยแม่ฟ้าหลวง"] == "วัสดุไฟฟ้าและวิทยุ"){
-                            $.ajax({
-                                type: 'POST',
-                                url: '/importmaterial',
-                                data: { material_id: rowObject[i].__EMPTY, material_name:rowObject[i].__EMPTY_1, material_unit:rowObject[i].__EMPTY_2, category_id: 2 }
-                            })
-                        }else if(rowObject[0]["วัสดุคงคลัง มหาวิทยาลัยแม่ฟ้าหลวง"] == "วัสดุคอมพิวเตอร์"){
-                            $.ajax({
-                                type: 'POST',
-                                url: '/importmaterial',
-                                data: { material_id: rowObject[i].__EMPTY, material_name:rowObject[i].__EMPTY_1, material_unit:rowObject[i].__EMPTY_2, category_id: 3 }
-                            })
-                        }else if(rowObject[0]["วัสดุคงคลัง มหาวิทยาลัยแม่ฟ้าหลวง"] == "วัสดุโฆษณาและเผยแพร่"){
-                            $.ajax({
-                                type: 'POST',
-                                url: '/importmaterial',
-                                data: { material_id: rowObject[i].__EMPTY, material_name:rowObject[i].__EMPTY_1, material_unit:rowObject[i].__EMPTY_2, category_id: 4 }
-                            })
-                        }else if(rowObject[0]["วัสดุคงคลัง มหาวิทยาลัยแม่ฟ้าหลวง"] == "วัสดุงานบ้านงานครัว"){
-                            $.ajax({
-                                type: 'POST',
-                                url: '/importmaterial',
-                                data: { material_id: rowObject[i].__EMPTY, material_name:rowObject[i].__EMPTY_1, material_unit:rowObject[i].__EMPTY_2, category_id: 5 }
-                            })
-                        }else if(rowObject[0]["วัสดุคงคลัง มหาวิทยาลัยแม่ฟ้าหลวง"] == "วัสดุเครื่องแต่งกาย"){
-                            $.ajax({
-                                type: 'POST',
-                                url: '/importmaterial',
-                                data: { material_id: rowObject[i].__EMPTY, material_name:rowObject[i].__EMPTY_1, material_unit:rowObject[i].__EMPTY_2, category_id: 6 }
-                            })
-                        }else if(rowObject[0]["วัสดุคงคลัง มหาวิทยาลัยแม่ฟ้าหลวง"] == "วัสดุของที่ระลึก"){
-                            $.ajax({
-                                type: 'POST',
-                                url: '/importmaterial',
-                                data: { material_id: rowObject[i].__EMPTY, material_name:rowObject[i].__EMPTY_1, material_unit:rowObject[i].__EMPTY_2, category_id: 7 }
-                            })
+                                $.ajax({
+                                    type: 'POST',
+                                    url: '/importmaterial',
+                                    data: { material_id: rowObject[i].__EMPTY, material_name: rowObject[i].__EMPTY_1, material_unit: rowObject[i].__EMPTY_2, category_id: 1 }
+                                })
+                            
+                        } else if (rowObject[0]["วัสดุคงคลัง มหาวิทยาลัยแม่ฟ้าหลวง"] == "วัสดุไฟฟ้าและวิทยุ") {
+                                $.ajax({
+                                    type: 'POST',
+                                    url: '/importmaterial',
+                                    data: { material_id: rowObject[i].__EMPTY, material_name: rowObject[i].__EMPTY_1, material_unit: rowObject[i].__EMPTY_2, category_id: 2 }
+                                })
+                        } else if (rowObject[0]["วัสดุคงคลัง มหาวิทยาลัยแม่ฟ้าหลวง"] == "วัสดุคอมพิวเตอร์") {
+                                $.ajax({
+                                    type: 'POST',
+                                    url: '/importmaterial',
+                                    data: { material_id: rowObject[i].__EMPTY, material_name: rowObject[i].__EMPTY_1, material_unit: rowObject[i].__EMPTY_2, category_id: 3 }
+                                })
+                        } else if (rowObject[0]["วัสดุคงคลัง มหาวิทยาลัยแม่ฟ้าหลวง"] == "วัสดุโฆษณาและเผยแพร่") {
+                                $.ajax({
+                                    type: 'POST',
+                                    url: '/importmaterial',
+                                    data: { material_id: rowObject[i].__EMPTY, material_name: rowObject[i].__EMPTY_1, material_unit: rowObject[i].__EMPTY_2, category_id: 4 }
+                                })
+                        } else if (rowObject[0]["วัสดุคงคลัง มหาวิทยาลัยแม่ฟ้าหลวง"] == "วัสดุงานบ้านงานครัว") {
+                                $.ajax({
+                                    type: 'POST',
+                                    url: '/importmaterial',
+                                    data: { material_id: rowObject[i].__EMPTY, material_name: rowObject[i].__EMPTY_1, material_unit: rowObject[i].__EMPTY_2, category_id: 5 }
+                                })
+                        } else if (rowObject[0]["วัสดุคงคลัง มหาวิทยาลัยแม่ฟ้าหลวง"] == "วัสดุเครื่องแต่งกาย") {
+                                $.ajax({
+                                    type: 'POST',
+                                    url: '/importmaterial',
+                                    data: { material_id: rowObject[i].__EMPTY, material_name: rowObject[i].__EMPTY_1, material_unit: rowObject[i].__EMPTY_2, category_id: 6 }
+                                })
+                        } else if (rowObject[0]["วัสดุคงคลัง มหาวิทยาลัยแม่ฟ้าหลวง"] == "วัสดุของที่ระลึก") {
+                                $.ajax({
+                                    type: 'POST',
+                                    url: '/importmaterial',
+                                    data: { material_id: rowObject[i].__EMPTY, material_name: rowObject[i].__EMPTY_1, material_unit: rowObject[i].__EMPTY_2, category_id: 7 }
+                                })
                         }
-                        location.reload();
+
                     }
                     // document.getElementById("jsondata").innerHTML = JSON.stringify(rowObject, undefined, 4)
                 });
+                
             }
+            // location.reload();
         }
+        
     })
 
 

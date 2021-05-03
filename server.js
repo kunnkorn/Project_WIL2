@@ -970,6 +970,27 @@ app.post('/getstaticgraphpermonth' , (req ,res) => {
     })
 })
 
+
+//Import Materials
+app.post('/importmaterial', (req, res) => {
+    const { material_id, material_name, material_unit, category_id } = req.body;
+    const sql = "INSERT INTO material (material_id,material_name,material_number,unit,category_id) VALUES (?,?,?,?,?)";
+    con.query(sql, [material_id, material_name, 0, material_unit, category_id], (err, result) => {
+        if (err) {
+            console.log(err);
+            res.status(500).send("Database Server Error")
+        }
+        else {
+            if (result.affectedRows == 0) {
+                console.log(err);
+                res.status(500).send("INSERT ERROR 1");
+            } else {
+                res.send();
+            }
+        }
+    });
+})
+
 // ===================================================== Super Visor ==========================================================
 
 // สถิติการเบิกรายคน
