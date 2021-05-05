@@ -1293,7 +1293,7 @@ app.get('/getstaticdashall', (req, res) => {
 
 // Approve Requisition
 app.get('/getstaticdashboard', (req, res) => {
-    const sql = "SELECT  DISTINCT(SELECT COUNT(a.requisition_id) FROM requisition a WHERE a.status_requisition = 4) AS 'apprequi' FROM requisition JOIN material_requisiotion ON requisition.requisition_id = material_requisiotion.requisition_id WHERE material_requisiotion.amount_of_requisition = material_requisiotion.amount_if_divide AND YEAR(requisition.date_requisition) = YEAR(CURDATE()) AND MONTH(requisition.date_requisition) = MONTH(CURDATE())"
+    const sql = "SELECT COUNT(requisition.status_requisition) AS 'apprequi' FROM requisition WHERE requisition.status_requisition = 4 AND YEAR(requisition.date_requisition) = YEAR(CURDATE()) AND MONTH(requisition.date_requisition) = MONTH(CURDATE())"
     con.query(sql, (err, result) => {
         if (err) {
             console.log(err);

@@ -107,10 +107,10 @@ $(document).ready(function () {
                                     for (let i = 0; i < arraymaterial.length; i++) {
                                         let numberedit = $(("#" + i)).val();
                                         if (numberedit == "" || numberedit < 0) {
-                                            arraymaterial[i].amount_of_divide = 0;
+                                            arraymaterial[i].amount_if_divide = 0;
                                         } else {
                                             checkinput += numberedit;
-                                            arraymaterial[i].amount_of_divide = numberedit;
+                                            arraymaterial[i].amount_if_divide = numberedit;
                                         }
                                         if (checkinput == 0) {
                                             $('#approve').prop('disabled', true);
@@ -192,7 +192,7 @@ $(document).ready(function () {
                             $.ajax({
                                 type: 'POST',
                                 url: '/updateAmountM',
-                                data: { requisition_id: form_data[i].requisition_id, material_id: form_data[i].material_id, number_of_requisition: form_data[i].amount_of_divide },
+                                data: { requisition_id: form_data[i].requisition_id, material_id: form_data[i].material_id, number_of_requisition: form_data[i].amount_if_divide },
                                 success: (response) => {
                                     $.ajax({
                                         type: 'POST',
