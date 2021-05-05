@@ -36,7 +36,7 @@ $(document).ready(function () {
                     { title: "ลำดับ", defaultContent: "" },
                     { data: "material_id", title: "รหัสวัสดุ" },
                     { data: "material_name", title: "รายการ" },
-                    { data: "amount_if_requisition", title: "จำนวนเบิก" },
+                    { data: "amount_of_requisition", title: "จำนวนเบิก" },
                     { data: "unit", title: "หน่วยนับ" },
                     { data: "material_number", title: "จำนวนคงเหลือ" },
                     { data: "amount_if_divide", title: "จำนวนจ่าย" }
