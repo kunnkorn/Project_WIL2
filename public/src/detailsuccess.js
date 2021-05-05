@@ -39,7 +39,7 @@ $(document).ready(function () {
                     { data: "amount_of_requisition", title: "จำนวนเบิก" },
                     { data: "unit", title: "หน่วยนับ" },
                     { data: "material_number", title: "จำนวนคงเหลือ" },
-                    { data: "amount_of_divide", title: "จำนวนจ่าย" }
+                    { data: "amount_if_divide", title: "จำนวนจ่าย" }
                 ],
                 "columnDefs": [{
                     "targets": 0,

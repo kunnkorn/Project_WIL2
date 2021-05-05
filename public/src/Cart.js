@@ -25,7 +25,7 @@ $.ajax({
                         makeid += inputid[j];
                     }
                     console.log(makeid);
-                    spawnitem += "<div class='d-lg-flex my-4 justify-content-between align-items-center bg-white rounded cart-item shadow col-12 col-lg-10 mx-auto p-1'><div class='mr-1 float-left float-lg-none mt-5 mt-sm-4 pt-lg-0 pt-5'><input type='checkbox' name='icart' class='cart' value='" + response[i].material_id + "' style='height: 25px; width: 25px;'></div><div class='mx-2 my-5 my-sm-4 my-md-3 text-center text-lg-none'>รหัสวัสดุ : " + response[i].material_id + "</div><div class='mx-2 my-5 my-sm-4 my-md-3 text-center text-lg-none'>ชื่อรายการ : " + response[i].material_name + "</div><div class='mx-auto my-3 col-5 m-lg-none'><input type='number' class='form-control'id='" + makeid + "' placeholder='จำนวนเบิก'></div><div class='align-items-center text-center'><i class='fa fa-trash mb-1 text-danger'style='font-size: 25px;'></i></div></div>"
+                    spawnitem += "<div class='d-lg-flex my-4 justify-content-between align-items-center bg-white rounded cart-item shadow col-12 col-lg-10 mx-auto p-1'><div class='mr-1 float-left float-lg-none mt-5 mt-sm-4 pt-lg-0 pt-5'><input type='checkbox' name='icart' class='cart' value='" + response[i].material_id + "' style='height: 25px; width: 25px;'></div><div class='mx-2 my-5 my-sm-4 my-md-3 text-center text-lg-none'>รหัสวัสดุ : " + response[i].material_id + "</div><div class='mx-2 my-5 my-sm-4 my-md-3 text-center text-lg-none'>ชื่อรายการ : " + response[i].material_name + "</div><div class='mx-auto my-3 col-5 m-lg-none'><input type='number' class='form-control'id='" + makeid + "' placeholder='จำนวนเบิก'> / คงเหลือ " + response[i].material_number + "</div></div>"
                     indexitem++;
                 }
             }
@@ -141,7 +141,7 @@ $.ajax({
                 let txtObjective = $("#Objective").val();
                 if (txtObjective == "เลือกวัตถุประสงค์") {
                     $("#btn-confirm").prop('disabled', true);
-                }else {
+                } else {
                     $("#btn-confirm").prop('disabled', false);
                 }
             })
