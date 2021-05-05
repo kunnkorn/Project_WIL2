@@ -124,7 +124,7 @@ $(document).ready(function () {
             { data: 'material_name', title: 'รายการ' },
             { data: 'amount_of_requisition', title: 'จำนวนเบิก' },
             { data: 'unit', title: 'หน่วยนับ' },
-            { data: 'amount_of_divide', title: 'จำนวนจ่าย' }
+            { data: 'amount_if_divide', title: 'จำนวนจ่าย' }
         ]
     })
 

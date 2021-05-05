@@ -50,10 +50,13 @@ $(document).ready(function () {
                 countitem = data.length
                 for (let i = 0; i < data.length; i++) {
                     if (data[i].status_manage_stock == 1) {
-                        data[i].status_manage_stock = "แก้ไขวัสดุ"
+                        data[i].status_manage_stock = "เพิ่มจำนวนวัสดุ"
                     }
                     else if (data[i].status_manage_stock == 2) {
-                        data[i].status_manage_stock = "เพิ่มวัสดุใหม่"
+                        data[i].status_manage_stock = "ลดจำนวนวัสดุ"
+                    }
+                    else if (data[i].status_manage_stock == 3) {
+                        data[i].status_manage_stock = "เพิ่มวัดสุใหม่"
                     }
 
                     let d = new Date(data[i].date_manage);

@@ -148,9 +148,27 @@
                                 <div class="col-12">
                                     <input type="text" class="form-control" id="EditName" required>
                                 </div>
-                                <label for="textinput" class="col-12 control-label">เพิ่มจำนวน</label>
+                                <label for="textinput" class="col-12 control-label">แก้ไขจำนวน</label>
                                 <div class="col-12">
                                     <input type="number" class="form-control" id="EditNum" required>
+                                </div>
+                                <div class="col-12 d-flex text-center my-4">
+                                    <div class="col-6">
+                                        <label class="form-check-label">
+                                            <input type="radio" class="form-check-input" id="increase" name="choicenum"
+                                                value="innum" required checked>เพิ่มจำนวน
+                                        </label>
+                                    </div>
+                                    <div class="col-6">
+                                        <label class="form-check-label">
+                                            <input type="radio" class="form-check-input" name="choicenum"
+                                                value="denum" id="decrease" required>ลดจำนวน
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-6 mx-auto" id="annotationedit">
+                                    <label for="">เหตุผล : </label>
+                                    <textarea class="form-control" id="areacom" rows="5" disabled></textarea>
                                 </div>
                                 <label for="textinput" class="col-12 control-label">หน่วยนับ</label>
                                 <div class="col-12">
@@ -237,7 +255,7 @@
 
     <!-- Modal -->
     <div class="modal fade" id="modalimport" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
-        aria-hidden="true">
+        aria-hidden="true" data-backdrop="static" data-keyboard="false">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -246,8 +264,8 @@
                 <div class="modal-body">
                     <div class="progress">
                         <div class="progress-bar progress-bar-striped progress-bar-animated" id="processbar"></div>
-                        <!-- <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
-                            aria-valuenow="" aria-valuemin="0" aria-valuemax="100" id="processbar"></div> -->
+                        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
+                            aria-valuemin="0" aria-valuemax="100" id="processbar"></div>
                     </div>
                 </div>
 

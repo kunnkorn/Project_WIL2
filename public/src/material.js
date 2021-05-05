@@ -21,6 +21,7 @@ $(document).ready(function () {
     $('#sidebarCollapse').on('click', function () {
         $('#sidebar, #content').toggleClass('active');
     });
+    $("#annotationedit").css('display', 'none');
     var rowID;
     var table;
     $.ajax({
@@ -80,7 +81,13 @@ $(document).ready(function () {
                     rowID = table.row(currentRow).index();
                     $("#EditID").val(data.material_id);
                     $("#EditName").val(data.material_name);
-                    $("#EditNum").val(0);
+                    if (data.material_number == 0) {
+                        $("#decrease").prop('disabled', true);
+                        $("#areacom").prop('disabled', true);
+                    } else {
+                        $("#decrease").prop('disabled', false);
+                        $("#areacom").prop('disabled', false);
+                    }
                     $("#EditUnit").val(data.unit);
                     //show model
                     $("#modelEdit").modal("show");
@@ -124,7 +131,13 @@ $(document).ready(function () {
                 rowID = table.row(currentRow).index();
                 $("#EditID").val(data.material_id);
                 $("#EditName").val(data.material_name);
-                $("#EditNum").val(0);
+                if (data.material_number == 0) {
+                    $("#decrease").prop('disabled', true);
+                    $("#areacom").prop('disabled', true);
+                } else {
+                    $("#decrease").prop('disabled', false);
+                    $("#areacom").prop('disabled', false);
+                }
                 $("#EditUnit").val(data.unit);
                 //show model
                 $("#modelEdit").modal("show");
@@ -205,7 +218,13 @@ $(document).ready(function () {
                                     checknumber = data.material_number;
                                     $("#EditID").val(data.material_id);
                                     $("#EditName").val(data.material_name);
-                                    $("#EditNum").val(0);
+                                    if (data.material_number == 0) {
+                                        $("#decrease").prop('disabled', true);
+                                        $("#areacom").prop('disabled', true);
+                                    } else {
+                                        $("#decrease").prop('disabled', false);
+                                        $("#areacom").prop('disabled', false);
+                                    }
                                     $("#EditUnit").val(data.unit);
                                     //show model
                                     $("#modelEdit").modal("show");
@@ -223,6 +242,15 @@ $(document).ready(function () {
 
     })
 
+    $("input[name='choicenum']").click(function () {
+        let radioValue = $("input[name='choicenum']:checked").val();
+        if (radioValue == "innum") {
+            $("#annotationedit").css('display', 'none');
+        } else {
+            $("#annotationedit").css('display', '');
+        }
+    });
+
     $("#formeditmat").submit(function (e) {
         e.preventDefault();
 
@@ -230,80 +258,176 @@ $(document).ready(function () {
         let editname = $("#EditName").val();
         let editnum = $("#EditNum").val();
         let editunit = $("#EditUnit").val();
-        Swal.fire({
-            title: 'คุณแน่ใจหรือไม่ที่ต้องการจะแก้ไขรายการวัสดุนี้?',
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'ตกลง',
-            cancelButtonText: 'ยกเลิก',
-        }).then((result) => {
-            if (result.isConfirmed) {
-                $.ajax({
-                    type: 'POST',
-                    url: '/editmaterial',
-                    data: { material_name: editname, plusnumber: editnum, unit: editunit, material_id: editid },
-                    success: (response) => {
-                        Swal.fire({
-                            icon: 'success',
-                            title: 'แก้ไขรายการเสร็จสิ้นแล้ว',
-                            showConfirmButton: false,
-                            timer: 1500
-                        })
-                        table.clear();
-                        table = $("#materialTable").dataTable().fnDestroy();
-                        $("#materialTable").empty();
-                        $("#modelEdit").modal('hide');
-                        $.ajax({
-                            type: 'GET',
-                            url: '/getAllDatamaterial',
-                            success: (response) => {
-                                let number = 1;
-                                table = $("#materialTable").DataTable({
-                                    responsive: true,       //for responsive column display
-                                    deferRender: true,      //if large data, use this option
-                                    data: response,
-                                    columns: [
-                                        { title: "ลำดับ", defaultContent: "" },
-                                        { data: "material_id", title: "รหัสวัสดุ" },
-                                        { data: "material_name", title: "รายการ" },
-                                        { data: "material_number", title: "คงเหลือ" },
-                                        { data: "unit", title: "หน่ายนับ" },
-                                        { title: "เพิ่มจำนวน", orderable: false, defaultContent: " <button class='btn btn-warning my-1'>แก้ไข</button>" }
-                                    ],
-                                    "columnDefs": [{
-                                        "targets": 0,
-                                        "createdCell": function (td, cellData, rowData, row, col) {
-                                            $(td).text(number);
-                                            number++;
+        var radioValue = $("input[name='choicenum']:checked").val();
+        var comment = $("#areacom").val();
+        if (radioValue == "innum") {
+            // console.log(radioValue);
+            Swal.fire({
+                title: 'คุณแน่ใจหรือไม่ที่ต้องการจะแก้ไขรายการวัสดุนี้?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'ตกลง',
+                cancelButtonText: 'ยกเลิก',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        type: 'POST',
+                        url: '/editmaterial',
+                        data: { material_name: editname, plusnumber: editnum, unit: editunit, material_id: editid },
+                        success: (response) => {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'แก้ไขรายการเสร็จสิ้นแล้ว',
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
+                            $("#EditNum").val("");
+                            table.clear();
+                            table = $("#materialTable").dataTable().fnDestroy();
+                            $("#materialTable").empty();
+                            $("#modelEdit").modal('hide');
+                            $.ajax({
+                                type: 'GET',
+                                url: '/getAllDatamaterial',
+                                success: (response) => {
+                                    let number = 1;
+                                    table = $("#materialTable").DataTable({
+                                        responsive: true,       //for responsive column display
+                                        deferRender: true,      //if large data, use this option
+                                        data: response,
+                                        columns: [
+                                            { title: "ลำดับ", defaultContent: "" },
+                                            { data: "material_id", title: "รหัสวัสดุ" },
+                                            { data: "material_name", title: "รายการ" },
+                                            { data: "material_number", title: "คงเหลือ" },
+                                            { data: "unit", title: "หน่ายนับ" },
+                                            { title: "เพิ่มจำนวน", orderable: false, defaultContent: " <button class='btn btn-warning my-1'>แก้ไข</button>" }
+                                        ],
+                                        "columnDefs": [{
+                                            "targets": 0,
+                                            "createdCell": function (td, cellData, rowData, row, col) {
+                                                $(td).text(number);
+                                                number++;
+                                            }
+                                        }]
+
+
+                                    });
+                                    $("#materialTable tbody").on("click", ".btn-warning", function () {
+                                        const currentRow = $(this).parents("tr")
+                                        const data = table.row(currentRow).data();
+                                        rowID = table.row(currentRow).index();
+                                        checknumber = data.material_number;
+                                        $("#EditID").val(data.material_id);
+                                        $("#EditName").val(data.material_name);
+                                        if (data.material_number == 0) {
+                                            $("#decrease").prop('disabled', true);
+                                            $("#areacom").prop('disabled', true);
+                                        } else {
+                                            $("#decrease").prop('disabled', false);
+                                            $("#areacom").prop('disabled', false);
                                         }
-                                    }]
+                                        $("#EditUnit").val(data.unit);
+                                        //show model
+                                        $("#modelEdit").modal("show");
+                                    });
+                                }, error: (xhr) => {
+                                    alert(xhr.responseText);
+                                }
+                            })
+                        }, error: (xhr) => {
+                            alert(xhr.responseText);
+                        }
+                    });
+                }
+            })
+        } else if (radioValue == "denum") {
+            // console.log(radioValue);
+            Swal.fire({
+                title: 'คุณแน่ใจหรือไม่ที่ต้องการจะแก้ไขรายการวัสดุนี้?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'ตกลง',
+                cancelButtonText: 'ยกเลิก',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        type: 'POST',
+                        url: '/reducematerial',
+                        data: { material_name: editname, minusnumber: editnum, unit: editunit, annotation_mangae: comment, material_id: editid },
+                        success: (response) => {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'แก้ไขรายการเสร็จสิ้นแล้ว',
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
+                            $("#EditNum").val("");
+                            table.clear();
+                            table = $("#materialTable").dataTable().fnDestroy();
+                            $("#materialTable").empty();
+                            $("#modelEdit").modal('hide');
+                            $.ajax({
+                                type: 'GET',
+                                url: '/getAllDatamaterial',
+                                success: (response) => {
+                                    let number = 1;
+                                    table = $("#materialTable").DataTable({
+                                        responsive: true,       //for responsive column display
+                                        deferRender: true,      //if large data, use this option
+                                        data: response,
+                                        columns: [
+                                            { title: "ลำดับ", defaultContent: "" },
+                                            { data: "material_id", title: "รหัสวัสดุ" },
+                                            { data: "material_name", title: "รายการ" },
+                                            { data: "material_number", title: "คงเหลือ" },
+                                            { data: "unit", title: "หน่ายนับ" },
+                                            { title: "เพิ่มจำนวน", orderable: false, defaultContent: " <button class='btn btn-warning my-1'>แก้ไข</button>" }
+                                        ],
+                                        "columnDefs": [{
+                                            "targets": 0,
+                                            "createdCell": function (td, cellData, rowData, row, col) {
+                                                $(td).text(number);
+                                                number++;
+                                            }
+                                        }]
 
 
-                                });
-                                $("#materialTable tbody").on("click", ".btn-warning", function () {
-                                    const currentRow = $(this).parents("tr")
-                                    const data = table.row(currentRow).data();
-                                    rowID = table.row(currentRow).index();
-                                    checknumber = data.material_number;
-                                    $("#EditID").val(data.material_id);
-                                    $("#EditName").val(data.material_name);
-                                    $("#EditNum").val(0);
-                                    $("#EditUnit").val(data.unit);
-                                    //show model
-                                    $("#modelEdit").modal("show");
-                                });
-                            }, error: (xhr) => {
-                                alert(xhr.responseText);
-                            }
-                        })
-                    }, error: (xhr) => {
-                        alert(xhr.responseText);
-                    }
-                });
-            }
-        })
+                                    });
+                                    $("#materialTable tbody").on("click", ".btn-warning", function () {
+                                        const currentRow = $(this).parents("tr")
+                                        const data = table.row(currentRow).data();
+                                        rowID = table.row(currentRow).index();
+                                        checknumber = data.material_number;
+                                        $("#EditID").val(data.material_id);
+                                        $("#EditName").val(data.material_name);
+                                        if (data.material_number == 0) {
+                                            $("#decrease").prop('disabled', true);
+                                            $("#areacom").prop('disabled', true);
+                                        } else {
+                                            $("#decrease").prop('disabled', false);
+                                            $("#areacom").prop('disabled', false);
+                                        }
+                                        $("#EditUnit").val(data.unit);
+                                        //show model
+                                        $("#modelEdit").modal("show");
+                                    });
+                                }, error: (xhr) => {
+                                    alert(xhr.responseText);
+                                }
+                            })
+                        }, error: (xhr) => {
+                            alert(xhr.responseText);
+                        }
+                    });
+                }
+            })
+        }
+
 
 
     });
@@ -369,60 +493,135 @@ $(document).ready(function () {
                         //     });
                         // });
                         // console.log(rowObject[0]["วัสดุคงคลัง มหาวิทยาลัยแม่ฟ้าหลวง"]);
-                        console.log(i);
+                        // console.log(i);
                         if (rowObject[0]["วัสดุคงคลัง มหาวิทยาลัยแม่ฟ้าหลวง"] == "วัสดุสำนักงาน") {
-                                $.ajax({
-                                    type: 'POST',
-                                    url: '/importmaterial',
-                                    data: { material_id: rowObject[i].__EMPTY, material_name: rowObject[i].__EMPTY_1, material_unit: rowObject[i].__EMPTY_2, category_id: 1 }
-                                })
-                            
+                            $.ajax({
+                                type: 'POST',
+                                url: '/importmaterial',
+                                data: { material_id: rowObject[i].__EMPTY, material_name: rowObject[i].__EMPTY_1, material_unit: rowObject[i].__EMPTY_2, category_id: 1 }
+                            })
+
+
                         } else if (rowObject[0]["วัสดุคงคลัง มหาวิทยาลัยแม่ฟ้าหลวง"] == "วัสดุไฟฟ้าและวิทยุ") {
-                                $.ajax({
-                                    type: 'POST',
-                                    url: '/importmaterial',
-                                    data: { material_id: rowObject[i].__EMPTY, material_name: rowObject[i].__EMPTY_1, material_unit: rowObject[i].__EMPTY_2, category_id: 2 }
-                                })
+                            $.ajax({
+                                type: 'POST',
+                                url: '/importmaterial',
+                                data: { material_id: rowObject[i].__EMPTY, material_name: rowObject[i].__EMPTY_1, material_unit: rowObject[i].__EMPTY_2, category_id: 2 }
+                            })
+
                         } else if (rowObject[0]["วัสดุคงคลัง มหาวิทยาลัยแม่ฟ้าหลวง"] == "วัสดุคอมพิวเตอร์") {
-                                $.ajax({
-                                    type: 'POST',
-                                    url: '/importmaterial',
-                                    data: { material_id: rowObject[i].__EMPTY, material_name: rowObject[i].__EMPTY_1, material_unit: rowObject[i].__EMPTY_2, category_id: 3 }
-                                })
+                            $.ajax({
+                                type: 'POST',
+                                url: '/importmaterial',
+                                data: { material_id: rowObject[i].__EMPTY, material_name: rowObject[i].__EMPTY_1, material_unit: rowObject[i].__EMPTY_2, category_id: 3 }
+                            })
+
                         } else if (rowObject[0]["วัสดุคงคลัง มหาวิทยาลัยแม่ฟ้าหลวง"] == "วัสดุโฆษณาและเผยแพร่") {
-                                $.ajax({
-                                    type: 'POST',
-                                    url: '/importmaterial',
-                                    data: { material_id: rowObject[i].__EMPTY, material_name: rowObject[i].__EMPTY_1, material_unit: rowObject[i].__EMPTY_2, category_id: 4 }
-                                })
+                            $.ajax({
+                                type: 'POST',
+                                url: '/importmaterial',
+                                data: { material_id: rowObject[i].__EMPTY, material_name: rowObject[i].__EMPTY_1, material_unit: rowObject[i].__EMPTY_2, category_id: 4 }
+                            })
+
                         } else if (rowObject[0]["วัสดุคงคลัง มหาวิทยาลัยแม่ฟ้าหลวง"] == "วัสดุงานบ้านงานครัว") {
-                                $.ajax({
-                                    type: 'POST',
-                                    url: '/importmaterial',
-                                    data: { material_id: rowObject[i].__EMPTY, material_name: rowObject[i].__EMPTY_1, material_unit: rowObject[i].__EMPTY_2, category_id: 5 }
-                                })
+                            $.ajax({
+                                type: 'POST',
+                                url: '/importmaterial',
+                                data: { material_id: rowObject[i].__EMPTY, material_name: rowObject[i].__EMPTY_1, material_unit: rowObject[i].__EMPTY_2, category_id: 5 }
+                            })
+
                         } else if (rowObject[0]["วัสดุคงคลัง มหาวิทยาลัยแม่ฟ้าหลวง"] == "วัสดุเครื่องแต่งกาย") {
-                                $.ajax({
-                                    type: 'POST',
-                                    url: '/importmaterial',
-                                    data: { material_id: rowObject[i].__EMPTY, material_name: rowObject[i].__EMPTY_1, material_unit: rowObject[i].__EMPTY_2, category_id: 6 }
-                                })
+                            $.ajax({
+                                type: 'POST',
+                                url: '/importmaterial',
+                                data: { material_id: rowObject[i].__EMPTY, material_name: rowObject[i].__EMPTY_1, material_unit: rowObject[i].__EMPTY_2, category_id: 6 }
+                            })
+
                         } else if (rowObject[0]["วัสดุคงคลัง มหาวิทยาลัยแม่ฟ้าหลวง"] == "วัสดุของที่ระลึก") {
-                                $.ajax({
-                                    type: 'POST',
-                                    url: '/importmaterial',
-                                    data: { material_id: rowObject[i].__EMPTY, material_name: rowObject[i].__EMPTY_1, material_unit: rowObject[i].__EMPTY_2, category_id: 7 }
-                                })
+                            $.ajax({
+                                type: 'POST',
+                                url: '/importmaterial',
+                                data: { material_id: rowObject[i].__EMPTY, material_name: rowObject[i].__EMPTY_1, material_unit: rowObject[i].__EMPTY_2, category_id: 7 }
+                            })
+
                         }
 
                     }
                     // document.getElementById("jsondata").innerHTML = JSON.stringify(rowObject, undefined, 4)
                 });
-                
+                // console.log(checkreload);
+                $('html').css('cursor', 'progress');
+                $("#modalimport").modal("show");
+                // $('#processbar').attr('aria-valuenow', 100).css('width', 100 + '%');
+                $.ajax({
+                    type: 'GET',
+                    url: '/getAllDatamaterial',
+                    success: (response) => {
+                        table.clear();
+                        table = $("#materialTable").dataTable().fnDestroy();
+                        $("#materialTable").empty();
+                        let number = 1;
+                        table = $("#materialTable").DataTable({
+                            responsive: true,       //for responsive column display
+                            deferRender: true,      //if large data, use this option
+                            data: response,
+                            columns: [
+                                { title: "ลำดับ", defaultContent: "" },
+                                { data: "material_id", title: "รหัสวัสดุ" },
+                                { data: "material_name", title: "รายการ" },
+                                { data: "material_number", title: "คงเหลือ" },
+                                { data: "unit", title: "หน่ายนับ" },
+                                { title: "เพิ่มจำนวน", orderable: false, defaultContent: " <button class='btn btn-warning my-1'>แก้ไข</button>" }
+                            ],
+                            "columnDefs": [{
+                                "targets": 0,
+                                "createdCell": function (td, cellData, rowData, row, col) {
+                                    $(td).text(number);
+                                    number++;
+                                }
+                            }]
+
+
+                        });
+                        $('html').css('cursor', 'unset');
+                        $("#materialTable tbody").on("click", ".btn-warning", function () {
+                            const currentRow = $(this).parents("tr")
+                            const data = table.row(currentRow).data();
+                            rowID = table.row(currentRow).index();
+                            $("#EditID").val(data.material_id);
+                            $("#EditName").val(data.material_name);
+                            if (data.material_number == 0) {
+                                $("#decrease").prop('disabled', true);
+                                $("#areacom").prop('disabled', true);
+                            } else {
+                                $("#decrease").prop('disabled', false);
+                                $("#areacom").prop('disabled', false);
+                            }
+                            $("#EditUnit").val(data.unit);
+                            //show model
+                            $("#modelEdit").modal("show");
+                        });
+                        for (let i = 1; i <= 100; i++) {
+                            $('#processbar').attr('aria-valuenow', i).css('width', i + '%');
+                        }
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'เพิ่มข้อมูลสำเร็จ',
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                $("#modalimport").modal("hide");
+                            }
+                        })
+
+                    }, error: (xhr) => {
+                        alert(xhr.responseText);
+                    }
+                })
             }
+
             // location.reload();
         }
-        
+
     })
 
 

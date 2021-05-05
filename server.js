@@ -168,21 +168,21 @@ app.get('/materialuser', (req, res) => {
 
 // Cart Page
 app.get('/cartpage', (req, res) => {
-    if(req.session.user){
-        res.render('Cart' , {user: req.session.user})
+    if (req.session.user) {
+        res.render('Cart', { user: req.session.user })
     }
-    else{
+    else {
         res.redirect('/')
     }
-    
+
 })
 
 // Notification Page
 app.get('/notificationuser', (req, res) => {
-    if(req.session.user){
-        res.render('Notification' , {user: req.session.user})
+    if (req.session.user) {
+        res.render('Notification', { user: req.session.user })
     }
-    else{
+    else {
         res.redirect('/')
     }
 })
@@ -190,19 +190,19 @@ app.get('/notificationuser', (req, res) => {
 // History
 // Success
 app.get('/historysucuser', (req, res) => {
-    if(req.session.user){
-        res.render('History(success)' , {user: req.session.user})
+    if (req.session.user) {
+        res.render('History(success)', { user: req.session.user })
     }
-    else{
+    else {
         res.redirect('/')
     }
 })
 // Unsuccess
 app.get('/historyunsucuser', (req, res) => {
-    if(req.session.user){
-        res.render('History(Unsuccess)' , {user: req.session.user})
+    if (req.session.user) {
+        res.render('History(Unsuccess)', { user: req.session.user })
     }
-    else{
+    else {
         res.redirect('/')
     }
 })
@@ -524,7 +524,7 @@ app.post('/addmatrequi', (req, res) => {
         }
         else {
             console.log(material_id);
-            const sql = 'INSERT INTO material_requisiotion(material_requisiotion.requisition_id , material_requisiotion.material_id , material_requisiotion.amount_of_requisition , material_requisiotion.amount_of_divide) VALUES (? , ? , ? , 0)';
+            const sql = 'INSERT INTO material_requisiotion(material_requisiotion.requisition_id , material_requisiotion.material_id , material_requisiotion.amount_of_requisition , material_requisiotion.amount_if_divide) VALUES (? , ? , ? , 0)';
             con.query(sql, [result[0].requisition_id, material_id, numbermaterial], (err, result) => {
                 if (err) {
                     console.log(err);
@@ -544,70 +544,70 @@ app.post('/addmatrequi', (req, res) => {
 
 // Materials
 app.get('/materialadmin', (req, res) => {
-    if(req.session.user){
-        res.render('material' , {user: req.session.user})
+    if (req.session.user) {
+        res.render('material', { user: req.session.user })
     }
-    else{
+    else {
         res.redirect('/')
     }
 })
 
 // Requisition Page
 app.get('/requisition', (req, res) => {
-    if(req.session.user){
-        res.render('adminmain' , {user: req.session.user})
+    if (req.session.user) {
+        res.render('adminmain', { user: req.session.user })
     }
-    else{
+    else {
         res.redirect('/')
     }
 })
 
 // Detail Requisition
 app.get('/detailrequiadmin', (req, res) => {
-    if(req.session.user){
-        res.render('detailreq' , {user: req.session.user})
+    if (req.session.user) {
+        res.render('detailreq', { user: req.session.user })
     }
-    else{
+    else {
         res.redirect('/')
     }
 })
 
 // Detail wait to complete
 app.get('/detailsuccessadmin', (req, res) => {
-    if(req.session.user){
-        res.render('detailsuccess' , {user: req.session.user})
+    if (req.session.user) {
+        res.render('detailsuccess', { user: req.session.user })
     }
-    else{
+    else {
         res.redirect('/')
     }
 })
 
 // History Admin
 app.get('/historyadmin', (req, res) => {
-    if(req.session.user){
-        res.render('history' , {user: req.session.user})
+    if (req.session.user) {
+        res.render('history', { user: req.session.user })
     }
-    else{
+    else {
         res.redirect('/')
     }
 })
 
 // Detail History Admin
 app.get('/detailhisadmin', (req, res) => {
-    if(req.session.user){
-        res.render('detailhis' , {user: req.session.user})
+    if (req.session.user) {
+        res.render('detailhis', { user: req.session.user })
     }
-    else{
+    else {
         res.redirect('/')
     }
 });
 
 // Statistic Admin
 app.get('/staticadmin', (req, res) => {
-    if(req.session.user){
-        res.render('statistic' , {user: req.session.user})
+    if (req.session.user) {
+        res.render('statistic', { user: req.session.user })
     }
-    else{
+    else {
         res.redirect('/')
     }
 })
@@ -621,7 +621,7 @@ app.get('/getrequisition', (req, res) => {
             res.status(500).send("DATABASE ERROR");
         } else {
             res.send(result);
-            
+
         }
     });
 })
@@ -640,7 +640,7 @@ app.post('/datareq', (req, res) => {
 });
 
 app.post('/datamaterial', (req, res) => {
-    const  idreq  = req.body.requi_id;
+    const idreq = req.body.requi_id;
     const sql = 'SELECT * FROM material_requisiotion JOIN material ON material_requisiotion.material_id = material.material_id WHERE material_requisiotion.requisition_id = ?';
     con.query(sql, [idreq], (err, result) => {
         if (err) {
@@ -673,7 +673,7 @@ app.post('/approve', (req, res) => {
 
 app.post('/updateAmountM', (req, res) => {
     const { requisition_id, material_id, number_of_requisition } = req.body;
-    const sql = 'UPDATE material_requisiotion SET material_requisiotion.amount_of_divide = ? WHERE material_requisiotion.requisition_id = ? AND material_requisiotion.material_id = ?';
+    const sql = 'UPDATE material_requisiotion SET material_requisiotion.amount_if_divide = ? WHERE material_requisiotion.requisition_id = ? AND material_requisiotion.material_id = ?';
     con.query(sql, [number_of_requisition, requisition_id, material_id], (err, result) => {
         if (err) {
             console.log(err);
@@ -683,7 +683,7 @@ app.post('/updateAmountM', (req, res) => {
                 console.log(err);
                 res.status(500).send("UPDATE ERROR");
             } else {
-                const sql = 'UPDATE material JOIN material_requisiotion ON material.material_id = ? JOIN requisition ON requisition.requisition_id = material_requisiotion.requisition_id AND requisition.requisition_id = ? SET material.material_number = material.material_number - material_requisiotion.amount_of_divide';
+                const sql = 'UPDATE material JOIN material_requisiotion ON material.material_id = ? JOIN requisition ON requisition.requisition_id = material_requisiotion.requisition_id AND requisition.requisition_id = ? SET material.material_number = material.material_number - material_requisiotion.amount_if_divide';
                 con.query(sql, [material_id, requisition_id], (err, result) => {
                     if (err) {
                         console.log(err);
@@ -780,7 +780,7 @@ app.post('/dataHisreq', (req, res) => {
 
 app.post('/dataHismaterial', (req, res) => {
     const { idreq } = req.body;
-    const sql = 'SELECT material_requisiotion.material_id , material.material_name , material.unit , material_requisiotion.amount_of_requisition, material_requisiotion.amount_of_divide FROM material_requisiotion JOIN material ON material_requisiotion.material_id = material.material_id WHERE material_requisiotion.requisition_id = ?';
+    const sql = 'SELECT material_requisiotion.material_id , material.material_name , material.unit , material_requisiotion.amount_of_requisition, material_requisiotion.amount_if_divide FROM material_requisiotion JOIN material ON material_requisiotion.material_id = material.material_id WHERE material_requisiotion.requisition_id = ?';
     con.query(sql, [idreq], (err, result) => {
         if (err) {
             console.log(err);
@@ -902,13 +902,48 @@ app.post('/editmaterial', (req, res) => {
     });
 });
 
+
+app.post('/reducematerial', (req, res) => {
+    const { material_name, minusnumber, unit, annotation_mangae, material_id } = req.body;
+    const sql = 'UPDATE material SET material.material_name = ?, material.material_number = material.material_number - ? , unit = ? WHERE material.material_id = ?';
+    con.query(sql, [material_name, minusnumber, unit, material_id], (err, result) => {
+        if (err) {
+            console.log(err);
+            res.status(500).send("DATABASE ERROR");
+        } else {
+            if (result.affectedRows != 1) {
+                console.log(err);
+                res.status(500).send("UPDATE ERROR 1");
+            } else {
+                const sql = 'INSERT INTO manage_stock (date_manage , time_manage , number_material ,status_manage_stock , annotation_Managestock , material_id , user_id) VALUES (CURDATE(), CURTIME(), ? , ? , ? ,  ? , ?)';
+                const user_id = req.session.user.user_id;
+                con.query(sql, [minusnumber, 2, annotation_mangae, material_id, user_id], (err, result) => {
+                    if (err) {
+                        console.log(err);
+                        res.status(500).send("DATABASE ERROR");
+                    } else {
+                        if (result.affectedRows != 1) {
+                            console.log(err);
+                            res.status(500).send("UPDATE ERROR 1");
+                        } else {
+                            res.send();
+                        }
+
+                    }
+                });
+            }
+
+        }
+    });
+})
+
 // ทั้งหมด
 app.post('/getstaticdashallpermonth', (req, res) => {
 
     const month = req.body.month_se
 
     const sql = "SELECT COUNT(requisition.status_requisition) AS 'allrequi' , MONTH(CURDATE()) AS 'curmonth' FROM requisition WHERE requisition.status_requisition = 4 OR requisition.status_requisition =  3 AND YEAR(requisition.date_requisition) = YEAR(CURDATE()) AND MONTH(requisition.date_requisition) = ?"
-    con.query(sql, [month] , (err, result) => {
+    con.query(sql, [month], (err, result) => {
         if (err) {
             console.log(err);
             res.status(500).send("Database Server Error")
@@ -921,11 +956,11 @@ app.post('/getstaticdashallpermonth', (req, res) => {
 
 
 // ไม่อนุมัติ
-app.post('/getstaticdashunapppermonth' , (req , res) => {
+app.post('/getstaticdashunapppermonth', (req, res) => {
     const month = req.body.month_se
 
     const sql = "SELECT COUNT(requisition.status_requisition) AS 'disrequi' FROM requisition WHERE requisition.status_requisition = 3 AND YEAR(requisition.date_requisition) = YEAR(CURDATE()) AND MONTH(requisition.date_requisition) = ?"
-    con.query(sql, [month] , (err, result) => {
+    con.query(sql, [month], (err, result) => {
         if (err) {
             console.log(err);
             res.status(500).send("Database Server Error")
@@ -938,11 +973,11 @@ app.post('/getstaticdashunapppermonth' , (req , res) => {
 
 
 // อนุมัติ
-app.post('/getstaticdashboardpermonth' , (req , res) => {
+app.post('/getstaticdashboardpermonth', (req, res) => {
     const month = req.body.month_se
 
     const sql = "SELECT COUNT(requisition.status_requisition) AS 'apprequi' FROM requisition WHERE requisition.status_requisition = 4 AND YEAR(requisition.date_requisition) = YEAR(CURDATE()) AND MONTH(requisition.date_requisition) = ?"
-    con.query(sql, [month] , (err, result) => {
+    con.query(sql, [month], (err, result) => {
         if (err) {
             console.log(err);
             res.status(500).send("Database Server Error")
@@ -954,12 +989,12 @@ app.post('/getstaticdashboardpermonth' , (req , res) => {
 
 
 // กราฟ เดือน
-app.post('/getstaticgraphpermonth' , (req ,res) => {
+app.post('/getstaticgraphpermonth', (req, res) => {
     const month = req.body.month_se;
 
-    const sql = "SELECT category.category_id,category.category_name ,SUM(material_requisiotion.amount_of_divide) AS 'approve' , SUM(material_requisiotion.amount_of_requisition) - SUM(material_requisiotion.amount_of_divide) AS 'disapproval' FROM category JOIN material ON category.category_id = material.category_id JOIN material_requisiotion ON material.material_id = material_requisiotion.material_id LEFT JOIN requisition ON material_requisiotion.requisition_id = requisition.requisition_id WHERE requisition.status_requisition IN (3,4) AND YEAR(requisition.date_requisition) = YEAR(CURDATE()) AND MONTH(requisition.date_requisition) = ? GROUP BY category.category_id"
+    const sql = "SELECT category.category_id,category.category_name ,SUM(material_requisiotion.amount_if_divide) AS 'approve' , SUM(material_requisiotion.amount_of_requisition) - SUM(material_requisiotion.amount_if_divide) AS 'disapproval' FROM category JOIN material ON category.category_id = material.category_id JOIN material_requisiotion ON material.material_id = material_requisiotion.material_id LEFT JOIN requisition ON material_requisiotion.requisition_id = requisition.requisition_id WHERE requisition.status_requisition IN (3,4) AND YEAR(requisition.date_requisition) = YEAR(CURDATE()) AND MONTH(requisition.date_requisition) = ? GROUP BY category.category_id"
 
-    con.query(sql, [month] , (err, result) => {
+    con.query(sql, [month], (err, result) => {
         if (err) {
             console.log(err);
             res.status(500).send("Database Server Error")
@@ -985,7 +1020,22 @@ app.post('/importmaterial', (req, res) => {
                 console.log(err);
                 res.status(500).send("INSERT ERROR 1");
             } else {
-                res.send();
+                const sql = 'INSERT INTO manage_stock (date_manage , time_manage , number_material ,status_manage_stock , material_id , user_id) VALUES (CURDATE(), CURTIME(), ? , ? ,  ? , ?)';
+                const user_id = req.session.user.user_id;
+                con.query(sql, [0, 3, material_id, user_id], (err, result) => {
+                    if (err) {
+                        console.log(err);
+                        res.status(500).send("DATABASE ERROR");
+                    } else {
+                        if (result.affectedRows != 1) {
+                            console.log(err);
+                            res.status(500).send("UPDATE ERROR 1");
+                        } else {
+                            res.send();
+                        }
+
+                    }
+                });
             }
         }
     });
@@ -995,83 +1045,83 @@ app.post('/importmaterial', (req, res) => {
 
 // สถิติการเบิกรายคน
 app.get('/individualstatistics', (req, res) => {
-    if(req.session.user){
-        res.render('staticperman' , {user: req.session.user})
+    if (req.session.user) {
+        res.render('staticperman', { user: req.session.user })
     }
-    else{
+    else {
         res.redirect('/')
     }
 })
 
 // รายละเอียดสถิติการเบิกรายคน
 app.get('/detaildisbur', (req, res) => {
-    if(req.session.user){
-        res.render('detailstaperman' , {user: req.session.user})
+    if (req.session.user) {
+        res.render('detailstaperman', { user: req.session.user })
     }
-    else{
+    else {
         res.redirect('/')
     }
 })
 
 // สถิติการเบิก
 app.get('/staticvisor', (req, res) => {
-    if(req.session.user){
-        res.render('staticvisor' , {user: req.session.user})
+    if (req.session.user) {
+        res.render('staticvisor', { user: req.session.user })
     }
-    else{
+    else {
         res.redirect('/')
     }
 })
 
 // ประวัติการเบิก
 app.get('/hiswithdrawmat', (req, res) => {
-    if(req.session.user){
-        res.render('historyrequivisor' , {user: req.session.user})
+    if (req.session.user) {
+        res.render('historyrequivisor', { user: req.session.user })
     }
-    else{
+    else {
         res.redirect('/')
     }
 })
 
 // รายละเอียดประวัติการเบิก
 app.get('/detailhiswithdraw', (req, res) => {
-    if(req.session.user){
-        res.render('detailrequisvisor' , {user: req.session.user})
+    if (req.session.user) {
+        res.render('detailrequisvisor', { user: req.session.user })
     }
-    else{
+    else {
         res.redirect('/')
     }
 })
 
 // รายการวัสดุ
 app.get('/meterialvisor', (req, res) => {
-    if(req.session.user){
-        res.render('materialvisor' , {user: req.session.user})
+    if (req.session.user) {
+        res.render('materialvisor', { user: req.session.user })
     }
-    else{
+    else {
         res.redirect('/')
     }
 })
 
 // ประัติการแก้ไขข้อมูลวัสดุ
 app.get('/hiseditmaterial', (req, res) => {
-    if(req.session.user){
-        res.render('historyedit' , {user: req.session.user})
+    if (req.session.user) {
+        res.render('historyedit', { user: req.session.user })
     }
-    else{
+    else {
         res.redirect('/')
     }
 })
 
 // =================== สถิติการเบิกรายคนของทุกเดือน ==============================
-app.get('/staticallmonth' , (req, res ) => {
+app.get('/staticallmonth', (req, res) => {
     const sql = "SELECT users.user_id, users.name , COUNT(requisition.requisition_id) AS 'REQUIPERMONTH' FROM requisition JOIN users ON requisition.user_id = users.user_id GROUP BY users.user_id"
-    con.query(sql , (err , result) => {
-        if(err){
+    con.query(sql, (err, result) => {
+        if (err) {
             console.log(err)
             res.status(500).send('Database Server Erorr');
         }
-        else{
+        else {
             res.json(result)
         }
     })
@@ -1079,83 +1129,83 @@ app.get('/staticallmonth' , (req, res ) => {
 
 
 // ========================= สถิติการเบิกรายคนของแต่ละเดือน =========================
-app.post('/staticreqpermonth' , (req , res) => {
+app.post('/staticreqpermonth', (req, res) => {
 
     const month = req.body.month
 
     const sql = "SELECT users.user_id , users.name , COUNT(requisition.requisition_id) AS 'REQUIPERMONTH' FROM requisition JOIN users ON requisition.user_id = users.user_id WHERE MONTH(requisition.date_requisition) = ? GROUP BY users.user_id"
-    con.query(sql , [month] , (err , result) => {
-        if(err){
+    con.query(sql, [month], (err, result) => {
+        if (err) {
             console.log(err);
             res.status(500).send("Database Server Error");
         }
-        else{
+        else {
             res.json(result);
         }
     })
 })
 
 // ======================== รายละเอียดสถิติการเบิกรายคน/เดือน =================================
-app.post('/detailstaticpermanmonth' , (req , res) => {
+app.post('/detailstaticpermanmonth', (req, res) => {
 
     const month = req.body.month;
     const user_id = req.body.user_id
 
     const sql = "SELECT requisition.date_requisition , requisition.time_requisition , material_requisiotion.material_id , material.material_name , material_requisiotion.amount_of_requisition , material.unit FROM material_requisiotion JOIN requisition ON material_requisiotion.requisition_id = requisition.requisition_id JOIN material ON material_requisiotion.material_id = material.material_id JOIN users ON users.user_id = requisition.user_id WHERE users.user_id = ? AND MONTH(requisition.date_requisition) = ?"
 
-    con.query(sql , [user_id , month] , (err ,result ) => {
-        if(err){
+    con.query(sql, [user_id, month], (err, result) => {
+        if (err) {
             console.log(err)
             res.status(500).send("Database Server Error")
         }
-        else{
+        else {
             res.json(result);
         }
     })
 })
 
 // ============================= รายละเอียดสถิติการเบิกรายคน ==========================
-app.post('/detailstaticperman' , (req , res) => {
+app.post('/detailstaticperman', (req, res) => {
     const user_id = req.body.user_id;
-    
+
     const sql = "SELECT requisition.date_requisition , requisition.time_requisition , material_requisiotion.material_id , material.material_name , material_requisiotion.amount_of_requisition , material.unit FROM material_requisiotion JOIN requisition ON material_requisiotion.requisition_id = requisition.requisition_id JOIN material ON material_requisiotion.material_id = material.material_id JOIN users ON users.user_id = requisition.user_id WHERE users.user_id = ? "
 
-    con.query(sql , [user_id] , (err ,result) => {
-        if(err){
+    con.query(sql, [user_id], (err, result) => {
+        if (err) {
             console.log(err);
             res.status(500).send("Database Error")
         }
-        else{
+        else {
             res.json(result);
         }
     })
 })
 
 // ========================= รายการวัสดุทั้งหมด =============================
-app.post('/materialsuperall' , (req , res) => {
+app.post('/materialsuperall', (req, res) => {
     const sql = "SELECT * FROM material"
-    con.query(sql , (err , result) => {
-        if(err){
+    con.query(sql, (err, result) => {
+        if (err) {
             console.log(err)
             res.status(500).send('Database Server Error');
         }
-        else{
+        else {
             res.json(result);
         }
     })
 })
 
 // ========================= รายการวัสดุ ============================
-app.post('/materialsuper' , (req ,res) => {
+app.post('/materialsuper', (req, res) => {
     const category = req.body.category
 
     const sql = "SELECT * FROM material WHERE category_id = ?"
-    con.query(sql , [category] , (err , result ) => {
-        if(err){
+    con.query(sql, [category], (err, result) => {
+        if (err) {
             console.log(err)
             res.status(500).send('Database Server Error')
         }
-        else{
+        else {
             res.json(result)
         }
     })
@@ -1163,46 +1213,46 @@ app.post('/materialsuper' , (req ,res) => {
 
 
 // ======================== ประวัติการเบิกของ User =============================
-app.get('/hisvisor' , (req , res) => {
+app.get('/hisvisor', (req, res) => {
     const sql = "SELECT * FROM requisition WHERE YEAR(requisition.date_requisition) = YEAR(CURDATE())";
-    con.query(sql , (err ,result) => {
-        if(err){
+    con.query(sql, (err, result) => {
+        if (err) {
             console.log(err);
             res.status(500).send('Database Server Error');
         }
-        else{
+        else {
             res.json(result);
         }
     })
 })
 
 // ======================== รายละเอียดใบเบิก ==============================
-app.post('/datareqvisor' , (req , res) => {
+app.post('/datareqvisor', (req, res) => {
     const requi_id = req.body.requi_id
 
     const sql = "SELECT * FROM requisition JOIN users ON requisition.user_id = users.user_id WHERE requisition.requisition_id = ?"
-    con.query(sql , [requi_id] , (err ,result) => {
-        if(err){
+    con.query(sql, [requi_id], (err, result) => {
+        if (err) {
             console.log(err)
             res.status(500).send("Database Server Error");
         }
-        else{
+        else {
             res.json(result);
         }
     })
 })
 
 // ============================ วัสดุในใบเบิก =============================
-app.post('/datamaterialvisor' , (req , res) => {
+app.post('/datamaterialvisor', (req, res) => {
     const requi_id = req.body.requi_id
 
     const sql = "SELECT * FROM material_requisiotion JOIN material ON material_requisiotion.material_id = material.material_id WHERE material_requisiotion.requisition_id = ?"
-    con.query(sql , [requi_id] , (err ,result) => {
-        if(err){
+    con.query(sql, [requi_id], (err, result) => {
+        if (err) {
             console.log(err)
             res.status(500).send("Database Server Error");
         }
-        else{
+        else {
             res.json(result);
         }
     })
@@ -1210,15 +1260,15 @@ app.post('/datamaterialvisor' , (req , res) => {
 
 
 // ========================== ประวัติการแก้ไขวัสดุ ==============================
-app.get('/detaileditmat' , (req , res) => {
-    
+app.get('/detaileditmat', (req, res) => {
+
     const sql = "SELECT manage_stock.date_manage , manage_stock.time_manage , users.name ,manage_stock.status_manage_stock , material.material_name , manage_stock.number_material , material.unit FROM manage_stock JOIN users ON manage_stock.user_id = users.user_id JOIN material ON manage_stock.material_id = material.material_id"
-    con.query(sql , (err , result) => {
-        if(err){
+    con.query(sql, (err, result) => {
+        if (err) {
             console.log(err);
             res.status(500).send("Database Server Error")
         }
-        else{
+        else {
             res.json(result)
         }
     })
@@ -1242,13 +1292,13 @@ app.get('/getstaticdashall', (req, res) => {
 })
 
 // Approve Requisition
-app.get('/getstaticdashboard' , (req, res) => {
-    const sql = "SELECT  DISTINCT(SELECT COUNT(a.requisition_id) FROM requisition a WHERE a.status_requisition = 4) AS 'apprequi' FROM requisition JOIN material_requisiotion ON requisition.requisition_id = material_requisiotion.requisition_id WHERE material_requisiotion.amount_of_requisition = material_requisiotion.amount_of_divide AND YEAR(requisition.date_requisition) = YEAR(CURDATE()) AND MONTH(requisition.date_requisition) = MONTH(CURDATE())"
-    con.query(sql , (err , result) => {
-        if(err){
+app.get('/getstaticdashboard', (req, res) => {
+    const sql = "SELECT COUNT(requisition.status_requisition) AS 'apprequi' FROM requisition WHERE requisition.status_requisition = 4 AND YEAR(requisition.date_requisition) = YEAR(CURDATE()) AND MONTH(requisition.date_requisition) = MONTH(CURDATE())"
+    con.query(sql, (err, result) => {
+        if (err) {
             console.log(err);
             res.status(500).send("Database Server Error")
-        }else{
+        } else {
             res.json(result);
         }
     })
@@ -1256,61 +1306,61 @@ app.get('/getstaticdashboard' , (req, res) => {
 })
 
 // Disapproval Requisition
-app.get('/getstaticdashunapp' , (req , res) => {
+app.get('/getstaticdashunapp', (req, res) => {
     const sql = "SELECT COUNT(requisition.status_requisition) AS 'disrequi' FROM requisition WHERE requisition.status_requisition = 3 AND YEAR(requisition.date_requisition) = YEAR(CURDATE()) AND MONTH(requisition.date_requisition) = MONTH(CURDATE())"
-    con.query(sql , (err , result) => {
-        if(err){
+    con.query(sql, (err, result) => {
+        if (err) {
             console.log(err);
             res.status(500).send("Database Server Error")
         }
-        else{
+        else {
             res.json(result);
         }
     })
 })
 
 // Static Graph
-app.get('/getstaticgraph' , (req , res) => {
-    const sql = "SELECT category.category_id,category.category_name ,SUM(material_requisiotion.amount_of_divide) AS 'approve' , SUM(material_requisiotion.amount_of_requisition) - SUM(material_requisiotion.amount_of_divide) AS 'disapproval' FROM category JOIN material ON category.category_id = material.category_id JOIN material_requisiotion ON material.material_id = material_requisiotion.material_id LEFT JOIN requisition ON material_requisiotion.requisition_id = requisition.requisition_id WHERE requisition.status_requisition IN (3,4) AND YEAR(requisition.date_requisition) = YEAR(CURDATE()) AND MONTH(requisition.date_requisition) = MONTH(CURDATE()) GROUP BY category.category_id"
+app.get('/getstaticgraph', (req, res) => {
+    const sql = "SELECT category.category_id,category.category_name ,SUM(material_requisiotion.amount_if_divide) AS 'approve' , SUM(material_requisiotion.amount_of_requisition) - SUM(material_requisiotion.amount_if_divide) AS 'disapproval' FROM category JOIN material ON category.category_id = material.category_id JOIN material_requisiotion ON material.material_id = material_requisiotion.material_id LEFT JOIN requisition ON material_requisiotion.requisition_id = requisition.requisition_id WHERE requisition.status_requisition IN (3,4) AND YEAR(requisition.date_requisition) = YEAR(CURDATE()) AND MONTH(requisition.date_requisition) = MONTH(CURDATE()) GROUP BY category.category_id"
 
-    con.query(sql , (err , result) => {
-        if(err){
+    con.query(sql, (err, result) => {
+        if (err) {
             console.log(err);
             res.status(500).send("Database Server Error")
         }
-        else{
+        else {
             res.json(result);
         }
     })
 })
 
 // Static Data Table
-app.get('/getstaticmaterial' , (req , res) => {
+app.get('/getstaticmaterial', (req, res) => {
 
-    const sql = "SELECT material_requisiotion.material_id AS 'id' ,material.material_name AS 'material' , ROUND(SUM(material_requisiotion.amount_of_requisition)/3) AS 'requipermonth' , ROUND(SUM(material_requisiotion.amount_of_divide)/3) AS 'approve' , ROUND(SUM(material_requisiotion.amount_of_requisition)/3) - ROUND(SUM(material_requisiotion.amount_of_divide)/3) AS 'disapproval' , material.unit FROM material_requisiotion JOIN requisition ON requisition.status_requisition = 4 OR requisition.status_requisition = 3 AND requisition.requisition_id = material_requisiotion.requisition_id JOIN material ON material.material_id = material_requisiotion.material_id JOIN category ON material.category_id = category.category_id WHERE YEAR(requisition.date_requisition) = YEAR(CURDATE()) AND MONTH(requisition.date_requisition) = MONTH(CURDATE()) GROUP BY material_requisiotion.material_id"
-    
-    con.query(sql , (err , result) => {
-        if(err){
+    const sql = "SELECT material_requisiotion.material_id AS 'id' ,material.material_name AS 'material' , ROUND(SUM(material_requisiotion.amount_of_requisition)/3) AS 'requipermonth' , ROUND(SUM(material_requisiotion.amount_if_divide)/3) AS 'approve' , ROUND(SUM(material_requisiotion.amount_of_requisition)/3) - ROUND(SUM(material_requisiotion.amount_if_divide)/3) AS 'disapproval' , material.unit FROM material_requisiotion JOIN requisition ON requisition.status_requisition = 4 OR requisition.status_requisition = 3 AND requisition.requisition_id = material_requisiotion.requisition_id JOIN material ON material.material_id = material_requisiotion.material_id JOIN category ON material.category_id = category.category_id WHERE YEAR(requisition.date_requisition) = YEAR(CURDATE()) AND MONTH(requisition.date_requisition) = MONTH(CURDATE()) GROUP BY material_requisiotion.material_id"
+
+    con.query(sql, (err, result) => {
+        if (err) {
             console.log(err);
             res.status(500).send("Database Server Error")
         }
-        else{
+        else {
             res.send(result);
         }
     })
 })
 
-app.post('/getstaticmaterialpermonth' , (req ,res) => {
+app.post('/getstaticmaterialpermonth', (req, res) => {
     const category = req.body.cate_id
 
-    const sql = "SELECT material_requisiotion.material_id AS 'id' ,material.material_name AS 'material' , ROUND(SUM(material_requisiotion.amount_of_requisition)/3) AS 'requipermonth' , ROUND(SUM(material_requisiotion.amount_of_divide)/3) AS 'approve' , ROUND(SUM(material_requisiotion.amount_of_requisition)/3) - ROUND(SUM(material_requisiotion.amount_of_divide)/3) AS 'disapproval' , material.unit FROM material_requisiotion JOIN requisition ON requisition.status_requisition = 4 OR requisition.status_requisition = 3 AND requisition.requisition_id = material_requisiotion.requisition_id JOIN material ON material.material_id = material_requisiotion.material_id JOIN category ON material.category_id = category.category_id AND material.category_id = ? WHERE YEAR(requisition.date_requisition) = YEAR(CURDATE()) AND MONTH(requisition.date_requisition) = MONTH(CURDATE()) GROUP BY material_requisiotion.material_id"
+    const sql = "SELECT material_requisiotion.material_id AS 'id' ,material.material_name AS 'material' , ROUND(SUM(material_requisiotion.amount_of_requisition)/3) AS 'requipermonth' , ROUND(SUM(material_requisiotion.amount_if_divide)/3) AS 'approve' , ROUND(SUM(material_requisiotion.amount_of_requisition)/3) - ROUND(SUM(material_requisiotion.amount_if_divide)/3) AS 'disapproval' , material.unit FROM material_requisiotion JOIN requisition ON requisition.status_requisition = 4 OR requisition.status_requisition = 3 AND requisition.requisition_id = material_requisiotion.requisition_id JOIN material ON material.material_id = material_requisiotion.material_id JOIN category ON material.category_id = category.category_id AND material.category_id = ? WHERE YEAR(requisition.date_requisition) = YEAR(CURDATE()) AND MONTH(requisition.date_requisition) = MONTH(CURDATE()) GROUP BY material_requisiotion.material_id"
 
-    con.query(sql , category , (err ,result) => {
-        if(err){
+    con.query(sql, category, (err, result) => {
+        if (err) {
             console.log(err);
             res.status(500).send("Database Server Error")
         }
-        else{
+        else {
             res.send(result)
         }
     })

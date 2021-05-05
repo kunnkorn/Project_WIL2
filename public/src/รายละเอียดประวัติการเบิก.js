@@ -48,8 +48,8 @@ $(document).ready(function () {
             data: { requi_id: localStorage.requi },
             dataSrc: (data) => {
                 for (let i = 0; i < data.length; i++) {
-                    if (data[i].amount_of_divide == null) {
-                        data[i].amount_of_divide = "0"
+                    if (data[i].amount_if_divide == null) {
+                        data[i].amount_if_divide = "0"
                     }
                 }
 
@@ -60,9 +60,9 @@ $(document).ready(function () {
         columns: [
             { data: "material_id", title: "รหัสวัสดุ" },
             { data: "material_name", title: "รายการ" },
-            { data: "amount_of_requisition", title: "จำนวนเบิก" },
+            { data: "amount_if_requisition", title: "จำนวนเบิก" },
             { data: "unit", title: "หน่วยนับ" },
-            { data: "amount_of_divide", title: "จำนวนจ่าย" },
+            { data: "amount_if_divide", title: "จำนวนจ่าย" },
 
         ],
     });
