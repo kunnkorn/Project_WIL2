@@ -331,6 +331,7 @@ $(document).ready(function () {
     $('#input').on("change", (event) => {
         selectedFile = event.target.files[0];
         XLSX.utils.json_to_sheet(data, 'out.xlsx');
+        let checkreload = 0;
         if (selectedFile) {
             // $("#modalimport").modal('show');
             let fileReader = new FileReader();
@@ -369,60 +370,113 @@ $(document).ready(function () {
                         //     });
                         // });
                         // console.log(rowObject[0]["วัสดุคงคลัง มหาวิทยาลัยแม่ฟ้าหลวง"]);
-                        console.log(i);
+                        // console.log(i);
                         if (rowObject[0]["วัสดุคงคลัง มหาวิทยาลัยแม่ฟ้าหลวง"] == "วัสดุสำนักงาน") {
-                                $.ajax({
-                                    type: 'POST',
-                                    url: '/importmaterial',
-                                    data: { material_id: rowObject[i].__EMPTY, material_name: rowObject[i].__EMPTY_1, material_unit: rowObject[i].__EMPTY_2, category_id: 1 }
-                                })
-                            
+                            $.ajax({
+                                type: 'POST',
+                                url: '/importmaterial',
+                                data: { material_id: rowObject[i].__EMPTY, material_name: rowObject[i].__EMPTY_1, material_unit: rowObject[i].__EMPTY_2, category_id: 1 }
+                            })
+                            checkreload++;
+
                         } else if (rowObject[0]["วัสดุคงคลัง มหาวิทยาลัยแม่ฟ้าหลวง"] == "วัสดุไฟฟ้าและวิทยุ") {
-                                $.ajax({
-                                    type: 'POST',
-                                    url: '/importmaterial',
-                                    data: { material_id: rowObject[i].__EMPTY, material_name: rowObject[i].__EMPTY_1, material_unit: rowObject[i].__EMPTY_2, category_id: 2 }
-                                })
+                            $.ajax({
+                                type: 'POST',
+                                url: '/importmaterial',
+                                data: { material_id: rowObject[i].__EMPTY, material_name: rowObject[i].__EMPTY_1, material_unit: rowObject[i].__EMPTY_2, category_id: 2 }
+                            })
+                            checkreload++;
                         } else if (rowObject[0]["วัสดุคงคลัง มหาวิทยาลัยแม่ฟ้าหลวง"] == "วัสดุคอมพิวเตอร์") {
-                                $.ajax({
-                                    type: 'POST',
-                                    url: '/importmaterial',
-                                    data: { material_id: rowObject[i].__EMPTY, material_name: rowObject[i].__EMPTY_1, material_unit: rowObject[i].__EMPTY_2, category_id: 3 }
-                                })
+                            $.ajax({
+                                type: 'POST',
+                                url: '/importmaterial',
+                                data: { material_id: rowObject[i].__EMPTY, material_name: rowObject[i].__EMPTY_1, material_unit: rowObject[i].__EMPTY_2, category_id: 3 }
+                            })
+                            checkreload++;
                         } else if (rowObject[0]["วัสดุคงคลัง มหาวิทยาลัยแม่ฟ้าหลวง"] == "วัสดุโฆษณาและเผยแพร่") {
-                                $.ajax({
-                                    type: 'POST',
-                                    url: '/importmaterial',
-                                    data: { material_id: rowObject[i].__EMPTY, material_name: rowObject[i].__EMPTY_1, material_unit: rowObject[i].__EMPTY_2, category_id: 4 }
-                                })
+                            $.ajax({
+                                type: 'POST',
+                                url: '/importmaterial',
+                                data: { material_id: rowObject[i].__EMPTY, material_name: rowObject[i].__EMPTY_1, material_unit: rowObject[i].__EMPTY_2, category_id: 4 }
+                            })
+                            checkreload++;
                         } else if (rowObject[0]["วัสดุคงคลัง มหาวิทยาลัยแม่ฟ้าหลวง"] == "วัสดุงานบ้านงานครัว") {
-                                $.ajax({
-                                    type: 'POST',
-                                    url: '/importmaterial',
-                                    data: { material_id: rowObject[i].__EMPTY, material_name: rowObject[i].__EMPTY_1, material_unit: rowObject[i].__EMPTY_2, category_id: 5 }
-                                })
+                            $.ajax({
+                                type: 'POST',
+                                url: '/importmaterial',
+                                data: { material_id: rowObject[i].__EMPTY, material_name: rowObject[i].__EMPTY_1, material_unit: rowObject[i].__EMPTY_2, category_id: 5 }
+                            })
+                            checkreload++;
                         } else if (rowObject[0]["วัสดุคงคลัง มหาวิทยาลัยแม่ฟ้าหลวง"] == "วัสดุเครื่องแต่งกาย") {
-                                $.ajax({
-                                    type: 'POST',
-                                    url: '/importmaterial',
-                                    data: { material_id: rowObject[i].__EMPTY, material_name: rowObject[i].__EMPTY_1, material_unit: rowObject[i].__EMPTY_2, category_id: 6 }
-                                })
+                            $.ajax({
+                                type: 'POST',
+                                url: '/importmaterial',
+                                data: { material_id: rowObject[i].__EMPTY, material_name: rowObject[i].__EMPTY_1, material_unit: rowObject[i].__EMPTY_2, category_id: 6 }
+                            })
+                            checkreload++;
                         } else if (rowObject[0]["วัสดุคงคลัง มหาวิทยาลัยแม่ฟ้าหลวง"] == "วัสดุของที่ระลึก") {
-                                $.ajax({
-                                    type: 'POST',
-                                    url: '/importmaterial',
-                                    data: { material_id: rowObject[i].__EMPTY, material_name: rowObject[i].__EMPTY_1, material_unit: rowObject[i].__EMPTY_2, category_id: 7 }
-                                })
+                            $.ajax({
+                                type: 'POST',
+                                url: '/importmaterial',
+                                data: { material_id: rowObject[i].__EMPTY, material_name: rowObject[i].__EMPTY_1, material_unit: rowObject[i].__EMPTY_2, category_id: 7 }
+                            })
+                            checkreload++;
                         }
 
                     }
                     // document.getElementById("jsondata").innerHTML = JSON.stringify(rowObject, undefined, 4)
                 });
-                
+                // console.log(checkreload);
+                table.clear();
+                table = $("#materialTable").dataTable().fnDestroy();
+                $("#materialTable").empty();
+                $.ajax({
+                    type: 'GET',
+                    url: '/getAllDatamaterial',
+                    success: (response) => {
+                        let number = 1;
+                        table = $("#materialTable").DataTable({
+                            responsive: true,       //for responsive column display
+                            deferRender: true,      //if large data, use this option
+                            data: response,
+                            columns: [
+                                { title: "ลำดับ", defaultContent: "" },
+                                { data: "material_id", title: "รหัสวัสดุ" },
+                                { data: "material_name", title: "รายการ" },
+                                { data: "material_number", title: "คงเหลือ" },
+                                { data: "unit", title: "หน่ายนับ" },
+                                { title: "เพิ่มจำนวน", orderable: false, defaultContent: " <button class='btn btn-warning my-1'>แก้ไข</button>" }
+                            ],
+                            "columnDefs": [{
+                                "targets": 0,
+                                "createdCell": function (td, cellData, rowData, row, col) {
+                                    $(td).text(number);
+                                    number++;
+                                }
+                            }]
+
+
+                        });
+                        $("#materialTable tbody").on("click", ".btn-warning", function () {
+                            const currentRow = $(this).parents("tr")
+                            const data = table.row(currentRow).data();
+                            rowID = table.row(currentRow).index();
+                            $("#EditID").val(data.material_id);
+                            $("#EditName").val(data.material_name);
+                            $("#EditNum").val(0);
+                            $("#EditUnit").val(data.unit);
+                            //show model
+                            $("#modelEdit").modal("show");
+                        });
+                    }, error: (xhr) => {
+                        alert(xhr.responseText);
+                    }
+                })
             }
+
             // location.reload();
         }
-        
+
     })
 
 
