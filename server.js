@@ -524,7 +524,7 @@ app.post('/addmatrequi', (req, res) => {
         }
         else {
             console.log(material_id);
-            const sql = 'INSERT INTO material_requisiotion(material_requisiotion.requisition_id , material_requisiotion.material_id , material_requisiotion.amount_of_requisition , material_requisiotion.amount_of_divide) VALUES (? , ? , ? , 0)';
+            const sql = 'INSERT INTO material_requisiotion(material_requisiotion.requisition_id , material_requisiotion.material_id , material_requisiotion.amount_of_requisition , material_requisiotion.amount_if_divide) VALUES (? , ? , ? , 0)';
             con.query(sql, [result[0].requisition_id, material_id, numbermaterial], (err, result) => {
                 if (err) {
                     console.log(err);
