@@ -1,18 +1,24 @@
 body {
-  font-family: 'Pridi', serif;
+  font-family: 'Prompt', sans-serif;
   margin: 0;
+  background-color: #fbfefb;
+}
+
+nav {
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.479);
 }
 
 .vertical-nav {
   min-width: 17rem;
   width: 17rem;
-  height: 100vh;
+  height: 100%;
   position: fixed;
   top: 60px;
   left: 0;
   box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(180deg, #0B2646, #77A5BB);
   transition: all 0.4s;
-  font-family: 'Pridi', serif;
+  margin-top: 11px;
 }
 
 .vertical-menu a {
@@ -63,12 +69,12 @@ body {
 }
 
 li a {
-  color: black;
+  color: white;
 }
 
 a.active {
   background-color: #DDEEFF;
-  color: #134472;
+  color: #000000;
 }
 
 .hr {
@@ -76,31 +82,42 @@ a.active {
 }
 
 .bgnavbar {
-  background: #2E5E96;
+  background: linear-gradient(90deg, #0B2646, #2C7CDD);
   /* border-radius:0px 0px 27px 27px; */
 }
 
 th {
-  background-color: #9CE7D9;
+  color: white;
+  background-color: #1282a2;
   text-align: center;
+  /* border-radius:0px 0px 27px 27px; */
 }
 
-table {
-  font-family: 'Pridi', serif;
+.table td, .table th {
+  border-top: none;
+}
+
+.table-bordered td, .table-bordered th {
+  border: none;
+}
+
+.table thead th {
+  border-bottom: none;
+}
+
+table.table-bordered.dataTable th, table.table-bordered.dataTable td {
+  border: none;
 }
 
 tr, td {
   text-align: center;
   padding: 15px;
-  border-bottom: 2px solid #ddd;
+  /* border-bottom: 2px solid #ddd; */
 }
 
-body {
-  background-color: #F8F8F8, 100%;
-  min-height: 100vh;
-  overflow-x: hidden;
-  font-family: 'Pridi', serif;
-  margin: 0;
+#historymaterialTable {
+  border-radius: 0px 0px 10px 10px;
+  box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.281);
 }
 
 #detail {

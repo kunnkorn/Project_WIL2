@@ -49,8 +49,13 @@
   } */
 
 body {
-  font-family: 'Pridi', serif;
+  font-family: 'Prompt', sans-serif;
   margin: 0;
+  background-color: #fbfefb;
+}
+
+nav {
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.479);
 }
 
 .vertical-nav {
@@ -61,8 +66,8 @@ body {
   top: 60px;
   left: 0;
   box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(180deg, #0B2646, #77A5BB);
   transition: all 0.4s;
-  font-family: 'Pridi', serif;
   margin-top: 11px;
 }
 
@@ -109,17 +114,17 @@ body {
 }
 
 .bgnavbar {
-  background: #2E5E96;
+  background: linear-gradient(90deg, #0B2646, #2C7CDD);
   /* border-radius:0px 0px 27px 27px; */
 }
 
 li a {
-  color: black;
+  color: white;
 }
 
 a.active {
   background-color: #DDEEFF;
-  color: #134472;
+  color: #000000;
 }
 
 .cart-item {
@@ -143,7 +148,6 @@ a.active {
     height: 400px;
   }
 }
-
 
 #btn-requis {
   background-color: rgb(151, 213, 238);

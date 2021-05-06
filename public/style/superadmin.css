@@ -1,10 +1,15 @@
-html, body {
-  box-sizing: border-box;
+body {
+  font-family: 'Prompt', sans-serif;
+  margin: 0;
+  background-color: #fbfefb;
 }
 
 .bgnavbar {
-  background: #2E5E96;
-  height: auto;
+  background: linear-gradient(90deg, #0B2646, #2C7CDD);
+}
+
+nav {
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.479);
 }
 
 #myInput {
@@ -14,10 +19,6 @@ html, body {
   background-repeat: no-repeat;
   background-color: #F0F0F0;
   border-radius: 10px;
-}
-
-.display-5 {
-  border-bottom: 1px solid #000000;
 }
 
 .modal-content {

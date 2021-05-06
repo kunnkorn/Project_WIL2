@@ -49,8 +49,20 @@
   } */
 
  body {
-   font-family: 'Pridi', serif;
+   font-family: 'Prompt', sans-serif;
    margin: 0;
+   background-color: #fbfefb;
+   /* background: url(https://images.unsplash.com/photo-1590019012497-b44f1aaa40d3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80) fixed center no-repeat;
+   background-size: cover; */
+ }
+
+ nav {
+   box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.479);
+ }
+
+ #materialMenu {
+   border-radius: 0px 0px 10px 10px;
+   box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.281);
  }
 
  .vertical-nav {
@@ -61,8 +73,8 @@
    top: 60px;
    left: 0;
    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+   background: linear-gradient(180deg, #0B2646, #77A5BB);
    transition: all 0.4s;
-   font-family: 'Pridi', serif;
    margin-top: 11px;
  }
 
@@ -96,13 +108,19 @@
    }
    #sidebar.active {
      margin-left: 0;
-     
    }
    #content {
      width: 100%;
      margin: 0;
    }
-   
+ }
+
+ table#materialMenu.dataTable tbody tr:hover {
+   background-color: #EDF9FD;
+ }
+
+ table#materialMenu.dataTable tbody tr:hover>.sorting_1 {
+   background-color: #EDF9FD;
  }
 
  .hr {
@@ -110,37 +128,67 @@
  }
 
  .bgnavbar {
-   background: #2E5E96;
+   background: linear-gradient(90deg, #0B2646, #2C7CDD);
+   /* background: #2E5E96; */
    /* border-radius:0px 0px 27px 27px; */
  }
 
  li a {
-   color: black;
+   color: white;
  }
 
  a.active {
    background-color: #DDEEFF;
-   color: #134472;
+   color: #000000;
  }
 
  th {
-   background-color: #9CE7D9;
+   color: white;
+   background-color: #1282a2;
    text-align: center;
+   /* border-radius:0px 0px 27px 27px; */
  }
 
- table {
-   font-family: 'Pridi', serif;
+ .table td, .table th {
+   border-top: none;
+ }
+
+ .table-bordered td, .table-bordered th {
+   border: none;
+ }
+
+ .table thead th {
+   border-bottom: none;
+ }
+
+ table.table-bordered.dataTable th, table.table-bordered.dataTable td {
+   border: none;
  }
 
  tr, td {
    text-align: center;
    padding: 15px;
-   border-bottom: 2px solid #ddd;
+   /* border-bottom: 2px solid #ddd; */
+ }
+
+ .notification {
+   text-decoration: none;
+   position: relative;
+   display: inline-block;
+ }
+
+ .notification .badge {
+   position: absolute;
+   top: -10px;
+   right: -20px;
+   padding: 5px 10px;
+   border-radius: 50%;
+   background: red;
+   color: white;
  }
 
  #selectCategory {
-   background-color: #8affea;
-   border: 6px solid transparent;
+   border-radius: 10px;
  }
 
  @media (min-width: 768px) {

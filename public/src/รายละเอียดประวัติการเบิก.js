@@ -60,7 +60,7 @@ $(document).ready(function () {
         columns: [
             { data: "material_id", title: "รหัสวัสดุ" },
             { data: "material_name", title: "รายการ" },
-            { data: "amount_if_requisition", title: "จำนวนเบิก" },
+            { data: "amount_of_requisition", title: "จำนวนเบิก" },
             { data: "unit", title: "หน่วยนับ" },
             { data: "amount_if_divide", title: "จำนวนจ่าย" },
 
@@ -92,23 +92,23 @@ $(document).ready(function () {
             if (data[0].status_requisition == 1) {
                 $("#requi_status").text("รออนุมัติ")
                 $("#requi_status").css({ 'color': 'black' })
-                $("#detail").css({ 'background-color': '#FEFFAC' })
+                $("#detail").css({ 'background-color': '#FFEDC2' })
             }
             else if (data[0].status_requisition == 2) {
                 $("#requi_status").text("อนุมัติ")
                 $("#requi_status").css({ 'color': 'black' })
-                $("#detail").css({ 'background-color': '#D1F1FF' })
+                $("#detail").css({ 'background-color': '#D6F1FF' })
             }
             else if (data[0].status_requisition == 3) {
                 $("#requi_status").text('ไม่อนุมัติ')
                 $("#requi_status").css({ 'color': 'black' })
-                $("#detail").css({ 'background-color': 'rgb(255, 224, 224)' })
+                $("#detail").css({ 'background-color': 'FFC2C2' })
                 $("#unsuc").text('สาเหตุ : ' + data[0].annotation_of_disproval)
             }
             else if (data[0].status_requisition == 4) {
                 $("#requi_status").text('เสร็จสมบูรณ์')
                 $("#requi_status").css({ 'color': 'black' })
-                $("#detail").css({ 'background-color': '#bffcd0' })
+                $("#detail").css({ 'background-color': '#D6FFD6' })
             }
 
             // หมายเหตุ

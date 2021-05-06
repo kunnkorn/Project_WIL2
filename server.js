@@ -1399,7 +1399,7 @@ app.post('/login', (req, res) => {
                 if (result[0].status_user == 1) {
 
                     // Save User Detail to session
-                    req.session.user = { 'user_id': result[0].user_id, 'user_name': result[0].name, 'role': result[0].user_role, 'status': result[0].status_user }
+                    req.session.user = { 'user_id': result[0].user_id, 'user_name': result[0].name, 'role': result[0].user_role, 'status': result[0].status_user , 'image': result[0].image}
 
                     if (result[0].image == null) {
                         const sql = 'UPDATE users SET image = ? WHERE email = ?'
