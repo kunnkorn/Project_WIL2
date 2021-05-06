@@ -74,6 +74,7 @@ $(document).ready(function () {
         const data = table.row(currentRow).data();
         const mat_id = data.material_id
         sessionStorage.cart += mat_id + ",";
+        // console.log(sessionStorage.cart);
     })
 
 
@@ -158,7 +159,7 @@ $(document).ready(function () {
             const data = table.row(currentRow).data();
             const mat_id = data.material_id
             sessionStorage.cart += mat_id + ",";
-
+            // console.log(sessionStorage.cart);
         })
     })
 });

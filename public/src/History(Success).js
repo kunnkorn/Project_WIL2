@@ -59,22 +59,22 @@ $(document).ready(function () {
             if (data[0].status_requisition == 1) {
                 $("#status_requisition").text('รออนุมัติ')
                 $("#status_requisition").css({ 'color': 'black' })
-                $("#detail").css({ 'background-color': '#FEFFAC' })
+                $("#detail").css({ 'background-color': '#FFEDC2' })
             }
             else if (data[0].status_requisition == 2) {
                 $("#status_requisition").text('อนุมัติ')
                 $("#status_requisition").css({ 'color': 'black' })
-                $("#detail").css({ 'background-color': '#D1F1FF' })
+                $("#detail").css({ 'background-color': '#D6F1FF' })
             }
             else if (data[0].status_requisition == 4) {
                 $("#status_requisition").text('เสร็จสมบูรณ์')
                 $("#status_requisition").css({ 'color': 'black' })
-                $("#detail").css({ 'background-color': '#bffcd0' })
+                $("#detail").css({ 'background-color': '#D6FFD6' })
             }
             else {
                 $("#status_requisition").text('ไม่อนุมัติ')
                 $("#status_requisition").css({ 'color': 'black' })
-                $("#detail").css({ 'background-color': 'rgb(255, 224, 224)' })
+                $("#detail").css({ 'background-color': '#FFC2C2' })
                 $("#other").text('สาเหตุ : ' + data[0].annotation_of_disproval)
             }
 

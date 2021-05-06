@@ -1,8 +1,34 @@
-body{
-    background: url(../img/bg.png) no-repeat fixed;
+body {
+    /* background: linear-gradient(90deg, #0E2F58, #2D5C8B ,#5092E2 ); */
+    /* background: url(../img/bg.png) fixed center no-repeat; */
+    background: url(https://images.unsplash.com/photo-1527443154391-507e9dc6c5cc?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80) fixed center no-repeat;
     background-size: cover;
+    font-family: 'Prompt', sans-serif;
 }
-.btn{
+
+#tabnavbar {
+    background-color: rgb(243, 243, 243);
+    height: 20px;
+    border-radius: 10px 10px 0px 0px;
+    box-shadow: 0px 2px 5px rgba(29, 29, 29, 0.192);
+}
+
+#login-area {
+    /* color: rgb(255, 255, 255); */
+    color: rgb(255, 255, 255);
+    position: relative;
+    border-radius: 10px;
+    box-shadow: 0px 20px 70px rgba(3, 3, 3, 0.527);
+    height: 300px;
+    /* background: url(../img/bg.png) fixed center no-repeat; */
+    /* background-color: rgb(255, 255, 255); */
+    background: linear-gradient(90deg, #0B2646,#77A5BB);
+    /* background: linear-gradient(90deg, #0E2F58, #2D5C8B ,#5092E2 ); */
+    /* background: linear-gradient(90deg, #b4d6fa, #3494f5); */
+    background-size: 700px 600px;
+}
+
+.btn {
     border-radius: 34px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }

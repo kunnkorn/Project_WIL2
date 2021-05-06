@@ -1,18 +1,24 @@
 body {
-    font-family: 'Pridi', serif;
+    font-family: 'Prompt', sans-serif;
     margin: 0;
+    background-color: #fbfefb;
+}
+
+nav {
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.479);
 }
 
 .vertical-nav {
     min-width: 17rem;
     width: 17rem;
-    height: 100vh;
+    height: 100%;
     position: fixed;
     top: 60px;
     left: 0;
     box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(180deg, #0B2646, #77A5BB);
     transition: all 0.4s;
-    font-family: 'Pridi', serif;
+    margin-top: 11px;
 }
 
 .vertical-menu a {
@@ -67,22 +73,22 @@ body {
 }
 
 .bgnavbar {
-    background: #2E5E96;
+    background: linear-gradient(90deg, #0B2646, #2C7CDD);
     /* border-radius:0px 0px 27px 27px; */
 }
 
 li a {
-    color: black;
+    color: white;
 }
 
 a.active {
     background-color: #DDEEFF;
-    color: #134472;
+    color: #000000;
 }
 
 .btn-effect {
     border-bottom: 2px solid transparent;
-    background-color:  #f5f5f5e7;
+    background-color: #f5f5f5e7;
     color: black;
     transition: 0.3s;
 }
@@ -95,36 +101,34 @@ a.active {
     border-bottom: 2px solid #2c5c8a;
     padding-bottom: .5rem;
     cursor: pointer;
-
 }
 
-
 #btnall.active {
-    background-color:  #90c5f7;
+    background-color: #90c5f7;
     border-bottom: 2px solid #2c5c8a;
     padding-bottom: .5rem;
 }
 
 #btnwait.active {
-    background-color:  #fff785;
+    background-color: #fff785;
     border-bottom: 2px solid #2c5c8a;
     padding-bottom: .5rem;
 }
 
 #btncomfirm.active {
-    background-color:  #68d3fd;
+    background-color: #68d3fd;
     border-bottom: 2px solid #2c5c8a;
     padding-bottom: .5rem;
 }
 
 #btnUnapp.active {
-    background-color:  #ff8585;
+    background-color: #ff8585;
     border-bottom: 2px solid #2c5c8a;
     padding-bottom: .5rem;
 }
 
 #btncomplete.active {
-    background-color:  #8cfd88;
+    background-color: #8cfd88;
     border-bottom: 2px solid #2c5c8a;
     padding-bottom: .5rem;
 }

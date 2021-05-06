@@ -24,8 +24,8 @@ $.ajax({
                     for (let j = 0; j < inputid.length; j++) {
                         makeid += inputid[j];
                     }
-                    console.log(makeid);
-                    spawnitem += "<div class='d-lg-flex my-4 justify-content-between align-items-center bg-white rounded cart-item shadow col-12 col-lg-10 mx-auto p-1'><div class='mr-1 float-left float-lg-none mt-5 mt-sm-4 pt-lg-0 pt-5'><input type='checkbox' name='icart' class='cart' value='" + response[i].material_id + "' style='height: 25px; width: 25px;'></div><div class='mx-2 my-5 my-sm-4 my-md-3 text-center text-lg-none'>รหัสวัสดุ : " + response[i].material_id + "</div><div class='mx-2 my-5 my-sm-4 my-md-3 text-center text-lg-none'>ชื่อรายการ : " + response[i].material_name + "</div><div class='mx-auto my-3 col-5 m-lg-none'><input type='number' class='form-control'id='" + makeid + "' placeholder='จำนวนเบิก'> / คงเหลือ " + response[i].material_number + "</div></div>"
+                    // console.log(makeid);
+                    spawnitem += "<div class='d-lg-flex my-4 justify-content-between align-items-center bg-white rounded cart-item shadow col-12 col-lg-10 mx-auto p-1'><div class='mr-1 float-left float-lg-none mt-5 mt-sm-4 pt-lg-0 pt-5'><input type='checkbox' name='icart' class='cart' value='" + response[i].material_id + "' style='height: 25px; width: 25px;'></div><div class='mx-2 my-5 my-sm-4 my-md-3 text-center text-lg-none'>รหัสวัสดุ : " + response[i].material_id + "</div><div class='mx-2 my-5 my-sm-4 my-md-3 text-center text-lg-none'>ชื่อรายการ : " + response[i].material_name + "</div><div class='mx-auto my-3 col-5 m-lg-none'><input type='number' class='form-control'id='" + makeid + "' placeholder='จำนวนเบิก' value='0'> / คงเหลือ " + response[i].material_number + "</div></div>"
                     indexitem++;
                 }
             }
@@ -69,6 +69,9 @@ $.ajax({
                     }
                     if (array_item[i] != "") {
                         array_number[i] = $("#" + makeid).val();
+                        if (array_number[i] == 0 || array_number[i] == "") {
+                            array_number[i] = 0
+                        }
                         checknumber += $("#" + makeid).val();
                     }
                 }
@@ -83,7 +86,7 @@ $.ajax({
                     }
 
                 }
-                console.log(array_number + " " + array_item);
+                // console.log(array_number + " " + array_item);
                 let indexitem = 0;
                 for (let i = 0; i < response.length; i++) {
                     if (response[i].material_id == array_item[indexitem]) {
@@ -132,17 +135,22 @@ $.ajax({
             $("#txtob").keyup(function () {
                 if ($("#Objective").val() == "เลือกวัตถุประสงค์" && $("#txtob").val() != "") {
                     $("#btn-confirm").prop('disabled', false);
+                } else if ($("#Objective").val() == "การเรียนการสอน" || $("#Objective").val() == "สำนักงาน") {
+                    $("#btn-confirm").prop('disabled', false);
                 } else {
                     $("#btn-confirm").prop('disabled', true);
                 }
             });
 
             $("#Objective").change(function () {
+
                 let txtObjective = $("#Objective").val();
-                if (txtObjective == "เลือกวัตถุประสงค์") {
-                    $("#btn-confirm").prop('disabled', true);
-                } else {
+                if (txtObjective == "เลือกวัตถุประสงค์" && $("#txtob").val() != "") {
                     $("#btn-confirm").prop('disabled', false);
+                } else if (txtObjective == "การเรียนการสอน" || txtObjective == "สำนักงาน") {
+                    $("#btn-confirm").prop('disabled', false);
+                } else if (txtObjective == "เลือกวัตถุประสงค์" && $("#txtob").val() == "") {
+                    $("#btn-confirm").prop('disabled', true);
                 }
             })
 

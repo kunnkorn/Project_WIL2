@@ -11,29 +11,45 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://code.iconify.design/1/1.0.6/iconify.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
-    <script src="https://apis.google.com/js/platform.js?onload=init" async defer ></script>
+    <script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>
     <script src="src/Login.js"></script>
     <link rel="stylesheet" href="style/Login.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@100&display=swap" rel="stylesheet">
 </head>
 
 <body>
     <div class="container">
-        <div class="mt-5 pt-5">
-            <div class="mt-5 pt-5">
-                <div class="text-center mt-5 pt-5">
-                    <img src="img/logo.png">
+        <div class="row d-flex justify-content-center align-items-center" style="height: 100vh;">
+            <div class="text-center align-items-center p-0" id="login-area">
+                <div class="d-flex justify-content-between" id="tabnavbar">
+                    <div>
+                        <span class="iconify mb-1 ml-1" data-inline="false" data-icon="carbon:dot-mark"
+                            style="font-size: 15px; color: rgb(202, 73, 73);"></span>
+                        <span class="iconify mb-1" data-inline="false" data-icon="carbon:dot-mark"
+                            style="font-size: 15px; color: rgb(255, 195, 82);"></span>
+                        <span class="iconify mb-1" data-inline="false" data-icon="carbon:dot-mark"
+                            style="font-size: 15px; color: rgb(83, 238, 69);"></span>
+                    </div>
+                    <div class="col-6 mx-auto rounded-pill mt-1"
+                        style="background-color: rgb(230, 230, 230); height: 13px;"></div>
+                </div>
+                <div class="my-3 p-1">
+                    <img src="img/logo.png" class="mb-1" width="60px">
                     <p></p>
                     <h4><strong>ยินดีต้อนรับเข้าสู่ระบบ</strong></h4>
                     <h5><strong>ระบบจัดการวัสดุสำนักงาน สำนักวิชาเทคโนโลยีสารสนเทศ</strong></h5>
                     <p></p>
                     <p></p>
-                    <p class="btn btn-light " id="btnlogin"><span class="iconify" data-inline="false" data-icon="grommet-icons:google"
-                            style="font-size: 30px;"></span> <strong> เข้าสู่ระบบด้วย Google </strong>
+                    <p class="btn btn-light mt-1" id="btnlogin"><span class="iconify" data-inline="false"
+                            data-icon="grommet-icons:google" style="font-size: 20px;"></span> <strong>
+                            เข้าสู่ระบบด้วย
+                            Google </strong>
                     </p>
                 </div>
             </div>
-
         </div>
     </div>
 </body>
+
 </html>

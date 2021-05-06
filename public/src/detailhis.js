@@ -59,13 +59,13 @@ $(document).ready(function () {
         data: { idreq: sessionStorage.number },
         success: (response) => {
             if (response[0].status_requisition == 1) {
-                $("#detail").css('background', '#FEFFAC');
+                $("#detail").css('background', '#FFEDC2');
             } else if (response[0].status_requisition == 2) {
-                $("#detail").css('background', '#06B4FF');
+                $("#detail").css('background', '#D6F1FF');
             } else if (response[0].status_requisition == 3) {
-                $("#detail").css('background', '#FFDBCB');
+                $("#detail").css('background', '#FFC2C2');
             } else if (response[0].status_requisition == 4) {
-                $("#detail").css('background', '#CBF1BE');
+                $("#detail").css('background', '#D6FFD6');
             }
             let d = new Date(response[0].date_requisition);
             let year = d.getFullYear();
