@@ -14,6 +14,7 @@ function signout() {
     });
 }
 
+
 $.ajax({
     type: 'GET',
     url: '/datamaterials',
