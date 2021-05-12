@@ -199,17 +199,24 @@ $(document).ready(function () {
         type: "GET",
         url: "/getstaticgraph",
         success: function (response) {
-            console.log(response)
+            let approve = [];
+            let disapp = [];
+            for(let i=0; i<response.length; i++){
+                approve[i] = response[i].approve;
+                disapp[i] = response[i].disapproval;
+                
+            }
+            
             var chartData = {
                 labels: ['วัสดุสำนักงาน', ' วัสดุไฟฟ้าวิทยุ', 'วัสดุคอมพิวเตอร์', 'วัสดุโฆษณา', 'วัสดุงานบ้านงานครัว', 'วัสดุเครื่องแต่งกาย', 'วัสดุของที่ระลึก'],
                 datasets: [{
                     label: ['อนุมัติ'],
-                    data: [response[0].approve, response[1].approve, response[2].approve, response[3].approve, response[4].approve, response[5].approve, response[6].approve],
+                    data: approve,
                     backgroundColor: colors[0]
                 },
                 {
                     label: 'ไม่อนุมัติ',
-                    data: [response[0].disapproval, response[1].disapproval, response[2].disapproval, response[3].disapproval, response[4].disapproval, response[5].disapproval, response[6].disapproval],
+                    data: disapp,
                     backgroundColor: colors[1]
                 },
                 ]
@@ -241,5 +248,7 @@ $(document).ready(function () {
             }
         }
     });
+
+    
 
 });

@@ -6,7 +6,13 @@ function init() {
     })
 }
 
-
+function signout() {
+    const auth2 = gapi.auth2.getAuthInstance();
+    auth2.signOut().then(() => { 
+        sessionStorage.clear();
+        window.location.replace('/logout');
+    });
+}
 
 $(document).ready(function () {
     sessionStorage.cart = "";

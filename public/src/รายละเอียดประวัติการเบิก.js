@@ -102,7 +102,7 @@ $(document).ready(function () {
             else if (data[0].status_requisition == 3) {
                 $("#requi_status").text('ไม่อนุมัติ')
                 $("#requi_status").css({ 'color': 'black' })
-                $("#detail").css({ 'background-color': 'FFC2C2' })
+                $("#detail").css({ 'background-color': '#FFC2C2' })
                 $("#unsuc").text('สาเหตุ : ' + data[0].annotation_of_disproval)
             }
             else if (data[0].status_requisition == 4) {

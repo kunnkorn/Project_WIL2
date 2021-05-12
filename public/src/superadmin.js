@@ -62,13 +62,13 @@ $(document).ready(function () {
                 let user_id = resultuser[0];
                 Swal.fire({
                     title: 'คุณแน่ใจใช่หรือไม่ ?',
-                    text: "ที่ต้องการเปิดสิทธิ์การใช้งานคุณ " + resultuser[1],
+                    text: "ที่ต้องการเปิดสิทธิ์การใช้งานของคุณ " + resultuser[1],
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
                     cancelButtonColor: '#d33',
-                    confirmButtonText: 'หาทำ !',
-                    cancelButtonText: 'อย่าหาทำ !',
+                    confirmButtonText: 'ตกลง',
+                    cancelButtonText: 'ยกเลิก',
                 }).then((result) => {
                     if (result.isConfirmed) {
                         $.ajax({
@@ -77,8 +77,8 @@ $(document).ready(function () {
                             data: { user_id },
                             success: (response) => {
                                 Swal.fire(
-                                    'เพิ่มสำเร็จ!',
-                                    'คุณได้ทำการเปิดสิทธิ์สมาชิกคนนี้เรียบร้อนแล้ว',
+                                    'เปิดสิทธิ์สำเร็จ',
+                                    'คุณได้ทำการเปิดสิทธิ์สมาชิกคนนี้เรียบร้อยแล้ว',
                                     'success'
                                 ).then((result) => {
                                     if (result.isConfirmed) {
@@ -107,13 +107,13 @@ $(document).ready(function () {
                 // console.log(nameuser);
                 Swal.fire({
                     title: 'คุณแน่ใจใช่หรือไม่ ?',
-                    text: "ที่ต้องการระงับสิทธิ์การใช้งานคุณ " + resultuser[1],
+                    text: "ที่ต้องการระงับสิทธิ์การใช้งานของคุณ " + resultuser[1],
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
                     cancelButtonColor: '#d33',
-                    confirmButtonText: 'หาทำ !',
-                    cancelButtonText: 'อย่าหาทำ !',
+                    confirmButtonText: 'ตกลง',
+                    cancelButtonText: 'ยกเลิก',
                 }).then((result) => {
                     if (result.isConfirmed) {
                         $.ajax({
@@ -122,8 +122,8 @@ $(document).ready(function () {
                             data: { user_id },
                             success: (response) => {
                                 Swal.fire(
-                                    'เพิ่มสำเร็จ!',
-                                    'คุณได้ทำการปิดสิทธิ์สมาชิกคนนี้เรียบร้อยแล้ว',
+                                    'ระงับสิทธิ์สำเร็จ',
+                                    'คุณได้ทำการระงับสิทธิ์สมาชิกคนนี้เรียบร้อยแล้ว',
                                     'success'
                                 ).then((result) => {
                                     if (result.isConfirmed) {
@@ -157,8 +157,8 @@ $(document).ready(function () {
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
                     cancelButtonColor: '#d33',
-                    confirmButtonText: 'หาทำ !',
-                    cancelButtonText: 'อย่าหาทำ !',
+                    confirmButtonText: 'ตกลง',
+                    cancelButtonText: 'ยกเลิก',
                 }).then((result) => {
                     if (result.isConfirmed) {
                         $.ajax({
@@ -167,7 +167,7 @@ $(document).ready(function () {
                             data: { user_id },
                             success: (response) => {
                                 Swal.fire(
-                                    'เพิ่มสำเร็จ!',
+                                    'ลบสมาชิกสำเร็จ!',
                                     'คุณได้ทำการลบสมาชิกเรียบร้อยแล้ว',
                                     'success'
                                 ).then((result) => {
@@ -233,8 +233,8 @@ $(document).ready(function () {
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'หาทำ !',
-            cancelButtonText: 'อย่าหาทำ !',
+            confirmButtonText: 'ตกลง',
+            cancelButtonText: 'ยกเลิก',
         }).then((result) => {
             if (result.isConfirmed) {
                 $.ajax({

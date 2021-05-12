@@ -8,7 +8,7 @@ function init() {
 
 function signout() {
     const auth2 = gapi.auth2.getAuthInstance();
-    auth2.signOut().then(() => {
+    auth2.signOut().then(() => { 
         sessionStorage.clear();
         window.location.replace('/logout');
     });
@@ -84,7 +84,7 @@ $(document).ready(function () {
                     response[0].annotation = "ไม่มีข้อความ";
                 }
                 response[0].date_requisition = date + "-" + month + "-" + year;
-                let spawninfouser = "<div class='col-6'><p>เลขที่เบิกวัสดุ : " + response[0].requisition_id + "</p><p>ชื่อผู้เบิก : " + response[0].name + "</p><p>วันที่ : " + response[0].date_requisition + " เวลา : " + response[0].time_requisition + " น</p><p>หมายเหตุ : " + response[0].annotation + "</p></div><div class='col-6 text-center'><span class='iconify' data-icon='carbon:collapse-all' data-inline='false' style='color: #ffb01d;'data-width='100px' data-height='100px'></span><br> <text>ทั้งหมด<span class='iconify'  data-inline='false'data-width='30px' data-height='30px'>" + countitem + "</span></text></div>";
+                let spawninfouser = "<div class='col-6'><p>เลขที่เบิกวัสดุ : " + response[0].requisition_id + "</p><p>ชื่อผู้เบิก : " + response[0].name + "</p><p>วันที่ : " + response[0].date_requisition + " เวลา : " + response[0].time_requisition + " น</p><p>หมายเหตุ : " + response[0].annotation + "</p></div><div class='col-6 text-center'><span class='iconify' data-icon='carbon:collapse-all' data-inline='false' style='color: #ffb01d;'data-width='100px' data-height='100px'></span><br> <text>จำนวนวัสดุรวม<span class='iconify'  data-inline='false'data-width='30px' data-height='30px'>" + countitem + "</span>ชิ้น</text></div>";
 
                 $("#detail").html(spawninfouser);
                 $("#modifysave").click(function () {

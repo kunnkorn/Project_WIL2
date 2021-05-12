@@ -7,7 +7,7 @@
     min-width: 17rem;
     width: 17rem;
     height: 100vh;
-    position: fixed;
+    poObjectiveition: fixed;
     top: 60px;
     left: 0;
     box-shadow: 3px 3px 10px rgba(0,0,0,0.1) ;
@@ -152,10 +152,6 @@ a.active {
 #btn-requis {
   background-color: rgb(151, 213, 238);
   font-size: 18px;
-}
-
-#Objective {
-  background-color: rgb(151, 213, 238);
 }
 
 @media (min-width: 768px) {
